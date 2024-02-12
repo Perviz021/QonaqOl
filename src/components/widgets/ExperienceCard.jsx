@@ -50,7 +50,7 @@ const ExperienceCard = ({ index }) => {
             (29/30)
           </span>
         </div>
-        <button className="mt-[16px] px-[24px] h-[40px] bg-white text-[#3D37F1] text-[14px] font-[600] border-[2px] border-[#3D37F1] rounded-[50px]">
+        <button className="mt-[16px] px-[24px] h-[40px] font-inter bg-white text-[#3D37F1] text-[14px] font-[600] border-[2px] border-[#3D37F1] rounded-[50px]">
           Daha ətraflı
         </button>
       </div>
