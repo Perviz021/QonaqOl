@@ -1,73 +1,86 @@
-function Dropdown() {
+import React, { useState, useRef, useEffect } from "react";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+
+const Dropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Kateqoriyalar");
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [dropdownRef]);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+  };
+
   return (
-    <>
+    <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
-        id="dropdownDefaultButton"
-        data-dropdown-toggle="dropdown"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
+        className={`dropdown-button inline-flex justify-center w-[168px] bg-[#F2F4FF]  shadow-sm px-4 py-2 font-medium text-[#1D275F] focus:outline-none text-[14px] rounded-[50px]`}
+        onClick={toggleDropdown}
       >
-        Dropdown button
-        <svg
-          className="w-2.5 h-2.5 ms-3"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 10 6"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="m1 1 4 4 4-4"
+        <span>{selectedOption}</span>
+        {isOpen ? (
+          <FiChevronUp className="-mr-1 ml-2 h-5 w-5" />
+        ) : (
+          <FiChevronDown
+            className="-mr-1 ml-2 h-5 w-5"
+            onClick={toggleDropdown}
           />
-        </svg>
+        )}
       </button>
-      <div
-        id="dropdown"
-        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-      >
-        <ul
-          className="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDefaultButton"
+
+      {isOpen && (
+        <div
+          className="origin-top-right absolute right-0 -ml-1 w-full rounded-[16px] overflow-hidden shadow-lg focus:outline-none"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="menu-button"
+          tabIndex="-1"
         >
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          <div className="py-1 bg-[#F2F4FF]" role="none">
+            <button
+              onClick={() => handleOptionSelect("Sport")}
+              className="block w-full text-left px-4 py-2 text-sm text-[#1D275F] cursor-default"
+              role="menuitem"
             >
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              İdman
+            </button>
+            <button
+              onClick={() => handleOptionSelect("Clay")}
+              className="block w-full text-left px-4 py-2 text-sm text-[#1D275F] cursor-default"
+              role="menuitem"
             >
-              Settings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              Dulusçuluq
+            </button>
+            <button
+              onClick={() => handleOptionSelect("Cooking")}
+              className="block w-full text-left px-4 py-2 text-sm text-[#1D275F] cursor-default"
+              role="menuitem"
             >
-              Earnings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Sign out
-            </a>
-          </li>
-        </ul>
-      </div>
-    </>
+              Cooking
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
-}
+};
 
 export default Dropdown;
