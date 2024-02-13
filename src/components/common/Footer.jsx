@@ -7,7 +7,7 @@ import Logo from "./Logo";
 
 function Footer() {
   return (
-    <footer className="bg-[#000] px-[100px] pt-[109px] pb-[63px] flex flex-col text-[#fff] divide-y divide-[#404040]">
+    <footer className="bg-[#000] px-[100px] pt-[109px] pb-[30px] flex flex-col text-[#fff] divide-y divide-[#404040]">
       <div className="flex justify-between">
         {/* Logo part */}
         <div>
