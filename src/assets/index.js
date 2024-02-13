@@ -17,6 +17,8 @@ import thumbnail1 from "./img/video-thumbnail1.jpg";
 import thumbnail2 from "./img/video-thumbnail2.jpg";
 import thumbnail3 from "./img/video-thumbnail3.jpg";
 
+import newsletterBg from "./img/newsletter-bg.png";
+
 export {
   image1,
   image2,
@@ -33,4 +35,5 @@ export {
   thumbnail1,
   thumbnail2,
   thumbnail3,
+  newsletterBg,
 };
