@@ -19,6 +19,8 @@ import thumbnail3 from "./img/video-thumbnail3.jpg";
 
 import newsletterBg from "./img/newsletter-bg.png";
 
+import navBtn from "./icons/navBtn.svg";
+
 export {
   image1,
   image2,
@@ -36,4 +38,5 @@ export {
   thumbnail2,
   thumbnail3,
   newsletterBg,
+  navBtn,
 };

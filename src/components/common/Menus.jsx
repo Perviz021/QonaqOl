@@ -9,7 +9,7 @@ function Menus() {
   };
 
   return (
-    <div className="flex items-center font-medium text-white text-[20px] space-x-8">
+    <div className="flex items-center font-[400] text-[#000] text-[16px] space-x-[56px]">
       <NavLink to="/gift-cards">Hədiyyə Kartı</NavLink>
       <NavLink to="#" onClick={scrollToExperiences}>
         Təcrübələr
