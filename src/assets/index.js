@@ -20,6 +20,14 @@ import thumbnail3 from "./img/video-thumbnail3.jpg";
 import newsletterBg from "./img/newsletter-bg.png";
 
 import navBtn from "./icons/navBtn.svg";
+import headerContentBtn1 from "./icons/headerContentBtn1.svg";
+import calendar from "./icons/calendar.svg";
+import headerImg1 from "./img/header-img1.jpeg";
+import headerImg2 from "./img/header-img2.png";
+import headerImg3 from "./img/header-img3.jpeg";
+import headerImg4 from "./img/header-img4.jpeg";
+import heart from "./img/heart.png";
+import great from "./img/great.png";
 
 export {
   image1,
@@ -39,4 +47,12 @@ export {
   thumbnail3,
   newsletterBg,
   navBtn,
+  headerContentBtn1,
+  calendar,
+  headerImg1,
+  headerImg2,
+  headerImg3,
+  headerImg4,
+  heart,
+  great,
 };

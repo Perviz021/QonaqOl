@@ -3,7 +3,7 @@ import HeaderContent from "./HeaderContent";
 
 function Header() {
   return (
-    <div className="h-screen w-full bg-[#fff] overflow-hidden pt-[52px]">
+    <div className="h-screen w-full bg-[#fff] overflow-hidden pt-[20px]">
       <Navbar />
       <HeaderContent />
     </div>

@@ -1,3 +1,26 @@
 .img-cover {
   @apply h-full w-full object-cover;
 }
+
+.bg-img::after {
+  content: "";
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-img1::after {
+  background-image: url("../img/heart.png");
+  top: -30px;
+  left: -50px;
+  width: 57px;
+  height: 57px;
+}
+
+.bg-img2::after {
+  background-image: url("../img/great.png");
+  top: -30px;
+  left: -70px;
+  width: 62px;
+  height: 99px;
+}
