@@ -1,21 +1,15 @@
 import BlogCard from "../../components/widgets/BlogCard";
-import {
-  blogCard1,
-  blogCard2,
-  blogCard3,
-  thumbnail1,
-  thumbnail2,
-  thumbnail3,
-} from "../../assets";
+import { thumbnail1, thumbnail2, thumbnail3 } from "../../assets";
 
 const Blog = () => {
   return (
     <section className="w-[1086px] mx-auto mt-[260px]">
-      <h1 className="font-[700] text-[40px] text-center text-[#6246EA] font-inter">
-        Blog
-      </h1>
-      <p className="font-[400] text-[18px] font-inter text-[#6A6A6A] text-center mt-[21px] mb-[47px]">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <h5 className="unbounded unbounded-600 text-[24px] text-center">
+        Bloqlar
+      </h5>
+      <p className="font-[400] text-[20px] text-[#6A6A6A] text-center mt-[20px] mb-[40px]">
+        Tədbirlərimiz haqqında ətraflı məlumatları bloq yazılarımızdan əldə edə
+        bilərsiniz
       </p>
       <div className="w-full grid grid-cols-3 gap-[28px]">
         <BlogCard

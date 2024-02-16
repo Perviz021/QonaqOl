@@ -36,12 +36,16 @@ import swatch from "./icons/swatch.svg";
 import home2 from "./icons/home-2.svg";
 import music from "./icons/music.svg";
 
+// Experiences
 import arrowRight from "./icons/arrow-right.svg";
 import exp1 from "./img/exp1.jpeg";
 import exp2 from "./img/exp2.jpeg";
 import exp3 from "./img/exp3.jpeg";
 import exp4 from "./img/exp4.jpeg";
 import exp5 from "./img/exp5.jpeg";
+
+// Blog
+import playBtn from "./icons/play-btn.svg";
 
 export {
   image1,
@@ -81,4 +85,5 @@ export {
   exp4,
   exp5,
   arrowRight,
+  playBtn,
 };
