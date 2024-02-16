@@ -29,6 +29,13 @@ import headerImg4 from "./img/header-img4.jpeg";
 import heart from "./img/heart.png";
 import great from "./img/great.png";
 
+import tree from "./icons/tree.svg";
+import brush from "./icons/brush.svg";
+import cake from "./icons/cake.svg";
+import swatch from "./icons/swatch.svg";
+import home2 from "./icons/home-2.svg";
+import music from "./icons/music.svg";
+
 export {
   image1,
   image2,
@@ -55,4 +62,10 @@ export {
   headerImg4,
   heart,
   great,
+  tree,
+  cake,
+  brush,
+  home2,
+  music,
+  swatch,
 };
