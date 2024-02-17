@@ -31,48 +31,56 @@ function ExperiencesSection() {
             content="Aşpaz Abbasın pasta sirləri"
             time="02 Mart"
             place="Azərbaycan prospekti, A.."
+            price="30 Azn"
           />
           <ExperienceCard
             imgSrc={exp2}
             content="Aida seramik masterklas"
             time="19 fevral"
             place="Caspian plaza"
+            price="30 Azn"
           />
           <ExperienceCard
             imgSrc={exp3}
             content="SOLART rəssamlıq masterklas"
             time="14 fevral"
             place="İçəri şəhər, Solart scho.."
+            price="30 Azn"
           />
           <ExperienceCard
             imgSrc={exp4}
             content="Pizza bruno pizza masterklas 🍕"
             time="16 fevral"
             place="Pizza Bruno, Nizami filialı.."
+            price="30 Azn"
           />
           <ExperienceCard
             imgSrc={exp5}
             content="Cafephile kofe cupping"
             time="12 Mart"
             place="Ağ şəhər filialı"
+            price="Pulsuz"
           />
           <ExperienceCard
             imgSrc={image4}
             content="Həvəskarlar Futbol Liqası"
             time="07 Mart"
             place="Baku Olimpiya Stadionu"
+            price="30 Azn"
           />
           <ExperienceCard
             imgSrc={image5}
             content="Voleybol Çempionatı"
             time="22 Fevral"
             place="Sərhədçi İdman Mərkəzi"
+            price="30 Azn"
           />
           <ExperienceCard
             imgSrc={image6}
             content="Go-kart track"
             time="10 Fevral"
             place="Baku City Karting"
+            price="30 Azn"
           />
         </div>
       </div>

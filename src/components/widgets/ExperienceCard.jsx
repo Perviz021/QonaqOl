@@ -1,11 +1,12 @@
-const ExperienceCard = ({ imgSrc, content, time, place }) => {
+const ExperienceCard = ({ imgSrc, content, time, place, price }) => {
   return (
     <div className="w-[295px] mx-auto bg-white rounded-t-[8px] overflow-hidden">
-      <img
-        className="w-full h-[200px] object-cover"
-        src={imgSrc}
-        alt="Experience Card Image"
-      />
+      <div className="w-full h-[200px] relative">
+        <img className="img-cover" src={imgSrc} alt="Experience Card Image" />
+        <span className="absolute bottom-[10px] right-[10px] font-[500] text-[14px] bg-[#101010] rounded-[16px] p-[8px] opacity-55 text-[#fff]">
+          {price}
+        </span>
+      </div>
       <div className="pt-[16px] space-y-[8px]">
         <h5 className="font-[600] text-[18px]">{content}</h5>
         <p className="flex items-center space-x-3 w-full text-[16px] font-[400]">
