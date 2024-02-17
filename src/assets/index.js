@@ -47,6 +47,12 @@ import exp5 from "./img/exp5.jpeg";
 // Blog
 import playBtn from "./icons/play-btn.svg";
 
+// Create Event
+import puzzle from "./icons/puzzle.svg";
+import figures from "./icons/figures.svg";
+import note from "./icons/note.svg";
+import cookie from "./icons/cookie.svg";
+
 export {
   image1,
   image2,
@@ -86,4 +92,8 @@ export {
   exp5,
   arrowRight,
   playBtn,
+  puzzle,
+  figures,
+  note,
+  cookie,
 };

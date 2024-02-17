@@ -1,5 +1,6 @@
 import ActivityAreas from "./ActivityAreas";
 import Blog from "./Blog";
+import EventCreate from "./EventCreate";
 import ExperiencesSection from "./ExperiencesSection";
 import Newsletter from "./Newsletter";
 
@@ -8,6 +9,7 @@ function HomePage() {
     <>
       <ActivityAreas />
       <ExperiencesSection />
+      <EventCreate />
       <Blog />
       <Newsletter />
     </>

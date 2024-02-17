@@ -3,7 +3,7 @@ import { thumbnail1, thumbnail2, thumbnail3 } from "../../assets";
 
 const Blog = () => {
   return (
-    <section className="w-[1086px] mx-auto mt-[260px]">
+    <section className="w-[1086px] mx-auto mt-[80px]">
       <h5 className="unbounded unbounded-600 text-[24px] text-center">
         Bloqlar
       </h5>
