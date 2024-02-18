@@ -12,8 +12,8 @@ import Logo from "./Logo";
 
 function Footer() {
   return (
-    <footer className="bg-[#000] px-[100px] pt-[109px] pb-[260px] flex flex-col text-[#F1F1F1] divide-y divide-[#404040]">
-      <div className="flex justify-between">
+    <footer className="bg-[#000] px-[100px] pt-[109px] pb-[60px] flex flex-col text-[#F1F1F1] divide-y divide-[#404040]">
+      <div className="flex justify-between mb-[200px]">
         {/* Logo part */}
         <div className="relative bottom-[15px]">
           <div className="mt-[8px]">
@@ -92,6 +92,9 @@ function Footer() {
             <span>+994 12 444 00 00</span>
           </p>
         </div>
+      </div>
+      <div className="pt-[28px]">
+        <p>© Qonaqol.az 2024. Bütün hüquqlar qorunur</p>
       </div>
     </footer>
   );
