@@ -57,6 +57,9 @@ import cookie from "./icons/cookie.svg";
 import directbox from "./icons/directbox.svg";
 import borderYellow from "./img/bg-border-yellow.png";
 
+// Login
+import loginBg from "./img/login-bg.jpeg";
+
 export {
   image1,
   image2,
@@ -102,4 +105,5 @@ export {
   cookie,
   directbox,
   borderYellow,
+  loginBg,
 };
