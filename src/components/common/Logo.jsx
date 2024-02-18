@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 
-function Logo() {
+function Logo({ color }) {
+  const textColor = color ? color : "#313131";
   return (
     <div className="px-[12px] py-[8px]">
       <Link
         to="/"
-        className="font-bold text-[18px] leading-[28px] text-[#313131] unbounded unbounded-700"
+        className={`text-[18px] leading-[28px] 
+          text-${[textColor]} unbounded unbounded-700`}
       >
         Qonaqol.az
       </Link>
