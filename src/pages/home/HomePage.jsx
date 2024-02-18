@@ -2,7 +2,7 @@ import ActivityAreas from "./ActivityAreas";
 import Blog from "./Blog";
 import EventCreate from "./EventCreate";
 import ExperiencesSection from "./ExperiencesSection";
-import Newsletter from "./Newsletter";
+import Subscribe from "./Subscribe";
 
 function HomePage() {
   return (
@@ -11,7 +11,7 @@ function HomePage() {
       <ExperiencesSection />
       <EventCreate />
       <Blog />
-      <Newsletter />
+      <Subscribe />
     </>
   );
 }

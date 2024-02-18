@@ -24,3 +24,16 @@
   width: 62px;
   height: 99px;
 }
+
+.bg-border-yellow::after {
+  content: "";
+  position: absolute;
+  background-image: url("../img/bg-border-yellow.png");
+  top: 0px;
+  left: -22px;
+  width: 650px;
+  height: 80px;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}

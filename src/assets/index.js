@@ -53,6 +53,10 @@ import figures from "./icons/figures.svg";
 import note from "./icons/note.svg";
 import cookie from "./icons/cookie.svg";
 
+// Subscribe
+import directbox from "./icons/directbox.svg";
+import borderYellow from "./img/bg-border-yellow.png";
+
 export {
   image1,
   image2,
@@ -96,4 +100,6 @@ export {
   figures,
   note,
   cookie,
+  directbox,
+  borderYellow,
 };
