@@ -1,3 +1,4 @@
+import Header from "../../components/common/Header";
 import ActivityAreas from "./ActivityAreas";
 import Blog from "./Blog";
 import EventCreate from "./EventCreate";
@@ -7,6 +8,7 @@ import Subscribe from "./Subscribe";
 function HomePage() {
   return (
     <>
+      <Header />
       <ActivityAreas />
       <ExperiencesSection />
       <EventCreate />
