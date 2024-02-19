@@ -9,7 +9,7 @@ function LoginPage() {
     <div className="flex h-screen">
       {/* Left Side (Image) */}
       <div className="w-1/2">
-        <img src={loginBg} alt="" />
+        <img src={loginBg} alt="" className="relative bottom-[50px]" />
       </div>
 
       {/* Right Side (Login Form) */}

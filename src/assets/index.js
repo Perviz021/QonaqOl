@@ -60,6 +60,9 @@ import borderYellow from "./img/bg-border-yellow.png";
 // Login
 import loginBg from "./img/login-bg.jpeg";
 
+// SignUp
+import signupBg from "./img/signup-bg.jpeg";
+
 export {
   image1,
   image2,
@@ -106,4 +109,5 @@ export {
   directbox,
   borderYellow,
   loginBg,
+  signupBg,
 };
