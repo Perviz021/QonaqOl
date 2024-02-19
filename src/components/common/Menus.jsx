@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
-function Menus() {
+function Menus({ isLoggedIn }) {
   const [activeNavLink, setActiveNavLink] = useState(null);
 
   const scrollToExperiences = () => {
@@ -41,6 +41,15 @@ function Menus() {
       >
         Haqqımızda
       </NavLink>
+      {isLoggedIn && (
+        <NavLink
+          to="/create-activity"
+          onClick={() => handleNavLinkClick("create-activity")}
+          className={activeNavLink === "create-activity" ? "font-[600]" : ""}
+        >
+          Fəaliyyət yarat
+        </NavLink>
+      )}
     </div>
   );
 }

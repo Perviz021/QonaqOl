@@ -72,7 +72,7 @@ function LoginPage() {
               </button>
               <p className="text-center flex items-center text-[12px] leading-[20px]">
                 Artıq qeydiyyatdan keçmisiniz?
-                <NavLink to="/signup" className="underline ml-1">
+                <NavLink to="/login" className="underline ml-1">
                   Daxil olun
                 </NavLink>
               </p>
