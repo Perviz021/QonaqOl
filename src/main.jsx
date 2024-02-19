@@ -7,6 +7,7 @@ import AppLayout from "./layouts/AppLayout.jsx";
 import ErrorPage from "./pages/error/ErrorPage.jsx";
 import LoginPage from "./pages/Login/LoginPage.jsx";
 import SignUpPage from "./pages/signup/SignUpPage.jsx";
+import GiftCardsPage from "./pages/giftcard/GiftCardsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,15 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUpPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/gift-cards",
+    element: (
+      <AppLayout>
+        <GiftCardsPage />
+      </AppLayout>
+    ),
     errorElement: <ErrorPage />,
   },
 ]);
