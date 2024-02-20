@@ -49,13 +49,13 @@ const LoginButton = ({ isLoggedIn, onLogin, onLogout }) => {
             <>
               <NavLink
                 to="/login"
-                className="block px-4 py-2 text-[#2B2C34] hover:bg-gray-200 text-[14px] font-normal"
+                className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
               >
                 Daxil ol
               </NavLink>
               <NavLink
                 to="/signup"
-                className="block px-4 py-2 text-[#2B2C34] hover:bg-gray-200 text-[14px] font-normal"
+                className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
               >
                 Qeydiyyatdan keç
               </NavLink>
@@ -64,13 +64,13 @@ const LoginButton = ({ isLoggedIn, onLogin, onLogout }) => {
             <>
               <NavLink
                 to="/profile"
-                className="block px-4 py-2 text-[#2B2C34] hover:bg-gray-200 text-[14px] font-normal"
+                className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
               >
                 Profil
               </NavLink>
               <button
                 onClick={onLogout}
-                className="block w-full text-left px-4 py-2 text-[#2B2C34] hover:bg-gray-200 text-[14px] font-normal"
+                className="block w-full px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
               >
                 Çıxış
               </button>
