@@ -1,8 +1,4 @@
 // Import images
-import image4 from "./img/experience-card4.jpeg";
-import image5 from "./img/experience-card5.jpeg";
-import image6 from "./img/experience-card6.jpeg";
-
 import blogCard1 from "./img/blog-card1.jpeg";
 import blogCard2 from "./img/blog-card1.jpeg";
 import blogCard3 from "./img/blog-card1.jpeg";
@@ -34,6 +30,9 @@ import exp2 from "./img/exp2.jpeg";
 import exp3 from "./img/exp3.jpeg";
 import exp4 from "./img/exp4.jpeg";
 import exp5 from "./img/exp5.jpeg";
+import exp6 from "./img/exp6.jpeg";
+import exp7 from "./img/exp7.jpeg";
+import exp8 from "./img/exp8.jpeg";
 
 // Blog
 import playBtn from "./icons/play-btn.svg";
@@ -60,9 +59,6 @@ import giftcard2 from "./img/giftcard2.png";
 import giftcard3 from "./img/giftcard3.png";
 
 export {
-  image4,
-  image5,
-  image6,
   blogCard1,
   blogCard2,
   blogCard3,
@@ -89,6 +85,9 @@ export {
   exp3,
   exp4,
   exp5,
+  exp6,
+  exp7,
+  exp8,
   arrowRight,
   playBtn,
   puzzle,

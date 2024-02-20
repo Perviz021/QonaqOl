@@ -6,10 +6,10 @@ import {
   exp3,
   exp4,
   exp5,
+  exp6,
+  exp7,
+  exp8,
   arrowRight,
-  image4,
-  image5,
-  image6,
 } from "../../assets";
 
 function ExperiencesSection() {
