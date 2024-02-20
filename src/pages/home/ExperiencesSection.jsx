@@ -62,21 +62,21 @@ function ExperiencesSection() {
             price="Pulsuz"
           />
           <ExperienceCard
-            imgSrc={image4}
+            imgSrc={exp6}
             content="Həvəskarlar Futbol Liqası"
             time="07 Mart"
             place="Baku Olimpiya Stadionu"
             price="30 Azn"
           />
           <ExperienceCard
-            imgSrc={image5}
+            imgSrc={exp7}
             content="Voleybol Çempionatı"
             time="22 Fevral"
             place="Sərhədçi İdman Mərkəzi"
             price="30 Azn"
           />
           <ExperienceCard
-            imgSrc={image6}
+            imgSrc={exp8}
             content="Go-kart track"
             time="10 Fevral"
             place="Baku City Karting"
