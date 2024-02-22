@@ -5,10 +5,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/home/HomePage.jsx";
 import AppLayout from "./layouts/AppLayout.jsx";
 import ErrorPage from "./pages/error/ErrorPage.jsx";
-import LoginPage from "./pages/Login/LoginPage.jsx";
+import LoginPage from "./pages/login/LoginPage.jsx";
 import SignUpPage from "./pages/signup/SignUpPage.jsx";
 import GiftCardsPage from "./pages/giftcard/GiftCardsPage.jsx";
-import CreateEvent from "./pages/CreateEvent/CreateEvent.jsx";
+import CreateEvent from "./pages/event/CreateEvent.jsx";
 
 const router = createBrowserRouter([
   {
