@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { signupBg } from "../../assets";
 
 function SignUpPage() {
+  const navigate = useNavigate();
+
   const [formState, setFormState] = useState({
     imageLoaded: false,
-    fullname: "",
+    fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
     fieldsFilled: false,
-    fullnameValid: true,
+    fullNameValid: true,
     emailValid: true,
     passwordValid: true,
     confirmPasswordValid: true,
@@ -38,7 +40,7 @@ function SignUpPage() {
     setFormState((prevState) => ({
       ...prevState,
       [id]:
-        id === "email" ? value : value.slice(0, id === "fullname" ? 40 : 10),
+        id === "email" ? value : value.slice(0, id === "fullName" ? 40 : 10),
       fieldsFilled:
         id !== "confirmPassword"
           ? {
@@ -53,7 +55,7 @@ function SignUpPage() {
           ? isPasswordValid(value)
           : id === "confirmPassword"
           ? value === formState.password
-          : value.length <= (id === "fullname" ? 40 : 10),
+          : value.length <= (id === "fullName" ? 40 : 10),
       passwordMatch:
         id === "password"
           ? value === formState.confirmPassword
@@ -75,15 +77,14 @@ function SignUpPage() {
 
     try {
       const response = await fetch(
-        "https://qonaqol.onrender.com/api/v1/auth/signup",
+        "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signup",
         {
           method: "POST",
-          mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            fullname: formState.fullname,
+            fullName: formState.fullName,
             email: formState.email,
             password: formState.password,
             confirmPassword: formState.confirmPassword,
@@ -94,6 +95,7 @@ function SignUpPage() {
       if (response.ok) {
         // Handle success
         console.log("User signed up successfully!");
+        navigate("/login"); // Navigate to login page using useNavigate
       } else {
         // Handle error
         console.error("Error signing up:", response.statusText);
@@ -131,19 +133,19 @@ function SignUpPage() {
               <form onSubmit={handleSubmit}>
                 {" "}
                 {/* Added onSubmit handler */}
-                {/* Fullname Input */}
+                {/* fullName Input */}
                 <div
                   className={`mb-[20px] ${
-                    !formState.fullnameValid ? "border-red-500" : ""
+                    !formState.fullNameValid ? "border-red-500" : ""
                   }`}
                 >
                   <input
                     className={`appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0 ${
-                      !formState.fullnameValid ? "border-red-500" : ""
+                      !formState.fullNameValid ? "border-red-500" : ""
                     }`}
-                    id="fullname"
+                    id="fullName"
                     type="text"
-                    value={formState.fullname}
+                    value={formState.fullName}
                     onChange={handleInputChange}
                     placeholder="Ad Soyad"
                   />
