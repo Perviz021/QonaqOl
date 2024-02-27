@@ -1,4 +1,3 @@
-import Navbar from "./Navbar";
 import HeaderContent from "./HeaderContent";
 
 function Header() {

@@ -1,20 +1,27 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { loginBg } from "../../assets";
 
 function LoginPage() {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [fieldsFilled, setFieldsFilled] = useState(false);
-  const [emailValid, setEmailValid] = useState(true);
-  const [passwordValid, setPasswordValid] = useState(true);
-  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    imageLoaded: false,
+    email: "",
+    password: "",
+    fieldsFilled: false,
+    emailValid: true,
+    passwordValid: true,
+    showPassword: false,
+  });
 
   const handleImageLoad = () => {
-    setImageLoaded(true);
+    setFormData((prevData) => ({
+      ...prevData,
+      imageLoaded: true,
+    }));
   };
 
   const isEmailValid = (email) => {
@@ -26,23 +33,70 @@ function LoginPage() {
     return password.length <= 10;
   };
 
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-    setFieldsFilled(value && password);
-    setEmailValid(isEmailValid(value));
-  };
-
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-    setFieldsFilled(email && value);
-    setPasswordValid(isPasswordValid(value));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+      fieldsFilled:
+        name === "email"
+          ? !!value && !!prevData.password
+          : !!prevData.email && !!value,
+      emailValid: name === "email" ? isEmailValid(value) : prevData.emailValid,
+      passwordValid:
+        name === "password" ? isPasswordValid(value) : prevData.passwordValid,
+    }));
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    setFormData((prevData) => ({
+      ...prevData,
+      showPassword: !prevData.showPassword,
+    }));
   };
+
+  const handleSignIn = async () => {
+    try {
+      // Make a POST request to the backend for signing in
+      const response = await fetch(
+        "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        // If sign-in is successful, parse response and extract token
+        const data = await response.json();
+        const token = data.token;
+        // Store the token in local storage
+        localStorage.setItem("token", token);
+        // Redirect user to main page
+        navigate("/");
+      } else {
+        console.error("Sign-in failed");
+      }
+    } catch (error) {
+      console.error("Error signing in:", error);
+    }
+  };
+
+  const {
+    imageLoaded,
+    email,
+    password,
+    fieldsFilled,
+    emailValid,
+    passwordValid,
+    showPassword,
+  } = formData;
 
   return (
     <div style={{ visibility: imageLoaded ? "visible" : "hidden" }}>
@@ -72,8 +126,9 @@ function LoginPage() {
                   }`}
                   id="email"
                   type="email"
+                  name="email"
                   value={email}
-                  onChange={handleEmailChange}
+                  onChange={handleInputChange}
                   placeholder="E-poçt"
                 />
               </div>
@@ -89,8 +144,9 @@ function LoginPage() {
                   }`}
                   id="password"
                   type={showPassword ? "text" : "password"}
+                  name="password"
                   value={password}
-                  onChange={handlePasswordChange}
+                  onChange={handleInputChange}
                   maxLength={10}
                   placeholder="Şifrə"
                 />
@@ -102,26 +158,31 @@ function LoginPage() {
                 </div>
               </div>
 
-              {fieldsFilled && (
-                <div className="flex flex-col items-center justify-center space-y-[8px]">
-                  <button
-                    className={`${
-                      isEmailValid(email) && isPasswordValid(password)
-                        ? "bg-[#FFCE00]"
-                        : "bg-gray-300"
-                    } text-black text-[16px] font-normal h-[44px] w-full rounded-[8px] focus:outline-none focus:shadow-outline`}
-                    type="button"
-                  >
-                    Daxil ol
-                  </button>
-                  <p className="text-center flex items-center text-[12px] leading-[20px]">
-                    Qonaqol.az-da yenisiniz?{" "}
-                    <NavLink to="/signup" className="underline ml-1">
-                      Qeydiyyatdan keçin
-                    </NavLink>
-                  </p>
-                </div>
-              )}
+              <p className="text-end cursor-pointer text-[#0078CC] text-[10px] font-normal mb-[24px]">
+                Şifrəni unutmusunuz?
+              </p>
+
+              <div className="flex flex-col items-center justify-center space-y-[8px]">
+                <button
+                  className={`${
+                    isEmailValid(email) &&
+                    isPasswordValid(password) &&
+                    fieldsFilled
+                      ? "bg-[#FFCE00]"
+                      : "bg-gray-300"
+                  } text-black text-[16px] font-normal h-[44px] w-full rounded-[8px] focus:outline-none focus:shadow-outline`}
+                  type="button"
+                  onClick={handleSignIn}
+                >
+                  Daxil ol
+                </button>
+                <p className="text-center flex items-center text-[12px] leading-[20px]">
+                  Qonaqol.az-da yenisiniz?{" "}
+                  <NavLink to="/signup" className="underline ml-1">
+                    Qeydiyyatdan keçin
+                  </NavLink>
+                </p>
+              </div>
             </div>
 
             <div className="mb-[16px] w-full flex items-center justify-center">
@@ -142,9 +203,9 @@ function LoginPage() {
               </button>
               <p className="text-[12px] py-3 text-[#2B2B2B] text-center font-normal">
                 Hesabınıza giriş edərək və ya yeni hesab yaradaraq{" "}
-                <span className="text-[#0074C6]">Xidmət Şərtləri</span>
-                və <span className="#0074C6">Məxfilik Siyasətini</span> qəbul
-                etmiş olursunuz
+                <span className="text-[#0074C6]">Xidmət Şərtləri</span> və{" "}
+                <span className="#0074C6">Məxfilik Siyasətini</span> qəbul etmiş
+                olursunuz
               </p>
             </div>
           </div>

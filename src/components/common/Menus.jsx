@@ -1,8 +1,14 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Menus({ isLoggedIn }) {
-  const [activeNavLink, setActiveNavLink] = useState(null);
+function Menus() {
+  const [activeNavLink, setActiveNavLink] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, [token]);
 
   const scrollToExperiences = () => {
     const experiencesSection = document.getElementById("experiences");
@@ -41,13 +47,13 @@ function Menus({ isLoggedIn }) {
       >
         Haqqımızda
       </NavLink>
-      {isLoggedIn && (
+      {token && (
         <NavLink
           to="/create-activity"
           onClick={() => handleNavLinkClick("create-activity")}
           className={activeNavLink === "create-activity" ? "font-[600]" : ""}
         >
-          Fəaliyyət yarat
+          Tədbir yarat
         </NavLink>
       )}
     </div>

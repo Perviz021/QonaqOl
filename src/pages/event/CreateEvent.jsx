@@ -4,6 +4,7 @@ import ImageUploader from "./ImageUploader";
 const CreateEvent = () => {
   return (
     <div>
+      dvonweovnweol
       <ImageUploader />
     </div>
   );

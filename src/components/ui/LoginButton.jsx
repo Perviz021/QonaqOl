@@ -1,9 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 
-const LoginButton = ({ isLoggedIn, onLogin, onLogout }) => {
+const LoginButton = () => {
+  const [token, setToken] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -22,30 +30,33 @@ const LoginButton = ({ isLoggedIn, onLogin, onLogout }) => {
     };
   }, []);
 
+  const handleLogout = () => {
+    // Remove token from local storage
+    localStorage.removeItem("token");
+    // Clear token state
+    setToken(null);
+    // Close dropdown
+    setDropdownOpen(false);
+    // Reload the page
+    window.location.reload();
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
-      {!isLoggedIn ? (
-        <button
-          onClick={toggleDropdown}
-          className={`w-[190px] py-[10px] rounded-t-[8px] relative z-10 ${
-            dropdownOpen ? "rounded-t-[8px]" : "rounded-[8px]"
-          } bg-[#2B2C34] border-[0.5px] text-white inline-flex items-center space-x-[4px] justify-center`}
-        >
-          <span className="text-[14px] font-[400]">Bizə qoşul</span>
-        </button>
-      ) : (
-        <button
-          onClick={toggleDropdown}
-          className={`w-[190px] py-[10px] rounded-t-[8px] ${
-            dropdownOpen ? "rounded-t-[8px]" : "rounded-[8px]"
-          } bg-[#2B2C34] border-[0.5px] text-white inline-flex items-center space-x-[4px] justify-center`}
-        >
-          <span className="text-[14px] font-[400]">Hesabım</span>
-        </button>
-      )}
+      <button
+        onClick={toggleDropdown}
+        className={`w-[190px] py-[10px] rounded-t-[8px] relative z-10 ${
+          dropdownOpen ? "rounded-t-[8px]" : "rounded-[8px]"
+        } bg-[#2B2C34] border-[0.5px] text-white inline-flex items-center space-x-[4px] justify-center`}
+      >
+        <span className="text-[14px] font-[400]">
+          {!token ? "Bizə qoşul" : "Hesabım"}
+        </span>
+      </button>
+
       {dropdownOpen && (
         <div className="absolute right-0 w-full bg-[#f1f1f1] overflow-hidden rounded-b-[8px] z-10">
-          {!isLoggedIn ? (
+          {!token ? (
             <>
               <NavLink
                 to="/login"
@@ -63,13 +74,13 @@ const LoginButton = ({ isLoggedIn, onLogin, onLogout }) => {
           ) : (
             <>
               <NavLink
-                to="/profile"
+                to="/"
                 className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
               >
                 Profil
               </NavLink>
               <button
-                onClick={onLogout}
+                onClick={handleLogout}
                 className="block w-full px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
               >
                 Çıxış
