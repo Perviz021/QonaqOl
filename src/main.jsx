@@ -8,6 +8,7 @@ import ErrorPage from "./pages/error/ErrorPage.jsx";
 import SignUpPage from "./pages/signup/SignUpPage.jsx";
 import GiftCardsPage from "./pages/giftcard/GiftCardsPage.jsx";
 import CreateEvent from "./pages/event/CreateEvent.jsx";
+import LoginPage from "./pages/login/LoginPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <HomePage />,
+    element: <LoginPage />,
     errorElement: <ErrorPage />,
   },
   {
