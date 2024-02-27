@@ -216,22 +216,24 @@ function SignUpPage() {
                   </div>
                 </div>
                 {/* Sign Up Button */}
-                {formState.fieldsFilled && formState.passwordMatch && (
-                  <div className="flex flex-col items-center justify-center space-y-[8px]">
-                    <button
-                      className={`bg-[#FFCE00] text-black text-[16px] font-normal h-[44px] w-full rounded-[8px] focus:outline-none focus:shadow-outline`}
-                      type="submit"
-                    >
-                      Qeydiyyat
-                    </button>
-                    <p className="text-center flex items-center text-[12px] leading-[20px]">
-                      Artıq qeydiyyatdan keçmisiniz?{" "}
-                      <NavLink to="/login" className="underline ml-1">
-                        Daxil olun
-                      </NavLink>
-                    </p>
-                  </div>
-                )}
+                <div className="flex flex-col items-center justify-center space-y-[8px]">
+                  <button
+                    className={`${
+                      formState.fieldsFilled && formState.passwordMatch
+                        ? "bg-[#FFCE00]"
+                        : "bg-gray-300 pointer-events-none"
+                    }  text-black text-[16px] font-normal h-[44px] w-full rounded-[8px] focus:outline-none focus:shadow-outline`}
+                    type="submit"
+                  >
+                    Qeydiyyat
+                  </button>
+                  <p className="text-center flex items-center text-[12px] leading-[20px]">
+                    Artıq qeydiyyatdan keçmisiniz?{" "}
+                    <NavLink to="/login" className="underline ml-1">
+                      Daxil olun
+                    </NavLink>
+                  </p>
+                </div>
               </form>
             </div>
 
