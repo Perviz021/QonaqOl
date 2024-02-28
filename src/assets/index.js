@@ -58,6 +58,18 @@ import giftcard1 from "./img/giftcard1.png";
 import giftcard2 from "./img/giftcard2.png";
 import giftcard3 from "./img/giftcard3.png";
 
+// Event Create Page
+import textBold from "./icons/text-bold.svg";
+import textItalic from "./icons/text-italic.svg";
+import textLeft from "./icons/textalign-left.svg";
+import textRight from "./icons/textalign-right.svg";
+import textCenter from "./icons/textalign-center.svg";
+import textJustify from "./icons/textalign-justifycenter.svg";
+
+// Event Category
+import chevronDown from "./icons/chevron-down.svg";
+import chevronUp from "./icons/chevron-up.svg";
+
 export {
   blogCard1,
   blogCard2,
@@ -101,4 +113,12 @@ export {
   giftcard1,
   giftcard2,
   giftcard3,
+  textBold,
+  textItalic,
+  textLeft,
+  textRight,
+  textCenter,
+  textJustify,
+  chevronDown,
+  chevronUp,
 };

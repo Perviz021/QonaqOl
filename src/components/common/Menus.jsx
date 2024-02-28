@@ -49,9 +49,9 @@ function Menus() {
       </NavLink>
       {token && (
         <NavLink
-          to="/create-activity"
-          onClick={() => handleNavLinkClick("create-activity")}
-          className={activeNavLink === "create-activity" ? "font-[600]" : ""}
+          to="/create-event"
+          onClick={() => handleNavLinkClick("create-event")}
+          className={activeNavLink === "create-event" ? "font-[600]" : ""}
         >
           Tədbir yarat
         </NavLink>

@@ -41,7 +41,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/create-event",
-    element: <CreateEvent />,
+    element: (
+      <AppLayout>
+        <CreateEvent />
+      </AppLayout>
+    ),
     errorElement: <ErrorPage />,
   },
 ]);
