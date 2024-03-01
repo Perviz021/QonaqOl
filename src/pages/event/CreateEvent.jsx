@@ -51,7 +51,7 @@ const CreateEvent = () => {
         </div>
         <EventDescription />
         <EventCategory options={options} />
-        <div className="flex items-center justify-between">
+        <div className="flex items-start justify-between">
           <EventDate />
           <EventTime />
         </div>
