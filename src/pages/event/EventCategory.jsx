@@ -29,7 +29,7 @@ const EventCategory = ({ options }) => {
   };
 
   return (
-    <div className="mt-[40px]">
+    <div>
       <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
         Kateqoriya
       </h4>
