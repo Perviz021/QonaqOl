@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ImageUploader from "./ImageUploader";
 import EventDescription from "./EventDescription";
 import EventCategory from "./EventCategory";
+import EventDate from "./EventDate";
+import EventTime from "./EventTime";
 
 const CreateEvent = () => {
   const [eventName, setEventName] = useState("");
@@ -25,8 +27,11 @@ const CreateEvent = () => {
       <h1 className="my-[90px] mx-[100px] text-[48px] unbounded unbounded-700">
         Tədbir yarat
       </h1>
-      <form className="w-[820px] mx-auto" onSubmit={(e) => handleSubmit(e)}>
-        <div className="flex flex-col gap-[12px] mb-[40px]">
+      <form
+        className="w-[820px] mx-auto space-y-[40px]"
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <div className="flex flex-col gap-[12px]">
           <label
             htmlFor="name"
             className="font-[500] text-[20px] leading-[28px]"
@@ -41,10 +46,15 @@ const CreateEvent = () => {
             placeholder="Tədbirin adı"
             value={eventName}
             onChange={(e) => setEventName(e.target.value)}
+            maxLength={50} // Add max length restriction
           />
         </div>
         <EventDescription />
         <EventCategory options={options} />
+        <div className="flex items-center justify-between">
+          <EventDate />
+          <EventTime />
+        </div>
         <ImageUploader />
       </form>
     </div>

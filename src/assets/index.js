@@ -70,6 +70,9 @@ import textJustify from "./icons/textalign-justifycenter.svg";
 import chevronDown from "./icons/chevron-down.svg";
 import chevronUp from "./icons/chevron-up.svg";
 
+// Event Date
+import clock from "./icons/clock.svg";
+
 export {
   blogCard1,
   blogCard2,
@@ -121,4 +124,5 @@ export {
   textJustify,
   chevronDown,
   chevronUp,
+  clock,
 };
