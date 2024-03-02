@@ -19,7 +19,7 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
       <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
         Tədbirin tarixi
       </h4>
-      <div className="inline-flex justify-between items-center rounded-[8px] bg-[#f2f2f2] w-full h-[44px] px-[20px] font-[16px] text-[#919191]">
+      <div className="inline-flex justify-between items-center rounded-[8px] bg-[#f2f2f2] w-full h-[44px] pr-[20px] pl-[10px] font-[16px] text-[#919191]">
         <DatePicker
           selected={selectedDate}
           onChange={onChange}
