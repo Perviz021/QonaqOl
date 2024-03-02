@@ -73,6 +73,15 @@ import chevronUp from "./icons/chevron-up.svg";
 // Event Date
 import clock from "./icons/clock.svg";
 
+// Event Language
+import global from "./icons/global.svg";
+
+// Event Price
+import money from "./icons/money.svg";
+
+// Event Image Upload
+import download from "./icons/download.svg";
+
 export {
   blogCard1,
   blogCard2,
@@ -125,4 +134,7 @@ export {
   chevronDown,
   chevronUp,
   clock,
+  global,
+  money,
+  download,
 };

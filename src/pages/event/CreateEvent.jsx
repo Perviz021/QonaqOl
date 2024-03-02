@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import ImageUploader from "./ImageUploader";
 import EventDescription from "./EventDescription";
 import EventCategory from "./EventCategory";
 import EventDate from "./EventDate";
 import EventTime from "./EventTime";
+import EventLang from "./EventLang";
+import EventPrice from "./EventPrice";
+import EventAddress from "./EventAddress";
+import EventContact from "./EventContact";
+import EventImageUpload from "./EventImageUpload";
 
 const CreateEvent = () => {
   const [eventName, setEventName] = useState("");
@@ -23,7 +27,7 @@ const CreateEvent = () => {
   ];
 
   return (
-    <div>
+    <div className="mb-[250px]">
       <h1 className="my-[90px] mx-[100px] text-[48px] unbounded unbounded-700">
         Tədbir yarat
       </h1>
@@ -55,7 +59,22 @@ const CreateEvent = () => {
           <EventDate />
           <EventTime />
         </div>
-        <ImageUploader />
+        <div className="flex items-start justify-between">
+          <EventLang />
+          <EventPrice />
+        </div>
+        <EventAddress />
+        <EventContact />
+        <EventImageUpload />
+
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            className="h-[48px] px-[57px] bg-[#FFCE00] rounded-[8px] text-[16px] hover:bg-[#FFD700]"
+          >
+            Müraciəti göndər
+          </button>
+        </div>
       </form>
     </div>
   );
