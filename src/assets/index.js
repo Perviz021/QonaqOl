@@ -82,6 +82,14 @@ import money from "./icons/money.svg";
 // Event Image Upload
 import download from "./icons/download.svg";
 
+// Event page
+import heart2 from "./icons/heart.svg";
+import event1 from "./img/event-1.jpeg";
+import event2 from "./img/event-2.jpeg";
+import event3 from "./img/event-3.jpeg";
+import event4 from "./img/event-4.jpeg";
+import event5 from "./img/event-5.jpeg";
+
 export {
   blogCard1,
   blogCard2,
@@ -137,4 +145,10 @@ export {
   global,
   money,
   download,
+  heart2,
+  event1,
+  event2,
+  event3,
+  event4,
+  event5,
 };

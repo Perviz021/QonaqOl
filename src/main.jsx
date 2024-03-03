@@ -9,6 +9,7 @@ import SignUpPage from "./pages/signup/SignUpPage.jsx";
 import GiftCardsPage from "./pages/giftcard/GiftCardsPage.jsx";
 import CreateEvent from "./pages/event/CreateEvent.jsx";
 import LoginPage from "./pages/login/LoginPage.jsx";
+import Event from "./pages/event/Event.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,15 @@ const router = createBrowserRouter([
     element: (
       <AppLayout>
         <CreateEvent />
+      </AppLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/event",
+    element: (
+      <AppLayout>
+        <Event />
       </AppLayout>
     ),
     errorElement: <ErrorPage />,

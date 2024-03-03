@@ -32,6 +32,7 @@ function ExperiencesSection() {
             time="02 Mart"
             place="Azərbaycan prospekti, A.."
             price="30 Azn"
+            imgHeight="200px"
           />
           <ExperienceCard
             imgSrc={exp2}
@@ -39,6 +40,7 @@ function ExperiencesSection() {
             time="19 fevral"
             place="Caspian plaza"
             price="30 Azn"
+            imgHeight="200px"
           />
           <ExperienceCard
             imgSrc={exp3}
@@ -46,6 +48,7 @@ function ExperiencesSection() {
             time="14 fevral"
             place="İçəri şəhər, Solart scho.."
             price="30 Azn"
+            imgHeight="200px"
           />
           <ExperienceCard
             imgSrc={exp4}
@@ -53,6 +56,7 @@ function ExperiencesSection() {
             time="16 fevral"
             place="Pizza Bruno, Nizami filialı.."
             price="30 Azn"
+            imgHeight="200px"
           />
           <ExperienceCard
             imgSrc={exp5}
@@ -60,6 +64,7 @@ function ExperiencesSection() {
             time="12 Mart"
             place="Ağ şəhər filialı"
             price="Pulsuz"
+            imgHeight="200px"
           />
           <ExperienceCard
             imgSrc={exp6}
@@ -67,6 +72,7 @@ function ExperiencesSection() {
             time="07 Mart"
             place="Baku Olimpiya Stadionu"
             price="30 Azn"
+            imgHeight="200px"
           />
           <ExperienceCard
             imgSrc={exp7}
@@ -74,6 +80,7 @@ function ExperiencesSection() {
             time="22 Fevral"
             place="Sərhədçi İdman Mərkəzi"
             price="30 Azn"
+            imgHeight="200px"
           />
           <ExperienceCard
             imgSrc={exp8}
@@ -81,6 +88,7 @@ function ExperiencesSection() {
             time="10 Fevral"
             place="Baku City Karting"
             price="30 Azn"
+            imgHeight="200px"
           />
         </div>
       </div>
