@@ -7,7 +7,7 @@ const LoginButton = () => {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
       setToken(storedToken);
     }
@@ -32,7 +32,7 @@ const LoginButton = () => {
 
   const handleLogout = () => {
     // Remove token from local storage
-    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     // Clear token state
     setToken(null);
     // Close dropdown

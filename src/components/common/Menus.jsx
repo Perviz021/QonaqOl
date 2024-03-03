@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 
 function Menus() {
   const [activeNavLink, setActiveNavLink] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("accessToken");
     setToken(storedToken);
-  }, [token]);
+  }, []);
 
   const scrollToExperiences = () => {
     const experiencesSection = document.getElementById("experiences");

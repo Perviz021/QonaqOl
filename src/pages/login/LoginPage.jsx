@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { loginBg } from "../../assets";
+import { refreshToken } from "../../utils/refreshToken";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -57,7 +58,6 @@ function LoginPage() {
 
   const handleSignIn = async () => {
     try {
-      // Make a POST request to the backend for signing in
       const response = await fetch(
         "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signin",
         {
@@ -73,13 +73,19 @@ function LoginPage() {
       );
 
       if (response.ok) {
-        // If sign-in is successful, parse response and extract token
         const data = await response.json();
-        const token = data.token;
-        // Store the token in local storage
-        localStorage.setItem("token", token);
-        // Redirect user to main page
+        const accessToken = data.accessToken;
+        const refreshToken = data.refreshToken;
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
         navigate("/");
+      } else if (response.status === 401) {
+        const newAccessToken = await refreshToken();
+        if (newAccessToken) {
+          return handleSignIn(); // Retry sign-in with new access token
+        } else {
+          console.error("Unable to refresh token. Please try again later.");
+        }
       } else {
         console.error("Sign-in failed");
       }

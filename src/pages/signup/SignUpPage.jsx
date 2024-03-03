@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { signupBg } from "../../assets";
+import { refreshToken } from "../../utils/refreshToken";
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -95,10 +96,28 @@ function SignUpPage() {
       if (response.ok) {
         // Handle success
         console.log("User signed up successfully!");
-        navigate("/login"); // Navigate to login page using useNavigate
+        const data = await response.json();
+        const accessToken = data.accessToken;
+        const refreshToken = data.refreshToken;
+        // Store the tokens in local storage
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        navigate("/"); // Navigate to login page using useNavigate
       } else {
-        // Handle error
-        console.error("Error signing up:", response.statusText);
+        if (response.status === 401) {
+          // If token is expired or invalid, try refreshing the token
+          const newAccessToken = await refreshToken();
+          if (newAccessToken) {
+            // If a new access token is obtained, retry the signup
+            return handleSubmit(e);
+          } else {
+            // If unable to refresh token, handle error appropriately
+            console.error("Unable to refresh token. Please try again later.");
+          }
+        } else {
+          // Handle other errors
+          console.error("Error signing up:", response.statusText);
+        }
       }
     } catch (error) {
       console.error("Error signing up:", error.message);
