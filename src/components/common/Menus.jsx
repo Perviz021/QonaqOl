@@ -23,6 +23,15 @@ function Menus() {
 
   return (
     <div className="flex items-center font-[400] text-[#000] text-[16px] space-x-[56px]">
+      {token && (
+        <NavLink
+          to="/create-event"
+          onClick={() => handleNavLinkClick("create-event")}
+          className={activeNavLink === "create-event" ? "font-[600]" : ""}
+        >
+          Tədbir yarat
+        </NavLink>
+      )}
       <NavLink
         to="/gift-cards"
         onClick={() => handleNavLinkClick("gift-cards")}
@@ -47,15 +56,6 @@ function Menus() {
       >
         Haqqımızda
       </NavLink>
-      {token && (
-        <NavLink
-          to="/create-event"
-          onClick={() => handleNavLinkClick("create-event")}
-          className={activeNavLink === "create-event" ? "font-[600]" : ""}
-        >
-          Tədbir yarat
-        </NavLink>
-      )}
     </div>
   );
 }
