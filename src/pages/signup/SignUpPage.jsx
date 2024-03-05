@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { signupBg } from "../../assets";
-import { refreshToken } from "../../utils/refreshToken";
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -34,6 +33,50 @@ function SignUpPage() {
 
   const isPasswordValid = (password) => {
     return password.length <= 10;
+  };
+
+  const refreshToken = async () => {
+    const navigate = useNavigate();
+
+    try {
+      const refreshToken = localStorage.getItem("refreshToken");
+      const response = await fetch(
+        "https://qonaqol.onrender.com/qonaqol/api/v1/auth/refresh",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            refreshToken: refreshToken,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        const newAccessToken = data.accessToken;
+        const newRefreshToken = data.refreshToken;
+        // Update tokens in local storage
+        localStorage.setItem("accessToken", newAccessToken);
+        localStorage.setItem("refreshToken", newRefreshToken);
+        return newAccessToken;
+      } else {
+        console.error("Error refreshing token:", response.statusText);
+        // Optionally, handle invalid or expired refresh token
+        // For example, clear tokens from local storage and redirect to login page
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Error refreshing token:", error.message);
+      // Handle network errors or other exceptions
+      // Optionally, clear tokens from local storage and redirect to login page
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      navigate("/login");
+    }
   };
 
   const handleInputChange = (e) => {
@@ -97,11 +140,14 @@ function SignUpPage() {
         // Handle success
         console.log("User signed up successfully!");
         const data = await response.json();
-        const accessToken = data.accessToken;
-        const refreshToken = data.refreshToken;
-        // Store the tokens in local storage
+        const { userId, tokenPair } = data;
+        const { accessToken, refreshToken } = tokenPair;
+
+        // Store userId, accessToken, and refreshToken in local storage
+        localStorage.setItem("userId", userId);
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
+
         navigate("/"); // Navigate to login page using useNavigate
       } else {
         if (response.status === 401) {

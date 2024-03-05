@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { loginBg } from "../../assets";
-import { refreshToken } from "../../utils/refreshToken";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -56,6 +55,48 @@ function LoginPage() {
     }));
   };
 
+  const refreshToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem("refreshToken");
+      const response = await fetch(
+        "https://qonaqol.onrender.com/qonaqol/api/v1/auth/refresh",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            refreshToken: refreshToken,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        const newAccessToken = data.accessToken;
+        const newRefreshToken = data.refreshToken;
+        // Update tokens in local storage
+        localStorage.setItem("accessToken", newAccessToken);
+        localStorage.setItem("refreshToken", newRefreshToken);
+        return newAccessToken;
+      } else {
+        console.error("Error refreshing token:", response.statusText);
+        // Optionally, handle invalid or expired refresh token
+        // For example, clear tokens from local storage and redirect to login page
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Error refreshing token:", error.message);
+      // Handle network errors or other exceptions
+      // Optionally, clear tokens from local storage and redirect to login page
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      navigate("/login");
+    }
+  };
+
   const handleSignIn = async () => {
     try {
       const response = await fetch(
@@ -74,12 +115,16 @@ function LoginPage() {
 
       if (response.ok) {
         const data = await response.json();
-        const accessToken = data.accessToken;
-        const refreshToken = data.refreshToken;
+        const { userId, tokenPair } = data;
+        const { accessToken, refreshToken } = tokenPair;
+
+        // Store userId, accessToken, and refreshToken in local storage
+        localStorage.setItem("userId", userId);
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
-        navigate("/");
-      } else if (response.status === 401) {
+
+        navigate("/"); // Navigate to home page
+      } else if (response.status === 403) {
         const newAccessToken = await refreshToken();
         if (newAccessToken) {
           return handleSignIn(); // Retry sign-in with new access token
