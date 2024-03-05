@@ -1,8 +1,25 @@
-const ExperienceCard = ({ imgSrc, content, time, place, price, imgHeight }) => {
+const ExperienceCard = ({
+  imgSrc,
+  content,
+  time,
+  place,
+  price,
+  imgWidth,
+  imgHeight,
+}) => {
+  const imageClass =
+    imgWidth && imgHeight
+      ? `w-[${imgWidth}] h-[${imgHeight}]`
+      : "w-full h-[197px]";
+
   return (
-    <div className="w-[295px] mx-auto bg-white rounded-t-[8px] overflow-hidden">
-      <div className={`w-full h-[197px] relative overflow-hidden`}>
-        <img className="img-cover" src={imgSrc} alt="Experience Card Image" />
+    <div className={`mx-auto bg-white rounded-t-[8px] ${imageClass}`}>
+      <div className="relative w-full h-full overflow-hidden">
+        <img
+          className={`${imageClass} object-cover rounded-[8px]`}
+          src={imgSrc}
+          alt="Experience Card Image"
+        />
         <span className="absolute bottom-[10px] right-[10px] font-[500] text-[14px] bg-[#101010] rounded-[16px] p-[8px] opacity-55 text-[#fff]">
           {price}
         </span>
