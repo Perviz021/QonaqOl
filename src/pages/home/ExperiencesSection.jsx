@@ -14,7 +14,10 @@ import {
 
 function ExperiencesSection() {
   return (
-    <section id="experiences" className="w-[1240px] mx-auto mt-[80px]">
+    <section
+      id="experiences"
+      className="w-[1240px] mx-auto mt-[80px] mb-[150px]"
+    >
       <h1 className="unbounded unbounded-600 text-[24px] mb-[60px] flex justify-between items-center">
         Populyar tədbirlər
         <span>
@@ -25,7 +28,7 @@ function ExperiencesSection() {
       {/* Experiences Cards */}
       <div className="container mx-auto">
         {/* First Row */}
-        <div className="grid grid-cols-4 gap-x-[20px] gap-y-[40px]">
+        <div className="grid grid-cols-4 gap-x-[20px] gap-y-[100px]">
           <ExperienceCard
             imgSrc={exp1}
             content="Aşpaz Abbasın pasta sirləri"

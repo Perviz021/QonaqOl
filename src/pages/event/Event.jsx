@@ -96,19 +96,19 @@ const Event = () => {
           </button>
         </div>
       </div>
-      <div>
+      <div className="mb-[120px]">
         <h4 className="unbounded unbounded-600 text-[24px] my-[40px]">
           Oxşar tədbirlər
         </h4>
 
-        <div className="grid grid-cols-3 gap-[20px]">
+        <div className="gap-[20px] flex justify-between">
           <ExperienceCard
             imgSrc={exp1}
             content="Aşpaz Abbasın pasta sirləri"
             time="02 Mart"
             place="Azərbaycan prospekti, A.."
             price="30 Azn"
-            imgHeight="197px"
+            imgWidth="400px"
           />
           <ExperienceCard
             imgSrc={exp2}
@@ -116,7 +116,7 @@ const Event = () => {
             time="19 fevral"
             place="Caspian plaza"
             price="30 Azn"
-            imgHeight="197px"
+            imgWidth="400px"
           />
           <ExperienceCard
             imgSrc={exp3}
@@ -124,7 +124,7 @@ const Event = () => {
             time="14 fevral"
             place="İçəri şəhər, Solart scho.."
             price="30 Azn"
-            imgHeight="197px"
+            imgWidth="400px"
           />
         </div>
       </div>
