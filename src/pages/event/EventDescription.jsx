@@ -9,11 +9,18 @@ import {
   textJustify,
 } from "../../assets";
 
-const EventDescription = () => {
+const EventDescription = ({ onDescriptionChange }) => {
   const [textDescription, setTextDescription] = useState("");
   const [bold, setBold] = useState(false);
   const [italic, setItalic] = useState(false);
   const [alignment, setAlignment] = useState("");
+
+  const handleTextChange = (e) => {
+    const description = e.target.value;
+    setTextDescription(description);
+    // Call the callback function passed from the parent component
+    onDescriptionChange(description);
+  };
 
   const handleTextFormat = (format) => {
     switch (format) {
@@ -80,7 +87,7 @@ const EventDescription = () => {
         className={getTextAreaClassName()}
         placeholder="Tədbirin təsviri"
         value={textDescription}
-        onChange={(e) => setTextDescription(e.target.value)}
+        onChange={handleTextChange}
       />
     </div>
   );
