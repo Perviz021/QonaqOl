@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const EventContact = () => {
+const EventContact = ({ onPhoneNumberChange }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const placeholder = "+994 XX XXX XX XX";
 
@@ -22,6 +22,7 @@ const EventContact = () => {
         }
       }
       setPhoneNumber(inputValue);
+      onPhoneNumberChange(inputValue);
     }
   };
 
