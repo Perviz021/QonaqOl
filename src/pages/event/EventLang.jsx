@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { global } from "../../assets";
 
-const EventLang = () => {
+const EventLang = ({ onLangChange }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedLang, setSelectedLang] = useState("");
   const dropdownRef = useRef(null);
@@ -25,8 +25,24 @@ const EventLang = () => {
   };
 
   const handleLangSelection = (lang) => {
+    let englishLang = "";
+    switch (lang) {
+      case "Azərbaycan":
+        englishLang = "AZERBAIJANI";
+        break;
+      case "English":
+        englishLang = "ENGLISH";
+        break;
+      case "Русский":
+        englishLang = "RUSSIAN";
+        break;
+      default:
+        englishLang = "";
+    }
+
     setSelectedLang(lang);
     setShowDropdown(false);
+    onLangChange(englishLang); // Pass the selected language to the parent component
   };
 
   return (
@@ -51,8 +67,8 @@ const EventLang = () => {
           <img src={global} alt="" />
         </span>
         {showDropdown && (
-          <div className="absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
-            <ul>
+          <div className="absolute top-full left-0 mt-1 w-full bg-[#f2f2f2] rounded-[8px]">
+            <ul className="px-2">
               <li
                 onClick={() => handleLangSelection("Azərbaycan")}
                 className="cursor-pointer p-2 hover:bg-gray-100"
@@ -61,7 +77,7 @@ const EventLang = () => {
               </li>
               <li
                 onClick={() => handleLangSelection("English")}
-                className="cursor-pointer p-2 hover:bg-gray-100"
+                className="cursor-pointer p-2 hover:bg-gray-100 border-y border-[#fff]"
               >
                 English
               </li>
