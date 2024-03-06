@@ -1,7 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { chevronDown, chevronUp } from "../../assets";
 
-const EventCategory = ({ options }) => {
+const optionsMap = {
+  "Kənd həyatı": "COUNTRY_LIFE",
+  Kamplar: "CAMPS",
+  Rəssamlıq: "PAINTING",
+  "Yemək hazırlama": "COOKING",
+  Dulusçuluq: "POTTERY",
+  Musiqi: "MUSIC",
+};
+
+const EventCategory = ({ options, onCategoryChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const dropdownRef = useRef(null);
@@ -26,6 +35,8 @@ const EventCategory = ({ options }) => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    const englishOption = optionsMap[option]; // Map Azerbaijani option to English version
+    onCategoryChange(englishOption); // Call the callback function with the English uppercase version
   };
 
   return (
