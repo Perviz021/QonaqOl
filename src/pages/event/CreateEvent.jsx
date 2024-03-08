@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import EventDescription from "./EventDescription";
 import EventCategory from "./EventCategory";
 import EventDate from "./EventDate";
@@ -8,8 +9,11 @@ import EventPrice from "./EventPrice";
 import EventAddress from "./EventAddress";
 import EventContact from "./EventContact";
 import EventImageUpload from "./EventImageUpload";
+import { done } from "../../assets";
 
 const CreateEvent = () => {
+  const navigate = useNavigate();
+
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -22,64 +26,44 @@ const CreateEvent = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [images, setImages] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
+  const [isFormFilled, setIsFormFilled] = useState(false);
 
-  const handleSubmit = async () => {
-    // Get userId from local storage
-    const userId = localStorage.getItem("userId");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-    // Check if userId is available
-    if (!userId) {
-      console.error("User ID not found in local storage.");
-      return;
+  useEffect(() => {
+    // Check if all required fields are filled
+    if (
+      eventName &&
+      eventDescription &&
+      selectedCategory &&
+      eventDate &&
+      startTime &&
+      endTime &&
+      selectedLang &&
+      price &&
+      address &&
+      phoneNumber &&
+      images.length === 5 &&
+      coverImage
+    ) {
+      setIsFormFilled(true);
+    } else {
+      setIsFormFilled(false);
     }
-
-    // Prepare the form data
-    const formData = new FormData();
-    formData.append("userId", userId);
-    formData.append("eventName", eventName);
-    formData.append("description", eventDescription);
-    formData.append("category", selectedCategory);
-    formData.append("language", selectedLang);
-    formData.append("eventPrice", price);
-    formData.append("eventDate", eventDate);
-    formData.append("eventStartTime", startTime);
-    formData.append("eventEndTime", endTime);
-    formData.append("eventLocation", address);
-    formData.append("contact", phoneNumber);
-    formData.append("maxParticipants", 0); // You may adjust this value as needed
-
-    // Append cover photo with the name 'mainPhoto'
-    if (coverImage) {
-      formData.append("mainPhoto", coverImage);
-    }
-
-    // Append other images with the name 'photos'
-    images.forEach((image, index) => {
-      formData.append(`photos`, image);
-    });
-
-    try {
-      // Send the form data to the backend API
-      const response = await fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/event/create-event",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (response.ok) {
-        // Handle success, e.g., show a success message
-        console.log("Event created successfully!");
-      } else {
-        // Handle error response from the server
-        console.error("Failed to create event:", response.statusText);
-      }
-    } catch (error) {
-      // Handle network errors or other exceptions
-      console.error("An error occurred:", error);
-    }
-  };
+  }, [
+    eventName,
+    eventDescription,
+    selectedCategory,
+    eventDate,
+    startTime,
+    endTime,
+    selectedLang,
+    price,
+    address,
+    phoneNumber,
+    images,
+    coverImage,
+  ]);
 
   const handleDescriptionChange = (description) => {
     setEventDescription(description);
@@ -90,15 +74,15 @@ const CreateEvent = () => {
   };
 
   // Handler function to receive the formatted date from EventDate component
-  const handleDateChange = (formattedDate, e) => {
-    e.preventDefault();
+  const handleDateChange = (formattedDate) => {
     setEventDate(formattedDate);
   };
 
   // Handler function to receive the selected start and end times from EventTime component
-  const handleTimeChange = (start, end, e) => {
-    e.preventDefault();
+  const handleStartTimeChange = (start) => {
     setStartTime(start);
+  };
+  const handleEndTimeChange = (end) => {
     setEndTime(end);
   };
 
@@ -123,15 +107,87 @@ const CreateEvent = () => {
   };
 
   // Handler function to receive the images from EventImageUpload component
-  const handleImagesChange = (newImages, e) => {
-    e.preventDefault();
+  const handleImagesChange = (newImages) => {
     setImages(newImages);
   };
 
   // Handler function to receive the cover image from EventImageUpload component
   const handleCoverImageChange = (newCoverImage) => {
-    e.preventDefault();
     setCoverImage(newCoverImage);
+  };
+
+  const handleSubmit = async () => {
+    // Get userId from local storage
+    const userId = localStorage.getItem("userId");
+
+    // Check if userId is available
+    if (!userId) {
+      console.error("User ID not found in local storage.");
+      return;
+    }
+
+    // Create FormData object
+    const formData = new FormData();
+
+    // Append form data
+    formData.append("userId", Number(userId));
+    formData.append("eventName", eventName);
+    formData.append("description", eventDescription);
+    formData.append("category", selectedCategory);
+    formData.append("language", selectedLang);
+    formData.append("eventPrice", price);
+    formData.append("eventDate", eventDate);
+    formData.append("eventStartTime", startTime);
+    formData.append("eventEndTime", endTime);
+    formData.append("eventLocation", address);
+    formData.append("contact", phoneNumber);
+    formData.append("maxParticipants", 10); // You may adjust this value as needed
+
+    // Append cover photo with the name 'mainPhoto'
+    if (coverImage) {
+      formData.append("mainPhoto", coverImage);
+    }
+
+    // Append images array with the name 'photos'
+    if (images.length > 0) {
+      formData.append("photos", images); // Directly append the images array
+    }
+
+    for (const [value, key] of formData.entries()) {
+      console.log(value, key);
+    } // Log formData for debugging
+
+    try {
+      // Send the form data to the backend API
+      const response = await fetch(
+        "https://qonaqol.onrender.com/qonaqol/api/event/create-event",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        setShowSuccessPopup(true);
+        // Handle success, e.g., show a success message
+        console.log("Event created successfully!");
+      } else {
+        // Handle error response from the server
+        console.error("Failed to create event:", response.statusText);
+      }
+    } catch (error) {
+      // Handle network errors or other exceptions
+      console.error("An error occurred:", error);
+    }
+  };
+
+  // Function to handle continue button click in the success pop-up
+  const handleContinueButtonClick = () => {
+    setShowSuccessPopup(false); // Close the pop-up
+    navigate("/"); // Navigate to the main page using navigate
   };
 
   const options = [
@@ -174,7 +230,10 @@ const CreateEvent = () => {
         />
         <div className="flex items-start justify-between">
           <EventDate onDateChange={handleDateChange} />
-          <EventTime onTimeChange={handleTimeChange} />
+          <EventTime
+            onStartTimeChange={handleStartTimeChange}
+            onEndTimeChange={handleEndTimeChange}
+          />
         </div>
         <div className="flex items-start justify-between">
           <EventLang onLangChange={handleLangChange} />
@@ -191,12 +250,35 @@ const CreateEvent = () => {
           <button
             type="button"
             onClick={handleSubmit}
-            className="h-[48px] px-[57px] bg-[#FFCE00] rounded-[8px] text-[16px] hover:bg-[#FFD700]"
+            className={`h-[48px] px-[57px] rounded-[8px] text-[16px] ${
+              isFormFilled ? "bg-[#FFCE00]" : "bg-[#f1DD8B]"
+            }`}
+            disabled={!isFormFilled}
           >
             Müraciəti göndər
           </button>
         </div>
       </form>
+
+      {showSuccessPopup && (
+        <div className="fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
+          <div className="bg-white w-[500px] pt-[104px] pb-[130px] px-[120px] rounded-[8px] flex flex-col items-center justify-center">
+            <span className="p-[25px] inline-flex justify-center items-center mb-[33px] bg-[#44AA55] rounded-full w-[100px] h-[100px]">
+              <img src={done} alt="" />
+            </span>
+            <p className="text-[20px] leading-[28px] font-[600] mb-[59px] text-center">
+              Tədbiriniz qeydə alındı. Ən qısa zamanda sizinlə əlaqə
+              saxlanılacaq. Təşəkkürlər!
+            </p>
+            <button
+              onClick={handleContinueButtonClick}
+              className="bg-[#FFCE00] text-black h-[48px] w-[278px] text-[16px] rounded-[8px] focus:outline-none"
+            >
+              Davam et
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

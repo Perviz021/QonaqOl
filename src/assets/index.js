@@ -82,6 +82,9 @@ import money from "./icons/money.svg";
 // Event Image Upload
 import download from "./icons/download.svg";
 
+// Create Event pop-up
+import done from "./icons/done.svg";
+
 // Event page
 import heart2 from "./icons/heart.svg";
 import event1 from "./img/event-1.jpeg";
@@ -151,4 +154,5 @@ export {
   event3,
   event4,
   event5,
+  done,
 };

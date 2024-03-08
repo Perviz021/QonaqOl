@@ -131,7 +131,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
           multiple // Allow multiple file selection
         />
 
-        <div className="bg-[#f2f2f2] flex flex-wrap gap-4 justify-center">
+        <div className="bg-[#f2f2f2] flex flex-col gap-4 justify-center">
           {images.map((image, index) => (
             <div key={index} className="flex items-center">
               <img
