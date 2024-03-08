@@ -286,7 +286,7 @@ function SignUpPage() {
                     className={`${
                       formState.fieldsFilled && formState.passwordMatch
                         ? "bg-[#FFCE00]"
-                        : "bg-gray-300 pointer-events-none"
+                        : "bg-[#F1dd8b] pointer-events-none"
                     }  text-black text-[16px] font-normal h-[44px] w-full rounded-[8px] focus:outline-none focus:shadow-outline`}
                     type="submit"
                   >
@@ -312,7 +312,11 @@ function SignUpPage() {
             {/* Google Signin Button */}
             <div className="flex flex-col items-center justify-center">
               <button
-                className="bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]"
+                className={`${
+                  formState.fieldsFilled && formState.passwordMatch
+                    ? "bg-[#2B2C34]"
+                    : "bg-[#9c9c9f] pointer-events-none"
+                } text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]`}
                 type="button"
               >
                 <span className="size-[20px]">
