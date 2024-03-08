@@ -11,7 +11,8 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
   const coverImageInputRef = useRef(null);
 
   // Function to handle file upload when the button is clicked
-  const handleButtonClick = (ref) => {
+  const handleButtonClick = (e, ref) => {
+    e.preventDefault();
     ref.current.click();
   };
 
@@ -75,7 +76,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
           </div>
         )}
         <button
-          onClick={() => handleButtonClick(coverImageInputRef)}
+          onClick={(e) => handleButtonClick(e, coverImageInputRef)}
           className="bg-[#2B2C34] text-white rounded-[8px] h-[44px] w-[150px] mb-[16px]"
         >
           Yüklə
@@ -116,7 +117,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
         )}
 
         <button
-          onClick={() => handleButtonClick(fileInputRef)}
+          onClick={(e) => handleButtonClick(e, fileInputRef)}
           className="bg-[#2B2C34] text-white rounded-[8px] h-[44px] w-[150px] mb-[16px]"
         >
           Yüklə
@@ -130,7 +131,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
           multiple // Allow multiple file selection
         />
 
-        <div className="bg-[#f2f2f2] mt-4 p-4 flex flex-wrap gap-4">
+        <div className="bg-[#f2f2f2] flex flex-wrap gap-4 justify-center">
           {images.map((image, index) => (
             <div key={index} className="flex items-center">
               <img
