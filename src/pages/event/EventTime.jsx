@@ -2,12 +2,13 @@
 import React, { useState } from "react";
 import { clock } from "../../assets";
 
-const EventTime = ({ onTimeChange }) => {
+const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
   const [showTimeInputs, setShowTimeInputs] = useState(false);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
-  const handleTimeInputClick = () => {
+  const handleTimeInputClick = (e) => {
+    e.preventDefault();
     setShowTimeInputs(!showTimeInputs);
   };
 
@@ -24,15 +25,15 @@ const EventTime = ({ onTimeChange }) => {
   }
 
   const handleStartTimeChange = (e) => {
-    const value = e.target.value;
-    setStartTime(value);
-    onTimeChange(startTime, value); // Pass both start and end times to the parent component
+    const start = e.target.value;
+    setStartTime(start);
+    onStartTimeChange(start);
   };
 
   const handleEndTimeChange = (e) => {
-    const value = e.target.value;
-    setEndTime(value);
-    onTimeChange(value, endTime); // Pass both start and end times to the parent component
+    const end = e.target.value;
+    setEndTime(end);
+    onEndTimeChange(end);
   };
 
   return (
@@ -41,7 +42,7 @@ const EventTime = ({ onTimeChange }) => {
         Tədbirin saatı
       </h4>
       <button
-        onClick={handleTimeInputClick}
+        onClick={(e) => handleTimeInputClick(e)}
         className="inline-flex justify-between items-center rounded-[8px] mb-[17px] bg-[#f2f2f2] w-full h-[44px] px-[20px]"
       >
         <span className="font-[16px] text-[#919191]">
