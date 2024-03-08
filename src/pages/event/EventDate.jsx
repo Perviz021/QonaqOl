@@ -8,6 +8,7 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCalendar = () => {
+    // e.preventDefault();
     setIsOpen(!isOpen);
   };
 
@@ -32,6 +33,7 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
           calendarClassName={customCalendarClassName} // Apply custom Tailwind CSS classes to calendar
         />
         <button
+          type="button"
           className="flex items-center focus:outline-none"
           onClick={toggleCalendar}
         >
