@@ -3,12 +3,6 @@ import { money } from "../../assets";
 
 const EventPrice = ({ onEventPriceChange }) => {
   const [price, setPrice] = useState("");
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    // Focus the input when component mounts
-    inputRef.current.focus();
-  }, []);
 
   const handleChange = (event) => {
     // Ensure only numbers are entered
@@ -35,7 +29,6 @@ const EventPrice = ({ onEventPriceChange }) => {
       </h4>
       <div className="relative">
         <input
-          ref={inputRef}
           type="text"
           placeholder="1 nəfər üçün nəzərdə tutulan (AZN)"
           className="text-[16px] bg-[#f2f2f2] w-full border-transparent focus:border-transparent focus:ring-0 rounded-[8px] px-[20px]"
