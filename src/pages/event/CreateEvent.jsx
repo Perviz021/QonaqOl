@@ -15,15 +15,15 @@ const CreateEvent = () => {
   const navigate = useNavigate();
 
   const [eventName, setEventName] = useState("");
-  const [eventDescription, setEventDescription] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState(null);
   const [eventDate, setEventDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [selectedLang, setSelectedLang] = useState("");
-  const [price, setPrice] = useState("");
-  const [address, setAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [eventStartTime, setEventStartTime] = useState("");
+  const [eventEndTime, setEventEndTime] = useState("");
+  const [language, setLanguage] = useState("");
+  const [eventPrice, setEventPrice] = useState("");
+  const [eventLocation, setEventLocation] = useState("");
+  const [contact, setContact] = useState("");
   const [images, setImages] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const [isFormFilled, setIsFormFilled] = useState(false);
@@ -34,17 +34,17 @@ const CreateEvent = () => {
     // Check if all required fields are filled
     if (
       eventName &&
-      eventDescription &&
-      selectedCategory &&
+      description &&
+      category &&
       eventDate &&
-      startTime &&
-      endTime &&
-      selectedLang &&
-      price &&
-      address &&
-      phoneNumber &&
-      images.length === 5 &&
-      coverImage
+      eventStartTime &&
+      eventEndTime &&
+      language &&
+      eventPrice &&
+      eventLocation &&
+      contact
+      // images.length === 5 &&
+      // coverImage
     ) {
       setIsFormFilled(true);
     } else {
@@ -52,58 +52,58 @@ const CreateEvent = () => {
     }
   }, [
     eventName,
-    eventDescription,
-    selectedCategory,
+    description,
+    category,
     eventDate,
-    startTime,
-    endTime,
-    selectedLang,
-    price,
-    address,
-    phoneNumber,
-    images,
-    coverImage,
+    eventStartTime,
+    eventEndTime,
+    language,
+    eventPrice,
+    eventLocation,
+    contact,
+    // images,
+    // coverImage,
   ]);
 
   const handleDescriptionChange = (description) => {
-    setEventDescription(description);
+    setDescription(description);
   };
 
   const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
+    setCategory(category);
   };
 
   // Handler function to receive the formatted date from EventDate component
-  const handleDateChange = (formattedDate) => {
-    setEventDate(formattedDate);
+  const handleDateChange = (date) => {
+    setEventDate(date);
   };
 
   // Handler function to receive the selected start and end times from EventTime component
   const handleStartTimeChange = (start) => {
-    setStartTime(start);
+    setEventStartTime(start);
   };
   const handleEndTimeChange = (end) => {
-    setEndTime(end);
+    setEventEndTime(end);
   };
 
   // Handler function to receive the selected language from EventLang component
   const handleLangChange = (lang) => {
-    setSelectedLang(lang);
+    setLanguage(lang);
   };
 
-  // Handler function to receive the price from EventPrice component
-  const handlePriceChange = (newPrice) => {
-    setPrice(newPrice);
+  // Handler function to receive the eventPrice from EventPrice component
+  const handleEventPriceChange = (newEventPrice) => {
+    setEventPrice(newEventPrice);
   };
 
   // Handler function to receive the address from EventAddress component
   const handleAddressChange = (newAddress) => {
-    setAddress(newAddress);
+    setEventLocation(newAddress);
   };
 
   // Handler function to receive the phone number from EventContact component
   const handlePhoneNumberChange = (newPhoneNumber) => {
-    setPhoneNumber(newPhoneNumber);
+    setContact(newPhoneNumber);
   };
 
   // Handler function to receive the images from EventImageUpload component
@@ -118,7 +118,7 @@ const CreateEvent = () => {
 
   const handleSubmit = async () => {
     // Get userId from local storage
-    const userId = localStorage.getItem("userId");
+    const userId = Number(localStorage.getItem("userId"));
 
     // Check if userId is available
     if (!userId) {
@@ -126,47 +126,71 @@ const CreateEvent = () => {
       return;
     }
 
-    // Create FormData object
-    const formData = new FormData();
+    const queryParams = new URLSearchParams();
 
-    // Append form data
-    formData.append("userId", Number(userId));
-    formData.append("eventName", eventName);
-    formData.append("description", eventDescription);
-    formData.append("category", selectedCategory);
-    formData.append("language", selectedLang);
-    formData.append("eventPrice", price);
-    formData.append("eventDate", eventDate);
-    formData.append("eventStartTime", startTime);
-    formData.append("eventEndTime", endTime);
-    formData.append("eventLocation", address);
-    formData.append("contact", phoneNumber);
-    formData.append("maxParticipants", 10); // You may adjust this value as needed
+    // Create FormData object
+    // const formData = new FormData();
+
+    // queryParams.append("userId", userId);
+    // queryParams.append("eventName", eventName);
+    // queryParams.append("description", description);
+    // queryParams.append("category", category);
+    // queryParams.append("language", language);
+    // queryParams.append("eventPrice", eventPrice);
+    // queryParams.append("eventDate", eventDate);
+    // queryParams.append("eventStartTime", eventStartTime);
+    // queryParams.append("eventEndTime", eventEndTime);
+    // queryParams.append("evenLocation", eventLocation);
+    // queryParams.append("contact", contact);
+    // queryParams.append("maxParticipants", 10);
+
+    // const queryParamsString = queryParams.toString();
 
     // Append cover photo with the name 'mainPhoto'
-    if (coverImage) {
-      formData.append("mainPhoto", coverImage);
-    }
+    // if (coverImage) {
+    //   formData.append("mainPhoto", coverImage);
+    // }
 
-    // Append images array with the name 'photos'
-    if (images.length > 0) {
-      formData.append("photos", images); // Directly append the images array
-    }
+    // // // Append images array with the name 'photos'
+    // if (images.length > 0) {
+    //   formData.append("photos", images); // Directly append the images array
+    // }
 
-    for (const [value, key] of formData.entries()) {
-      console.log(value, key);
-    } // Log formData for debugging
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // } // Log formData for debugging
+
+    const formData = {
+      userId: 15,
+      eventName: "daiofowidv",
+      description: "advwivwi",
+      category: "COUNTRY_LIFE",
+      language: "AZERBAIJANI",
+      eventPrice: 10,
+      eventDate: "2024-03-20",
+      eventStartTime: "10:00",
+      eventEndTime: "15:00",
+      eventLocation: "uiuviuiuibui",
+      contact: "+994777777777",
+      maxParticipants: 10,
+    };
+
+    console.log(formData);
 
     try {
       // Send the form data to the backend API
       const response = await fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/event/create-event",
+        `https://qonaqol.onrender.com/qonaqol/api/event/create-event-test`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
-          body: formData,
+          mode: "no-cors",
+          body: JSON.stringify({
+            formData,
+          }),
         }
       );
 
@@ -237,7 +261,7 @@ const CreateEvent = () => {
         </div>
         <div className="flex items-start justify-between">
           <EventLang onLangChange={handleLangChange} />
-          <EventPrice onPriceChange={handlePriceChange} />
+          <EventPrice onEventPriceChange={handleEventPriceChange} />
         </div>
         <EventAddress onAddressChange={handleAddressChange} />
         <EventContact onPhoneNumberChange={handlePhoneNumberChange} />
@@ -253,7 +277,7 @@ const CreateEvent = () => {
             className={`h-[48px] px-[57px] rounded-[8px] text-[16px] ${
               isFormFilled ? "bg-[#FFCE00]" : "bg-[#f1DD8B]"
             }`}
-            disabled={!isFormFilled}
+            // disabled={!isFormFilled}
           >
             Müraciəti göndər
           </button>

@@ -3,7 +3,7 @@ import { chevronDown, chevronUp } from "../../assets";
 
 const optionsMap = {
   "Kənd həyatı": "COUNTRY_LIFE",
-  Kamplar: "CAMPS",
+  Kamplar: "CAMPING",
   Rəssamlıq: "PAINTING",
   "Yemək hazırlama": "COOKING",
   Dulusçuluq: "POTTERY",

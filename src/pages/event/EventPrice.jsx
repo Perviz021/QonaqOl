@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { money } from "../../assets";
 
-const EventPrice = ({ onPriceChange }) => {
+const EventPrice = ({ onEventPriceChange }) => {
   const [price, setPrice] = useState("");
   const inputRef = useRef(null);
 
@@ -14,7 +14,7 @@ const EventPrice = ({ onPriceChange }) => {
     // Ensure only numbers are entered
     const inputPrice = event.target.value.replace(/\D/g, "");
     setPrice(inputPrice);
-    onPriceChange(Number(inputPrice)); // Pass the price as a number to the parent component
+    onEventPriceChange(Number(inputPrice)); // Pass the price as a number to the parent component
   };
 
   const handleKeyDown = (event) => {
@@ -24,7 +24,7 @@ const EventPrice = ({ onPriceChange }) => {
       event.preventDefault();
       // Remove the last character from price
       setPrice(price.slice(0, -1));
-      onPriceChange(Number(price.slice(0, -1))); // Pass the updated price as a number to the parent component
+      onEventPriceChange(Number(price.slice(0, -1))); // Pass the updated price as a number to the parent component
     }
   };
 

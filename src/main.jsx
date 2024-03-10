@@ -9,7 +9,7 @@ import SignUpPage from "./pages/signup/SignUpPage.jsx";
 import GiftCardsPage from "./pages/giftcard/GiftCardsPage.jsx";
 import CreateEvent from "./pages/event/CreateEvent.jsx";
 import LoginPage from "./pages/login/LoginPage.jsx";
-import Event from "./pages/event/Event.jsx";
+import Event from "./pages/reservation/Event.jsx";
 
 const router = createBrowserRouter([
   {
