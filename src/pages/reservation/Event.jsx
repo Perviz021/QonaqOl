@@ -11,6 +11,7 @@ import {
   exp3,
 } from "../../assets";
 import ExperienceCard from "../../components/widgets/ExperienceCard";
+import PopupMessage from "../../components/widgets/PopupMessage";
 
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -23,6 +24,8 @@ const Event = () => {
   const popupRef = useRef();
   const placeholder = "Əlaqə nömrəsi";
 
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowPopup(false);
@@ -31,7 +34,7 @@ const Event = () => {
       const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
       const reservationData = {
         userId: parseInt(userId), // Convert userId to integer if necessary
-        eventId: 18, // Replace 0 with the actual event ID
+        eventId: 5, // Replace 0 with the actual event ID
         phoneNumber,
         participantsCount: parseInt(participants), // Convert participants to integer if necessary
       };
@@ -50,6 +53,7 @@ const Event = () => {
           if (response.ok) {
             // Reservation successful, handle success scenario
             console.log("Reservation successful");
+            setShowSuccessPopup(true);
           } else {
             // Handle error scenario
             throw new Error("Reservation failed");
@@ -61,7 +65,7 @@ const Event = () => {
         });
     } else {
       const reservationData = {
-        eventId: 18, // Replace 0 with the actual event ID
+        eventId: 2, // Replace 0 with the actual event ID
         fullName,
         email,
         phoneNumber,
@@ -82,6 +86,7 @@ const Event = () => {
           if (response.ok) {
             // Reservation successful, handle success scenario
             console.log("Reservation successful");
+            setShowSuccessPopup(true);
           } else {
             // Handle error scenario
             throw new Error("Reservation failed");
@@ -156,6 +161,10 @@ const Event = () => {
       window.removeEventListener("keydown", handleEsc);
     };
   }, []); // Run only once on component mount
+
+  const handleContinueButtonClick = () => {
+    setShowSuccessPopup(false); // Close the pop-up
+  };
 
   return (
     <div className="w-[1240px] mx-auto">
@@ -353,6 +362,13 @@ const Event = () => {
             </form>
           </div>
         </div>
+      )}
+
+      {showSuccessPopup && (
+        <PopupMessage
+          handleContinueButtonClick={handleContinueButtonClick}
+          textMessage="Rezervasiyanız qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq. Təşəkkürlər!"
+        />
       )}
     </div>
   );
