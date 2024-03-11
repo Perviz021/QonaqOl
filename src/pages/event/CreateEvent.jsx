@@ -10,6 +10,7 @@ import EventAddress from "./EventAddress";
 import EventContact from "./EventContact";
 import EventImageUpload from "./EventImageUpload";
 import { done } from "../../assets";
+import PopupMessage from "../../components/widgets/PopupMessage";
 
 const CreateEvent = () => {
   const navigate = useNavigate();
@@ -42,9 +43,9 @@ const CreateEvent = () => {
       language &&
       eventPrice &&
       eventLocation &&
-      contact
-      // images.length === 5 &&
-      // coverImage
+      contact &&
+      images.length === 5 &&
+      coverImage
     ) {
       setIsFormFilled(true);
     } else {
@@ -61,8 +62,8 @@ const CreateEvent = () => {
     eventPrice,
     eventLocation,
     contact,
-    // images,
-    // coverImage,
+    images,
+    coverImage,
   ]);
 
   const handleDescriptionChange = (description) => {
@@ -128,69 +129,71 @@ const CreateEvent = () => {
 
     const queryParams = new URLSearchParams();
 
+    queryParams.append("userId", userId);
+    queryParams.append("eventName", eventName);
+    queryParams.append("description", description);
+    queryParams.append("category", category);
+    queryParams.append("language", language);
+    queryParams.append("eventPrice", eventPrice);
+    queryParams.append("eventDate", eventDate);
+    queryParams.append("eventStartTime", eventStartTime);
+    queryParams.append("eventEndTime", eventEndTime);
+    queryParams.append("evenLocation", eventLocation);
+    queryParams.append("contact", contact);
+
+    const queryParamsString = queryParams.toString();
+
     // Create FormData object
-    // const formData = new FormData();
-
-    // queryParams.append("userId", userId);
-    // queryParams.append("eventName", eventName);
-    // queryParams.append("description", description);
-    // queryParams.append("category", category);
-    // queryParams.append("language", language);
-    // queryParams.append("eventPrice", eventPrice);
-    // queryParams.append("eventDate", eventDate);
-    // queryParams.append("eventStartTime", eventStartTime);
-    // queryParams.append("eventEndTime", eventEndTime);
-    // queryParams.append("evenLocation", eventLocation);
-    // queryParams.append("contact", contact);
-    // queryParams.append("maxParticipants", 10);
-
-    // const queryParamsString = queryParams.toString();
+    const formData = new FormData();
 
     // Append cover photo with the name 'mainPhoto'
-    // if (coverImage) {
-    //   formData.append("mainPhoto", coverImage);
-    // }
+    if (coverImage) {
+      formData.append("file", coverImage);
+    }
 
-    // // // Append images array with the name 'photos'
+    // // Append images array with the name 'photos'
     // if (images.length > 0) {
-    //   formData.append("photos", images); // Directly append the images array
+    //   // images.forEach((image) => {
+    //   //   formData.append("photos[]", image); // Directly append the images array
+    //   // });
+
+    //   for (const image of images) {
+    //     formData.append("files[]", image);
+    //   }
     // }
 
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // } // Log formData for debugging
+    // const formData = {
+    //   userId,
+    //   eventName,
+    //   description,
+    //   category,
+    //   language,
+    //   eventPrice,
+    //   eventDate,
+    //   eventStartTime,
+    //   eventEndTime,
+    //   eventLocation,
+    //   contact,
+    // };
 
-    const formData = {
-      userId: 15,
-      eventName: "daiofowidv",
-      description: "advwivwi",
-      category: "COUNTRY_LIFE",
-      language: "AZERBAIJANI",
-      eventPrice: 10,
-      eventDate: "2024-03-20",
-      eventStartTime: "10:00",
-      eventEndTime: "15:00",
-      eventLocation: "uiuviuiuibui",
-      contact: "+994777777777",
-      maxParticipants: 10,
-    };
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    } // Log formData for debugging
 
-    console.log(formData);
+    // console.log(coverImage);
+    // console.log(images);
 
     try {
       // Send the form data to the backend API
       const response = await fetch(
-        `https://qonaqol.onrender.com/qonaqol/api/event/create-event-test`,
+        `https://qonaqol.onrender.com/qonaqol/api/event/create-event?${queryParamsString}`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "multipart/form-data",
           },
           mode: "no-cors",
-          body: JSON.stringify({
-            formData,
-          }),
+          body: formData,
         }
       );
 
@@ -285,23 +288,10 @@ const CreateEvent = () => {
       </form>
 
       {showSuccessPopup && (
-        <div className="fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
-          <div className="bg-white w-[500px] pt-[104px] pb-[130px] px-[120px] rounded-[8px] flex flex-col items-center justify-center">
-            <span className="p-[25px] inline-flex justify-center items-center mb-[33px] bg-[#44AA55] rounded-full w-[100px] h-[100px]">
-              <img src={done} alt="" />
-            </span>
-            <p className="text-[20px] leading-[28px] font-[600] mb-[59px] text-center">
-              Tədbiriniz qeydə alındı. Ən qısa zamanda sizinlə əlaqə
-              saxlanılacaq. Təşəkkürlər!
-            </p>
-            <button
-              onClick={handleContinueButtonClick}
-              className="bg-[#FFCE00] text-black h-[48px] w-[278px] text-[16px] rounded-[8px] focus:outline-none"
-            >
-              Davam et
-            </button>
-          </div>
-        </div>
+        <PopupMessage
+          handleContinueButtonClick={handleContinueButtonClick}
+          textMessage="Tədbiriniz qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq. Təşəkkürlər!"
+        />
       )}
     </div>
   );
