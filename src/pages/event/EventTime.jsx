@@ -13,13 +13,13 @@ const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
   };
 
   const startTimeOptions = [];
-  for (let hour = 9; hour <= 12; hour++) {
+  for (let hour = 9; hour <= 21; hour++) {
     startTimeOptions.push(`${hour}:00`);
     startTimeOptions.push(`${hour}:30`);
   }
 
   const endTimeOptions = [];
-  for (let hour = 13; hour <= 16; hour++) {
+  for (let hour = 9; hour <= 21; hour++) {
     endTimeOptions.push(`${hour}:00`);
     endTimeOptions.push(`${hour}:30`);
   }
