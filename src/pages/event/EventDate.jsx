@@ -13,7 +13,7 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
   };
 
   const customCalendarClassName =
-    "!bg-[#f2f2f2] p-[20px] rounded-[8px] shadow-md left-[50px] text-[12px]"; // Define your custom Tailwind CSS classes for the calendar container
+    "!bg-[#f2f2f2] p-[20px] rounded-[8px] shadow-md left-[50px] text-[12px]";
 
   return (
     <div className="relative w-[45%]">
@@ -28,8 +28,9 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
           placeholderText="Tarixi seçin"
           open={isOpen}
           onClickOutside={() => setIsOpen(false)}
-          dateFormat="dd/MM/yyyy" // Specify the date format here
+          dateFormat="dd-MM-yyyy" // Specify the date format here
           locale={az} // Set Azerbaijani locale
+          minDate={new Date()}
           calendarClassName={customCalendarClassName} // Apply custom Tailwind CSS classes to calendar
         />
         <button
