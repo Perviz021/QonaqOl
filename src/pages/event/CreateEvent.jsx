@@ -138,7 +138,7 @@ const CreateEvent = () => {
     queryParams.append("eventDate", eventDate);
     queryParams.append("eventStartTime", eventStartTime);
     queryParams.append("eventEndTime", eventEndTime);
-    queryParams.append("evenLocation", eventLocation);
+    queryParams.append("eventLocation", eventLocation);
     queryParams.append("contact", contact);
 
     const queryParamsString = queryParams.toString();
@@ -152,15 +152,11 @@ const CreateEvent = () => {
     }
 
     // // Append images array with the name 'photos'
-    // if (images.length > 0) {
-    //   // images.forEach((image) => {
-    //   //   formData.append("photos[]", image); // Directly append the images array
-    //   // });
-
-    //   for (const image of images) {
-    //     formData.append("files[]", image);
-    //   }
-    // }
+    if (images.length > 0) {
+      for (const image of images) {
+        formData.append("files[]", image);
+      }
+    }
 
     // const formData = {
     //   userId,
@@ -176,9 +172,9 @@ const CreateEvent = () => {
     //   contact,
     // };
 
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-    } // Log formData for debugging
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
 
     // console.log(coverImage);
     // console.log(images);
@@ -190,9 +186,9 @@ const CreateEvent = () => {
         {
           method: "POST",
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
-          mode: "no-cors",
+          // mode: "no-cors",
           body: formData,
         }
       );
