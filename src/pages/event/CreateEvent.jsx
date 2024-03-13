@@ -11,7 +11,7 @@ import EventContact from "./EventContact";
 import EventImageUpload from "./EventImageUpload";
 import { done } from "../../assets";
 import PopupMessage from "../../components/widgets/PopupMessage";
-
+import axios from "axios";
 const CreateEvent = () => {
   const navigate = useNavigate();
 
@@ -111,6 +111,7 @@ const CreateEvent = () => {
   const handleImagesChange = (newImages) => {
     setImages(newImages);
   };
+  console.log(images);
 
   // Handler function to receive the cover image from EventImageUpload component
   const handleCoverImageChange = (newCoverImage) => {
@@ -153,9 +154,12 @@ const CreateEvent = () => {
 
     // // Append images array with the name 'photos'
     if (images.length > 0) {
-      for (const image of images) {
-        formData.append("files[]", image);
-      }
+      // for (const image of images) {
+      //   formData.append("file", image);
+      // }
+      images.forEach((image) => {
+        formData.append("files", image);
+      });
     }
 
     // const formData = {
@@ -178,22 +182,21 @@ const CreateEvent = () => {
 
     // console.log(coverImage);
     // console.log(images);
-
+    console.log(formData);
     try {
       // Send the form data to the backend API
-      const response = await fetch(
+      const response = await axios.post(
         `https://qonaqol.onrender.com/qonaqol/api/event/create-event?${queryParamsString}`,
+
+        formData,
         {
-          method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
-          // mode: "no-cors",
-          body: formData,
         }
       );
-
-      if (response.ok) {
+      console.log(response);
+      if (response.status === 201) {
         setShowSuccessPopup(true);
         // Handle success, e.g., show a success message
         console.log("Event created successfully!");
