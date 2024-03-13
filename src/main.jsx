@@ -10,6 +10,7 @@ import GiftCardsPage from "./pages/giftcard/GiftCardsPage.jsx";
 import CreateEvent from "./pages/event/CreateEvent.jsx";
 import LoginPage from "./pages/login/LoginPage.jsx";
 import Event from "./pages/reservation/Event.jsx";
+import About from "./pages/about/About.jsx";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,15 @@ const router = createBrowserRouter([
     element: (
       <AppLayout>
         <Event />
+      </AppLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/about",
+    element: (
+      <AppLayout>
+        <About />
       </AppLayout>
     ),
     errorElement: <ErrorPage />,
