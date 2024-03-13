@@ -9,7 +9,6 @@ import EventPrice from "./EventPrice";
 import EventAddress from "./EventAddress";
 import EventContact from "./EventContact";
 import EventImageUpload from "./EventImageUpload";
-import { done } from "../../assets";
 import PopupMessage from "../../components/widgets/PopupMessage";
 
 const CreateEvent = () => {
