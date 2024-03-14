@@ -1,18 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  heart2,
-  event1,
-  event2,
-  event3,
-  event4,
-  event5,
-  exp1,
-  exp2,
-  exp3,
-} from "../../assets";
+
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
-
+import { useParams } from "react-router-dom";
+import { month, staticData } from "../../mock/static";
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -20,6 +11,20 @@ const Event = () => {
   const [emailError, setEmailError] = useState(false); // State for email format error
   const [fullName, setFullName] = useState("");
   const [participants, setParticipants] = useState("");
+  const { name } = useParams();
+  const [data, setData] = useState(null);
+  const [otherEvents, setOtherEvents] = useState(null);
+  const event_name = name && name.replace(/-/g, " ");
+
+  useEffect(() => {
+    const data = staticData.find((i) => i.eventName === event_name);
+    setData(data);
+  }, []);
+  useEffect(() => {
+    const events = staticData.filter((i) => i.category === data?.category);
+    setOtherEvents(events.slice(0, 3));
+  }, [data?.category]);
+  console.log(otherEvents);
   const accessToken = localStorage.getItem("accessToken");
   const popupRef = useRef();
   const placeholder = "Əlaqə nömrəsi";
@@ -132,6 +137,9 @@ const Event = () => {
     setEmailError(!regex.test(value)); // Toggle emailError state based on regex test result
   };
 
+  const createDate = `${data?.eventDate[2]} ${month[data?.eventDate[1] - 1]} ${
+    data?.eventDate[0]
+  }`;
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -170,40 +178,40 @@ const Event = () => {
     <div className="w-[1240px] mx-auto">
       <div className="flex justify-between items-center">
         <h3 className="text-[28px] mb-[40px] mt-[90px] font-[600]">
-          Aşpaz Abbasın pasta sirləri masterklassı
+          {data?.eventName}
         </h3>
         <span className="relative top-[40px]">
-          <img src={heart2} alt="" />
+          {/* <img src={heart2} alt="" /> */}
         </span>
       </div>
       <div className="flex gap-[20px] mb-[40px]">
         <div>
           <img
-            src={event1}
+            src={data?.photoUrls[0]}
             alt=""
             className="w-[400px] h-[500px] object-cover rounded-[8px]"
           />
         </div>
         <div className="flex flex-col gap-[20px]">
           <img
-            src={event2}
+            src={data?.photoUrls[1]}
             alt=""
             className="w-[400px] h-[272px] object-cover rounded-[8px]"
           />
           <img
-            src={event3}
+            src={data?.photoUrls[2]}
             alt=""
             className="w-[400px] h-[208px] object-cover rounded-[8px]"
           />
         </div>
         <div className="flex flex-col gap-[20px]">
           <img
-            src={event4}
+            src={data?.photoUrls[3]}
             alt=""
             className="w-[400px] h-[202px] object-cover rounded-[8px]"
           />
           <img
-            src={event5}
+            src={data?.photoUrls[4]}
             alt=""
             className="w-[400px] h-[278px] object-cover rounded-[8px]"
           />
@@ -213,36 +221,35 @@ const Event = () => {
         <div className="w-[715px]">
           <h3 className="text-[28px] font-[600] mb-[32px]">Tədbir haqqında</h3>
           <p className="font-normal text-[16px] leading-[24px]">
-            Uşaqlarınız "Pizza Hut" şəbəkəsinin dünya standartları ilə maraqlı
-            və əyləncəli pasta bişirmə prosesində iştirak edəcəklər. Peşakar
-            pastamaker onlara mükəmməl pastanın sirlərini açacaq! Uşaq
-            master-klasslarımız hətta ən balaca qonaqlarımızı heyran edəcək!
+            {data?.description}
           </p>
           <p className="mt-[48px]">
             <span className="text-[20px] font-[600] mr-[8px]">Ünvan:</span>
-            <span className="text-[16px]">Nərimanov, Əhməd Rəcəbli</span>
+            <span className="text-[16px]">{data?.eventLocation}</span>
           </p>
         </div>
         <div className="p-[40px] bg-[#fafafa] w-[400px] rounded-[8px]">
           <div className="border-b border-[#e1e1e1]">
             <h2 className="font-[600] text-[28px] mb-[12px]">
-              Aşpaz Abbasın pasta sirləri masterklassı
+              {data?.eventName}
             </h2>
             <div className="space-y-[8px] py-[12px]">
               <p className="text-[16px]">
-                Qiymət: <span>25</span> AZN
+                Qiymət: <span>{data?.eventPrice}</span> AZN
               </p>
               <p className="text-[16px]">
-                Dil: <span>Azərbaycan</span>
+                Dil: <span>{data?.language}</span>
               </p>
               <p className="text-[16px]">
-                Kateqoriya: <span>Yemək hazırlama</span>
+                Kateqoriya: <span>{data?.category}</span>
               </p>
             </div>
           </div>
           <div className="border-b border-[#e1e1e1] py-[12px]">
             <h5 className="font-[600] text-[18px]">Mövcud tarixlər</h5>
-            <p className="text-[16px]">02 mart 2024 , 16:00 - 19:00 </p>
+            <p className="text-[16px]">
+              {createDate}, {data?.eventStartTime} - {data?.eventEndTime}{" "}
+            </p>
           </div>
           <button
             onClick={handleReservation}
@@ -258,30 +265,19 @@ const Event = () => {
         </h4>
 
         <div className="gap-[20px] flex justify-between">
-          <ExperienceCard
-            imgSrc={exp1}
-            content="Aşpaz Abbasın pasta sirləri"
-            time="02 Mart"
-            place="Azərbaycan prospekti, A.."
-            price="30 Azn"
-            imgWidth="400px"
-          />
-          <ExperienceCard
-            imgSrc={exp2}
-            content="Aida seramik masterklas"
-            time="19 fevral"
-            place="Caspian plaza"
-            price="30 Azn"
-            imgWidth="400px"
-          />
-          <ExperienceCard
-            imgSrc={exp3}
-            content="SOLART rəssamlıq masterklas"
-            time="14 fevral"
-            place="İçəri şəhər, Solart scho.."
-            price="30 Azn"
-            imgWidth="400px"
-          />
+          {otherEvents &&
+            otherEvents.map((el, i) => (
+              <ExperienceCard
+                name={el.eventName}
+                key={i}
+                imgSrc={el.mainPhotoUrl}
+                content={el.description}
+                time={el.eventDate}
+                place={el.eventLocation}
+                price={`${el.eventPrice} AZN`}
+                imgHeight="200px"
+              />
+            ))}
         </div>
       </div>
 
