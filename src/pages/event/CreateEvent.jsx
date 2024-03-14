@@ -110,7 +110,6 @@ const CreateEvent = () => {
   const handleImagesChange = (newImages) => {
     setImages(newImages);
   };
-  console.log(images);
 
   // Handler function to receive the cover image from EventImageUpload component
   const handleCoverImageChange = (newCoverImage) => {
@@ -181,7 +180,6 @@ const CreateEvent = () => {
 
     // console.log(coverImage);
     // console.log(images);
-    console.log(formData);
     try {
       // Send the form data to the backend API
       const response = await axios.post(
@@ -192,9 +190,9 @@ const CreateEvent = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+          mode: "no-cors",
         }
       );
-      console.log(response);
       if (response.status === 201) {
         setShowSuccessPopup(true);
         // Handle success, e.g., show a success message
