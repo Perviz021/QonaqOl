@@ -50,7 +50,7 @@ function Menus() {
         Təcrübələr
       </NavLink>
       <NavLink
-        to="#"
+        to="/about"
         onClick={() => handleNavLinkClick("about")}
         className={activeNavLink === "about" ? "font-[600]" : ""}
       >
