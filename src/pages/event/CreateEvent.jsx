@@ -12,6 +12,8 @@ import EventImageUpload from "./EventImageUpload";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import axios from "axios";
 const CreateEvent = () => {
+  const token = localStorage.getItem("accessToken");
+  console.log(token);
   const navigate = useNavigate();
 
   const [eventName, setEventName] = useState("");
@@ -181,7 +183,7 @@ const CreateEvent = () => {
 
     // console.log(coverImage);
     // console.log(images);
-    console.log(formData);
+
     try {
       // Send the form data to the backend API
       const response = await axios.post(
@@ -191,6 +193,7 @@ const CreateEvent = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            // Authorization: `Bearer ${token}`,
           },
         }
       );

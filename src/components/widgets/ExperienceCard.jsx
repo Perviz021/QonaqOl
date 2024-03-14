@@ -1,4 +1,8 @@
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
 const ExperienceCard = ({
+  name,
   imgSrc,
   content,
   time,
@@ -7,13 +11,18 @@ const ExperienceCard = ({
   imgWidth,
   imgHeight,
 }) => {
+  const event_name = name && name.replace(/\s+/g, "-");
+
   const imageClass =
     imgWidth && imgHeight
       ? `w-[${imgWidth}] h-[${imgHeight}]`
       : "w-full h-[197px]";
 
   return (
-    <div className={`mx-auto bg-white rounded-t-[8px] ${imageClass}`}>
+    <Link
+      to={`/events/${event_name}`}
+      className={`mx-auto bg-white rounded-t-[8px] ${imageClass}`}
+    >
       <div className="relative w-full h-full overflow-hidden">
         <img
           className={`${imageClass} object-cover rounded-[8px]`}
@@ -35,7 +44,7 @@ const ExperienceCard = ({
           </span>
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
