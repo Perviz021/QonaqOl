@@ -12,6 +12,8 @@ import EventImageUpload from "./EventImageUpload";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import axios from "axios";
 const CreateEvent = () => {
+  const token = localStorage.getItem("accessToken");
+  console.log(token);
   const navigate = useNavigate();
 
   const [eventName, setEventName] = useState("");
@@ -189,6 +191,7 @@ const CreateEvent = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            // Authorization: `Bearer ${token}`,
           },
           mode: "no-cors",
         }
