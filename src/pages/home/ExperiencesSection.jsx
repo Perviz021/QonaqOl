@@ -9,7 +9,8 @@ function ExperiencesSection() {
     getEvents().then((res) => setData(res.data));
   }, []);
   useEffect(() => {
-    const popularEvents = data.sort((a, b) => b.viewCount - a.viewCount);
+    const popularEvents =
+      data && data.sort((a, b) => b.viewCount - a.viewCount);
     setData(popularEvents);
   }, [data]);
 
