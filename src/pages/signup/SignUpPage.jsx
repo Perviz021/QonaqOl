@@ -36,6 +36,10 @@ function SignUpPage() {
     return password.length <= 10;
   };
 
+  const handleBack = () => {
+    navigate(-1); // Navigate back to the previous page
+  };
+
   const refreshToken = async () => {
     const navigate = useNavigate();
 
@@ -198,19 +202,22 @@ function SignUpPage() {
         <div className="w-1/2 flex items-center relative">
           {!formState.loading && (
             <div className="w-[60%] mx-auto">
+              <button
+                className="bg-gray-200 text-black text-[16px] font-normal h-[34px] px-[20px] mt-2 rounded-[8px] mb-[16px] focus:outline-none focus:shadow-outline"
+                onClick={handleBack}
+              >
+                Geri Qayıt
+              </button>
               {/* Login Form */}
               <div className="bg-white rounded mb-[16px]">
                 {/* Title */}
-                <h2 className="text-[40px] font-[600] mb-[36px]">
+                <h2 className="text-[40px] font-[600] mb-[20px]">
                   Qeydiyyatdan keç
                 </h2>
 
                 <form onSubmit={handleSubmit}>
-                  {" "}
-                  {/* Added onSubmit handler */}
-                  {/* fullName Input */}
                   <div
-                    className={`mb-[20px] ${
+                    className={`mb-[18px] ${
                       !formState.fullNameValid ? "border-red-500" : ""
                     }`}
                   >
@@ -227,7 +234,7 @@ function SignUpPage() {
                   </div>
                   {/* Email Input */}
                   <div
-                    className={`mb-[20px] ${
+                    className={`mb-[18px] ${
                       !formState.emailValid ? "border-red-500" : ""
                     }`}
                   >
@@ -244,7 +251,7 @@ function SignUpPage() {
                   </div>
                   {/* Password Input */}
                   <div
-                    className={`mb-[20px] relative ${
+                    className={`mb-[18px] relative ${
                       !formState.passwordValid ? "border-red-500" : ""
                     }`}
                   >
@@ -268,7 +275,7 @@ function SignUpPage() {
                   </div>
                   {/* Confirm Password */}
                   <div
-                    className={`mb-[24px] relative ${
+                    className={`mb-[22px] relative ${
                       !formState.confirmPasswordValid ? "border-red-500" : ""
                     }`}
                   >
@@ -317,7 +324,7 @@ function SignUpPage() {
               </div>
 
               {/* Or Separator */}
-              <div className="mb-[16px] w-full flex items-center justify-center">
+              <div className="mb-[14px] w-full flex items-center justify-center">
                 <hr className="border-t border-[#c6c6c6] inline-block w-[45%] mr-1" />
                 <span className="text-gray-500 text-[12px]">və ya</span>
                 <hr className="border-t border-[#c6c6c6] inline-block w-[45%] ml-1" />
