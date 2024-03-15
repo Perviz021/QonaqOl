@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./assets/css/index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+  useNavigate,
+} from "react-router-dom"; // Import useNavigate hook
 import HomePage from "./pages/home/HomePage.jsx";
 import AppLayout from "./layouts/AppLayout.jsx";
 import ErrorPage from "./pages/error/ErrorPage.jsx";
@@ -12,6 +17,25 @@ import LoginPage from "./pages/login/LoginPage.jsx";
 import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
+import LoginForm from "./pages/login/LoginForm.jsx";
+
+const PrivateRoute = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+      navigate("/"); // Navigate to the home page if not authenticated
+    }
+  }, [navigate]); // Ensure useEffect runs only once
+
+  return isAuthenticated ? children : null;
+};
+export default PrivateRoute;
 
 const router = createBrowserRouter([
   {
@@ -46,7 +70,9 @@ const router = createBrowserRouter([
     path: "/create-event",
     element: (
       <AppLayout>
-        <CreateEvent />
+        <PrivateRoute>
+          <CreateEvent />
+        </PrivateRoute>
       </AppLayout>
     ),
     errorElement: <ErrorPage />,
