@@ -13,7 +13,6 @@ import PopupMessage from "../../components/widgets/PopupMessage";
 import axios from "axios";
 
 const CreateEvent = () => {
-  const token = localStorage.getItem("accessToken");
   const navigate = useNavigate();
 
   const [eventName, setEventName] = useState("");
@@ -193,7 +192,7 @@ const CreateEvent = () => {
             "Content-Type": "multipart/form-data",
             // Authorization: `Bearer ${token}`,
           },
-          mode: "no-cors",
+          // mode: "no-cors",
         }
       );
       if (response.status === 201) {

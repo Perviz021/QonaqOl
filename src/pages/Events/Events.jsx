@@ -8,7 +8,6 @@ const Events = () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState(0);
   const [count, setCount] = useState(1);
-  console.log(pagination);
   return (
     <>
       <div className="w-[1240px] mx-auto min-h-screen">
