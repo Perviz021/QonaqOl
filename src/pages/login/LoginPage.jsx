@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 
-import { loginBg, loader } from "../../assets";
+import { loginBg, loginBg1, loader } from "../../assets";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -54,6 +54,10 @@ function LoginPage() {
       ...prevData,
       showPassword: !prevData.showPassword,
     }));
+  };
+
+  const handleBack = () => {
+    navigate(-1); // Navigate back to the previous page
   };
 
   const refreshToken = async () => {
@@ -166,7 +170,7 @@ function LoginPage() {
       <div className="flex h-screen">
         <div className="w-1/2">
           <img
-            src={loginBg}
+            src={loginBg1}
             alt=""
             className={`w-full h-full object-cover ${
               imageLoaded ? "" : "hidden"
@@ -178,6 +182,12 @@ function LoginPage() {
         <div className="w-1/2 flex items-center relative">
           {!loading && (
             <div className="w-[60%] mx-auto">
+              <button
+                className="bg-gray-200 text-black text-[16px] font-normal h-[34px] px-[20px] rounded-[8px] mb-[30px] focus:outline-none focus:shadow-outline"
+                onClick={handleBack}
+              >
+                Geri Qayıt
+              </button>
               <div className="bg-white rounded mb-[16px]">
                 <h2 className="text-[40px] font-[600] mb-[36px]">Daxil ol</h2>
 

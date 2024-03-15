@@ -49,6 +49,7 @@ import borderYellow from "./img/bg-border-yellow.png";
 
 // Login
 import loginBg from "./img/login-bg.jpeg";
+import loginBg1 from "./img/login-bg1.jpeg";
 
 // SignUp
 import signupBg from "./img/signup-bg.jpeg";
@@ -159,4 +160,5 @@ export {
   event5,
   done,
   loader,
+  loginBg1,
 };
