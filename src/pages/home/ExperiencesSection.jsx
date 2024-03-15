@@ -35,7 +35,7 @@ function ExperiencesSection() {
             content="Aşpaz Abbasın pasta sirləri"
             time="02 Mart"
             place="Azərbaycan prospekti, A.."
-            price="30 Azn"
+            price="30 AZN"
             imgHeight="200px"
           />
           <ExperienceCard
@@ -43,7 +43,7 @@ function ExperiencesSection() {
             content="Aida seramik masterklas"
             time="19 fevral"
             place="Caspian plaza"
-            price="30 Azn"
+            price="30 AZN"
             imgHeight="200px"
           />
           <ExperienceCard
@@ -51,7 +51,7 @@ function ExperiencesSection() {
             content="SOLART rəssamlıq masterklas"
             time="14 fevral"
             place="İçəri şəhər, Solart scho.."
-            price="30 Azn"
+            price="30 AZN"
             imgHeight="200px"
           />
           <ExperienceCard
@@ -59,7 +59,7 @@ function ExperiencesSection() {
             content="Pizza bruno pizza masterklas 🍕"
             time="16 fevral"
             place="Pizza Bruno, Nizami filialı.."
-            price="30 Azn"
+            price="30 AZN"
             imgHeight="200px"
           />
           <ExperienceCard
@@ -75,7 +75,7 @@ function ExperiencesSection() {
             content="Həvəskarlar Futbol Liqası"
             time="07 Mart"
             place="Baku Olimpiya Stadionu"
-            price="30 Azn"
+            price="30 AZN"
             imgHeight="200px"
           />
           <ExperienceCard
@@ -83,7 +83,7 @@ function ExperiencesSection() {
             content="Voleybol Çempionatı"
             time="22 Fevral"
             place="Sərhədçi İdman Mərkəzi"
-            price="30 Azn"
+            price="30 AZN"
             imgHeight="200px"
           />
           <ExperienceCard
@@ -91,7 +91,7 @@ function ExperiencesSection() {
             content="Go-kart track"
             time="10 Fevral"
             place="Baku City Karting"
-            price="30 Azn"
+            price="30 AZN"
             imgHeight="200px"
           />
         </div>
