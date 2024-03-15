@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ExperienceCard = ({
+  id,
   name,
   imgSrc,
   content,
@@ -11,7 +12,7 @@ const ExperienceCard = ({
   imgWidth,
   imgHeight,
 }) => {
-  const event_name = name && name.replace(/\s+/g, "-");
+  // const event_name = name && name.replace(/\s+/g, "-");
 
   const imageClass =
     imgWidth && imgHeight
@@ -20,7 +21,7 @@ const ExperienceCard = ({
 
   return (
     <Link
-      to={`/events/${event_name}`}
+      to={`/events/${id}`}
       className={`mx-auto bg-white rounded-t-[8px] ${imageClass}`}
     >
       <div className="relative w-full h-full overflow-hidden">

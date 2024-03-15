@@ -4,11 +4,16 @@ import ExperienceCard from "../../components/widgets/ExperienceCard";
 import Subscribe from "../home/Subscribe";
 import { MdFirstPage } from "react-icons/md";
 import { MdLastPage } from "react-icons/md";
+import { getEvents } from "../../utils/apiUtils";
+import { v4 as uuidv4 } from "uuid";
 const Events = () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState(0);
   const [count, setCount] = useState(1);
-  console.log(pagination);
+  useEffect(() => {
+    getEvents().then((res) => setData(res.data));
+  }, []);
+
   return (
     <>
       <div className="w-[1240px] mx-auto min-h-screen">
@@ -20,15 +25,16 @@ const Events = () => {
           Bütün tədbirlər
         </h5>
         <div className="grid grid-cols-3  gap-5 gap-y-32 mt-20 pb-20 cursor-pointer">
-          {staticData.slice(pagination, pagination + 12).map((el, i) => (
+          {data.slice(pagination, pagination + 12).map((el, i) => (
             <ExperienceCard
-              name={el.eventName}
+              name={el?.eventName}
               key={i}
-              imgSrc={el.mainPhotoUrl}
-              content={el.description}
-              time={el.eventDate}
-              place={el.eventLocation}
-              price={`${el.eventPrice} AZN`}
+              id={el?._id}
+              imgSrc={el?.mainPhotoUrl}
+              content={el?.description}
+              time={el?.eventDate}
+              place={el?.eventLocation}
+              price={`${el?.eventPrice} AZN`}
               imgHeight="200px"
             />
           ))}

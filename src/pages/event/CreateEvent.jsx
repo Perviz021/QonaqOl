@@ -11,9 +11,9 @@ import EventContact from "./EventContact";
 import EventImageUpload from "./EventImageUpload";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import axios from "axios";
+import { getEvents } from "../../utils/apiUtils";
 const CreateEvent = () => {
   const token = localStorage.getItem("accessToken");
-  console.log(token);
   const navigate = useNavigate();
 
   const [eventName, setEventName] = useState("");
@@ -112,7 +112,6 @@ const CreateEvent = () => {
   const handleImagesChange = (newImages) => {
     setImages(newImages);
   };
-  console.log(images);
 
   // Handler function to receive the cover image from EventImageUpload component
   const handleCoverImageChange = (newCoverImage) => {
@@ -193,11 +192,9 @@ const CreateEvent = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            // Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log(response);
       if (response.status === 201) {
         setShowSuccessPopup(true);
         // Handle success, e.g., show a success message
