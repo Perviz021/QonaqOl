@@ -18,23 +18,23 @@ import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
 
-const PrivateRoute = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
+// const PrivateRoute = ({ children }) => {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+//   const navigate = useNavigate();
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-      navigate("/");
-    }
-  }, [navigate]);
+//   useEffect(() => {
+//     const accessToken = localStorage.getItem("accessToken");
+//     if (accessToken) {
+//       setIsAuthenticated(true);
+//     } else {
+//       setIsAuthenticated(false);
+//       navigate("/");
+//     }
+//   }, [navigate]);
 
-  return isAuthenticated ? children : null;
-};
-export default PrivateRoute;
+//   return isAuthenticated ? children : null;
+// };
+// export default PrivateRoute;
 
 const router = createBrowserRouter([
   {
@@ -69,9 +69,9 @@ const router = createBrowserRouter([
     path: "/create-event",
     element: (
       <AppLayout>
-        <PrivateRoute>
-          <CreateEvent />
-        </PrivateRoute>
+        {/* <PrivateRoute> */}
+        <CreateEvent />
+        {/* </PrivateRoute> */}
       </AppLayout>
     ),
     errorElement: <ErrorPage />,
