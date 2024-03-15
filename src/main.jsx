@@ -28,9 +28,9 @@ const PrivateRoute = ({ children }) => {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
-      navigate("/"); // Navigate to the home page if not authenticated
+      navigate("/");
     }
-  }, [navigate]); // Ensure useEffect runs only once
+  }, [navigate]);
 
   return isAuthenticated ? children : null;
 };
