@@ -1,14 +1,22 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Menus() {
-  const [activeNavLink, setActiveNavLink] = useState("");
+function Menus({ activeNavLink, setActiveNavLink }) {
   const [token, setToken] = useState(localStorage.getItem("accessToken"));
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
     setToken(storedToken);
   }, []);
+
+  useEffect(() => {
+    // Clear active link state when setActiveNavLink is called with an empty string
+    return () => {
+      setActiveNavLink("");
+    };
+  }, [setActiveNavLink]);
 
   const scrollToExperiences = () => {
     const experiencesSection = document.getElementById("experiences");
@@ -19,6 +27,12 @@ function Menus() {
 
   const handleNavLinkClick = (navLinkId) => {
     setActiveNavLink(navLinkId);
+
+    if (navLinkId === "experiences") {
+      // Navigate to the homepage first and then scroll to the experiences section
+      navigate("/");
+      setTimeout(scrollToExperiences, 100); // Adjust the delay as needed
+    }
   };
 
   return (
@@ -47,7 +61,7 @@ function Menus() {
         }}
         className={activeNavLink === "experiences" ? "font-[600]" : ""}
       >
-        Təcrübələr
+        Tədbirlər
       </NavLink>
       <NavLink
         to="/about"

@@ -31,8 +31,9 @@ const LoginButton = () => {
   }, []);
 
   const handleLogout = () => {
-    // Remove token from local storage
+    // Remove token, userId from local storage
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("userId");
     // Clear token state
     setToken(null);
     // Close dropdown

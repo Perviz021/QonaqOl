@@ -49,6 +49,7 @@ import borderYellow from "./img/bg-border-yellow.png";
 
 // Login
 import loginBg from "./img/login-bg.jpeg";
+import loginBg1 from "./img/login-bg1.jpeg";
 
 // SignUp
 import signupBg from "./img/signup-bg.jpeg";
@@ -92,6 +93,9 @@ import event2 from "./img/event-2.jpeg";
 import event3 from "./img/event-3.jpeg";
 import event4 from "./img/event-4.jpeg";
 import event5 from "./img/event-5.jpeg";
+
+// Loader
+import loader from "./img/loader.gif";
 
 export {
   blogCard1,
@@ -155,4 +159,6 @@ export {
   event4,
   event5,
   done,
+  loader,
+  loginBg1,
 };

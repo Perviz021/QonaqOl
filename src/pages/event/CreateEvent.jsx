@@ -182,7 +182,6 @@ const CreateEvent = () => {
 
     // console.log(coverImage);
     // console.log(images);
-
     try {
       // Send the form data to the backend API
       const response = await axios.post(
@@ -193,6 +192,7 @@ const CreateEvent = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+          // mode: "no-cors",
         }
       );
       if (response.status === 201) {

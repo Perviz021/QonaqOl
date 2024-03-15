@@ -1,6 +1,7 @@
 import React from "react";
 
 import { tree, cake, brush, home2, music, swatch } from "../../assets";
+import { NavLink } from "react-router-dom";
 
 const ActivityAreas = () => {
   return (
@@ -12,10 +13,13 @@ const ActivityAreas = () => {
         </p>
       </div>
       <div className="w-[1194px] mx-auto flex justify-between mt-[40px]">
-        <span className="inline-flex flex-col items-center space-y-[12px]">
+        <NavLink
+          to="/events"
+          className="inline-flex flex-col items-center space-y-[12px]"
+        >
           <img src={tree} alt="" />
           <p>Kənd həyatı</p>
-        </span>
+        </NavLink>
         <span className="inline-flex flex-col items-center space-y-[12px]">
           <img src={cake} alt="" />
           <p>Yemək hazırlama</p>

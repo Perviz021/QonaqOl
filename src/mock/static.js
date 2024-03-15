@@ -15,7 +15,11 @@ export const staticData = [
     eventLocation: "Mountain Trails",
     contact: "+994103233244",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -40,7 +44,11 @@ export const staticData = [
     eventLocation: "Serene Lake",
     contact: "+994103233245",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
 
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
@@ -66,7 +74,11 @@ export const staticData = [
     eventLocation: "Hilltop Observatory",
     contact: "+994103233249",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -91,7 +103,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -116,7 +132,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -141,7 +161,11 @@ export const staticData = [
     eventLocation: "Brewery District",
     contact: "+994103233259",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
       "https://images.unsplash.com/photo-1584225064536-d0fbc0a10f18?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJyZXdlcnl8ZW58MHx8MHx8fDA%3D",
@@ -166,7 +190,11 @@ export const staticData = [
     eventLocation: "Mountain Trails",
     contact: "+994103233244",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -191,7 +219,11 @@ export const staticData = [
     eventLocation: "Serene Lake",
     contact: "+994103233245",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
 
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
@@ -217,7 +249,11 @@ export const staticData = [
     eventLocation: "Hilltop Observatory",
     contact: "+994103233249",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -242,7 +278,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -267,7 +307,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -292,7 +336,11 @@ export const staticData = [
     eventLocation: "Brewery District",
     contact: "+994103233259",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
       "https://images.unsplash.com/photo-1584225064536-d0fbc0a10f18?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJyZXdlcnl8ZW58MHx8MHx8fDA%3D",
@@ -317,7 +365,11 @@ export const staticData = [
     eventLocation: "Mountain Trails",
     contact: "+994103233244",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -342,7 +394,11 @@ export const staticData = [
     eventLocation: "Serene Lake",
     contact: "+994103233245",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
 
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
@@ -368,7 +424,11 @@ export const staticData = [
     eventLocation: "Hilltop Observatory",
     contact: "+994103233249",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -393,7 +453,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -418,7 +482,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -443,7 +511,11 @@ export const staticData = [
     eventLocation: "Brewery District",
     contact: "+994103233259",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
       "https://images.unsplash.com/photo-1584225064536-d0fbc0a10f18?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJyZXdlcnl8ZW58MHx8MHx8fDA%3D",
@@ -467,7 +539,11 @@ export const staticData = [
     eventLocation: "Wildlife Sanctuary",
     contact: "+994103233260",
     mainPhotoUrl:
+<<<<<<< HEAD
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1620673399859-d7e13565737d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2lsZGxpZmUlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D",
       "https://plus.unsplash.com/premium_photo-1664302679282-0585462031f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2lsZGxpZmUlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D",

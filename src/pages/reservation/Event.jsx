@@ -4,6 +4,7 @@ import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import { useParams } from "react-router-dom";
 import { month, staticData } from "../../mock/static";
+
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -282,7 +283,7 @@ const Event = () => {
       </div>
 
       {showPopup && (
-        <div className="fixed top-0 left-0 z-50  w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50">
+        <div className="fixed top-0 left-0 z-50 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50">
           <div
             ref={popupRef}
             className="bg-white py-[98px] px-[80px] rounded-[8px]"
