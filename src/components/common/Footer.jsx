@@ -70,7 +70,7 @@ function Footer() {
           </h3>
           <ul className="space-y-[17px] text-[16px] font-[400]">
             <li>
-              <Link to="#">Müraciət edin</Link>
+              <Link to="#">Tədbir yarat</Link>
             </li>
             <li>
               <Link to="#">Kateqoriyalar</Link>
