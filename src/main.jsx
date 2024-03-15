@@ -17,7 +17,6 @@ import LoginPage from "./pages/login/LoginPage.jsx";
 import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
-import LoginForm from "./pages/login/LoginForm.jsx";
 
 const PrivateRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
