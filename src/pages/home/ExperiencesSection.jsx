@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { getEvents } from "../../utils/apiUtils";
 function ExperiencesSection() {
   const [data, setData] = useState(null);
+  const [click, setClick] = useState(null);
+
   useEffect(() => {
     getEvents().then((res) => setData(res.data));
   }, []);
