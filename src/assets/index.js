@@ -93,6 +93,9 @@ import event3 from "./img/event-3.jpeg";
 import event4 from "./img/event-4.jpeg";
 import event5 from "./img/event-5.jpeg";
 
+// Loader
+import loader from "./img/loader.gif";
+
 export {
   blogCard1,
   blogCard2,
@@ -155,4 +158,5 @@ export {
   event4,
   event5,
   done,
+  loader,
 };
