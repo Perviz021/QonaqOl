@@ -61,7 +61,7 @@ function Menus({ activeNavLink, setActiveNavLink }) {
         }}
         className={activeNavLink === "experiences" ? "font-[600]" : ""}
       >
-        Təcrübələr
+        Tədbirlər
       </NavLink>
       <NavLink
         to="/about"
