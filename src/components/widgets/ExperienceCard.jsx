@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { month } from "../../mock/static";
 
 const ExperienceCard = ({
   name,
@@ -37,7 +38,7 @@ const ExperienceCard = ({
         <h5 className="font-[600] text-[18px]">{content}</h5>
         <p className="flex items-center space-x-3 w-full text-[16px] font-[400]">
           <span className="relative pl-2 after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-0 after:bg-[#2B2C34] after:size-[4px] after:rounded-full">
-            {time}
+            {`${time[2]} ${month[time[1] - 1]}`}
           </span>
           <span className="relative pl-2 after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-0 after:bg-[#2B2C34] after:size-[4px] after:rounded-full">
             {place}
