@@ -1,18 +1,21 @@
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 
-import {
-  exp1,
-  exp2,
-  exp3,
-  exp4,
-  exp5,
-  exp6,
-  exp7,
-  exp8,
-  arrowRight,
-} from "../../assets";
-
+import { arrowRight } from "../../assets";
+import { useEffect, useState } from "react";
+import { getEvents } from "../../utils/apiUtils";
 function ExperiencesSection() {
+  const [data, setData] = useState(null);
+  const [click, setClick] = useState(null);
+
+  useEffect(() => {
+    getEvents().then((res) => setData(res.data));
+  }, []);
+  useEffect(() => {
+    const popularEvents =
+      data && data.sort((a, b) => b.viewCount - a.viewCount);
+    setData(popularEvents);
+  }, [data]);
+
   return (
     <section
       id="experiences"
@@ -28,72 +31,23 @@ function ExperiencesSection() {
       {/* Experiences Cards */}
       <div className="container mx-auto">
         {/* First Row */}
-        <div className="grid grid-cols-4 gap-x-[20px] gap-y-[100px]">
-          <ExperienceCard
-            name="Breathtaking Mountain Hike"
-            imgSrc={exp1}
-            content="Aşpaz Abbasın pasta sirləri"
-            time="02 Mart"
-            place="Azərbaycan prospekti, A.."
-            price="30 AZN"
-            imgHeight="200px"
-          />
-          <ExperienceCard
-            imgSrc={exp2}
-            content="Aida seramik masterklas"
-            time="19 fevral"
-            place="Caspian plaza"
-            price="30 AZN"
-            imgHeight="200px"
-          />
-          <ExperienceCard
-            imgSrc={exp3}
-            content="SOLART rəssamlıq masterklas"
-            time="14 fevral"
-            place="İçəri şəhər, Solart scho.."
-            price="30 AZN"
-            imgHeight="200px"
-          />
-          <ExperienceCard
-            imgSrc={exp4}
-            content="Pizza bruno pizza masterklas 🍕"
-            time="16 fevral"
-            place="Pizza Bruno, Nizami filialı.."
-            price="30 AZN"
-            imgHeight="200px"
-          />
-          <ExperienceCard
-            imgSrc={exp5}
-            content="Cafephile kofe cupping"
-            time="12 Mart"
-            place="Ağ şəhər filialı"
-            price="Pulsuz"
-            imgHeight="200px"
-          />
-          <ExperienceCard
-            imgSrc={exp6}
-            content="Həvəskarlar Futbol Liqası"
-            time="07 Mart"
-            place="Baku Olimpiya Stadionu"
-            price="30 AZN"
-            imgHeight="200px"
-          />
-          <ExperienceCard
-            imgSrc={exp7}
-            content="Voleybol Çempionatı"
-            time="22 Fevral"
-            place="Sərhədçi İdman Mərkəzi"
-            price="30 AZN"
-            imgHeight="200px"
-          />
-          <ExperienceCard
-            imgSrc={exp8}
-            content="Go-kart track"
-            time="10 Fevral"
-            place="Baku City Karting"
-            price="30 AZN"
-            imgHeight="200px"
-          />
+        <div className="grid grid-cols-4 gap-x-[20px] gap-y-44">
+          {data &&
+            data
+              .slice(0, 8)
+              .map((el, i) => (
+                <ExperienceCard
+                  id={el._id}
+                  name={el?.eventName}
+                  key={i}
+                  imgSrc={el?.mainPhotoUrl}
+                  content={el?.description}
+                  time={el?.eventDate}
+                  place={el?.eventLocation}
+                  price={`${el?.eventPrice} AZN`}
+                  imgHeight="200px"
+                />
+              ))}
         </div>
       </div>
     </section>

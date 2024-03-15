@@ -1,5 +1,8 @@
 export const staticData = [
   {
+    _id: 1,
+    viewCount: 123,
+
     eventName: "Breathtaking Mountain Hike",
     description:
       "Explore scenic trails and stunning views on this mountain hiking adventure.",
@@ -12,7 +15,11 @@ export const staticData = [
     eventLocation: "Mountain Trails",
     contact: "+994103233244",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -22,6 +29,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 2,
+    viewCount: 10,
+
     eventName: "Kayaking on the Open Water",
     description:
       "Experience the thrill of kayaking on a calm lake surrounded by nature.",
@@ -34,7 +44,11 @@ export const staticData = [
     eventLocation: "Serene Lake",
     contact: "+994103233245",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
 
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
@@ -45,6 +59,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 3,
+    viewCount: 1240,
+
     eventName: "Stargazing Night",
     description:
       "Gaze at the wonders of the universe under a blanket of stars.",
@@ -57,7 +74,11 @@ export const staticData = [
     eventLocation: "Hilltop Observatory",
     contact: "+994103233249",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -67,6 +88,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 4,
+    viewCount: 1210,
+
     eventName: "City Art Walk",
     description:
       "Explore the city's vibrant street art scene with a guided walking tour.",
@@ -79,7 +103,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -89,6 +117,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 5,
+    viewCount: 150,
+
     eventName: "City Art Walk",
     description:
       "Explore the city's vibrant street art scene with a guided walking tour.",
@@ -101,7 +132,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -111,6 +146,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 6,
+    viewCount: 145,
+
     eventName: "Brewery Tour and Tasting",
     description:
       "Discover the brewing process and sample delicious craft beers on a guided brewery tour.",
@@ -123,7 +161,11 @@ export const staticData = [
     eventLocation: "Brewery District",
     contact: "+994103233259",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
       "https://images.unsplash.com/photo-1584225064536-d0fbc0a10f18?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJyZXdlcnl8ZW58MHx8MHx8fDA%3D",
@@ -133,6 +175,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 7,
+    viewCount: 1210,
+
     eventName: "Breathtaking Mountain Hike",
     description:
       "Explore scenic trails and stunning views on this mountain hiking adventure.",
@@ -145,7 +190,11 @@ export const staticData = [
     eventLocation: "Mountain Trails",
     contact: "+994103233244",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -155,6 +204,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 8,
+    viewCount: 129,
+
     eventName: "Kayaking on the Open Water",
     description:
       "Experience the thrill of kayaking on a calm lake surrounded by nature.",
@@ -167,7 +219,11 @@ export const staticData = [
     eventLocation: "Serene Lake",
     contact: "+994103233245",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
 
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
@@ -178,6 +234,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 9,
+    viewCount: 1240,
+
     eventName: "Stargazing Night",
     description:
       "Gaze at the wonders of the universe under a blanket of stars.",
@@ -190,7 +249,11 @@ export const staticData = [
     eventLocation: "Hilltop Observatory",
     contact: "+994103233249",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -200,6 +263,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 10,
+    viewCount: 180,
+
     eventName: "City Art Walk",
     description:
       "Explore the city's vibrant street art scene with a guided walking tour.",
@@ -212,7 +278,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -222,6 +292,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 11,
+    viewCount: 20,
+
     eventName: "City Art Walk",
     description:
       "Explore the city's vibrant street art scene with a guided walking tour.",
@@ -234,7 +307,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -244,6 +321,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 12,
+    viewCount: 120,
+
     eventName: "Brewery Tour and Tasting",
     description:
       "Discover the brewing process and sample delicious craft beers on a guided brewery tour.",
@@ -256,7 +336,11 @@ export const staticData = [
     eventLocation: "Brewery District",
     contact: "+994103233259",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
       "https://images.unsplash.com/photo-1584225064536-d0fbc0a10f18?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJyZXdlcnl8ZW58MHx8MHx8fDA%3D",
@@ -266,6 +350,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 13,
+    viewCount: 120,
+
     eventName: "Breathtaking Mountain Hike",
     description:
       "Explore scenic trails and stunning views on this mountain hiking adventure.",
@@ -278,7 +365,11 @@ export const staticData = [
     eventLocation: "Mountain Trails",
     contact: "+994103233244",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -288,6 +379,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 14,
+    viewCount: 120,
+
     eventName: "Kayaking on the Open Water",
     description:
       "Experience the thrill of kayaking on a calm lake surrounded by nature.",
@@ -300,7 +394,11 @@ export const staticData = [
     eventLocation: "Serene Lake",
     contact: "+994103233245",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
 
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
@@ -311,6 +409,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 15,
+    viewCount: 120,
+
     eventName: "Stargazing Night",
     description:
       "Gaze at the wonders of the universe under a blanket of stars.",
@@ -323,7 +424,11 @@ export const staticData = [
     eventLocation: "Hilltop Observatory",
     contact: "+994103233249",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -333,6 +438,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 16,
+    viewCount: 700,
+
     eventName: "City Art Walk",
     description:
       "Explore the city's vibrant street art scene with a guided walking tour.",
@@ -345,7 +453,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -355,6 +467,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 17,
+    viewCount: 120,
+
     eventName: "City Art Walk",
     description:
       "Explore the city's vibrant street art scene with a guided walking tour.",
@@ -367,7 +482,11 @@ export const staticData = [
     eventLocation: "City Center",
     contact: "+994103233250",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1682687221323-6ce2dbc803ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
       "https://images.unsplash.com/photo-1710104434504-0261d06fa832?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
@@ -377,6 +496,9 @@ export const staticData = [
     ],
   },
   {
+    _id: 18,
+    viewCount: 120,
+
     eventName: "Brewery Tour and Tasting",
     description:
       "Discover the brewing process and sample delicious craft beers on a guided brewery tour.",
@@ -389,7 +511,11 @@ export const staticData = [
     eventLocation: "Brewery District",
     contact: "+994103233259",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
       "https://images.unsplash.com/photo-1584225064536-d0fbc0a10f18?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJyZXdlcnl8ZW58MHx8MHx8fDA%3D",
@@ -399,6 +525,8 @@ export const staticData = [
     ],
   },
   {
+    _id: 19,
+    viewCount: 120,
     eventName: "Wildlife Photography Workshop",
     description:
       "Learn the art of capturing stunning wildlife photos with a professional photographer.",
@@ -411,7 +539,11 @@ export const staticData = [
     eventLocation: "Wildlife Sanctuary",
     contact: "+994103233260",
     mainPhotoUrl:
+<<<<<<< HEAD
+      "https://images.unsplash.com/photo-1584225065152-4a1454aa3d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJld2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+=======
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+>>>>>>> master
     photoUrls: [
       "https://images.unsplash.com/photo-1620673399859-d7e13565737d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2lsZGxpZmUlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D",
       "https://plus.unsplash.com/premium_photo-1664302679282-0585462031f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2lsZGxpZmUlMjBwaG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D",

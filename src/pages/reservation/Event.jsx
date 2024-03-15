@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
@@ -12,20 +12,19 @@ const Event = () => {
   const [emailError, setEmailError] = useState(false); // State for email format error
   const [fullName, setFullName] = useState("");
   const [participants, setParticipants] = useState("");
-  const { name } = useParams();
+  const { _id } = useParams();
   const [data, setData] = useState(null);
   const [otherEvents, setOtherEvents] = useState(null);
-  const event_name = name && name.replace(/-/g, " ");
+  // const event_name = name && name.replace(/-/g, " ");
 
   useEffect(() => {
-    const data = staticData.find((i) => i.eventName === event_name);
+    const data = staticData.find((i) => i._id == _id);
     setData(data);
-  }, []);
+  }, [_id]);
   useEffect(() => {
     const events = staticData.filter((i) => i.category === data?.category);
     setOtherEvents(events.slice(0, 3));
   }, [data?.category]);
-  console.log(otherEvents);
   const accessToken = localStorage.getItem("accessToken");
   const popupRef = useRef();
   const placeholder = "Əlaqə nömrəsi";
@@ -265,10 +264,11 @@ const Event = () => {
           Oxşar tədbirlər
         </h4>
 
-        <div className="gap-[20px] flex justify-between">
+        <div className="gap-[20px] flex pb-24 justify-between">
           {otherEvents &&
             otherEvents.map((el, i) => (
               <ExperienceCard
+                id={el._id}
                 name={el.eventName}
                 key={i}
                 imgSrc={el.mainPhotoUrl}
