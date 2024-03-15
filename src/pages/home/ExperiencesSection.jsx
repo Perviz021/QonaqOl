@@ -30,6 +30,7 @@ function ExperiencesSection() {
         {/* First Row */}
         <div className="grid grid-cols-4 gap-x-[20px] gap-y-[100px]">
           <ExperienceCard
+            name="Breathtaking Mountain Hike"
             imgSrc={exp1}
             content="Aşpaz Abbasın pasta sirləri"
             time="02 Mart"

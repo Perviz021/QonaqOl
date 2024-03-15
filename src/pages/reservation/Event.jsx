@@ -4,6 +4,7 @@ import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import { useParams } from "react-router-dom";
 import { month, staticData } from "../../mock/static";
+
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
