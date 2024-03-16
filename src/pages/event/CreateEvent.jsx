@@ -66,6 +66,11 @@ const CreateEvent = () => {
     coverImage,
   ]);
 
+  useEffect(() => {
+    // Scroll to the top of the page when component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleDescriptionChange = (description) => {
     setDescription(description);
   };
@@ -161,26 +166,6 @@ const CreateEvent = () => {
       });
     }
 
-    // const formData = {
-    //   userId,
-    //   eventName,
-    //   description,
-    //   category,
-    //   language,
-    //   eventPrice,
-    //   eventDate,
-    //   eventStartTime,
-    //   eventEndTime,
-    //   eventLocation,
-    //   contact,
-    // };
-
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
-
-    // console.log(coverImage);
-    // console.log(images);
     try {
       // Send the form data to the backend API
       const response = await axios.post(
@@ -276,7 +261,7 @@ const CreateEvent = () => {
             className={`h-[48px] px-[57px] rounded-[8px] text-[16px] ${
               isFormFilled ? "bg-[#FFCE00]" : "bg-[#f1DD8B]"
             }`}
-            // disabled={!isFormFilled}
+            disabled={!isFormFilled}
           >
             Müraciəti göndər
           </button>

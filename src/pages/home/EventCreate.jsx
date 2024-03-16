@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { puzzle, figures, note, cookie } from "../../assets";
+import { useNavigate } from "react-router-dom";
 
 const EventCreate = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      navigate("/create-event");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <section className="bg-[#303030] mt-[80px] text-[#fff] pt-[200px] pb-[160px] relative">
       <div className="w-[600px] mx-auto text-center">
@@ -15,7 +28,10 @@ const EventCreate = () => {
           bilərsiniz. Bunun üçün tədbir yarata klikləyərək məlumatlarınız qeyd
           edin
         </p>
-        <button className="bg-[#FFCE00] px-[78px] h-[48px] inline-flex justify-center items-center rounded-[8px] text-black font-[400] text-[16px]">
+        <button
+          onClick={handleClick}
+          className="bg-[#FFCE00] px-[78px] h-[48px] inline-flex justify-center items-center rounded-[8px] text-black font-[400] text-[16px]"
+        >
           Tədbir yarat
         </button>
       </div>

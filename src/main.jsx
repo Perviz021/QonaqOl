@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./assets/css/index.css";
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-  useNavigate,
-} from "react-router-dom"; // Import useNavigate hook
+import { RouterProvider, createBrowserRouter } from "react-router-dom"; // Import useNavigate hook
 import HomePage from "./pages/home/HomePage.jsx";
 import AppLayout from "./layouts/AppLayout.jsx";
 import ErrorPage from "./pages/error/ErrorPage.jsx";
@@ -50,12 +45,20 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: (
+      <PrivateRouteAuth>
+        <LoginPage />
+      </PrivateRouteAuth>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: "/signup",
-    element: <SignUpPage />,
+    element: (
+      <PrivateRouteAuth>
+        <SignUpPage />
+      </PrivateRouteAuth>
+    ),
     errorElement: <ErrorPage />,
   },
   {
@@ -71,9 +74,9 @@ const router = createBrowserRouter([
     path: "/create-event",
     element: (
       <AppLayout>
-        {/* <PrivateRoute> */}
-        <CreateEvent />
-        {/* </PrivateRoute> */}
+        <PrivateRouteCreateEvent>
+          <CreateEvent />
+        </PrivateRouteCreateEvent>
       </AppLayout>
     ),
     errorElement: <ErrorPage />,

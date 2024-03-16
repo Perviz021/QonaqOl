@@ -15,12 +15,12 @@ function HeaderContent() {
         <h1 className="text-[50px] unbounded unbounded-700 text-[#333333]">
           Növbəti <br /> macəranızı <br /> bizimlə kəşf edin
         </h1>
-        <p className="font-[400] text-[20px] leading-[28px]">
+        <p className="font-[400] text-[20px] leading-[28px] my-[35px]">
           Qonaqol.az ilə əyləncə dünyasını kəşf edin. Ölkəmizdə olan
           masterklasslardan seminarlara qədər sizin üçün xüsusi olaraq
           hazırlanmış mükəmməl tədbirləri təcrübə edin.
         </p>
-        <button className="inline-flex items-center w-[95%] rounded-[8px] overflow-hidden border border-[#CCCCCC] mt-[35px]">
+        <button className="inline-flex items-center w-[95%] rounded-[8px] overflow-hidden border border-[#CCCCCC]">
           <span className="inline-flex items-center justify-start w-[240px] p-[12px] space-x-[10px]">
             <img src={headerContentBtn1} alt="" className="size-[20px]" />
             <span className="text-[16px] font-[400]">Maraqlandığınız sahə</span>
