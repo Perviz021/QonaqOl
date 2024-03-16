@@ -37,7 +37,7 @@ function ExperiencesSection() {
               .slice(0, 8)
               .map((el, i) => (
                 <ExperienceCard
-                  id={el._id}
+                  id={el.id}
                   name={el?.eventName}
                   key={i}
                   imgSrc={el?.mainPhotoUrl}

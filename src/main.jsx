@@ -87,7 +87,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/events/:_id",
+    path: "/events/:id",
     element: (
       <AppLayout>
         <Event />

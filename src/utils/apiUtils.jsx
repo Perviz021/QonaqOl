@@ -12,8 +12,8 @@ export const createEvent = (params, eventData) => {
   });
 };
 
-export const getEvents = () => {
-  return api.get(endPoints.event_controller.all);
+export const getEvents = async () => {
+  return await api.get(endPoints.event_controller.all);
 };
 
 // export const getEvents =
