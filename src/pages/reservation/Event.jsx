@@ -4,9 +4,10 @@ import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import { useParams } from "react-router-dom";
 import { month, staticData } from "../../mock/static";
-import { getEvents } from "../../utils/apiUtils";
+import { eventById, getEvents } from "../../utils/apiUtils";
 import loader from "../../assets/img/loader.gif";
-
+import heart from "../../assets/icons/heart.svg";
+import { PiShareFat } from "react-icons/pi";
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -18,22 +19,33 @@ const Event = () => {
   const [data, setData] = useState(null);
   const [otherEvents, setOtherEvents] = useState(null);
   // const event_name = name && name.replace(/-/g, " ");
-  console.log(id);
+
   useEffect(() => {
-    getEvents().then((res) => setData(res.data.find((e) => e.id == id)));
-  }, [data, id]);
+    eventById(id).then((res) => setData(res.data));
+  }, [id]);
   useEffect(() => {
+    // eventById(id).then((res) => console.log(res.data));
     getEvents().then((res) =>
       setOtherEvents(res.data.filter((i) => i.category === data?.category))
     );
   }, [otherEvents, data?.category]);
-  console.log(otherEvents);
+
   const accessToken = localStorage.getItem("accessToken");
   const popupRef = useRef();
   const placeholder = "Əlaqə nömrəsi";
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
+  const copyLocation = () => {
+    navigator.clipboard.writeText(window.location.href).then(
+      function () {
+        alert("copied successfully!");
+      },
+      function (err) {
+        alert("Failed to copy");
+      }
+    );
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowPopup(false);
@@ -190,8 +202,13 @@ const Event = () => {
               <h3 className="text-[28px] mb-[40px] mt-[90px] font-[600]">
                 {data?.eventName}
               </h3>
-              <span className="relative top-[40px]">
-                {/* <img src={heart2} alt="" /> */}
+              <span className="relative flex items-center justify-center gap-5 top-[40px]">
+                <PiShareFat
+                  color="#f2ed7c"
+                  className="size-8 cursor-pointer"
+                  onClick={copyLocation}
+                />
+                <img src={heart} alt="" className="cursor-pointer" />
               </span>
             </div>
             <div className="flex gap-[20px] mb-[40px]">
@@ -282,7 +299,7 @@ const Event = () => {
                 {otherEvents &&
                   otherEvents.map((el, i) => (
                     <ExperienceCard
-                      id={el._id}
+                      id={el.id}
                       name={el.eventName}
                       key={i}
                       imgSrc={el.mainPhotoUrl}

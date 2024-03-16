@@ -36,13 +36,15 @@ const ExperienceCard = ({
         </span>
       </div>
       <div className="pt-[16px] space-y-[8px]">
-        <h5 className="font-[600] text-[18px]">{name}</h5>
+        <h5 className="font-[600] text-[18px]">
+          {name.length < 35 ? name : name.slice(0, 25) + "..."}
+        </h5>
         <p className="flex items-center space-x-3 w-full text-[16px] font-[400]">
           <span className="relative pl-2 after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-0 after:bg-[#2B2C34] after:size-[4px] after:rounded-full">
             {`${time[2]} ${month[time[1] - 1]}`}
           </span>
           <span className="relative pl-2 after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-0 after:bg-[#2B2C34] after:size-[4px] after:rounded-full">
-            {place}
+            {place.length < 35 ? place : place.slice(0, 25) + "..."}
           </span>
         </p>
       </div>

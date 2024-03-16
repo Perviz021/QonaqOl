@@ -3,6 +3,7 @@ import ExperienceCard from "../../components/widgets/ExperienceCard";
 import { arrowRight } from "../../assets";
 import { useEffect, useState } from "react";
 import { getEvents } from "../../utils/apiUtils";
+import { Link } from "react-router-dom";
 function ExperiencesSection() {
   const [data, setData] = useState(null);
   const [click, setClick] = useState(null);
@@ -23,9 +24,9 @@ function ExperiencesSection() {
     >
       <h1 className="unbounded unbounded-600 text-[24px] mb-[60px] flex justify-between items-center">
         Populyar tədbirlər
-        <span>
+        <Link to={"/events"}>
           <img src={arrowRight} alt="" />
-        </span>
+        </Link>
       </h1>
 
       {/* Experiences Cards */}
