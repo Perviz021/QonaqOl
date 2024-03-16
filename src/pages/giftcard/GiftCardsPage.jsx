@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GiftCard from "../../components/widgets/GiftCard";
 import { giftcard1, giftcard2, giftcard3 } from "../../assets";
 import { useForm } from "react-hook-form";
+import { FaXmark } from "react-icons/fa6";
 
 const GiftCardsPage = () => {
   const [openPopup, setOpenPopup] = useState(false);
@@ -70,7 +71,13 @@ const GiftCardsPage = () => {
 
       {openPopup && (
         <div className="fixed top-0 left-0 size-full flex flex-col justify-center items-center bg-black bg-opacity-50">
-          <div className="p-[40px] bg-white rounded-[8px]">
+          <div className="p-[40px] relative bg-white rounded-[8px]">
+            <span
+              className="absolute top-6 cursor-pointer right-4 size-6 "
+              onClick={() => setOpenPopup(false)}
+            >
+              <FaXmark />
+            </span>
             <h2 className="font-[600] text-[24px] text-center mb-[30px]">
               Sevdiklərinizi sevindirin
             </h2>

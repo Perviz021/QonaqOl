@@ -12,6 +12,8 @@ import LoginPage from "./pages/login/LoginPage.jsx";
 import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
+import Reservation from "./pages/reservation/Reservation.jsx";
+
 import PrivateRouteCreateEvent from "./routers/PrivateRouteCreateEvent.jsx";
 import PrivateRouteAuth from "./routers/PrivateRouteAuth.jsx";
 
@@ -86,6 +88,15 @@ const router = createBrowserRouter([
     element: (
       <AppLayout>
         <About />
+      </AppLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/events/reservation",
+    element: (
+      <AppLayout>
+        <Reservation />
       </AppLayout>
     ),
     errorElement: <ErrorPage />,

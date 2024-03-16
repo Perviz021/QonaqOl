@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const LoginButton = () => {
   const [token, setToken] = useState(null);
@@ -86,6 +86,13 @@ const LoginButton = () => {
               >
                 Çıxış
               </button>
+              <Link
+                to={"/events/reservation"}
+                // onClick={handleLogout}
+                className="block w-full px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+              >
+                Rezervasiyalarım
+              </Link>
             </>
           )}
         </div>
