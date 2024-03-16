@@ -13,25 +13,7 @@ import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
 import Reservation from "./pages/reservation/Reservation.jsx";
-import LoginForm from "./pages/login/LoginForm.jsx";
 
-// const PrivateRoute = ({ children }) => {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const accessToken = localStorage.getItem("accessToken");
-//     if (accessToken) {
-//       setIsAuthenticated(true);
-//     } else {
-//       setIsAuthenticated(false);
-//       navigate("/");
-//     }
-//   }, [navigate]);
-
-//   return isAuthenticated ? children : null;
-// };
-// export default PrivateRoute;
 import PrivateRouteCreateEvent from "./routers/PrivateRouteCreateEvent.jsx";
 import PrivateRouteAuth from "./routers/PrivateRouteAuth.jsx";
 

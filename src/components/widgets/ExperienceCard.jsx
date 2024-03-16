@@ -6,7 +6,7 @@ const ExperienceCard = ({
   id,
   name,
   imgSrc,
-  
+  content,
   time,
   place,
   price,
