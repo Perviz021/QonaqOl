@@ -161,26 +161,6 @@ const CreateEvent = () => {
       });
     }
 
-    // const formData = {
-    //   userId,
-    //   eventName,
-    //   description,
-    //   category,
-    //   language,
-    //   eventPrice,
-    //   eventDate,
-    //   eventStartTime,
-    //   eventEndTime,
-    //   eventLocation,
-    //   contact,
-    // };
-
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
-
-    // console.log(coverImage);
-    // console.log(images);
     try {
       // Send the form data to the backend API
       const response = await axios.post(
