@@ -176,7 +176,7 @@ function SignUpPage() {
     } catch (error) {
       console.error("Error signing up:", error.message);
     } finally {
-      setFormData((prevData) => ({
+      setFormState((prevData) => ({
         ...prevData,
         loading: false,
       }));

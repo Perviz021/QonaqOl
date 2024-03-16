@@ -29,7 +29,7 @@ const Events = () => {
             <ExperienceCard
               name={el?.eventName}
               key={i}
-              id={el?._id}
+              id={el?.id}
               imgSrc={el?.mainPhotoUrl}
               content={el?.description}
               time={el?.eventDate}

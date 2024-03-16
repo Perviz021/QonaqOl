@@ -4,6 +4,8 @@ import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import { useParams } from "react-router-dom";
 import { month, staticData } from "../../mock/static";
+import { getEvents } from "../../utils/apiUtils";
+import loader from "../../assets/img/loader.gif";
 
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -12,15 +14,14 @@ const Event = () => {
   const [emailError, setEmailError] = useState(false); // State for email format error
   const [fullName, setFullName] = useState("");
   const [participants, setParticipants] = useState("");
-  const { _id } = useParams();
+  const { id } = useParams();
   const [data, setData] = useState(null);
   const [otherEvents, setOtherEvents] = useState(null);
   // const event_name = name && name.replace(/-/g, " ");
-
+  console.log(id);
   useEffect(() => {
-    const data = staticData.find((i) => i._id == _id);
-    setData(data);
-  }, [_id]);
+    getEvents().then((res) => setData(res.data.find((e) => e.id == id)));
+  }, [data, id]);
   useEffect(() => {
     const events = staticData.filter((i) => i.category === data?.category);
     setOtherEvents(events.slice(0, 3));
@@ -175,199 +176,216 @@ const Event = () => {
   };
 
   return (
-    <div className="w-[1240px] mx-auto">
-      <div className="flex justify-between items-center">
-        <h3 className="text-[28px] mb-[40px] mt-[90px] font-[600]">
-          {data?.eventName}
-        </h3>
-        <span className="relative top-[40px]">
-          {/* <img src={heart2} alt="" /> */}
-        </span>
-      </div>
-      <div className="flex gap-[20px] mb-[40px]">
-        <div>
-          <img
-            src={data?.photoUrls[0]}
-            alt=""
-            className="w-[400px] h-[500px] object-cover rounded-[8px]"
-          />
+    <>
+      {data == null ? (
+        <div className="w-full h-screen flex items-center justify-center">
+          <img src={loader} alt="" />
         </div>
-        <div className="flex flex-col gap-[20px]">
-          <img
-            src={data?.photoUrls[1]}
-            alt=""
-            className="w-[400px] h-[272px] object-cover rounded-[8px]"
-          />
-          <img
-            src={data?.photoUrls[2]}
-            alt=""
-            className="w-[400px] h-[208px] object-cover rounded-[8px]"
-          />
-        </div>
-        <div className="flex flex-col gap-[20px]">
-          <img
-            src={data?.photoUrls[3]}
-            alt=""
-            className="w-[400px] h-[202px] object-cover rounded-[8px]"
-          />
-          <img
-            src={data?.photoUrls[4]}
-            alt=""
-            className="w-[400px] h-[278px] object-cover rounded-[8px]"
-          />
-        </div>
-      </div>
-      <div className="flex justify-between items-start space-x-[123px]">
-        <div className="w-[715px]">
-          <h3 className="text-[28px] font-[600] mb-[32px]">Tədbir haqqında</h3>
-          <p className="font-normal text-[16px] leading-[24px]">
-            {data?.description}
-          </p>
-          <p className="mt-[48px]">
-            <span className="text-[20px] font-[600] mr-[8px]">Ünvan:</span>
-            <span className="text-[16px]">{data?.eventLocation}</span>
-          </p>
-        </div>
-        <div className="p-[40px] bg-[#fafafa] w-[400px] rounded-[8px]">
-          <div className="border-b border-[#e1e1e1]">
-            <h2 className="font-[600] text-[28px] mb-[12px]">
-              {data?.eventName}
-            </h2>
-            <div className="space-y-[8px] py-[12px]">
-              <p className="text-[16px]">
-                Qiymət: <span>{data?.eventPrice}</span> AZN
-              </p>
-              <p className="text-[16px]">
-                Dil: <span>{data?.language}</span>
-              </p>
-              <p className="text-[16px]">
-                Kateqoriya: <span>{data?.category}</span>
-              </p>
+      ) : (
+        <>
+          <div className="w-[1240px] mx-auto">
+            <div className="flex justify-between items-center">
+              <h3 className="text-[28px] mb-[40px] mt-[90px] font-[600]">
+                {data?.eventName}
+              </h3>
+              <span className="relative top-[40px]">
+                {/* <img src={heart2} alt="" /> */}
+              </span>
             </div>
-          </div>
-          <div className="border-b border-[#e1e1e1] py-[12px]">
-            <h5 className="font-[600] text-[18px]">Mövcud tarixlər</h5>
-            <p className="text-[16px]">
-              {createDate}, {data?.eventStartTime} - {data?.eventEndTime}{" "}
-            </p>
-          </div>
-          <button
-            onClick={handleReservation}
-            className="text-[16px] bg-[#FFCE00] rounded-[8px] h-[48px] px-[124px] shrink-0 mt-[16px]"
-          >
-            Rezerv et
-          </button>
-        </div>
-      </div>
-      <div className="mb-[120px]">
-        <h4 className="unbounded unbounded-600 text-[24px] my-[40px]">
-          Oxşar tədbirlər
-        </h4>
+            <div className="flex gap-[20px] mb-[40px]">
+              <div>
+                <img
+                  src={data?.photoUrls[0]}
+                  alt=""
+                  className="w-[400px] h-[500px] object-cover rounded-[8px]"
+                />
+              </div>
+              <div className="flex flex-col gap-[20px]">
+                <img
+                  src={data?.photoUrls[1]}
+                  alt=""
+                  className="w-[400px] h-[272px] object-cover rounded-[8px]"
+                />
+                <img
+                  src={data?.photoUrls[2]}
+                  alt=""
+                  className="w-[400px] h-[208px] object-cover rounded-[8px]"
+                />
+              </div>
+              <div className="flex flex-col gap-[20px]">
+                <img
+                  src={data?.photoUrls[3]}
+                  alt=""
+                  className="w-[400px] h-[202px] object-cover rounded-[8px]"
+                />
+                <img
+                  src={data?.photoUrls[4]}
+                  alt=""
+                  className="w-[400px] h-[278px] object-cover rounded-[8px]"
+                />
+              </div>
+            </div>
+            <div className="flex justify-between items-start space-x-[123px]">
+              <div className="w-[715px]">
+                <h3 className="text-[28px] font-[600] mb-[32px]">
+                  Tədbir haqqında
+                </h3>
+                <p className="font-normal text-[16px] leading-[24px]">
+                  {data?.description}
+                </p>
+                <p className="mt-[48px]">
+                  <span className="text-[20px] font-[600] mr-[8px]">
+                    Ünvan:
+                  </span>
+                  <span className="text-[16px]">{data?.eventLocation}</span>
+                </p>
+              </div>
+              <div className="p-[40px] bg-[#fafafa] w-[400px] rounded-[8px]">
+                <div className="border-b border-[#e1e1e1]">
+                  <h2 className="font-[600] text-[28px] mb-[12px]">
+                    {data?.eventName}
+                  </h2>
+                  <div className="space-y-[8px] py-[12px]">
+                    <p className="text-[16px]">
+                      Qiymət: <span>{data?.eventPrice}</span> AZN
+                    </p>
+                    <p className="text-[16px]">
+                      Dil: <span>{data?.language}</span>
+                    </p>
+                    <p className="text-[16px]">
+                      Kateqoriya: <span>{data?.category}</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="border-b border-[#e1e1e1] py-[12px]">
+                  <h5 className="font-[600] text-[18px]">Mövcud tarixlər</h5>
+                  <p className="text-[16px]">
+                    {createDate}, {data?.eventStartTime} - {data?.eventEndTime}{" "}
+                  </p>
+                </div>
+                <button
+                  onClick={handleReservation}
+                  className="text-[16px] bg-[#FFCE00] rounded-[8px] h-[48px] px-[124px] shrink-0 mt-[16px]"
+                >
+                  Rezerv et
+                </button>
+              </div>
+            </div>
+            <div className="mb-[120px]">
+              <h4 className="unbounded unbounded-600 text-[24px] my-[40px]">
+                Oxşar tədbirlər
+              </h4>
 
-        <div className="gap-[20px] flex pb-24 justify-between">
-          {otherEvents &&
-            otherEvents.map((el, i) => (
-              <ExperienceCard
-                id={el._id}
-                name={el.eventName}
-                key={i}
-                imgSrc={el.mainPhotoUrl}
-                content={el.description}
-                time={el.eventDate}
-                place={el.eventLocation}
-                price={`${el.eventPrice} AZN`}
-                imgHeight="200px"
-              />
-            ))}
-        </div>
-      </div>
+              <div className="gap-[20px] flex pb-24 justify-between">
+                {otherEvents &&
+                  otherEvents.map((el, i) => (
+                    <ExperienceCard
+                      id={el._id}
+                      name={el.eventName}
+                      key={i}
+                      imgSrc={el.mainPhotoUrl}
+                      content={el.description}
+                      time={el.eventDate}
+                      place={el.eventLocation}
+                      price={`${el.eventPrice} AZN`}
+                      imgHeight="200px"
+                    />
+                  ))}
+              </div>
+            </div>
 
-      {showPopup && (
-        <div className="fixed top-0 left-0 z-50 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50">
-          <div
-            ref={popupRef}
-            className="bg-white py-[98px] px-[80px] rounded-[8px]"
-          >
-            <h2 className="text-[24px] font-[600] mb-[20px] text-center">
-              Yerlər dolmadan, öz yerini tut
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-[20px] w-[400px]">
-              {!accessToken && (
-                <>
-                  <input
-                    type="text"
-                    placeholder="Ad Soyad"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    maxLength={40}
-                    className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
-                  />
-                  <input
-                    type="email"
-                    placeholder="E-poçt"
-                    value={email}
-                    onChange={handleEmailChange}
-                    className={`h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border ${
-                      emailError
-                        ? "border-red-500"
-                        : "border-transparent focus:border-transparent focus:ring-0"
-                    } focus:ring-0`}
-                  />
-                </>
-              )}
-              <input
-                type="text"
-                placeholder={phoneNumber ? phoneNumber : placeholder}
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-                className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
+            {showPopup && (
+              <div className="fixed top-0 left-0 z-50 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50">
+                <div
+                  ref={popupRef}
+                  className="bg-white py-[98px] px-[80px] rounded-[8px]"
+                >
+                  <h2 className="text-[24px] font-[600] mb-[20px] text-center">
+                    Yerlər dolmadan, öz yerini tut
+                  </h2>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="space-y-[20px] w-[400px]"
+                  >
+                    {!accessToken && (
+                      <>
+                        <input
+                          type="text"
+                          placeholder="Ad Soyad"
+                          value={fullName}
+                          onChange={(e) => setFullName(e.target.value)}
+                          maxLength={40}
+                          className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
+                        />
+                        <input
+                          type="email"
+                          placeholder="E-poçt"
+                          value={email}
+                          onChange={handleEmailChange}
+                          className={`h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border ${
+                            emailError
+                              ? "border-red-500"
+                              : "border-transparent focus:border-transparent focus:ring-0"
+                          } focus:ring-0`}
+                        />
+                      </>
+                    )}
+                    <input
+                      type="text"
+                      placeholder={phoneNumber ? phoneNumber : placeholder}
+                      value={phoneNumber}
+                      onChange={handlePhoneNumberChange}
+                      className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
+                    />
+                    <input
+                      type="number"
+                      value={participants}
+                      onChange={(e) => setParticipants(e.target.value)}
+                      placeholder="İştirakçı sayı"
+                      className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
+                    />
+                    <button
+                      type="submit"
+                      className={`mt-[28px] w-[400px] rounded-[8px] py-[12px] ${
+                        (accessToken && phoneNumber && participants) ||
+                        (!accessToken &&
+                          phoneNumber &&
+                          participants &&
+                          email &&
+                          !emailError &&
+                          fullName)
+                          ? "bg-[#FFCE00]"
+                          : "bg-[#F1DD8B] cursor-not-allowed"
+                      }`}
+                      disabled={
+                        (accessToken && phoneNumber && participants) ||
+                        (!accessToken &&
+                          phoneNumber &&
+                          participants &&
+                          email &&
+                          !emailError &&
+                          fullName)
+                          ? false
+                          : true
+                      }
+                    >
+                      Rezerv et
+                    </button>
+                  </form>
+                </div>
+              </div>
+            )}
+
+            {showSuccessPopup && (
+              <PopupMessage
+                handleContinueButtonClick={handleContinueButtonClick}
+                textMessage="Rezervasiyanız qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq. Təşəkkürlər!"
               />
-              <input
-                type="number"
-                value={participants}
-                onChange={(e) => setParticipants(e.target.value)}
-                placeholder="İştirakçı sayı"
-                className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
-              />
-              <button
-                type="submit"
-                className={`mt-[28px] w-[400px] rounded-[8px] py-[12px] ${
-                  (accessToken && phoneNumber && participants) ||
-                  (!accessToken &&
-                    phoneNumber &&
-                    participants &&
-                    email &&
-                    !emailError &&
-                    fullName)
-                    ? "bg-[#FFCE00]"
-                    : "bg-[#F1DD8B] cursor-not-allowed"
-                }`}
-                disabled={
-                  (accessToken && phoneNumber && participants) ||
-                  (!accessToken &&
-                    phoneNumber &&
-                    participants &&
-                    email &&
-                    !emailError &&
-                    fullName)
-                    ? false
-                    : true
-                }
-              >
-                Rezerv et
-              </button>
-            </form>
+            )}
           </div>
-        </div>
+        </>
       )}
-
-      {showSuccessPopup && (
-        <PopupMessage
-          handleContinueButtonClick={handleContinueButtonClick}
-          textMessage="Rezervasiyanız qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq. Təşəkkürlər!"
-        />
-      )}
-    </div>
+    </>
   );
 };
 
