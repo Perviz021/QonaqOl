@@ -11,7 +11,7 @@ const PrivateRouteCreateEvent = ({ children }) => {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
-      navigate("/");
+      navigate("/login");
     }
   }, [navigate]);
 

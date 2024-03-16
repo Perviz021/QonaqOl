@@ -12,7 +12,7 @@ import LoginPage from "./pages/login/LoginPage.jsx";
 import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
-import PrivateRouteCreateEvent from "./routers/PrivateCreateEvent.jsx";
+import PrivateRouteCreateEvent from "./routers/PrivateRouteCreateEvent.jsx";
 import PrivateRouteAuth from "./routers/PrivateRouteAuth.jsx";
 
 const router = createBrowserRouter([
