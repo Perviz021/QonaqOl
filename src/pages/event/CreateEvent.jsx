@@ -276,7 +276,7 @@ const CreateEvent = () => {
             className={`h-[48px] px-[57px] rounded-[8px] text-[16px] ${
               isFormFilled ? "bg-[#FFCE00]" : "bg-[#f1DD8B]"
             }`}
-            // disabled={!isFormFilled}
+            disabled={!isFormFilled}
           >
             Müraciəti göndər
           </button>
