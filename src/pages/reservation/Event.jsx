@@ -23,9 +23,11 @@ const Event = () => {
     getEvents().then((res) => setData(res.data.find((e) => e.id == id)));
   }, [data, id]);
   useEffect(() => {
-    const events = staticData.filter((i) => i.category === data?.category);
-    setOtherEvents(events.slice(0, 3));
-  }, [data?.category]);
+    getEvents().then((res) =>
+      setOtherEvents(res.data.filter((i) => i.category === data?.category))
+    );
+  }, [otherEvents, data?.category]);
+  console.log(otherEvents);
   const accessToken = localStorage.getItem("accessToken");
   const popupRef = useRef();
   const placeholder = "Əlaqə nömrəsi";
