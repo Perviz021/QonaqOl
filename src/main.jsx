@@ -32,6 +32,8 @@ import LoginForm from "./pages/login/LoginForm.jsx";
 //   return isAuthenticated ? children : null;
 // };
 // export default PrivateRoute;
+import PrivateRouteCreateEvent from "./routers/PrivateRouteCreateEvent.jsx";
+import PrivateRouteAuth from "./routers/PrivateRouteAuth.jsx";
 
 const router = createBrowserRouter([
   {
