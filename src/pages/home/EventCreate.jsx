@@ -16,10 +16,6 @@ const EventCreate = () => {
     }
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <section className="bg-[#303030] mt-[80px] text-[#fff] pt-[200px] pb-[160px] relative">
       <div className="w-[600px] mx-auto text-center">
