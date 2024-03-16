@@ -12,6 +12,7 @@ import LoginPage from "./pages/login/LoginPage.jsx";
 import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
+<<<<<<< HEAD
 import Reservation from "./pages/reservation/Reservation.jsx";
 import LoginForm from "./pages/login/LoginForm.jsx";
 
@@ -32,6 +33,10 @@ import LoginForm from "./pages/login/LoginForm.jsx";
 //   return isAuthenticated ? children : null;
 // };
 // export default PrivateRoute;
+=======
+import PrivateRouteCreateEvent from "./routers/PrivateRouteCreateEvent.jsx";
+import PrivateRouteAuth from "./routers/PrivateRouteAuth.jsx";
+>>>>>>> adcca5844a7ea9b329c3960e0496ab38d2034a20
 
 const router = createBrowserRouter([
   {
