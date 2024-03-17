@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import { RiArrowGoBackFill } from "react-icons/ri";
 import { signupBg, loader } from "../../assets";
 
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -236,10 +237,13 @@ function SignUpPage() {
           {!formState.loading && (
             <div className="w-[60%] mx-auto">
               <button
-                className="bg-gray-200 text-black text-[16px] font-normal h-[34px] px-[20px] mt-2 rounded-[8px] mb-[16px] focus:outline-none focus:shadow-outline"
+                className="inline-flex items-center justify-center space-x-1 bg-gray-200 text-black text-[16px] font-normal h-[34px] px-[20px] mt-2 rounded-[8px] mb-[16px] focus:outline-none focus:shadow-outline"
                 onClick={handleBack}
               >
-                Geri Qayıt
+                <span>Geri</span>
+                <span>
+                  <RiArrowGoBackFill />
+                </span>
               </button>
               {/* Login Form */}
               <div className="bg-white rounded mb-[16px]">

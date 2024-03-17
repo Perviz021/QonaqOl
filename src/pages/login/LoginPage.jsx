@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 import { loginBg1, loader } from "../../assets";
 
@@ -215,10 +216,13 @@ function LoginPage() {
           {!loading && (
             <div className="w-[60%] mx-auto">
               <button
-                className="bg-gray-200 text-black text-[16px] font-normal h-[34px] px-[20px] rounded-[8px] mb-[30px] focus:outline-none focus:shadow-outline"
+                className="inline-flex justify-center items-center space-x-1 bg-gray-200 text-black text-[16px] font-normal h-[34px] px-[20px] rounded-[8px] mb-[30px] focus:outline-none focus:shadow-outline"
                 onClick={handleBack}
               >
-                Geri Qayıt
+                <span>Geri</span>
+                <span>
+                  <RiArrowGoBackFill />
+                </span>
               </button>
               <div className="bg-white rounded mb-[16px]">
                 <h2 className="text-[40px] font-[600] mb-[36px]">Daxil ol</h2>
