@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 
-import { loginBg, loginBg1, loader } from "../../assets";
+import { loginBg1, loader } from "../../assets";
+
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../lib/firebase";
+
+const provider = new GoogleAuthProvider();
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -102,12 +107,28 @@ function LoginPage() {
     }
   };
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (e, user = null) => {
+    e.preventDefault();
+    setFormData((prevData) => ({
+      ...prevData,
+      loading: true,
+    }));
+
     try {
-      setFormData((prevData) => ({
-        ...prevData,
-        loading: true,
-      }));
+      let payload = {};
+      if (!user) {
+        // If user is not provided (normal sign up)
+        payload = {
+          email: formData.email,
+          password: formData.password,
+        };
+      } else {
+        // If user is provided (sign up with Google)
+        payload = {
+          email: user?.email,
+          password: user?.uid.slice(0, 10), // Using user UID as password
+        };
+      }
 
       const response = await fetch(
         "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signin",
@@ -116,10 +137,7 @@ function LoginPage() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
+          body: JSON.stringify(payload),
         }
       );
 
@@ -151,6 +169,20 @@ function LoginPage() {
         ...prevData,
         loading: false,
       }));
+    }
+  };
+
+  const googleLogin = async (e) => {
+    try {
+      const data = await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(data);
+      const token = credential.accessToken;
+      const user = data.user;
+
+      handleSignIn(e, user);
+    } catch (error) {
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error(credential);
     }
   };
 
@@ -267,14 +299,9 @@ function LoginPage() {
 
               <div className="flex flex-col items-center justify-center">
                 <button
-                  className={`${
-                    isEmailValid(email) &&
-                    isPasswordValid(password) &&
-                    fieldsFilled
-                      ? "bg-[#2B2C34]"
-                      : "bg-[#9c9c9f] pointer-events-none"
-                  } text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]`}
+                  className="bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]"
                   type="button"
+                  onClick={(e) => googleLogin(e)}
                 >
                   <span className="size-[20px]">
                     <FaGoogle />

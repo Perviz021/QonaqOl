@@ -3,6 +3,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { signupBg, loader } from "../../assets";
 
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../lib/firebase";
+
+const provider = new GoogleAuthProvider();
+
 function SignUpPage() {
   const navigate = useNavigate();
 
@@ -121,13 +126,32 @@ function SignUpPage() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, user = null) => {
     e.preventDefault(); // Prevent default form submission
     setFormState((prevData) => ({
       ...prevData,
       loading: true,
     }));
     try {
+      let payload = {};
+      if (!user) {
+        // If user is not provided (normal sign up)
+        payload = {
+          fullName: formState.fullName,
+          email: formState.email,
+          password: formState.password,
+          confirmPassword: formState.confirmPassword,
+        };
+      } else {
+        // If user is provided (sign up with Google)
+        payload = {
+          fullName: user?.displayName,
+          email: user?.email,
+          password: user?.uid.slice(0, 10), // Using user UID as password
+          confirmPassword: user?.uid.slice(0, 10), // Using user UID as confirmation password
+        };
+      }
+
       const response = await fetch(
         "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signup",
         {
@@ -135,12 +159,7 @@ function SignUpPage() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            fullName: formState.fullName,
-            email: formState.email,
-            password: formState.password,
-            confirmPassword: formState.confirmPassword,
-          }),
+          body: JSON.stringify(payload),
         }
       );
 
@@ -180,6 +199,20 @@ function SignUpPage() {
         ...prevData,
         loading: false,
       }));
+    }
+  };
+
+  const googleSignup = async (e) => {
+    try {
+      const data = await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(data);
+      const token = credential.accessToken;
+      const user = data.user;
+
+      handleSubmit(e, user);
+    } catch (error) {
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error(credential);
     }
   };
 
@@ -333,12 +366,9 @@ function SignUpPage() {
               {/* Google Signin Button */}
               <div className="flex flex-col items-center justify-center">
                 <button
-                  className={`${
-                    formState.fieldsFilled && formState.passwordMatch
-                      ? "bg-[#2B2C34]"
-                      : "bg-[#9c9c9f] pointer-events-none"
-                  } text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]`}
+                  className={`bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]`}
                   type="button"
+                  onClick={(e) => googleSignup(e)}
                 >
                   <span className="size-[20px]">
                     <FaGoogle />
