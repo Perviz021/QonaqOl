@@ -62,7 +62,7 @@ const Events = () => {
               <div
                 className="size-12 hover:bg-[#ffce0067] transition-colors cursor-pointer flex items-center justify-center rounded-full  "
                 onClick={() => {
-                  if (!(pagination + 12 >= staticData.length)) {
+                  if (!(pagination + 12 >= data.length)) {
                     setPagination((currVal) => currVal + 12);
                     setCount((currVal) => currVal + 1);
                   }

@@ -54,10 +54,10 @@ function Menus({ activeNavLink, setActiveNavLink }) {
         Hədiyyə Kartı
       </NavLink>
       <NavLink
-        to="#"
+        to="/events"
         onClick={() => {
           handleNavLinkClick("experiences");
-          scrollToExperiences();
+          // scrollToExperiences();
         }}
         className={activeNavLink === "experiences" ? "font-[600]" : ""}
       >

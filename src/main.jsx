@@ -12,10 +12,10 @@ import LoginPage from "./pages/login/LoginPage.jsx";
 import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
-import Reservation from "./pages/reservation/Reservation.jsx";
 
 import PrivateRouteCreateEvent from "./routers/PrivateRouteCreateEvent.jsx";
 import PrivateRouteAuth from "./routers/PrivateRouteAuth.jsx";
+import Account from "./pages/account/Account.jsx";
 
 const router = createBrowserRouter([
   {
@@ -93,10 +93,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/events/reservation",
+    path: "/account",
     element: (
       <AppLayout>
-        <Reservation />
+        <Account />
       </AppLayout>
     ),
     errorElement: <ErrorPage />,
