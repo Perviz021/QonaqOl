@@ -25,9 +25,26 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
       /\.(jpg|jpeg|png)$/i.test(file.name)
     );
 
+    // Filter out files exceeding 3MB in size
+    const filesUnder3MB = validFiles.filter(
+      (file) => file.size <= 3 * 1024 * 1024
+    ); // 3MB in bytes
+
+    // Check if any files exceeded the size limit
+    const oversizedFiles = validFiles.filter(
+      (file) => file.size > 3 * 1024 * 1024
+    );
+
+    // If any oversized files are detected, display an alert
+    if (oversizedFiles.length > 0) {
+      alert(
+        "Images must be in JPG, JPEG, or PNG format and should not exceed 3MB in size."
+      );
+    }
+
     // Limit the number of files to 5
     const remainingSlots = 5 - images.length;
-    const filesToUpload = validFiles.slice(0, remainingSlots);
+    const filesToUpload = filesUnder3MB.slice(0, remainingSlots);
 
     // Update the state with the new images
     setImages((prevImages) => [...prevImages, ...filesToUpload]);
@@ -41,10 +58,18 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
   const handleCoverImageUpload = (event) => {
     const coverImageFile = event.target.files[0];
 
-    // Update the state with the cover image
-    setCoverImage(coverImageFile);
-    onCoverImageChange(coverImageFile); // Pass the cover image to the parent component
-    setInitialCoverImageContentVisible(false);
+    // Check if cover image file is under 3MB
+    if (coverImageFile && coverImageFile.size <= 3 * 1024 * 1024) {
+      // 3MB in bytes
+      // Update the state with the cover image
+      setCoverImage(coverImageFile);
+      onCoverImageChange(coverImageFile); // Pass the cover image to the parent component
+      setInitialCoverImageContentVisible(false);
+    } else {
+      alert(
+        "Cover image must be in JPG, JPEG, or PNG format and should not exceed 3MB in size."
+      );
+    }
   };
 
   // Function to handle image replacement
