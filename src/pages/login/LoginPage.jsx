@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
-
 import { loginBg1, loader } from "../../assets";
-
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../lib/firebase";
-
-const provider = new GoogleAuthProvider();
+import {
+  googleSignup,
+  handleImageLoad,
+  handleSignIn,
+  isEmailValid,
+  isPasswordValid,
+  togglePasswordVisibility,
+} from "../../utils/authUtils";
 
 function LoginPage() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const [formState, setFormState] = useState({
     imageLoaded: false,
     email: "",
     password: "",
@@ -24,167 +26,28 @@ function LoginPage() {
     loading: false,
   });
 
-  const handleImageLoad = () => {
-    setFormData((prevData) => ({
-      ...prevData,
-      imageLoaded: true,
-    }));
-  };
-
-  const isEmailValid = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const isPasswordValid = (password) => {
-    return password.length <= 10;
-  };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-      fieldsFilled:
-        name === "email"
-          ? !!value && !!prevData.password
-          : !!prevData.email && !!value,
-      emailValid: name === "email" ? isEmailValid(value) : prevData.emailValid,
-      passwordValid:
-        name === "password" ? isPasswordValid(value) : prevData.passwordValid,
-    }));
-  };
-
-  const togglePasswordVisibility = () => {
-    setFormData((prevData) => ({
-      ...prevData,
-      showPassword: !prevData.showPassword,
-    }));
-  };
-
-  const handleBack = () => {
-    navigate(-1); // Navigate back to the previous page
-  };
-
-  const refreshToken = async () => {
-    try {
-      const refreshToken = localStorage.getItem("refreshToken");
-      const response = await fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/v1/auth/refresh",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            refreshToken: refreshToken,
-          }),
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        const newAccessToken = data.accessToken;
-        const newRefreshToken = data.refreshToken;
-        // Update tokens in local storage
-        localStorage.setItem("accessToken", newAccessToken);
-        localStorage.setItem("refreshToken", newRefreshToken);
-        return newAccessToken;
-      } else {
-        console.error("Error refreshing token:", response.statusText);
-        // Optionally, handle invalid or expired refresh token
-        // For example, clear tokens from local storage and redirect to login page
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        navigate("/login");
-      }
-    } catch (error) {
-      console.error("Error refreshing token:", error.message);
-      // Handle network errors or other exceptions
-      // Optionally, clear tokens from local storage and redirect to login page
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      navigate("/login");
-    }
-  };
-
-  const handleSignIn = async (e, user = null) => {
-    e.preventDefault();
-    setFormData((prevData) => ({
-      ...prevData,
-      loading: true,
-    }));
-
-    try {
-      let payload = {};
-      if (!user) {
-        // If user is not provided (normal sign up)
-        payload = {
-          email: formData.email,
-          password: formData.password,
-        };
-      } else {
-        // If user is provided (sign up with Google)
-        payload = {
-          email: user?.email,
-          password: user?.uid.slice(0, 10), // Using user UID as password
-        };
-      }
-
-      const response = await fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signin",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        const { userId, tokenPair } = data;
-        const { accessToken, refreshToken } = tokenPair;
-
-        // Store userId, accessToken, and refreshToken in local storage
-        localStorage.setItem("userId", userId);
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
-
-        navigate("/"); // Navigate to home page
-      } else if (response.status === 403) {
-        const newAccessToken = await refreshToken();
-        if (newAccessToken) {
-          return handleSignIn(); // Retry sign-in with new access token
-        } else {
-          console.error("Unable to refresh token. Please try again later.");
-        }
-      } else {
-        console.error("Sign-in failed");
-      }
-    } catch (error) {
-      console.error("Error signing in:", error);
-    } finally {
-      setFormData((prevData) => ({
+    if (name === "email") {
+      const isValid = value.trim() === "" || isEmailValid(value);
+      setFormState((prevData) => ({
         ...prevData,
-        loading: false,
+        [name]: value,
+        fieldsFilled: !!value && !!prevData.password,
+        emailValid: isValid,
+      }));
+    } else {
+      setFormState((prevData) => ({
+        ...prevData,
+        [name]: value,
+        fieldsFilled: !!prevData.email && !!value,
+        passwordValid: isPasswordValid(value),
       }));
     }
   };
 
-  const googleLogin = async (e) => {
-    try {
-      const data = await signInWithPopup(auth, provider);
-      const credential = GoogleAuthProvider.credentialFromResult(data);
-      const token = credential.accessToken;
-      const user = data.user;
-
-      handleSignIn(e, user);
-    } catch (error) {
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.error(credential);
-    }
+  const handleBack = () => {
+    navigate(-1); // Navigate back to the previous page
   };
 
   const {
@@ -196,7 +59,10 @@ function LoginPage() {
     passwordValid,
     showPassword,
     loading,
-  } = formData;
+  } = formState;
+
+  isEmailValid(email);
+  isPasswordValid(password);
 
   return (
     <div style={{ visibility: imageLoaded ? "visible" : "hidden" }}>
@@ -208,7 +74,7 @@ function LoginPage() {
             className={`w-full h-full object-cover ${
               imageLoaded ? "" : "hidden"
             }`}
-            onLoad={handleImageLoad}
+            onLoad={() => handleImageLoad(setFormState)}
           />
         </div>
 
@@ -227,9 +93,7 @@ function LoginPage() {
               <div className="bg-white rounded mb-[16px]">
                 <h2 className="text-[40px] font-[600] mb-[36px]">Daxil ol</h2>
 
-                <div
-                  className={`mb-[20px] ${!emailValid ? "border-red-500" : ""}`}
-                >
+                <div className={`mb-[20px]`}>
                   <input
                     className={`appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0 ${
                       !emailValid ? "border-red-500" : ""
@@ -262,7 +126,9 @@ function LoginPage() {
                   />
                   <div
                     className="absolute top-0 right-0 h-full flex items-center pr-[10px] cursor-pointer"
-                    onClick={togglePasswordVisibility}
+                    onClick={() =>
+                      togglePasswordVisibility("showPassword", setFormState)
+                    }
                   >
                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                   </div>
@@ -282,7 +148,15 @@ function LoginPage() {
                         : "bg-[#f1dd8b] pointer-events-none"
                     } text-black text-[16px] font-normal h-[44px] w-full rounded-[8px] focus:outline-none focus:shadow-outline`}
                     type="button"
-                    onClick={handleSignIn}
+                    onClick={(e) =>
+                      handleSignIn(
+                        e,
+                        undefined,
+                        formState,
+                        setFormState,
+                        navigate
+                      )
+                    }
                   >
                     Daxil ol
                   </button>
@@ -305,7 +179,9 @@ function LoginPage() {
                 <button
                   className="bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]"
                   type="button"
-                  onClick={(e) => googleLogin(e)}
+                  onClick={(e) =>
+                    googleSignup(e, "login", formState, setFormState, navigate)
+                  }
                 >
                   <span className="size-[20px]">
                     <FaGoogle />
