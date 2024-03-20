@@ -247,3 +247,51 @@ export const handleSignIn = async (
     }));
   }
 };
+
+export const handleInputChange = (e, formState, setFormState, type) => {
+  // Login
+  if (type === "login") {
+    const { name, value } = e.target;
+    if (name === "email") {
+      const isValid = value.trim() === "" || isEmailValid(value);
+      setFormState((prevData) => ({
+        ...prevData,
+        [name]: value,
+        fieldsFilled: !!value && !!prevData.password,
+        emailValid: isValid,
+      }));
+    } else {
+      setFormState((prevData) => ({
+        ...prevData,
+        [name]: value,
+        fieldsFilled: !!prevData.email && !!value,
+        passwordValid: isPasswordValid(value),
+      }));
+    }
+  } //Sign Up
+  else if (type === "signup") {
+    const { id, value } = e.target;
+    const trimmedValue = value.trim();
+
+    setFormState((prevState) => ({
+      ...prevState,
+      [id]: value,
+      fieldsFilled:
+        !!prevState.fullName &&
+        !!prevState.email &&
+        !!prevState.password &&
+        !!prevState.confirmPassword &&
+        trimmedValue !== "",
+      emailValid:
+        id === "email"
+          ? trimmedValue === "" || isEmailValid(trimmedValue)
+          : prevState.emailValid,
+      passwordMatch:
+        id === "confirmPassword"
+          ? trimmedValue === prevState.password
+          : id === "password"
+          ? trimmedValue === prevState.confirmPassword
+          : prevState.passwordMatch,
+    }));
+  }
+};

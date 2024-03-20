@@ -6,6 +6,7 @@ import { signupBg, loader } from "../../assets";
 import {
   googleSignup,
   handleImageLoad,
+  handleInputChange,
   handleSubmit,
   isEmailValid,
   isPasswordValid,
@@ -34,32 +35,6 @@ function SignUpPage() {
 
   const handleBack = () => {
     navigate(-1); // Navigate back to the previous page
-  };
-
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    const trimmedValue = value.trim();
-
-    setFormState((prevState) => ({
-      ...prevState,
-      [id]: value,
-      fieldsFilled:
-        !!prevState.fullName &&
-        !!prevState.email &&
-        !!prevState.password &&
-        !!prevState.confirmPassword &&
-        trimmedValue !== "",
-      emailValid:
-        id === "email"
-          ? trimmedValue === "" || isEmailValid(trimmedValue)
-          : prevState.emailValid,
-      passwordMatch:
-        id === "confirmPassword"
-          ? trimmedValue === prevState.password
-          : id === "password"
-          ? trimmedValue === prevState.confirmPassword
-          : prevState.passwordMatch,
-    }));
   };
 
   isEmailValid(formState.email);
@@ -116,7 +91,9 @@ function SignUpPage() {
                       id="fullName"
                       type="text"
                       value={formState.fullName}
-                      onChange={handleInputChange}
+                      onChange={(e) =>
+                        handleInputChange(e, formState, setFormState, "signup")
+                      }
                       placeholder="Ad Soyad"
                       maxLength={40}
                     />
@@ -134,7 +111,9 @@ function SignUpPage() {
                       id="email"
                       type="email"
                       value={formState.email}
-                      onChange={handleInputChange}
+                      onChange={(e) =>
+                        handleInputChange(e, formState, setFormState, "signup")
+                      }
                       placeholder="E-poçt"
                     />
                   </div>
@@ -145,7 +124,9 @@ function SignUpPage() {
                       id="password"
                       type={formState.showPassword ? "text" : "password"}
                       value={formState.password}
-                      onChange={handleInputChange}
+                      onChange={(e) =>
+                        handleInputChange(e, formState, setFormState, "signup")
+                      }
                       maxLength={10}
                       placeholder="Şifrə"
                     />
@@ -165,7 +146,9 @@ function SignUpPage() {
                       id="confirmPassword"
                       type={formState.showConfirmPassword ? "text" : "password"}
                       value={formState.confirmPassword}
-                      onChange={handleInputChange}
+                      onChange={(e) =>
+                        handleInputChange(e, formState, setFormState, "signup")
+                      }
                       maxLength={10}
                       placeholder="Şifrəni təsdiqləyin"
                     />

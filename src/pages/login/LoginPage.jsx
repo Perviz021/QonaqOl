@@ -6,6 +6,7 @@ import { loginBg1, loader } from "../../assets";
 import {
   googleSignup,
   handleImageLoad,
+  handleInputChange,
   handleSignIn,
   isEmailValid,
   isPasswordValid,
@@ -25,26 +26,6 @@ function LoginPage() {
     showPassword: false,
     loading: false,
   });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "email") {
-      const isValid = value.trim() === "" || isEmailValid(value);
-      setFormState((prevData) => ({
-        ...prevData,
-        [name]: value,
-        fieldsFilled: !!value && !!prevData.password,
-        emailValid: isValid,
-      }));
-    } else {
-      setFormState((prevData) => ({
-        ...prevData,
-        [name]: value,
-        fieldsFilled: !!prevData.email && !!value,
-        passwordValid: isPasswordValid(value),
-      }));
-    }
-  };
 
   const handleBack = () => {
     navigate(-1); // Navigate back to the previous page
@@ -102,7 +83,9 @@ function LoginPage() {
                     type="email"
                     name="email"
                     value={email}
-                    onChange={handleInputChange}
+                    onChange={(e) =>
+                      handleInputChange(e, formState, setFormState, "login")
+                    }
                     placeholder="E-poçt"
                   />
                 </div>
@@ -120,7 +103,9 @@ function LoginPage() {
                     type={showPassword ? "text" : "password"}
                     name="password"
                     value={password}
-                    onChange={handleInputChange}
+                    onChange={(e) =>
+                      handleInputChange(e, formState, setFormState, "login")
+                    }
                     maxLength={10}
                     placeholder="Şifrə"
                   />
