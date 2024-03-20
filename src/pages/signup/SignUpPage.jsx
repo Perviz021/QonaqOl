@@ -3,11 +3,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { signupBg, loader } from "../../assets";
-
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../lib/firebase";
-
-const provider = new GoogleAuthProvider();
+import {
+  googleSignup,
+  handleImageLoad,
+  handleSubmit,
+  isEmailValid,
+  isPasswordValid,
+  togglePasswordVisibility,
+} from "../../utils/authUtils";
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -19,203 +22,47 @@ function SignUpPage() {
     password: "",
     confirmPassword: "",
     fieldsFilled: false,
-    fullNameValid: true,
     emailValid: true,
-    passwordValid: true,
-    confirmPasswordValid: true,
+    // passwordValid: true,
     showPassword: false,
     showConfirmPassword: false,
     passwordMatch: false,
     loading: false,
   });
 
-  const handleImageLoad = () => {
-    setFormState((prevState) => ({ ...prevState, imageLoaded: true }));
-  };
-
-  const isEmailValid = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const isPasswordValid = (password) => {
-    return password.length <= 10;
-  };
+  // isPasswordValid(formState.password);
 
   const handleBack = () => {
     navigate(-1); // Navigate back to the previous page
   };
 
-  const refreshToken = async () => {
-    const navigate = useNavigate();
-
-    try {
-      const refreshToken = localStorage.getItem("refreshToken");
-      const response = await fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/v1/auth/refresh",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            refreshToken: refreshToken,
-          }),
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        const newAccessToken = data.accessToken;
-        const newRefreshToken = data.refreshToken;
-        // Update tokens in local storage
-        localStorage.setItem("accessToken", newAccessToken);
-        localStorage.setItem("refreshToken", newRefreshToken);
-        return newAccessToken;
-      } else {
-        console.error("Error refreshing token:", response.statusText);
-        // Optionally, handle invalid or expired refresh token
-        // For example, clear tokens from local storage and redirect to login page
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        navigate("/login");
-      }
-    } catch (error) {
-      console.error("Error refreshing token:", error.message);
-      // Handle network errors or other exceptions
-      // Optionally, clear tokens from local storage and redirect to login page
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      navigate("/login");
-    }
-  };
-
   const handleInputChange = (e) => {
     const { id, value } = e.target;
+    const trimmedValue = value.trim();
+
     setFormState((prevState) => ({
       ...prevState,
-      [id]:
-        id === "email" ? value : value.slice(0, id === "fullName" ? 40 : 10),
+      [id]: value,
       fieldsFilled:
-        id !== "confirmPassword"
-          ? {
-              ...prevState.fieldsFilled,
-              [id]: value !== "",
-            }
-          : prevState.fieldsFilled,
-      [`${id}Valid`]:
+        !!prevState.fullName &&
+        !!prevState.email &&
+        !!prevState.password &&
+        !!prevState.confirmPassword &&
+        trimmedValue !== "",
+      emailValid:
         id === "email"
-          ? isEmailValid(value)
-          : id === "password"
-          ? isPasswordValid(value)
-          : id === "confirmPassword"
-          ? value === formState.password
-          : value.length <= (id === "fullName" ? 40 : 10),
+          ? trimmedValue === "" || isEmailValid(trimmedValue)
+          : prevState.emailValid,
       passwordMatch:
-        id === "password"
-          ? value === formState.confirmPassword
-          : id === "confirmPassword"
-          ? value === formState.password
+        id === "confirmPassword"
+          ? trimmedValue === prevState.password
+          : id === "password"
+          ? trimmedValue === prevState.confirmPassword
           : prevState.passwordMatch,
     }));
   };
 
-  const toggleVisibility = (field) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      [field]: !prevState[field],
-    }));
-  };
-
-  const handleSubmit = async (e, user = null) => {
-    e.preventDefault(); // Prevent default form submission
-    setFormState((prevData) => ({
-      ...prevData,
-      loading: true,
-    }));
-    try {
-      let payload = {};
-      if (!user) {
-        // If user is not provided (normal sign up)
-        payload = {
-          fullName: formState.fullName,
-          email: formState.email,
-          password: formState.password,
-          confirmPassword: formState.confirmPassword,
-        };
-      } else {
-        // If user is provided (sign up with Google)
-        payload = {
-          fullName: user?.displayName,
-          email: user?.email,
-          password: user?.uid.slice(0, 10), // Using user UID as password
-          confirmPassword: user?.uid.slice(0, 10), // Using user UID as confirmation password
-        };
-      }
-
-      const response = await fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      if (response.ok) {
-        // Handle success
-        console.log("User signed up successfully!");
-        const data = await response.json();
-        const { userId, tokenPair } = data;
-        const { accessToken, refreshToken } = tokenPair;
-
-        // Store userId, accessToken, and refreshToken in local storage
-        localStorage.setItem("userId", userId);
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
-
-        navigate("/"); // Navigate to login page using useNavigate
-      } else {
-        if (response.status === 401) {
-          // If token is expired or invalid, try refreshing the token
-          const newAccessToken = await refreshToken();
-          if (newAccessToken) {
-            // If a new access token is obtained, retry the signup
-            return handleSubmit(e);
-          } else {
-            // If unable to refresh token, handle error appropriately
-            console.error("Unable to refresh token. Please try again later.");
-          }
-        } else {
-          // Handle other errors
-          console.error("Error signing up:", response.statusText);
-        }
-      }
-    } catch (error) {
-      console.error("Error signing up:", error.message);
-    } finally {
-      setFormState((prevData) => ({
-        ...prevData,
-        loading: false,
-      }));
-    }
-  };
-
-  const googleSignup = async (e) => {
-    try {
-      const data = await signInWithPopup(auth, provider);
-      const credential = GoogleAuthProvider.credentialFromResult(data);
-      const token = credential.accessToken;
-      const user = data.user;
-
-      handleSubmit(e, user);
-    } catch (error) {
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.error(credential);
-    }
-  };
+  isEmailValid(formState.email);
 
   return (
     <div style={{ visibility: formState.imageLoaded ? "visible" : "hidden" }}>
@@ -228,7 +75,7 @@ function SignUpPage() {
             className={`w-full h-full object-cover ${
               formState.imageLoaded ? "" : "hidden"
             }`}
-            onLoad={handleImageLoad}
+            onLoad={() => handleImageLoad(setFormState)}
           />
         </div>
 
@@ -252,21 +99,26 @@ function SignUpPage() {
                   Qeydiyyatdan keç
                 </h2>
 
-                <form onSubmit={handleSubmit}>
-                  <div
-                    className={`mb-[18px] ${
-                      !formState.fullNameValid ? "border-red-500" : ""
-                    }`}
-                  >
+                <form
+                  onSubmit={(e) =>
+                    handleSubmit(
+                      e,
+                      undefined,
+                      formState,
+                      setFormState,
+                      navigate
+                    )
+                  }
+                >
+                  <div className="mb-[18px]">
                     <input
-                      className={`appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0 ${
-                        !formState.fullNameValid ? "border-red-500" : ""
-                      }`}
+                      className="appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0"
                       id="fullName"
                       type="text"
                       value={formState.fullName}
                       onChange={handleInputChange}
                       placeholder="Ad Soyad"
+                      maxLength={40}
                     />
                   </div>
                   {/* Email Input */}
@@ -287,15 +139,9 @@ function SignUpPage() {
                     />
                   </div>
                   {/* Password Input */}
-                  <div
-                    className={`mb-[18px] relative ${
-                      !formState.passwordValid ? "border-red-500" : ""
-                    }`}
-                  >
+                  <div className="mb-[18px] relative">
                     <input
-                      className={`appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] pr-[40px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0 ${
-                        !formState.passwordValid ? "border-red-500" : ""
-                      }`}
+                      className="appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] pr-[40px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0"
                       id="password"
                       type={formState.showPassword ? "text" : "password"}
                       value={formState.password}
@@ -305,21 +151,17 @@ function SignUpPage() {
                     />
                     <div
                       className="absolute top-0 right-0 h-full flex items-center pr-[10px] cursor-pointer"
-                      onClick={() => toggleVisibility("showPassword")}
+                      onClick={() =>
+                        togglePasswordVisibility("showPassword", setFormState)
+                      }
                     >
                       {formState.showPassword ? <FaEyeSlash /> : <FaEye />}
                     </div>
                   </div>
                   {/* Confirm Password */}
-                  <div
-                    className={`mb-[22px] relative ${
-                      !formState.confirmPasswordValid ? "border-red-500" : ""
-                    }`}
-                  >
+                  <div className="mb-[22px] relative">
                     <input
-                      className={`appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] pr-[40px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0 ${
-                        !formState.confirmPasswordValid ? "border-red-500" : ""
-                      }`}
+                      className="appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] pr-[40px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0"
                       id="confirmPassword"
                       type={formState.showConfirmPassword ? "text" : "password"}
                       value={formState.confirmPassword}
@@ -329,7 +171,12 @@ function SignUpPage() {
                     />
                     <div
                       className="absolute top-0 right-0 h-full flex items-center pr-[10px] cursor-pointer"
-                      onClick={() => toggleVisibility("showConfirmPassword")}
+                      onClick={() =>
+                        togglePasswordVisibility(
+                          "showConfirmPassword",
+                          setFormState
+                        )
+                      }
                     >
                       {formState.showConfirmPassword ? (
                         <FaEyeSlash />
@@ -342,7 +189,10 @@ function SignUpPage() {
                   <div className="flex flex-col items-center justify-center space-y-[8px]">
                     <button
                       className={`${
-                        formState.fieldsFilled && formState.passwordMatch
+                        formState.fieldsFilled &&
+                        formState.passwordMatch &&
+                        formState.emailValid &&
+                        formState.fullName
                           ? "bg-[#FFCE00]"
                           : "bg-[#F1dd8b] pointer-events-none"
                       }  text-black text-[16px] font-normal h-[44px] w-full rounded-[8px] focus:outline-none focus:shadow-outline`}
@@ -372,7 +222,9 @@ function SignUpPage() {
                 <button
                   className={`bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]`}
                   type="button"
-                  onClick={(e) => googleSignup(e)}
+                  onClick={(e) =>
+                    googleSignup(e, "signup", formState, setFormState, navigate)
+                  }
                 >
                   <span className="size-[20px]">
                     <FaGoogle />
