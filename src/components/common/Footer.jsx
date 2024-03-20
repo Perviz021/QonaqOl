@@ -65,9 +65,12 @@ function Footer() {
         </div>
         {/* Services */}
         <div>
-          <h3 className="text-[20px] font-[600] leading-[28px] mb-[24px]">
+          <Link
+            to={"/events"}
+            className="text-[20px] font-[600] leading-[28px] mb-[24px]"
+          >
             Tədbirlər
-          </h3>
+          </Link>
           <ul className="space-y-[17px] text-[16px] font-[400]">
             <li>
               <Link to="#">Tədbir yarat</Link>

@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import { useParams } from "react-router-dom";
-import { month, staticData } from "../../mock/static";
+import { month } from "../../mock/static";
 import { eventById, getEvents } from "../../utils/apiUtils";
 import loader from "../../assets/img/loader.gif";
 import heart from "../../assets/icons/heart.svg";
@@ -297,19 +297,21 @@ const Event = () => {
 
               <div className="gap-[20px] flex pb-24 justify-between">
                 {otherEvents &&
-                  otherEvents.map((el, i) => (
-                    <ExperienceCard
-                      id={el.id}
-                      name={el.eventName}
-                      key={i}
-                      imgSrc={el.mainPhotoUrl}
-                      content={el.description}
-                      time={el.eventDate}
-                      place={el.eventLocation}
-                      price={`${el.eventPrice} AZN`}
-                      imgHeight="200px"
-                    />
-                  ))}
+                  otherEvents
+                    .slice(0, 3)
+                    .map((el, i) => (
+                      <ExperienceCard
+                        id={el.id}
+                        name={el.eventName}
+                        key={i}
+                        imgSrc={el.mainPhotoUrl}
+                        content={el.description}
+                        time={el.eventDate}
+                        place={el.eventLocation}
+                        price={`${el.eventPrice} AZN`}
+                        imgHeight="200px"
+                      />
+                    ))}
               </div>
             </div>
 

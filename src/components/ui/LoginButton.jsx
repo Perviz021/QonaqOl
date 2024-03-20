@@ -75,7 +75,7 @@ const LoginButton = () => {
           ) : (
             <>
               <NavLink
-                to="/"
+                to="/account"
                 className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
               >
                 Profil
