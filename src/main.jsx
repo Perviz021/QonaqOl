@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./assets/css/index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom"; // Import useNavigate hook
@@ -12,10 +12,11 @@ import LoginPage from "./pages/login/LoginPage.jsx";
 import Event from "./pages/reservation/Event.jsx";
 import Events from "./pages/Events/Events.jsx";
 import About from "./pages/about/About.jsx";
-
 import PrivateRouteCreateEvent from "./routers/PrivateRouteCreateEvent.jsx";
 import PrivateRouteAuth from "./routers/PrivateRouteAuth.jsx";
 import Account from "./pages/account/Account.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -104,5 +105,8 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <>
+    <RouterProvider router={router} />
+    <ToastContainer />
+  </>
 );

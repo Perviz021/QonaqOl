@@ -1,5 +1,6 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../lib/firebase";
+import { toast } from "react-toastify";
 const provider = new GoogleAuthProvider();
 
 export const isEmailValid = (email) => {
@@ -164,7 +165,18 @@ export const handleSubmit = async (
       }
     }
   } catch (error) {
-    console.error("Error signing up:", error.message);
+    // console.error("Error signing up:", error.message);
+    toast.error(`Error signing up: ${error.message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   } finally {
     setFormState((prevData) => ({
       ...prevData,
@@ -239,7 +251,18 @@ export const handleSignIn = async (
       console.error("Sign-in failed");
     }
   } catch (error) {
-    console.error("Error signing in:", error);
+    // console.error("Error signing in:", error);
+    toast.error(`Error signing up: ${error.message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   } finally {
     setFormState((prevData) => ({
       ...prevData,
