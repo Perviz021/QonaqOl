@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { favourites, logout, profile, profile2, receipt } from "../../assets";
 
 const LoginButton = () => {
   const [token, setToken] = useState(null);
@@ -48,10 +49,24 @@ const LoginButton = () => {
         onClick={toggleDropdown}
         className={`w-[190px] py-[10px] rounded-t-[8px] relative z-10 ${
           dropdownOpen ? "rounded-t-[8px]" : "rounded-[8px]"
-        } bg-[#2B2C34] border-[0.5px] text-white inline-flex items-center space-x-[4px] justify-center`}
+        } bg-[#2B2C34] border-[0.5px] text-white`}
       >
-        <span className="text-[14px] font-[400]">
-          {!token ? "Bizə qoşul" : "Hesabım"}
+        <span className="text-[14px] font-[400] flex justify-center items-center space-x-[4px]">
+          {!token ? (
+            <>
+              <span>
+                <img src={profile2} alt="" className="text-white" />
+              </span>
+              <span>Bizə qoşul</span>
+            </>
+          ) : (
+            <>
+              <span>
+                <img src={profile2} alt="" className="text-white" />
+              </span>
+              <span>Hesabım</span>
+            </>
+          )}
         </span>
       </button>
 
@@ -76,23 +91,41 @@ const LoginButton = () => {
             <>
               <NavLink
                 to="/account"
-                className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                className="flex justify-start items-center w-full space-x-[12px] pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] "
               >
-                Profil
+                <span>
+                  <img src={profile} alt="" />
+                </span>
+                <span>Profilim</span>
+              </NavLink>
+              <NavLink
+                to={"/events/reservation"}
+                className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+              >
+                <span>
+                  <img src={receipt} alt="" />
+                </span>
+                <span>Rezervlərim</span>
+              </NavLink>
+              <NavLink
+                to="/"
+                // onClick={handleLogout}
+                className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+              >
+                <span>
+                  <img src={favourites} alt="" />
+                </span>
+                <span>Bəyəndiklərim</span>
               </NavLink>
               <button
                 onClick={handleLogout}
-                className="block w-full px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
               >
-                Çıxış
+                <span>
+                  <img src={logout} alt="" />
+                </span>
+                <span>Çıxış</span>
               </button>
-              <Link
-                to={"/events/reservation"}
-                // onClick={handleLogout}
-                className="block w-full px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
-              >
-                Rezervasiyalarım
-              </Link>
             </>
           )}
         </div>

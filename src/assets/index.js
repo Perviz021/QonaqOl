@@ -16,6 +16,13 @@ import headerImg4 from "./img/header-img4.jpeg";
 import heart from "./img/heart.png";
 import great from "./img/great.png";
 
+// Login button
+import profile from "./icons/profile.svg";
+import profile2 from "./icons/profile2.svg";
+import receipt from "./icons/receipt.svg";
+import logout from "./icons/logout.svg";
+import favourites from "./icons/favourites.svg";
+
 import tree from "./icons/tree.svg";
 import brush from "./icons/brush.svg";
 import cake from "./icons/cake.svg";
@@ -161,4 +168,9 @@ export {
   done,
   loader,
   loginBg1,
+  profile,
+  profile2,
+  receipt,
+  logout,
+  favourites,
 };
