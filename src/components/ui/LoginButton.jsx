@@ -1,18 +1,27 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { favourites, logout, profile, profile2, receipt } from "../../assets";
 
 const LoginButton = () => {
   const [token, setToken] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
       setToken(storedToken);
     }
   }, []);
+  const handleClick = () => {
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      navigate("/create-event");
+    } else {
+      navigate("/login");
+    }
+  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -44,93 +53,107 @@ const LoginButton = () => {
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <button
-        onClick={toggleDropdown}
-        className={`w-[190px] py-[10px] rounded-t-[8px] relative z-10 ${
-          dropdownOpen ? "rounded-t-[8px]" : "rounded-[8px]"
-        } bg-[#2B2C34] border-[0.5px] text-white`}
-      >
-        <span className="text-[14px] font-[400] flex justify-center items-center space-x-[4px]">
-          {!token ? (
-            <>
-              <span>
-                <img src={profile2} alt="" className="text-white" />
-              </span>
-              <span>Bizə qoşul</span>
-            </>
-          ) : (
-            <>
-              <span>
-                <img src={profile2} alt="" className="text-white" />
-              </span>
-              <span>Hesabım</span>
-            </>
-          )}
-        </span>
-      </button>
+    <>
+      <div className="flex gap-4">
+        <button className="bg-[#FFCE00] border-transparent w-[190px] py-[8px] h-[43px]     relative z-10  flex  justify-center items-center rounded-[8px] text-black font-[400] text-[16px]">
+          <Link
+            to={"/create-event"}
+            className="flex items-center gap-1"
+            onClick={handleClick}
+          >
+            <img src="/src/assets/icons/add.svg" className="size-6" alt="" />{" "}
+            Tədbir yarat
+          </Link>
+        </button>
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={toggleDropdown}
+            className={`w-[190px] py-[10px] rounded-t-[8px] relative z-10 ${
+              dropdownOpen ? "rounded-t-[8px]" : "rounded-[8px]"
+            } bg-[#2B2C34] border-[0.5px] text-white`}
+          >
+            <span className="text-[14px] font-[400] flex justify-center items-center space-x-[4px]">
+              {!token ? (
+                <>
+                  <span>
+                    <img src={profile2} alt="" className="text-white" />
+                  </span>
+                  <span>Bizə qoşul</span>
+                </>
+              ) : (
+                <>
+                  <span>
+                    <img src={profile2} alt="" className="text-white" />
+                  </span>
+                  <span>Hesabım</span>
+                </>
+              )}
+            </span>
+          </button>
 
-      {dropdownOpen && (
-        <div className="absolute right-0 w-full bg-[#f1f1f1] overflow-hidden rounded-b-[8px] z-10">
-          {!token ? (
-            <>
-              <NavLink
-                to="/login"
-                className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
-              >
-                Daxil ol
-              </NavLink>
-              <NavLink
-                to="/signup"
-                className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
-              >
-                Qeydiyyatdan keç
-              </NavLink>
-            </>
-          ) : (
-            <>
-              <NavLink
-                to="/account"
-                className="flex justify-start items-center w-full space-x-[12px] pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] "
-              >
-                <span>
-                  <img src={profile} alt="" />
-                </span>
-                <span>Profilim</span>
-              </NavLink>
-              <NavLink
-                to={"/events/reservation"}
-                className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
-              >
-                <span>
-                  <img src={receipt} alt="" />
-                </span>
-                <span>Rezervlərim</span>
-              </NavLink>
-              <NavLink
-                to="/"
-                // onClick={handleLogout}
-                className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
-              >
-                <span>
-                  <img src={favourites} alt="" />
-                </span>
-                <span>Bəyəndiklərim</span>
-              </NavLink>
-              <button
-                onClick={handleLogout}
-                className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
-              >
-                <span>
-                  <img src={logout} alt="" />
-                </span>
-                <span>Çıxış</span>
-              </button>
-            </>
+          {dropdownOpen && (
+            <div className="absolute right-0 w-full bg-[#f1f1f1] overflow-hidden rounded-b-[8px] z-10">
+              {!token ? (
+                <>
+                  <NavLink
+                    to="/login"
+                    className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                  >
+                    Daxil ol
+                  </NavLink>
+                  <NavLink
+                    to="/signup"
+                    className="block px-4 py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                  >
+                    Qeydiyyatdan keç
+                  </NavLink>
+                </>
+              ) : (
+                <>
+                  <NavLink
+                    to="/account"
+                    className="flex justify-start items-center w-full space-x-[12px] pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] "
+                  >
+                    <span>
+                      <img src={profile} alt="" />
+                    </span>
+                    <span>Profilim</span>
+                  </NavLink>
+                  <NavLink
+                    to={"/events/reservation"}
+                    className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                  >
+                    <span>
+                      <img src={receipt} alt="" />
+                    </span>
+                    <span>Rezervlərim</span>
+                  </NavLink>
+                  <NavLink
+                    to="/"
+                    // onClick={handleLogout}
+                    className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                  >
+                    <span>
+                      <img src={favourites} alt="" />
+                    </span>
+                    <span>Bəyəndiklərim</span>
+                  </NavLink>
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                  >
+                    <span>
+                      <img src={logout} alt="" />
+                    </span>
+                    <span>Çıxış</span>
+                  </button>
+                </>
+              )}
+            </div>
           )}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 
