@@ -67,11 +67,11 @@ function Footer() {
         <div>
           <Link
             to={"/events"}
-            className="text-[20px] font-[600] leading-[28px] mb-[24px]"
+            className="text-[20px] font-[600] leading-[28px]"
           >
             Tədbirlər
           </Link>
-          <ul className="space-y-[17px] text-[16px] font-[400]">
+          <ul className="space-y-[17px] text-[16px] font-[400] mt-[24px]">
             <li>
               <Link to="#">Tədbir yarat</Link>
             </li>
