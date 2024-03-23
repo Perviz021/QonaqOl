@@ -8,7 +8,7 @@ import { eventById, getEvents } from "../../utils/apiUtils";
 import loader from "../../assets/img/loader.gif";
 import heart from "../../assets/icons/heart.svg";
 import heartFill from "../../assets/icons/heart-fill.svg";
-
+import axios from "axios";
 import Share from "../../components/ui/react-share/Share";
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -53,23 +53,24 @@ const Event = () => {
       const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
       const reservationData = {
         userId: parseInt(userId), // Convert userId to integer if necessary
-        eventId: 5, // Replace 0 with the actual event ID
+        eventId: parseInt(id), // Replace 0 with the actual event ID
         phoneNumber,
         participantsCount: parseInt(participants), // Convert participants to integer if necessary
       };
       // Make POST request to backend with reservationData
-      fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-registered",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(reservationData),
-        }
-      )
+      axios
+        .post(
+          "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-registered",
+
+          reservationData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((response) => {
-          if (response.ok) {
+          if (response.status == 201) {
             // Reservation successful, handle success scenario
             console.log("Reservation successful");
             setShowSuccessPopup(true);
@@ -84,25 +85,25 @@ const Event = () => {
         });
     } else {
       const reservationData = {
-        eventId: 2, // Replace 0 with the actual event ID
+        eventId: parseInt(id), // Replace 0 with the actual event ID
         fullName,
         email,
         phoneNumber,
         participantsCount: parseInt(participants), // Convert participants to integer if necessary
       };
       // Make POST request to backend with reservationData
-      fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-unregistered",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(reservationData),
-        }
-      )
+      axios
+        .post(
+          "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-unregistered",
+          reservationData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((response) => {
-          if (response.ok) {
+          if (response.status == 201) {
             // Reservation successful, handle success scenario
             console.log("Reservation successful");
             setShowSuccessPopup(true);
