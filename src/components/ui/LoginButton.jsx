@@ -7,20 +7,16 @@ const LoginButton = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
       setToken(storedToken);
     }
   }, []);
-  const handleClick = () => {
-    const token = localStorage.getItem("accessToken");
 
-    if (token) {
-      navigate("/create-event");
-    } else {
-      navigate("/login");
-    }
+  const handleClick = () => {
+    navigate("/create-event");
   };
 
   const toggleDropdown = () => {
@@ -54,17 +50,19 @@ const LoginButton = () => {
 
   return (
     <>
-      <div className="flex gap-4">
-        <button className="bg-[#FFCE00] border-transparent w-[190px] py-[8px] h-[43px]     relative z-10  flex  justify-center items-center rounded-[8px] text-black font-[400] text-[16px]">
-          <Link
-            to={"/create-event"}
-            className="flex items-center gap-1"
-            onClick={handleClick}
-          >
-            <img src="/src/assets/icons/add.svg" className="size-6" alt="" />{" "}
-            Tədbir yarat
-          </Link>
-        </button>
+      <div className="flex gap-[24px]">
+        {token && (
+          <button className="bg-[#FFCE00] border-transparent w-[190px] py-[8px] h-[43px] relative z-10  flex  justify-center items-center rounded-[8px] text-black font-[400] text-[16px]">
+            <Link
+              to={"/create-event"}
+              className="flex items-center gap-1"
+              onClick={handleClick}
+            >
+              <img src="/src/assets/icons/add.svg" className="size-6" alt="" />{" "}
+              Tədbir yarat
+            </Link>
+          </button>
+        )}
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={toggleDropdown}
