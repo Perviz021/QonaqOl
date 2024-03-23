@@ -7,7 +7,8 @@ import { month } from "../../mock/static";
 import { eventById, getEvents } from "../../utils/apiUtils";
 import loader from "../../assets/img/loader.gif";
 import heart from "../../assets/icons/heart.svg";
-import { PiShareFat } from "react-icons/pi";
+import heartFill from "../../assets/icons/heart-fill.svg";
+
 import Share from "../../components/ui/react-share/Share";
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -20,6 +21,8 @@ const Event = () => {
   const [data, setData] = useState(null);
   const [otherEvents, setOtherEvents] = useState(null);
   const [showShare, setShowShare] = useState(false);
+  const [toggle, setToggle] = useState(false);
+
   const [shareUrl, setShareUrl] = useState(window.location.href);
   // const event_name = name && name.replace(/-/g, " ");
 
@@ -201,19 +204,31 @@ const Event = () => {
               <span className="relative flex items-center justify-center  gap-[10px] top-[40px]">
                 <span className="border relative flex items-center justify-center border-[#333] size-[60px]  rounded-full">
                   <img
-                    src="/src/assets/icons/send-2.svg"
-                    color="#f2ed7c"
+                    src={`${
+                      showShare
+                        ? "/src/assets/icons/send-2-fill.svg"
+                        : "/src/assets/icons/send-2.svg"
+                    }`}
+                    color="red"
                     className="size-8 cursor-pointer"
                     onClick={() => setShowShare(!showShare)}
                   />
+
                   {showShare ? (
                     <div className="absolute top-[90px] z-30 right-0">
                       <Share shareUrl={shareUrl} setShowShare={setShowShare} />
                     </div>
                   ) : null}
                 </span>
-                <span className="border flex items-center justify-center border-[#333] size-[60px]  rounded-full">
-                  <img src={heart} alt="" className="cursor-pointer" />
+                <span
+                  className="border flex items-center justify-center border-[#333] size-[60px]  rounded-full"
+                  onClick={() => setToggle(!toggle)}
+                >
+                  <img
+                    src={toggle ? heartFill : heart}
+                    alt=""
+                    className="cursor-pointer"
+                  />
                 </span>
               </span>
             </div>

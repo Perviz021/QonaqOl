@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { FacebookShareButton, WhatsappShareButton } from "react-share";
 
 const Share = ({ shareUrl }) => {
+  const [success, setSuccess] = useState(false);
   const copiedFn = () => {
     navigator.clipboard.writeText(window.location.href);
+    setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+    }, 2000);
   };
   return (
     <div className="relative w-[192px] p-5 flex items-center justify-center h-[169px] bg-[#f6f6f6] rounded-[4px] ">
@@ -20,14 +26,23 @@ const Share = ({ shareUrl }) => {
         </FacebookShareButton>
         <WhatsappShareButton title="whatsapp" url={shareUrl}>
           <span className="flex items-center gap-2">
-            <img src="/src/assets/icons/instagram.svg" alt="" /> Whatsapp
+            <img src="/src/assets/icons/whatsapp.svg" alt="" /> Whatsapp
           </span>
         </WhatsappShareButton>
         <span
           className="flex items-center gap-2 cursor-pointer"
           onClick={copiedFn}
         >
-          <img src="/src/assets/icons/copy-success.svg" alt="" /> Link copied
+          {success ? (
+            <>
+              <img src="/src/assets/icons/copy-success.svg" alt="" /> Link
+              copied
+            </>
+          ) : (
+            <>
+              <img src="/src/assets/icons/copy.svg" alt="" /> Copy Link
+            </>
+          )}
         </span>
       </div>
     </div>
