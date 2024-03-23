@@ -39,34 +39,10 @@ const GiftCardsPage = () => {
           kamplara qədər 120-dən çox fəaliyyət növündə istifadə etsinlər.
         </p>
       </div>
-      <div className="w-full px-[100px] flex justify-between gap-[18px] mb-[100px]">
+      <div className="w-full px-[100px] flex justify-between gap-[18px] mb-[240px]">
         <GiftCard imgSrc={giftcard1} showPopup={showPopup} /> {/* AZN_50*/}
         <GiftCard imgSrc={giftcard2} showPopup={showPopup} /> {/* AZN_100*/}
         <GiftCard imgSrc={giftcard3} showPopup={showPopup} /> {/* AZN_200*/}
-      </div>
-      <div className="w-[full] px-[100px] mb-[400px]">
-        <h1 className="unbounded unbounded-700 text-[40px] mb-[36px]">
-          İstifadə qaydası
-        </h1>
-        <div className="flex pl-[30px]">
-          <div className="w-1/2">
-            <ul className="text-[18px] space-y-[10px] list-disc">
-              <li>Qonaqol.az saytında qeydiyyatdan keçin</li>
-              <li>Hesabım səhifəsinə keçin</li>
-              <li>Cüzdan bölməsinə keçin</li>
-              <li>Hədiyyə kartını istifadə et düyməsinə klikləyin</li>
-            </ul>
-          </div>
-          <div className="w-1/2">
-            <ul className="text-[18px] space-y-[10px] list-disc">
-              <li>Hədiyyə kartı kodunu əlavə edin və istifadə edin</li>
-              <li>
-                Hər hansı bir fəaliyyətə bilet sifariş etdiyiniz zaman, ödəniş
-                zamanı balansdan istifadə edin
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
 
       {openPopup && (
