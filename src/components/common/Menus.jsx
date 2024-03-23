@@ -36,7 +36,7 @@ function Menus({ activeNavLink, setActiveNavLink }) {
   };
 
   return (
-    <div className="flex items-center font-[400] text-[#000] text-[16px] space-x-[70px]">
+    <div className="flex items-center font-[400] text-[#000000B2] text-[16px] space-x-[70px]">
       <NavLink
         to="/events"
         onClick={() => {
