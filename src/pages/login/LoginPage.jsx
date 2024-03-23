@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
-import { RiArrowGoBackFill } from "react-icons/ri";
-import { loginBg1, loader } from "../../assets";
+import { loginBg1, loader, success, error } from "../../assets";
 import {
   googleSignup,
   handleImageLoad,
@@ -26,10 +25,6 @@ function LoginPage() {
     showPassword: false,
     loading: false,
   });
-
-  const handleBack = () => {
-    navigate(-1); // Navigate back to the previous page
-  };
 
   const {
     imageLoaded,
@@ -62,23 +57,19 @@ function LoginPage() {
         <div className="w-1/2 flex items-center relative">
           {!loading && (
             <div className="w-[60%] mx-auto">
-              <button
-                className="inline-flex justify-center items-center space-x-1 bg-gray-200 text-black text-[16px] font-normal h-[34px] px-[20px] rounded-[8px] mb-[30px] focus:outline-none focus:shadow-outline"
-                onClick={handleBack}
-              >
-                <span>Geri</span>
-                <span>
-                  <RiArrowGoBackFill />
-                </span>
-              </button>
               <div className="bg-white rounded mb-[16px]">
-                <h2 className="text-[40px] font-[600] mb-[36px]">Daxil ol</h2>
+                <h2 className="text-[40px] font-[600] mb-[36px] unbounded unbounded-600">
+                  Daxil ol
+                </h2>
 
-                <div className={`mb-[20px]`}>
+                <div className="mb-[20px] relative">
                   <input
-                    className={`appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0 ${
-                      !emailValid ? "border-red-500" : ""
-                    }`}
+                    className={`input-default 
+                     ${
+                       !emailValid && email
+                         ? "border-[#FF4E4E]"
+                         : "border-[#00C408]"
+                     }`}
                     id="email"
                     type="email"
                     name="email"
@@ -88,16 +79,24 @@ function LoginPage() {
                     }
                     placeholder="E-poçt"
                   />
+
+                  {email !== "" && emailValid && (
+                    <span className="absolute top-1/2 right-[20px] -translate-y-1/2">
+                      <img src={success} alt="" />
+                    </span>
+                  )}
+
+                  {email !== "" && !emailValid && (
+                    <span className="absolute top-1/2 right-[20px] -translate-y-1/2">
+                      <img src={error} alt="" />
+                    </span>
+                  )}
                 </div>
 
-                <div
-                  className={`mb-[6px] relative ${
-                    !passwordValid ? "border-red-500" : ""
-                  }`}
-                >
+                <div className="mb-[6px] relative">
                   <input
-                    className={`appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] pr-[40px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0 ${
-                      !passwordValid ? "border-red-500" : ""
+                    className={`input-default ${
+                      !passwordValid ? "border-[#FF4E4E]" : "border-none"
                     }`}
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -110,7 +109,7 @@ function LoginPage() {
                     placeholder="Şifrə"
                   />
                   <div
-                    className="absolute top-0 right-0 h-full flex items-center pr-[10px] cursor-pointer"
+                    className="absolute top-0 right-0 h-full flex items-center pr-[20px] cursor-pointer"
                     onClick={() =>
                       togglePasswordVisibility("showPassword", setFormState)
                     }
@@ -176,8 +175,8 @@ function LoginPage() {
                 <p className="text-[12px] py-3 text-[#2B2B2B] text-center font-normal">
                   Hesabınıza giriş edərək və ya yeni hesab yaradaraq{" "}
                   <span className="text-[#0074C6]">Xidmət Şərtləri</span> və{" "}
-                  <span className="#0074C6">Məxfilik Siyasətini</span> qəbul
-                  etmiş olursunuz
+                  <span className="text-[#0074C6]">Məxfilik Siyasətini</span>{" "}
+                  qəbul etmiş olursunuz
                 </p>
               </div>
             </div>

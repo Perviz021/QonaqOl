@@ -79,7 +79,7 @@ export const googleSignup = async (
     const user = data.user;
 
     if (type === "signup")
-      handleSubmit(e, user, formState, setFormState, navigate);
+      handleSignup(e, user, formState, setFormState, navigate);
     else if (type === "login")
       handleSignIn(e, user, formState, setFormState, navigate);
   } catch (error) {
@@ -89,7 +89,7 @@ export const googleSignup = async (
 };
 
 // SignUp
-export const handleSubmit = async (
+export const handleSignup = async (
   e,
   user = null,
   formState,
@@ -152,21 +152,30 @@ export const handleSubmit = async (
         const newAccessToken = await useRefreshToken(navigate);
         if (newAccessToken) {
           // If a new access token is obtained, retry the signup
-          return handleSubmit(e);
+          return handleSignup(e);
         } else {
           // If unable to refresh token, handle error appropriately
           console.error("Unable to refresh token. Please try again later.");
         }
-      } else if (response.status === 404) {
+      } else if (response.status === 405) {
         handleSignIn(e, user, formState, setFormState, navigate);
       } else {
-        // Handle other errors
-        console.error("Error signing up:", response.statusText);
+        // console.error("Error signing up:", response.statusText);
+        toast.error(`Qeydiyyatdan keçmək mümkün olmadı. Yenidən cəhd edin.`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     }
   } catch (error) {
     // console.error("Error signing up:", error.message);
-    toast.error(`Error signing up: ${error.message}`, {
+    toast.error(`Qeydiyyatdan keçmək mümkün olmadı. Yenidən cəhd edin.`, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -175,7 +184,6 @@ export const handleSubmit = async (
       draggable: true,
       progress: undefined,
       theme: "light",
-      transition: Bounce,
     });
   } finally {
     setFormState((prevData) => ({
@@ -243,16 +251,35 @@ export const handleSignIn = async (
       if (newAccessToken) {
         return handleSignIn(); // Retry sign-in with new access token
       } else {
-        console.error("Unable to refresh token. Please try again later.");
+        // console.error("Unable to refresh token. Please try again later.");
+        toast.error(`Daxil edilən məlumatlar yanlışdır!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     } else if (response.status === 404) {
-      handleSubmit(e, user, formState, setFormState, navigate);
+      handleSignup(e, user, formState, setFormState, navigate);
     } else {
-      console.error("Sign-in failed");
+      toast.error(`Qeydiyyat mümkün olmadı. Yenidən cəhd edin.`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   } catch (error) {
     // console.error("Error signing in:", error);
-    toast.error(`Error signing up: ${error.message}`, {
+    toast.error(`Daxil edilən məlumatlar yanlışdır!`, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -261,7 +288,6 @@ export const handleSignIn = async (
       draggable: true,
       progress: undefined,
       theme: "light",
-      transition: Bounce,
     });
   } finally {
     setFormState((prevData) => ({
@@ -311,10 +337,10 @@ export const handleInputChange = (e, formState, setFormState, type) => {
           : prevState.emailValid,
       passwordMatch:
         id === "confirmPassword"
-          ? trimmedValue === prevState.password
-          : id === "password"
-          ? trimmedValue === prevState.confirmPassword
-          : prevState.passwordMatch,
+          ? trimmedValue === prevState.password || trimmedValue === ""
+          : // : id === "password"
+            // ? trimmedValue === prevState.confirmPassword
+            prevState.passwordMatch,
     }));
   }
 };

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
-import { RiArrowGoBackFill } from "react-icons/ri";
-import { signupBg, loader } from "../../assets";
+import { signupBg, loader, success, error } from "../../assets";
 import {
   googleSignup,
   handleImageLoad,
   handleInputChange,
-  handleSubmit,
+  handleSignup,
   isEmailValid,
   isPasswordValid,
   togglePasswordVisibility,
@@ -15,27 +14,47 @@ import {
 
 function SignUpPage() {
   const navigate = useNavigate();
+  const { search } = useLocation();
+  let params;
+  let data;
+  if (search) {
+    params = new URLSearchParams(search);
+    data = params.get("data");
+  }
 
   const [formState, setFormState] = useState({
     imageLoaded: false,
     fullName: "",
+    fullNameValid: true,
     email: "",
     password: "",
     confirmPassword: "",
     fieldsFilled: false,
     emailValid: true,
-    // passwordValid: true,
+    passwordValid: true,
     showPassword: false,
     showConfirmPassword: false,
-    passwordMatch: false,
+    passwordMatch: true,
     loading: false,
   });
 
-  // isPasswordValid(formState.password);
+  const {
+    imageLoaded,
+    fullName,
+    fullNameValid,
+    email,
+    password,
+    confirmPassword,
+    fieldsFilled,
+    emailValid,
+    passwordValid,
+    showPassword,
+    showConfirmPassword,
+    passwordMatch,
+    loading,
+  } = formState;
 
-  const handleBack = () => {
-    navigate(-1); // Navigate back to the previous page
-  };
+  // isPasswordValid(formState.password);
 
   isEmailValid(formState.email);
 
@@ -58,25 +77,23 @@ function SignUpPage() {
         <div className="w-1/2 flex items-center relative">
           {!formState.loading && (
             <div className="w-[60%] mx-auto">
-              <button
-                className="inline-flex items-center justify-center space-x-1 bg-gray-200 text-black text-[16px] font-normal h-[34px] px-[20px] mt-2 rounded-[8px] mb-[16px] focus:outline-none focus:shadow-outline"
-                onClick={handleBack}
-              >
-                <span>Geri</span>
-                <span>
-                  <RiArrowGoBackFill />
-                </span>
-              </button>
               {/* Login Form */}
               <div className="bg-white rounded mb-[16px]">
                 {/* Title */}
-                <h2 className="text-[40px] font-[600] mb-[20px]">
-                  Qeydiyyatdan keç
+
+                <h2
+                  className={`${
+                    !data ? "text-[40px] mb-[40px]" : "text-[30px] mb-[20px]"
+                  } w-[480px] unbounded unbounded-600`}
+                >
+                  {!data
+                    ? "Qeydiyyatdan keç"
+                    : "Tədbir yaratmaq üçün qeydiyyatdan keçin"}
                 </h2>
 
                 <form
                   onSubmit={(e) =>
-                    handleSubmit(
+                    handleSignup(
                       e,
                       undefined,
                       formState,
@@ -85,9 +102,11 @@ function SignUpPage() {
                     )
                   }
                 >
-                  <div className="mb-[18px]">
+                  <div className="mb-[20px] relative">
                     <input
-                      className="appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0"
+                      className={`input-default ${
+                        fullNameValid ? "border-[#00C408]" : "border-none"
+                      }`}
                       id="fullName"
                       type="text"
                       value={formState.fullName}
@@ -97,16 +116,20 @@ function SignUpPage() {
                       placeholder="Ad Soyad"
                       maxLength={40}
                     />
+
+                    {fullName !== "" && (
+                      <span className="absolute top-1/2 right-[20px] -translate-y-1/2">
+                        <img src={success} alt="" />
+                      </span>
+                    )}
                   </div>
                   {/* Email Input */}
-                  <div
-                    className={`mb-[18px] ${
-                      !formState.emailValid ? "border-red-500" : ""
-                    }`}
-                  >
+                  <div className="mb-[20px] relative">
                     <input
-                      className={`appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0 ${
-                        !formState.emailValid ? "border-red-500" : ""
+                      className={`input-default ${
+                        !emailValid && email
+                          ? "border-[#FF4E4E]"
+                          : "border-[#00C408]"
                       }`}
                       id="email"
                       type="email"
@@ -116,11 +139,24 @@ function SignUpPage() {
                       }
                       placeholder="E-poçt"
                     />
+                    {email !== "" && emailValid && (
+                      <span className="absolute top-1/2 right-[20px] -translate-y-1/2">
+                        <img src={success} alt="" />
+                      </span>
+                    )}
+
+                    {email !== "" && !emailValid && (
+                      <span className="absolute top-1/2 right-[20px] -translate-y-1/2">
+                        <img src={error} alt="" />
+                      </span>
+                    )}
                   </div>
                   {/* Password Input */}
-                  <div className="mb-[18px] relative">
+                  <div className="mb-[20px] relative">
                     <input
-                      className="appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] pr-[40px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0"
+                      className={`input-default ${
+                        passwordValid ? "border-[#00C408]" : "border-[#FF4E4E]"
+                      }`}
                       id="password"
                       type={formState.showPassword ? "text" : "password"}
                       value={formState.password}
@@ -140,9 +176,11 @@ function SignUpPage() {
                     </div>
                   </div>
                   {/* Confirm Password */}
-                  <div className="mb-[22px] relative">
+                  <div className="mb-[24px] relative">
                     <input
-                      className="appearance-none rounded-[8px] text-[16px] font-[400] w-full py-[10px] px-[20px] pr-[40px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-[#f2f2f2] focus:border-transparent focus:ring-0"
+                      className={`input-default ${
+                        passwordMatch ? "border-[#00C408]" : "border-[#FF4E4E]"
+                      }`}
                       id="confirmPassword"
                       type={formState.showConfirmPassword ? "text" : "password"}
                       value={formState.confirmPassword}
@@ -169,7 +207,7 @@ function SignUpPage() {
                     </div>
                   </div>
                   {/* Sign Up Button */}
-                  <div className="flex flex-col items-center justify-center space-y-[8px]">
+                  <div className="flex flex-col items-center justify-center space-y-[12px]">
                     <button
                       className={`${
                         formState.fieldsFilled &&

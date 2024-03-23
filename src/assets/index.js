@@ -57,6 +57,8 @@ import borderYellow from "./img/bg-border-yellow.png";
 // Login
 import loginBg from "./img/login-bg.jpeg";
 import loginBg1 from "./img/login-bg1.jpeg";
+import success from "./icons/success.svg";
+import error from "./icons/error.svg";
 
 // SignUp
 import signupBg from "./img/signup-bg.jpeg";
@@ -173,4 +175,6 @@ export {
   receipt,
   logout,
   favourites,
+  success,
+  error,
 };
