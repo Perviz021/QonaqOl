@@ -1,20 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { puzzle, figures, note, cookie } from "../../assets";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const EventCreate = () => {
-  const navigate = useNavigate();
+  const [token, setToken] = useState("");
 
-  const handleClick = () => {
-    const token = localStorage.getItem("accessToken");
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
 
-    if (token) {
-      navigate("/create-event");
-    } else {
-      navigate("/login");
+    if (accessToken) {
+      setToken(accessToken);
     }
-  };
+  }, []);
 
   return (
     <section className="bg-[#303030] mt-[80px] text-[#fff] pt-[200px] pb-[160px] relative">
@@ -29,8 +27,7 @@ const EventCreate = () => {
           edin
         </p>
         <Link
-          to={"/create-event"}
-          onClick={handleClick}
+          to={token ? "/create-event" : "/signup?data=event"}
           className="bg-[#FFCE00] px-[78px] h-[48px] inline-flex justify-center items-center rounded-[8px] text-black font-[400] text-[16px]"
         >
           Tədbir yarat

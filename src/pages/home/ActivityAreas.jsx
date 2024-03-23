@@ -13,13 +13,10 @@ const ActivityAreas = () => {
         </p>
       </div>
       <div className="w-[1194px] mx-auto flex justify-between mt-[40px]">
-        <NavLink
-          to="/events"
-          className="inline-flex flex-col items-center space-y-[12px]"
-        >
+        <span className="inline-flex flex-col items-center space-y-[12px]">
           <img src={tree} alt="" />
           <p>Kənd həyatı</p>
-        </NavLink>
+        </span>
         <span className="inline-flex flex-col items-center space-y-[12px]">
           <img src={cake} alt="" />
           <p>Yemək hazırlama</p>
