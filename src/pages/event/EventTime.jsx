@@ -55,35 +55,38 @@ const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
       {showTimeInputs && (
         <div className="flex justify-between">
           <div className="w-[45%]">
-            <p className="text-[#919191] bg-[#f2f2f2] text-[12px] flex flex-col rounded-[8px] mb-2 p-2 pl-3">
+            <p className="text-[#919191] bg-[#f2f2f2] text-[12px] flex flex-col rounded-t-[8px] pt-2 pb-0 pl-3 relative top-1">
               <span>Başlayır</span>
             </p>
-
             <select
-              className="rounded-[8px] text-[12px] bg-[#f2f2f2] w-full h-[44px] px-[20px] border-transparent focus:border-transparent focus:ring-0"
+              className="rounded-b-[8px] text-[12px] bg-[#f2f2f2] w-full h-[44px] px-[20px] border-transparent focus:border-transparent focus:ring-0"
               value={startTime}
               onChange={handleStartTimeChange}
             >
-              <option value="">Saatı qeyd edin</option>
+              <option value="" className="text-center">
+                Saatı qeyd edin
+              </option>
               {startTimeOptions.map((time, index) => (
-                <option key={index} value={time}>
+                <option key={index} value={time} className="text-center">
                   {time}
                 </option>
               ))}
             </select>
           </div>
           <div className="w-[45%]">
-            <p className="text-[#919191] bg-[#f2f2f2] text-[12px] flex flex-col rounded-[8px] mb-2 p-2 pl-3">
+            <p className="text-[#919191] bg-[#f2f2f2] text-[12px] flex flex-col rounded-t-[8px] pt-2 pb-0 pl-3 relative top-1">
               <span>Bitir</span>
             </p>
             <select
-              className="rounded-[8px] text-[12px] bg-[#f2f2f2] w-full h-[44px] px-[20px] border-transparent focus:border-transparent focus:ring-0"
+              className="rounded-b-[8px] text-[12px] bg-[#f2f2f2] w-full h-[44px] px-[20px] border-transparent focus:border-transparent focus:ring-0"
               value={endTime}
               onChange={handleEndTimeChange}
             >
-              <option value="">Saatı qeyd edin</option>
+              <option value="" className="text-center">
+                Saatı qeyd edin
+              </option>
               {endTimeOptions.map((time, index) => (
-                <option key={index} value={time}>
+                <option key={index} value={time} className="text-center">
                   {time}
                 </option>
               ))}
