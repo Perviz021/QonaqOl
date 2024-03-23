@@ -7,7 +7,8 @@ import { month } from "../../mock/static";
 import { eventById, getEvents } from "../../utils/apiUtils";
 import loader from "../../assets/img/loader.gif";
 import heart from "../../assets/icons/heart.svg";
-import { PiShareFat } from "react-icons/pi";
+import heartFill from "../../assets/icons/heart-fill.svg";
+import axios from "axios";
 import Share from "../../components/ui/react-share/Share";
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -20,6 +21,8 @@ const Event = () => {
   const [data, setData] = useState(null);
   const [otherEvents, setOtherEvents] = useState(null);
   const [showShare, setShowShare] = useState(false);
+  const [toggle, setToggle] = useState(false);
+
   const [shareUrl, setShareUrl] = useState(window.location.href);
   // const event_name = name && name.replace(/-/g, " ");
 
@@ -50,23 +53,24 @@ const Event = () => {
       const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
       const reservationData = {
         userId: parseInt(userId), // Convert userId to integer if necessary
-        eventId: 5, // Replace 0 with the actual event ID
+        eventId: parseInt(id), // Replace 0 with the actual event ID
         phoneNumber,
         participantsCount: parseInt(participants), // Convert participants to integer if necessary
       };
       // Make POST request to backend with reservationData
-      fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-registered",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(reservationData),
-        }
-      )
+      axios
+        .post(
+          "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-registered",
+
+          reservationData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((response) => {
-          if (response.ok) {
+          if (response.status == 201) {
             // Reservation successful, handle success scenario
             console.log("Reservation successful");
             setShowSuccessPopup(true);
@@ -81,25 +85,25 @@ const Event = () => {
         });
     } else {
       const reservationData = {
-        eventId: 2, // Replace 0 with the actual event ID
+        eventId: parseInt(id), // Replace 0 with the actual event ID
         fullName,
         email,
         phoneNumber,
         participantsCount: parseInt(participants), // Convert participants to integer if necessary
       };
       // Make POST request to backend with reservationData
-      fetch(
-        "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-unregistered",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(reservationData),
-        }
-      )
+      axios
+        .post(
+          "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-unregistered",
+          reservationData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((response) => {
-          if (response.ok) {
+          if (response.status == 201) {
             // Reservation successful, handle success scenario
             console.log("Reservation successful");
             setShowSuccessPopup(true);
@@ -201,19 +205,31 @@ const Event = () => {
               <span className="relative flex items-center justify-center  gap-[10px] top-[40px]">
                 <span className="border relative flex items-center justify-center border-[#333] size-[60px]  rounded-full">
                   <img
-                    src="/src/assets/icons/send-2.svg"
-                    color="#f2ed7c"
+                    src={`${
+                      showShare
+                        ? "/src/assets/icons/send-2-fill.svg"
+                        : "/src/assets/icons/send-2.svg"
+                    }`}
+                    color="red"
                     className="size-8 cursor-pointer"
                     onClick={() => setShowShare(!showShare)}
                   />
+
                   {showShare ? (
                     <div className="absolute top-[90px] z-30 right-0">
                       <Share shareUrl={shareUrl} setShowShare={setShowShare} />
                     </div>
                   ) : null}
                 </span>
-                <span className="border flex items-center justify-center border-[#333] size-[60px]  rounded-full">
-                  <img src={heart} alt="" className="cursor-pointer" />
+                <span
+                  className="border flex items-center justify-center border-[#333] size-[60px]  rounded-full"
+                  onClick={() => setToggle(!toggle)}
+                >
+                  <img
+                    src={toggle ? heartFill : heart}
+                    alt=""
+                    className="cursor-pointer"
+                  />
                 </span>
               </span>
             </div>
