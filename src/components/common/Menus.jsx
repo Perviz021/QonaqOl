@@ -36,23 +36,7 @@ function Menus({ activeNavLink, setActiveNavLink }) {
   };
 
   return (
-    <div className="flex items-center font-[400] text-[#000] text-[16px] space-x-[56px]">
-      {token && (
-        <NavLink
-          to="/create-event"
-          onClick={() => handleNavLinkClick("create-event")}
-          className={activeNavLink === "create-event" ? "font-[600]" : ""}
-        >
-          Tədbir yarat
-        </NavLink>
-      )}
-      <NavLink
-        to="/gift-cards"
-        onClick={() => handleNavLinkClick("gift-cards")}
-        className={activeNavLink === "gift-cards" ? "font-[600]" : ""}
-      >
-        Hədiyyə Kartı
-      </NavLink>
+    <div className="flex items-center font-[400] text-[#000] text-[16px] space-x-[70px]">
       <NavLink
         to="/events"
         onClick={() => {
@@ -69,6 +53,13 @@ function Menus({ activeNavLink, setActiveNavLink }) {
         className={activeNavLink === "about" ? "font-[600]" : ""}
       >
         Haqqımızda
+      </NavLink>
+      <NavLink
+        to="/gift-cards"
+        onClick={() => handleNavLinkClick("gift-cards")}
+        className={activeNavLink === "gift-cards" ? "font-[600]" : ""}
+      >
+        Hədiyyə Kartı
       </NavLink>
     </div>
   );

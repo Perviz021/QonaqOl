@@ -17,6 +17,7 @@ import PrivateRouteAuth from "./routers/PrivateRouteAuth.jsx";
 import Account from "./pages/account/Account.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Reservation from "./pages/reservation/Reservations.jsx";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,15 @@ const router = createBrowserRouter([
     element: (
       <AppLayout>
         <Events />
+      </AppLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/events/reservation",
+    element: (
+      <AppLayout>
+        <Reservation />
       </AppLayout>
     ),
     errorElement: <ErrorPage />,

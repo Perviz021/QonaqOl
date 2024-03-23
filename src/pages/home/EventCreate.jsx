@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { puzzle, figures, note, cookie } from "../../assets";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const EventCreate = () => {
   const navigate = useNavigate();
@@ -28,12 +28,13 @@ const EventCreate = () => {
           bilərsiniz. Bunun üçün tədbir yarata klikləyərək məlumatlarınız qeyd
           edin
         </p>
-        <button
+        <Link
+          to={"/create-event"}
           onClick={handleClick}
           className="bg-[#FFCE00] px-[78px] h-[48px] inline-flex justify-center items-center rounded-[8px] text-black font-[400] text-[16px]"
         >
           Tədbir yarat
-        </button>
+        </Link>
       </div>
       <img src={puzzle} alt="" className="absolute top-[90px] left-[150px]" />
       <img
