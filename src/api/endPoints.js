@@ -20,6 +20,7 @@ export const endPoints = {
   reservation_controller: {
     create_registered: "/api/reservation/create-reservation-registered",
     create_unregistered: "/api/reservation/create-reservation-unregistered",
+    get_reservation: (userId) => `/api/reservation/${userId}`,
   },
 
   event_controller: {

@@ -15,7 +15,7 @@ const ProfileSidebar = ({ active, setActive }) => {
           active === 2 ? "bg-white" : null
         } `}
       >
-        Mənim rezervlərim
+        Mənim tədbirlərim
       </div>
       <div
         onClick={() => setActive(3)}
