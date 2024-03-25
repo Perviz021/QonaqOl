@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import UploadImg from "../../assets/icons/cloud-upload.svg";
-
+import { toast } from "react-toastify";
 const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
   const [images, setImages] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
@@ -38,9 +38,22 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
 
     // If any oversized files are detected, display an alert
     if (oversizedFiles.length > 0) {
-      alert(
-        "Images must be in JPG, JPEG, or PNG format and should not exceed 3MB in size."
+      toast.error(
+        "Şəkillər JPG, JPEG və ya PNG formatında olmalıdır və ölçüsü 3 MB-dan çox olmamalıdır!",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
       );
+      // alert(
+      //   "Images must be in JPG, JPEG, or PNG format and should not exceed 3MB in size."
+      // );
     }
 
     // Limit the number of files to 5
@@ -52,7 +65,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
     onImagesChange([...images, ...filesToUpload]); // Pass the images to the parent component
 
     // Hide the initial content after the first image is uploaded
-    setInitialContentVisible(false);
+    // setInitialContentVisible(false);
   };
 
   // Function to handle file selection for cover image
@@ -65,10 +78,20 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
       // Update the state with the cover image
       setCoverImage(coverImageFile);
       onCoverImageChange(coverImageFile); // Pass the cover image to the parent component
-      setInitialCoverImageContentVisible(false);
+      // setInitialCoverImageContentVisible(false);
     } else {
-      alert(
-        "Cover image must be in JPG, JPEG, or PNG format and should not exceed 3MB in size."
+      toast.error(
+        "Şəkillər JPG, JPEG və ya PNG formatında olmalıdır və ölçüsü 3 MB-dan çox olmamalıdır!",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
       );
     }
   };
@@ -82,6 +105,11 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
       setImages(updatedImages);
       onImagesChange(updatedImages); // Pass the updated images to the parent component
     }
+  };
+  const handleImgDeleteFromArr = (image) => {
+    console.log(image);
+    // const filteredImg = images.filter((el) => el.name !== image.name);
+    // setImages([...filteredImg]);
   };
 
   return (
@@ -112,7 +140,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
       </p>
       <div className="py-[47px]   bg-[#f2f2f2] flex items-start justify-evenly rounded-[8px]">
         {active === 1 && (
-          <div className="flex flex-col items-center gap-6 ">
+          <div className="flex flex-col w-full items-center gap-6 ">
             {initialCoverImageContentVisible && (
               <div className="flex mb-3 gap-9  ">
                 <img src={UploadImg} className="w-[68px]" alt="" />
@@ -140,17 +168,24 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
               style={{ display: "none" }}
               ref={coverImageInputRef}
             />
-            {coverImage && (
-              <div className="flex items-center">
-                <img
-                  src={URL.createObjectURL(coverImage)}
-                  alt=""
-                  className="w-[80px] h-[80px] object-cover rounded-[8px] mr-2 cursor-pointer"
-                  onClick={handleImageReplacement(-1)} // -1 index for cover image
-                />
-                <span>{coverImage.name}</span>
+
+            {
+              <div className="bg-[#f2f2f2] flex flex-col gap-4 max-w-[600px] w-full justify-center">
+                {coverImage && (
+                  <div
+                    className={`flex items-center justify-between bg-white    p-4   `}
+                  >
+                    <span>{coverImage.name}</span>
+                    <img
+                      onClick={() => setCoverImage(null)}
+                      src="/src/assets/icons/Delete.svg"
+                      alt=""
+                      className="size-4 cursor-pointer"
+                    />
+                  </div>
+                )}
               </div>
-            )}
+            }
           </div>
         )}
         {active === 2 && (
@@ -185,13 +220,19 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
               multiple // Allow multiple file selection
             />
 
-            <div className="bg-[#f2f2f2] flex flex-col gap-4 justify-center">
+            <div className="bg-[#f2f2f2] flex flex-col gap-4 max-w-[600px] w-full justify-center">
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className="flex items-center bg-white  max-w-[600px] w-full  p-4 "
+                  className={`flex items-center justify-between bg-white    p-4   `}
                 >
                   <span>{image.name}</span>
+                  <img
+                    onClick={() => handleImgDeleteFromArr(image)}
+                    src="/src/assets/icons/Delete.svg"
+                    alt=""
+                    className="size-4 cursor-pointer"
+                  />
                 </div>
               ))}
             </div>

@@ -21,7 +21,10 @@ const Event = () => {
   const [data, setData] = useState(null);
   const [otherEvents, setOtherEvents] = useState(null);
   const [showShare, setShowShare] = useState(false);
-  const [toggle, setToggle] = useState(false);
+  const [wishListArr, setwishListArr] = useState([]);
+  const [toggle, setToggle] = useState(
+    wishListArr.forEach((el) => (el == id ? true : false))
+  );
 
   const [shareUrl, setShareUrl] = useState(window.location.href);
   // const event_name = name && name.replace(/-/g, " ");
@@ -188,6 +191,33 @@ const Event = () => {
   const handleContinueButtonClick = () => {
     setShowSuccessPopup(false); // Close the pop-up
   };
+  const handleWishlist = (ids) => {
+    const arr =
+      JSON.parse(localStorage.getItem("wishlist")) ||
+      JSON.parse(localStorage.getItem("wishlist")).length !== 0
+        ? JSON.parse(localStorage.getItem("wishlist"))
+        : [];
+    // JSON.parse(localStorage.getItem("wishlist")).length !== 0
+    //   ? []
+    //   : JSON.parse(localStorage.getItem("wishlist"));
+    setwishListArr(arr);
+    if (wishListArr && wishListArr.length == 0) {
+      setwishListArr([ids]);
+    } else {
+      wishListArr &&
+        wishListArr.forEach((el) => {
+          if (el != ids) {
+            setwishListArr((currentVal) => [...currentVal, ids]);
+          } else {
+            const leftItems = wishListArr.filter((item) => item !== ids);
+            setwishListArr(leftItems);
+          }
+        });
+    }
+    localStorage.setItem("wishlist", JSON.stringify(wishListArr));
+    setToggle(!toggle);
+    console.log(wishListArr);
+  };
 
   return (
     <>
@@ -223,7 +253,7 @@ const Event = () => {
                 </span>
                 <span
                   className="border flex items-center justify-center border-[#333] size-[60px]  rounded-full"
-                  onClick={() => setToggle(!toggle)}
+                  onClick={() => handleWishlist(data?.id)}
                 >
                   <img
                     src={toggle ? heartFill : heart}
