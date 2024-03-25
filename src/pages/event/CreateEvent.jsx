@@ -254,16 +254,16 @@ const CreateEvent = () => {
           onCoverImageChange={handleCoverImageChange}
         />
 
-        <div className="flex justify-end">
+        <div className="flex justify-center">
           <button
             type="button"
             onClick={handleSubmit}
-            className={`h-[48px] px-[57px] rounded-[8px] text-[16px] ${
-              isFormFilled ? "bg-[#FFCE00]" : "bg-[#f1DD8B]"
+            className={`h-[48px] px-[57px] min-w-[400px] rounded-[8px] text-[16px] ${
+              isFormFilled ? "bg-[#FFCE00]" : "bg-black opacity-20 text-white"
             }`}
             disabled={!isFormFilled}
           >
-            Müraciəti göndər
+            Tədbir yarat
           </button>
         </div>
       </form>

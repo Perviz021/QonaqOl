@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
-import { download } from "../../assets";
+import UploadImg from "../../assets/icons/cloud-upload.svg";
 
 const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
   const [images, setImages] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
   const [initialContentVisible, setInitialContentVisible] = useState(true);
+  const [active, setActive] = useState(1);
   const [initialCoverImageContentVisible, setInitialCoverImageContentVisible] =
     useState(true);
   const fileInputRef = useRef(null);
@@ -84,91 +85,118 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
   };
 
   return (
-    <div className="py-[47px] text-center bg-[#f2f2f2] flex items-start justify-evenly rounded-[8px]">
-      <div className="flex flex-col items-center w-[45%]">
-        {initialCoverImageContentVisible && (
-          <div className="flex flex-col items-center">
-            <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
-              Örtük şəklini əlavə edin
-            </h4>
-            <span>
-              <img src={download} alt="" className="size-[80px]" />
-            </span>
-            <p className="text-[14px] text-[#919191] my-[16px]">
-              Yüklədiyiniz fayl JPG, JPEG, PNG formatında olmalıdır, və 3 mb
-              aşmamalıdır
-            </p>
-          </div>
-        )}
-        <button
-          onClick={(e) => handleButtonClick(e, coverImageInputRef)}
-          className="bg-[#2B2C34] text-white rounded-[8px] h-[44px] w-[150px] mb-[16px]"
+    <div className="flex flex-col gap-6">
+      <h3 className="font-medium text-xl">Tədbirin şəkilləri</h3>
+      <div className="flex gap-3">
+        <span
+          onClick={() => setActive(1)}
+          className={`flex cursor-pointer items-center justify-center rounded-[8px] w-[132px] h-[44px] text-[#333] border border-[#FFCE00] ${
+            active === 1 ? "bg-[#FFCE00]" : null
+          }`}
         >
-          Yüklə
-        </button>
-        <input
-          type="file"
-          accept="image/jpeg,image/jpg,image/png" // Specify accepted file types
-          onChange={handleCoverImageUpload}
-          style={{ display: "none" }}
-          ref={coverImageInputRef}
-        />
-        {coverImage && (
-          <div className="flex items-center">
-            <img
-              src={URL.createObjectURL(coverImage)}
-              alt=""
-              className="w-[80px] h-[80px] object-cover rounded-[8px] mr-2 cursor-pointer"
-              onClick={handleImageReplacement(-1)} // -1 index for cover image
-            />
-            <span>{coverImage.name}</span>
-          </div>
-        )}
+          Örtük Şəkli
+        </span>
+        <span
+          onClick={() => setActive(2)}
+          className={`flex cursor-pointer items-center justify-center rounded-[8px] w-[132px] h-[44px] text-[#333] border border-[#FFCE00]
+        ${active === 2 ? "bg-[#FFCE00]" : null}
+        `}
+        >
+          Digər şəkillər
+        </span>
       </div>
-      <div className="flex flex-col items-center w-[45%]">
-        {initialContentVisible && (
-          <div className="flex flex-col items-center">
-            <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
-              Tədbirlə bağlı 5 ədəd şəkil əlavə edin
-            </h4>
-            <span>
-              <img src={download} alt="" className="size-[80px]" />
-            </span>
-            <p className="text-[14px] text-[#919191] my-[16px]">
-              Yüklədiyiniz fayl JPG, JPEG, PNG formatında olmalıdır, və 3 mb
-              aşmamalıdır
-            </p>
+      <p>
+        {active === 1
+          ? "Tədbirin saytda əks olunacaq örtük şəklini əlavə edin"
+          : "Tədbirin keçirilmə məkanı, onun mövzusunu əks etdirəcək 5 şəkil əlavə edin"}
+      </p>
+      <div className="py-[47px]   bg-[#f2f2f2] flex items-start justify-evenly rounded-[8px]">
+        {active === 1 && (
+          <div className="flex flex-col items-center gap-6 ">
+            {initialCoverImageContentVisible && (
+              <div className="flex mb-3 gap-9  ">
+                <img src={UploadImg} className="w-[68px]" alt="" />
+                <div className="flex flex-col gap-4 ">
+                  <h4 className="font-[500] text-[20px] leading-[28px] ">
+                    Faylı seçin və ya bura sürükləyin
+                  </h4>
+
+                  <p className="text-[14px] text-[#919191] ">
+                    Zəhmət olmasa, yüklədiyinz şəkillər 3 mb- dan çox olmasın.
+                  </p>
+                </div>
+              </div>
+            )}
+            <button
+              onClick={(e) => handleButtonClick(e, coverImageInputRef)}
+              className="bg-[#2B2C34] text-white rounded-[8px] h-[44px] w-[150px] mb-[16px]"
+            >
+              Yüklə
+            </button>
+            <input
+              type="file"
+              accept="image/jpeg,image/jpg,image/png" // Specify accepted file types
+              onChange={handleCoverImageUpload}
+              style={{ display: "none" }}
+              ref={coverImageInputRef}
+            />
+            {coverImage && (
+              <div className="flex items-center">
+                <img
+                  src={URL.createObjectURL(coverImage)}
+                  alt=""
+                  className="w-[80px] h-[80px] object-cover rounded-[8px] mr-2 cursor-pointer"
+                  onClick={handleImageReplacement(-1)} // -1 index for cover image
+                />
+                <span>{coverImage.name}</span>
+              </div>
+            )}
           </div>
         )}
+        {active === 2 && (
+          <div className="flex flex-col w-full items-center gap-6 ">
+            {initialContentVisible && (
+              <div className="flex mb-3 gap-9  ">
+                <img src={UploadImg} className="w-[68px]" alt="" />
+                <div className="flex flex-col gap-4 ">
+                  <h4 className="font-[500] text-[20px] leading-[28px] ">
+                    Faylı seçin və ya bura sürükləyin
+                  </h4>
 
-        <button
-          onClick={(e) => handleButtonClick(e, fileInputRef)}
-          className="bg-[#2B2C34] text-white rounded-[8px] h-[44px] w-[150px] mb-[16px]"
-        >
-          Yüklə
-        </button>
-        <input
-          type="file"
-          accept="image/jpeg,image/jpg,image/png" // Specify accepted file types
-          onChange={handleImageUpload}
-          style={{ display: "none" }}
-          ref={fileInputRef}
-          multiple // Allow multiple file selection
-        />
+                  <p className="text-[14px] text-[#919191] ">
+                    Zəhmət olmasa, yüklədiyinz şəkillər 3 mb- dan çox olmasın.
+                  </p>
+                </div>
+              </div>
+            )}
 
-        <div className="bg-[#f2f2f2] flex flex-col gap-4 justify-center">
-          {images.map((image, index) => (
-            <div key={index} className="flex items-center">
-              <img
-                src={URL.createObjectURL(image)}
-                alt=""
-                className="w-[80px] h-[80px] object-cover rounded-[8px] mr-2 cursor-pointer"
-                onClick={handleImageReplacement(index)}
-              />
-              <span>{image.name}</span>
+            <button
+              onClick={(e) => handleButtonClick(e, fileInputRef)}
+              className="bg-[#2B2C34] text-white rounded-[8px] h-[44px] w-[150px] mb-[16px]"
+            >
+              Yüklə
+            </button>
+            <input
+              type="file"
+              accept="image/jpeg,image/jpg,image/png" // Specify accepted file types
+              onChange={handleImageUpload}
+              style={{ display: "none" }}
+              ref={fileInputRef}
+              multiple // Allow multiple file selection
+            />
+
+            <div className="bg-[#f2f2f2] flex flex-col gap-4 justify-center">
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className="flex items-center bg-white  max-w-[600px] w-full  p-4 "
+                >
+                  <span>{image.name}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
