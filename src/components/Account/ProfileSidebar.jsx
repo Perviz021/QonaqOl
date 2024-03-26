@@ -1,6 +1,6 @@
 const ProfileSidebar = ({ active, setActive }) => {
   return (
-    <div className="flex flex-col transition-colors max-w-[400px]  px-7 py-10 text-[18px] font-medium ">
+    <div className="flex flex-col transition-colors max-w-[400px]  h-full px-7 py-10 text-[18px] font-medium ">
       <div
         onClick={() => setActive(1)}
         className={`py-[10px] leading-[40px] px-5 cursor-pointer  rounded-[8px] ${
@@ -15,7 +15,7 @@ const ProfileSidebar = ({ active, setActive }) => {
           active === 2 ? "bg-white" : null
         } `}
       >
-        Mənim tədbirlərim
+        Tədbirlərim
       </div>
       <div
         onClick={() => setActive(3)}
@@ -23,12 +23,20 @@ const ProfileSidebar = ({ active, setActive }) => {
           active === 3 ? "bg-white" : null
         } `}
       >
-        Hədiyyə kartlarım
+        Rezervlərim
       </div>
       <div
         onClick={() => setActive(4)}
         className={`py-[10px] transition-colors cursor-pointer leading-[40px] px-5  rounded-[8px] ${
           active === 4 ? "bg-white" : null
+        } `}
+      >
+        Bəyəndiklərim
+      </div>
+      <div
+        onClick={() => setActive(5)}
+        className={`py-[10px] transition-colors cursor-pointer leading-[40px] px-5  rounded-[8px] ${
+          active === 5 ? "bg-white" : null
         } `}
       >
         Şifrəni yenilə
