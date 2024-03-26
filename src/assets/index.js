@@ -106,6 +106,8 @@ import event5 from "./img/event-5.jpeg";
 // Loader
 import loader from "./img/loader.gif";
 
+import add from "./icons/add.svg";
+
 export {
   blogCard1,
   blogCard2,
@@ -177,4 +179,5 @@ export {
   favourites,
   success,
   error,
+  add,
 };

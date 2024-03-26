@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { favourites, logout, profile, profile2, receipt } from "../../assets";
+import {
+  add,
+  favourites,
+  logout,
+  profile,
+  profile2,
+  receipt,
+} from "../../assets";
 
 const LoginButton = () => {
   const [token, setToken] = useState(null);
@@ -58,8 +65,7 @@ const LoginButton = () => {
               className="flex items-center gap-1"
               onClick={handleClick}
             >
-              <img src="/src/assets/icons/add.svg" className="size-6" alt="" />{" "}
-              Tədbir yarat
+              <img src={add} className="size-6" alt="" /> Tədbir yarat
             </Link>
           </button>
         )}
