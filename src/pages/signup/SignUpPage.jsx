@@ -25,7 +25,6 @@ function SignUpPage() {
   const [formState, setFormState] = useState({
     imageLoaded: false,
     fullName: "",
-    fullNameValid: true,
     email: "",
     password: "",
     confirmPassword: "",
@@ -34,14 +33,13 @@ function SignUpPage() {
     passwordValid: true,
     showPassword: false,
     showConfirmPassword: false,
-    passwordMatch: true,
+    passwordMatch: false,
     loading: false,
   });
 
   const {
     imageLoaded,
     fullName,
-    fullNameValid,
     email,
     password,
     confirmPassword,
@@ -54,12 +52,23 @@ function SignUpPage() {
     loading,
   } = formState;
 
-  // isPasswordValid(formState.password);
+  isPasswordValid(password);
+  isEmailValid(email);
 
-  isEmailValid(formState.email);
+  const handleFullName = (event) => {
+    const { id, value } = event.target;
+    // Regular expression to match only letters
+    const onlyLetters = /^[a-zA-Z\s]*$/;
+    if (onlyLetters.test(value) || value === "") {
+      setFormState((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+    }
+  };
 
   return (
-    <div style={{ visibility: formState.imageLoaded ? "visible" : "hidden" }}>
+    <div style={{ visibility: imageLoaded ? "visible" : "hidden" }}>
       <div className="flex h-screen">
         {/* Left Side (Image) */}
         <div className="w-1/2">
@@ -75,7 +84,7 @@ function SignUpPage() {
 
         {/* Right Side (Login Form) */}
         <div className="w-1/2 flex items-center relative">
-          {!formState.loading && (
+          {!loading && (
             <div className="w-[60%] mx-auto">
               {/* Login Form */}
               <div className="bg-white rounded mb-[16px]">
@@ -83,7 +92,7 @@ function SignUpPage() {
 
                 <h2
                   className={`${
-                    !data ? "text-[40px] mb-[40px]" : "text-[30px] mb-[20px]"
+                    !data ? "text-[40px] mb-[18px]" : "text-[30px] mb-[18px]"
                   } w-[480px] unbounded unbounded-600`}
                 >
                   {!data
@@ -105,13 +114,16 @@ function SignUpPage() {
                   <div className="mb-[20px] relative">
                     <input
                       className={`input-default ${
-                        fullNameValid ? "border-[#00C408]" : "border-none"
+                        fullName
+                          ? "border-[#00C408] focus:border-[#00C408]"
+                          : "border-none"
                       }`}
                       id="fullName"
                       type="text"
                       value={formState.fullName}
                       onChange={(e) =>
-                        handleInputChange(e, formState, setFormState, "signup")
+                        // handleInputChange(e, formState, setFormState, "signup")
+                        handleFullName(e)
                       }
                       placeholder="Ad Soyad"
                       maxLength={40}
@@ -127,13 +139,15 @@ function SignUpPage() {
                   <div className="mb-[20px] relative">
                     <input
                       className={`input-default ${
-                        !emailValid && email
-                          ? "border-[#FF4E4E]"
-                          : "border-[#00C408]"
+                        email
+                          ? emailValid
+                            ? "border-[#00C408] focus:border-[#00C408]"
+                            : "border-[#FF4E4E] focus:border-[#FF4E4E]"
+                          : "border-none"
                       }`}
                       id="email"
                       type="email"
-                      value={formState.email}
+                      value={email}
                       onChange={(e) =>
                         handleInputChange(e, formState, setFormState, "signup")
                       }
@@ -146,74 +160,113 @@ function SignUpPage() {
                     )}
 
                     {email !== "" && !emailValid && (
-                      <span className="absolute top-1/2 right-[20px] -translate-y-1/2">
+                      <span className="absolute top-[22px] right-[20px] -translate-y-1/2">
                         <img src={error} alt="" />
                       </span>
+                    )}
+
+                    {email !== "" && !emailValid && (
+                      <p className="text-[#FF4E4E] text-[12px] leading-[20px]">
+                        E-poçt yanlışdır
+                      </p>
                     )}
                   </div>
                   {/* Password Input */}
                   <div className="mb-[20px] relative">
                     <input
                       className={`input-default ${
-                        passwordValid ? "border-[#00C408]" : "border-[#FF4E4E]"
+                        password && !passwordValid
+                          ? "border-[#FF4E4E] focus:border-[#FF4E4E]"
+                          : "border-none"
                       }`}
                       id="password"
-                      type={formState.showPassword ? "text" : "password"}
-                      value={formState.password}
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      value={password}
                       onChange={(e) =>
                         handleInputChange(e, formState, setFormState, "signup")
                       }
-                      maxLength={10}
+                      minLength={8}
+                      maxLength={20}
                       placeholder="Şifrə"
                     />
-                    <div
-                      className="absolute top-0 right-0 h-full flex items-center pr-[10px] cursor-pointer"
-                      onClick={() =>
-                        togglePasswordVisibility("showPassword", setFormState)
-                      }
-                    >
-                      {formState.showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </div>
+
+                    {password !== "" && passwordValid && (
+                      <div
+                        className="absolute top-0 right-0 h-full flex items-center pr-[20px] cursor-pointer"
+                        onClick={() =>
+                          togglePasswordVisibility("showPassword", setFormState)
+                        }
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </div>
+                    )}
+                    {password !== "" && !passwordValid && (
+                      <span className="absolute top-[10px] right-0 flex items-center pr-[20px]">
+                        <img src={error} alt="" />
+                      </span>
+                    )}
+
+                    {password !== "" && !passwordValid && (
+                      <p className="text-[#FF4E4E] text-[12px] leading-[20px]">
+                        Şifrə minimum 8 simvoldan ibarət olmalıdır
+                      </p>
+                    )}
                   </div>
                   {/* Confirm Password */}
                   <div className="mb-[24px] relative">
                     <input
                       className={`input-default ${
-                        passwordMatch ? "border-[#00C408]" : "border-[#FF4E4E]"
+                        confirmPassword && !passwordMatch
+                          ? "border-[#FF4E4E] focus:border-[#FF4E4E]"
+                          : "border-none"
                       }`}
                       id="confirmPassword"
-                      type={formState.showConfirmPassword ? "text" : "password"}
-                      value={formState.confirmPassword}
+                      type={showConfirmPassword ? "text" : "password"}
+                      value={confirmPassword}
                       onChange={(e) =>
                         handleInputChange(e, formState, setFormState, "signup")
                       }
-                      maxLength={10}
+                      minLength={8}
+                      maxLength={20}
                       placeholder="Şifrəni təsdiqləyin"
                     />
-                    <div
-                      className="absolute top-0 right-0 h-full flex items-center pr-[10px] cursor-pointer"
-                      onClick={() =>
-                        togglePasswordVisibility(
-                          "showConfirmPassword",
-                          setFormState
-                        )
-                      }
-                    >
-                      {formState.showConfirmPassword ? (
-                        <FaEyeSlash />
-                      ) : (
-                        <FaEye />
-                      )}
-                    </div>
+                    {confirmPassword !== "" && passwordMatch && (
+                      <div
+                        className="absolute top-0 right-0 h-full flex items-center pr-[20px] cursor-pointer"
+                        onClick={() =>
+                          togglePasswordVisibility(
+                            "showConfirmPassword",
+                            setFormState
+                          )
+                        }
+                      >
+                        {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                      </div>
+                    )}
+                    {confirmPassword !== "" && !passwordMatch && (
+                      <span className="absolute top-[10px] right-0 flex items-center pr-[20px]">
+                        <img src={error} alt="" />
+                      </span>
+                    )}
+
+                    {confirmPassword !== "" && !passwordMatch && (
+                      <p className="text-[#FF4E4E] text-[12px] leading-[20px]">
+                        Şifrələr uyğun deyil
+                      </p>
+                    )}
                   </div>
                   {/* Sign Up Button */}
                   <div className="flex flex-col items-center justify-center space-y-[12px]">
                     <button
                       className={`${
-                        formState.fieldsFilled &&
-                        formState.passwordMatch &&
-                        formState.emailValid &&
-                        formState.fullName
+                        fullName &&
+                        email &&
+                        password &&
+                        confirmPassword &&
+                        emailValid &&
+                        passwordValid &&
+                        passwordMatch
                           ? "bg-[#FFCE00]"
                           : "bg-[#F1dd8b] pointer-events-none"
                       }  text-black text-[16px] font-normal h-[44px] w-full rounded-[8px] focus:outline-none focus:shadow-outline`}

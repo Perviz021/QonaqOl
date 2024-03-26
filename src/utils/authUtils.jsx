@@ -9,7 +9,7 @@ export const isEmailValid = (email) => {
 };
 
 export const isPasswordValid = (value) => {
-  return value.length <= 10;
+  return value.length >= 8 && value.length < 20;
 };
 
 export const handleImageLoad = (setFormState) => {
@@ -335,12 +335,16 @@ export const handleInputChange = (e, formState, setFormState, type) => {
         id === "email"
           ? trimmedValue === "" || isEmailValid(trimmedValue)
           : prevState.emailValid,
+      passwordValid:
+        id === "password"
+          ? trimmedValue === "" || isPasswordValid(trimmedValue)
+          : prevState.passwordValid,
       passwordMatch:
         id === "confirmPassword"
           ? trimmedValue === prevState.password || trimmedValue === ""
-          : // : id === "password"
-            // ? trimmedValue === prevState.confirmPassword
-            prevState.passwordMatch,
+          : id === "password"
+          ? trimmedValue === prevState.confirmPassword
+          : prevState.passwordMatch,
     }));
   }
 };

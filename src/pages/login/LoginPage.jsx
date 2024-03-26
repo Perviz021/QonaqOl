@@ -62,14 +62,17 @@ function LoginPage() {
                   Daxil ol
                 </h2>
 
+                {/* Email field */}
                 <div className="mb-[20px] relative">
                   <input
                     className={`input-default 
-                     ${
-                       !emailValid && email
-                         ? "border-[#FF4E4E]"
-                         : "border-[#00C408]"
-                     }`}
+                    ${
+                      email
+                        ? emailValid
+                          ? "border-[#00C408] focus:border-[#00C408]"
+                          : "border-[#FF4E4E] focus:border-[#FF4E4E]"
+                        : "border-none"
+                    }`}
                     id="email"
                     type="email"
                     name="email"
@@ -87,16 +90,25 @@ function LoginPage() {
                   )}
 
                   {email !== "" && !emailValid && (
-                    <span className="absolute top-1/2 right-[20px] -translate-y-1/2">
+                    <span className="absolute top-[10px] right-[20px]">
                       <img src={error} alt="" />
                     </span>
                   )}
+
+                  {email !== "" && !emailValid && (
+                    <p className="text-[#FF4E4E] text-[12px] leading-[20px]">
+                      E-poçt yanlışdır
+                    </p>
+                  )}
                 </div>
 
+                {/* Password field */}
                 <div className="mb-[6px] relative">
                   <input
                     className={`input-default ${
-                      !passwordValid ? "border-[#FF4E4E]" : "border-none"
+                      password && !passwordValid
+                        ? "border-[#FF4E4E] focus:border-[#FF4E4E]"
+                        : "border-none"
                     }`}
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -105,21 +117,36 @@ function LoginPage() {
                     onChange={(e) =>
                       handleInputChange(e, formState, setFormState, "login")
                     }
-                    maxLength={10}
+                    minLength={8}
+                    maxLength={20}
                     placeholder="Şifrə"
                   />
-                  <div
-                    className="absolute top-0 right-0 h-full flex items-center pr-[20px] cursor-pointer"
-                    onClick={() =>
-                      togglePasswordVisibility("showPassword", setFormState)
-                    }
-                  >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </div>
+
+                  {password !== "" && passwordValid && (
+                    <div
+                      className="absolute top-0 right-0 h-full flex items-center pr-[20px] cursor-pointer"
+                      onClick={() =>
+                        togglePasswordVisibility("showPassword", setFormState)
+                      }
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </div>
+                  )}
+                  {password !== "" && !passwordValid && (
+                    <span className="absolute top-[10px] right-0 flex items-center pr-[20px]">
+                      <img src={error} alt="" />
+                    </span>
+                  )}
+
+                  {password !== "" && !passwordValid && (
+                    <p className="text-[#FF4E4E] text-[12px] leading-[20px]">
+                      Şifrə minimum 8 simvoldan ibarət olmalıdır
+                    </p>
+                  )}
                 </div>
 
-                <p className="text-end cursor-pointer text-[#0078CC] text-[10px] font-normal mb-[24px]">
-                  Şifrəni unutmusunuz?
+                <p className="text-end text-[#0078CC] text-[10px] font-normal mb-[24px]">
+                  <span className="cursor-pointer">Şifrəni unutmusunuz?</span>
                 </p>
 
                 <div className="flex flex-col items-center justify-center space-y-[8px]">
