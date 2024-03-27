@@ -4,7 +4,7 @@ import { done } from "../../assets";
 const PopupMessage = ({ textMessage, handleContinueButtonClick }) => {
   return (
     <div className="fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
-      <div className="bg-white w-[500px] pt-[104px] pb-[130px] px-[120px] rounded-[8px] flex flex-col items-center justify-center">
+      <div className="bg-white w-[500px] pt-[80px] pb-[80px] px-[100px] rounded-[8px] flex flex-col items-center justify-center">
         <span className="p-[25px] inline-flex justify-center items-center mb-[33px] bg-[#44AA55] rounded-full w-[100px] h-[100px]">
           <img src={done} alt="" />
         </span>
