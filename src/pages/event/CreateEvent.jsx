@@ -12,6 +12,7 @@ import EventImageUpload from "./EventImageUpload";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import axios from "axios";
 import { getEvents } from "../../utils/apiUtils";
+
 const CreateEvent = () => {
   const navigate = useNavigate();
 
@@ -213,6 +214,7 @@ const CreateEvent = () => {
         Tədbir yarat
       </h1>
       <form className="w-[820px] mx-auto space-y-[40px]">
+        {/* Tedbirin adi */}
         <div className="flex flex-col gap-[12px]">
           <label
             htmlFor="name"
@@ -236,14 +238,14 @@ const CreateEvent = () => {
           options={options}
           onCategoryChange={handleCategoryChange}
         />
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-normal space-x-[40px]">
           <EventDate onDateChange={handleDateChange} />
           <EventTime
             onStartTimeChange={handleStartTimeChange}
             onEndTimeChange={handleEndTimeChange}
           />
         </div>
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-normal space-x-[40px]">
           <EventLang onLangChange={handleLangChange} />
           <EventPrice onEventPriceChange={handleEventPriceChange} />
         </div>

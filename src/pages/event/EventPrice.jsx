@@ -23,7 +23,7 @@ const EventPrice = ({ onEventPriceChange }) => {
   };
 
   return (
-    <div className="w-[45%]">
+    <div className="w-[50%]">
       <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
         Qiymət
       </h4>

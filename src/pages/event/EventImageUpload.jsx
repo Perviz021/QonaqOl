@@ -150,7 +150,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
                   </h4>
 
                   <p className="text-[14px] text-[#919191] ">
-                    Zəhmət olmasa, yüklədiyinz şəkillər 3 mb- dan çox olmasın.
+                    Zəhmət olmasa, yüklədiyinz şəkillər 3 mb-dan çox olmasın.
                   </p>
                 </div>
               </div>
@@ -199,7 +199,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
                   </h4>
 
                   <p className="text-[14px] text-[#919191] ">
-                    Zəhmət olmasa, yüklədiyinz şəkillər 3 mb- dan çox olmasın.
+                    Zəhmət olmasa, yüklədiyinz şəkillər 3 mb-dan çox olmasın.
                   </p>
                 </div>
               </div>
