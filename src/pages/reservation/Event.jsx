@@ -10,6 +10,7 @@ import heart from "../../assets/icons/heart.svg";
 import heartFill from "../../assets/icons/heart-fill.svg";
 import axios from "axios";
 import Share from "../../components/ui/react-share/Share";
+import { send, sendFill } from "../../assets";
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -235,11 +236,7 @@ const Event = () => {
               <span className="relative flex items-center justify-center  gap-[10px] top-[40px]">
                 <span className="border relative flex items-center justify-center border-[#333] size-[60px]  rounded-full">
                   <img
-                    src={`${
-                      showShare
-                        ? "/src/assets/icons/send-2-fill.svg"
-                        : "/src/assets/icons/send-2.svg"
-                    }`}
+                    src={showShare ? sendFill : send}
                     color="red"
                     className="size-8 cursor-pointer"
                     onClick={() => setShowShare(!showShare)}
