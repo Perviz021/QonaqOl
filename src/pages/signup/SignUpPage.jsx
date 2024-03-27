@@ -92,8 +92,10 @@ function SignUpPage() {
 
                 <h2
                   className={`${
-                    !data ? "text-[40px] mb-[18px]" : "text-[30px] mb-[18px]"
-                  } w-[480px] unbounded unbounded-600`}
+                    !data
+                      ? "text-[40px] mb-[18px] w-[480px]"
+                      : "text-[30px] mb-[18px] text-center w-[410px]"
+                  } unbounded unbounded-600`}
                 >
                   {!data
                     ? "Qeydiyyatdan keç"
