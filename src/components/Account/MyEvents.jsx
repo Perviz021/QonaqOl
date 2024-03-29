@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { deleteEventById, getEvents } from "../../utils/apiUtils";
 import { loader } from "../../assets";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Edit from "../../assets/icons/edit-2.svg";
 import Delete from "../../assets/icons/trash.svg";
 import { v4 as uuidv4 } from "uuid";
@@ -51,26 +51,7 @@ const MyEvents = () => {
         })
       );
   };
-  // const handlePaginate = (e) => {
-  //   console.log(+data?.length % +paginationPage);
-  //   if (+data?.length % +paginationPage > 0 || paginationPage == 0) {
-  //     switch (e.target.innerText) {
-  //       case "1":
-  //         setPaginationPage(5);
 
-  //         break;
-  //       case "2":
-  //         setPaginationPage(10);
-
-  //         break;
-  //       case "3":
-  //         setPaginationPage(15);
-
-  //         break;
-  //     }
-  //   }
-  //   return paginationPage;
-  // };
   return (
     <div className="flex flex-col p-5 gap-8 ">
       {filteredData ? (
@@ -104,7 +85,13 @@ const MyEvents = () => {
                     >
                       <img src={Delete} alt="" className="size-[20px]" />
                     </div>
-                    <div className="size-[40px] rounded-[4px] flex items-center justify-center bg-[#F1F1F1]">
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/events/update/${el.id}`);
+                      }}
+                      className="size-[40px] rounded-[4px] flex items-center justify-center bg-[#F1F1F1]"
+                    >
                       <img src={Edit} className="size-[20px]" alt="" />
                     </div>
                   </div>

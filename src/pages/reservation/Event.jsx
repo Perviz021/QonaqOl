@@ -10,12 +10,8 @@ import heart from "../../assets/icons/heart.svg";
 import heartFill from "../../assets/icons/heart-fill.svg";
 import axios from "axios";
 import Share from "../../components/ui/react-share/Share";
-<<<<<<< HEAD
 import ShowShare from "../../assets/icons/send-2-fill.svg";
 import ClosedShare from "../../assets/icons/send-2.svg";
-=======
-import { send, sendFill } from "../../assets";
->>>>>>> 37912c6ce3b52b23aaaaf92dd244db03347ba474
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -239,11 +235,7 @@ const Event = () => {
               <span className="relative flex items-center justify-center  gap-[10px] top-[40px]">
                 <span className="border relative flex items-center justify-center border-[#333] size-[60px]  rounded-full">
                   <img
-<<<<<<< HEAD
                     src={`${showShare ? ShowShare : ClosedShare}`}
-=======
-                    src={showShare ? sendFill : send}
->>>>>>> 37912c6ce3b52b23aaaaf92dd244db03347ba474
                     color="red"
                     className="size-8 cursor-pointer"
                     onClick={() => setShowShare(!showShare)}
