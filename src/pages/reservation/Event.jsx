@@ -381,7 +381,7 @@ const Event = () => {
                       <>
                         <input
                           type="text"
-                          placeholder="Ad Soyad"
+                          placeholder="Ad və soyad"
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           maxLength={40}
