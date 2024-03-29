@@ -46,7 +46,7 @@ const EventLang = ({ onLangChange }) => {
   };
 
   return (
-    <div className="w-[45%] relative" ref={dropdownRef}>
+    <div className="w-[50%] relative" ref={dropdownRef}>
       <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
         Tədbirin dili
       </h4>

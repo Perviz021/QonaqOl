@@ -106,6 +106,15 @@ import event5 from "./img/event-5.jpeg";
 // Loader
 import loader from "./img/loader.gif";
 
+import add from "./icons/add.svg";
+
+import send from "./icons/send-2.svg";
+import sendFill from "./icons/send-2-fill.svg";
+import facebook from "./icons/facebook.svg";
+import whatsapp from "./icons/whatsapp.svg";
+import copy from "./icons/copy.svg";
+import copySuccess from "./icons/copy-success.svg";
+
 export {
   blogCard1,
   blogCard2,
@@ -177,4 +186,11 @@ export {
   favourites,
   success,
   error,
+  add,
+  send,
+  sendFill,
+  facebook,
+  whatsapp,
+  copy,
+  copySuccess,
 };

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FacebookShareButton, WhatsappShareButton } from "react-share";
+import { copy, copySuccess, facebook, whatsapp } from "../../../assets";
 
 const Share = ({ shareUrl }) => {
   const [success, setSuccess] = useState(false);
@@ -21,12 +22,12 @@ const Share = ({ shareUrl }) => {
       <div className="flex flex-col gap-5">
         <FacebookShareButton title="facebook" url={shareUrl}>
           <span className="flex items-center gap-2">
-            <img src="/src/assets/icons/facebook.svg" alt="" /> FaceBook
+            <img src={facebook} alt="" /> Facebook
           </span>
         </FacebookShareButton>
         <WhatsappShareButton title="whatsapp" url={shareUrl}>
           <span className="flex items-center gap-2">
-            <img src="/src/assets/icons/whatsapp.svg" alt="" /> Whatsapp
+            <img src={whatsapp} alt="" /> Whatsapp
           </span>
         </WhatsappShareButton>
         <span
@@ -35,12 +36,11 @@ const Share = ({ shareUrl }) => {
         >
           {success ? (
             <>
-              <img src="/src/assets/icons/copy-success.svg" alt="" /> Link
-              copied
+              <img src={copySuccess} alt="" /> Link copied
             </>
           ) : (
             <>
-              <img src="/src/assets/icons/copy.svg" alt="" /> Copy Link
+              <img src={copy} alt="" /> Copy Link
             </>
           )}
         </span>

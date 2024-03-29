@@ -1,96 +1,126 @@
-// EventTime.js
 import React, { useState } from "react";
-import { clock } from "../../assets";
+import { chevronDown, clock } from "../../assets";
 
 const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
   const [showTimeInputs, setShowTimeInputs] = useState(false);
+  const [showStartTimeInputs, setShowStartTimeInputs] = useState(false);
+  const [showEndTimeInputs, setShowEndTimeInputs] = useState(false);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
 
-  const handleTimeInputClick = (e) => {
-    e.preventDefault();
-    setShowTimeInputs(!showTimeInputs);
-  };
-
   const startTimeOptions = [];
-  for (let hour = 9; hour <= 21; hour++) {
-    startTimeOptions.push(`${hour}:00`);
-    startTimeOptions.push(`${hour}:30`);
-  }
-
   const endTimeOptions = [];
-  for (let hour = 9; hour <= 21; hour++) {
-    endTimeOptions.push(`${hour}:00`);
-    endTimeOptions.push(`${hour}:30`);
-  }
+  for (let hour = 9; hour < 20; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      // Convert hour and minute to string with leading zeros if necessary
+      let hourStr = hour < 10 ? "0" + hour.toString() : hour.toString();
+      let minuteStr = minute === 0 ? "00" : minute.toString();
 
-  const handleStartTimeChange = (e) => {
-    const start = e.target.value;
+      // Concatenate hour and minute with ':' separator
+      let time = hourStr + ":" + minuteStr;
+
+      // Add time to the array
+      startTimeOptions.push(time);
+      endTimeOptions.push(time);
+    }
+  }
+  startTimeOptions.push("20:00");
+  endTimeOptions.push("20:00");
+
+  const handleStartTime = (start) => {
     setStartTime(start);
     onStartTimeChange(start);
+    setShowStartTimeInputs(false);
   };
 
-  const handleEndTimeChange = (e) => {
-    const end = e.target.value;
+  const handleEndTime = (end) => {
     setEndTime(end);
     onEndTimeChange(end);
+    setShowEndTimeInputs(false);
   };
 
   return (
-    <div className="w-[45%]">
+    <div className="w-[50%]">
       <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
         Tədbirin saatı
       </h4>
-      <button
-        onClick={(e) => handleTimeInputClick(e)}
-        className="inline-flex justify-between items-center rounded-[8px] mb-[17px] bg-[#f2f2f2] w-full h-[44px] px-[20px]"
+
+      <div
+        className="flex items-center justify-between bg-[#f2f2f2] rounded-lg py-[10px] px-[20px] cursor-pointer"
+        onClick={() => setShowTimeInputs(!showTimeInputs)}
       >
-        <span className="font-[16px] text-[#919191]">
-          Saat aralığını qeyd edin
+        <span
+          className={`text-[#000] ${
+            startTime && endTime ? "" : "text-opacity-40"
+          } leading-[24px]`}
+        >
+          {startTime && endTime
+            ? `${startTime} - ${endTime}`
+            : "Saat aralığını qeyd edin"}
         </span>
         <span>
           <img src={clock} alt="" />
         </span>
-      </button>
+      </div>
+
       {showTimeInputs && (
-        <div className="flex justify-between">
-          <div className="w-[45%]">
-            <p className="text-[#919191] bg-[#f2f2f2] text-[12px] flex flex-col rounded-t-[8px] pt-2 pb-0 pl-3 relative top-1">
-              <span>Başlayır</span>
-            </p>
-            <select
-              className="rounded-b-[8px] text-[12px] bg-[#f2f2f2] w-full h-[44px] px-[20px] border-transparent focus:border-transparent focus:ring-0"
-              value={startTime}
-              onChange={handleStartTimeChange}
+        <div className="flex items-start space-x-[40px] mt-[14px] mr-[78px]">
+          {/* Start Time Inputs */}
+          <div className="w-[136px]">
+            <div
+              className="rounded-[4px] bg-[#f2f2f2] px-[8px] py-[3.5px] h-[44px]"
+              onClick={() => setShowStartTimeInputs(!showStartTimeInputs)}
             >
-              <option value="" className="text-center">
-                Saatı qeyd edin
-              </option>
-              {startTimeOptions.map((time, index) => (
-                <option key={index} value={time} className="text-center">
-                  {time}
-                </option>
-              ))}
-            </select>
+              <p className="text-[#919191CC] text-[8px]">Başlayır</p>
+              <div className="flex items-center justify-around py-[4px]">
+                <span className="text-[10px]">{startTime || "09:00"}</span>
+                <span>
+                  <img src={chevronDown} alt="" className="size-[16px]" />
+                </span>
+              </div>
+            </div>
+            {showStartTimeInputs && (
+              <div className="w-[94px] rounded-[4px] mt-[4px] h-[304px] overflow-auto">
+                {startTimeOptions.map((start, index) => (
+                  <div
+                    className="bg-[#f2f2f2] border-b border-b-[#fff] text-[12px] flex justify-center items-center py-[6px] cursor-default"
+                    key={index}
+                    onClick={() => handleStartTime(start)}
+                  >
+                    {start}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="w-[45%]">
-            <p className="text-[#919191] bg-[#f2f2f2] text-[12px] flex flex-col rounded-t-[8px] pt-2 pb-0 pl-3 relative top-1">
-              <span>Bitir</span>
-            </p>
-            <select
-              className="rounded-b-[8px] text-[12px] bg-[#f2f2f2] w-full h-[44px] px-[20px] border-transparent focus:border-transparent focus:ring-0"
-              value={endTime}
-              onChange={handleEndTimeChange}
+
+          {/* End Time Inputs */}
+          <div className="w-[136px]">
+            <div
+              className="rounded-[4px] bg-[#f2f2f2] px-[8px] py-[3.5px] h-[44px]"
+              onClick={() => setShowEndTimeInputs(!showEndTimeInputs)}
             >
-              <option value="" className="text-center">
-                Saatı qeyd edin
-              </option>
-              {endTimeOptions.map((time, index) => (
-                <option key={index} value={time} className="text-center">
-                  {time}
-                </option>
-              ))}
-            </select>
+              <p className="text-[#919191CC] text-[8px]">Bitir</p>
+              <div className="flex items-center justify-around py-[4px]">
+                <span className="text-[10px]">{endTime || "13:00"}</span>
+                <span>
+                  <img src={chevronDown} alt="" className="size-[16px]" />
+                </span>
+              </div>
+            </div>
+            {showEndTimeInputs && (
+              <div className="w-[94px] rounded-[4px] mt-[4px] h-[304px] overflow-auto">
+                {endTimeOptions.map((end, index) => (
+                  <div
+                    className="bg-[#f2f2f2] border-b border-b-[#fff] text-[12px] flex justify-center items-center py-[6px] cursor-default"
+                    key={index}
+                    onClick={() => handleEndTime(end)}
+                  >
+                    {end}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
