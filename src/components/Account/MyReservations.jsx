@@ -4,13 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import Delete from "../../assets/icons/trash.svg";
 import { loader } from "../../assets";
+import { MdFirstPage, MdLastPage } from "react-icons/md";
 
 const MyReservations = () => {
   const [reservationData, setReservationdata] = useState(null);
   const [data, setData] = useState([]);
   const [filteredEvent, setFilteredEvent] = useState([]);
-  const [paginationCount, setPaginationCount] = useState(1);
-  const [paginationPage, setPaginationPage] = useState(0);
+  const [pagination, setPagination] = useState(0);
+  const [count, setCount] = useState(1);
   const id = localStorage.getItem("userId");
   const navigate = useNavigate();
   useEffect(() => {
@@ -34,8 +35,7 @@ const MyReservations = () => {
     <div className="flex flex-col p-5 gap-8 ">
       {filteredEvent?.length !== 0 ? (
         <>
-          {filteredEvent.map((el, i) => {
-            console.log(el);
+          {filteredEvent.slice(pagination, pagination + 5).map((el, i) => {
             const year = el?.eventDate[0].toString().slice(2, 4);
             const month =
               el.eventDate[1] > 10 ? el.eventDate[1] : "0" + el.eventDate[1];
@@ -77,9 +77,33 @@ const MyReservations = () => {
             );
           })}
           <div className="m-auto flex gap-6 font-semibold">
-            <span>{paginationCount}</span>
-            <span>{paginationCount + 1}</span>
-            <span>{paginationCount + 2}</span>
+            <div className="flex items-center mt-20 justify-center gap-16 text-3xl">
+              <div
+                className="size-6 hover:bg-[#ffce0067] transition-colors cursor-pointer flex items-center justify-center rounded-full  "
+                onClick={() => {
+                  if (!(pagination === 0)) {
+                    setPagination((currVal) => currVal - 5);
+                    setCount((currVal) => currVal - 1);
+                  }
+                }}
+              >
+                <MdFirstPage />
+              </div>
+              <div className="size-6 text-xl flex items-center justify-center   ">
+                {count}
+              </div>
+              <div
+                className="size-6 hover:bg-[#ffce0067] transition-colors cursor-pointer flex items-center justify-center rounded-full  "
+                onClick={() => {
+                  if (!(pagination + 5 >= filteredEvent.length)) {
+                    setPagination((currVal) => currVal + 5);
+                    setCount((currVal) => currVal + 1);
+                  }
+                }}
+              >
+                <MdLastPage />
+              </div>
+            </div>
           </div>
         </>
       ) : (

@@ -10,6 +10,8 @@ import heart from "../../assets/icons/heart.svg";
 import heartFill from "../../assets/icons/heart-fill.svg";
 import axios from "axios";
 import Share from "../../components/ui/react-share/Share";
+import ShowShare from "../../assets/icons/send-2-fill.svg";
+import ClosedShare from "../../assets/icons/send-2.svg";
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -21,10 +23,8 @@ const Event = () => {
   const [data, setData] = useState(null);
   const [otherEvents, setOtherEvents] = useState(null);
   const [showShare, setShowShare] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const [wishListArr, setwishListArr] = useState([]);
-  const [toggle, setToggle] = useState(
-    wishListArr.forEach((el) => (el == id ? true : false))
-  );
 
   const [shareUrl, setShareUrl] = useState(window.location.href);
   // const event_name = name && name.replace(/-/g, " ");
@@ -235,11 +235,7 @@ const Event = () => {
               <span className="relative flex items-center justify-center  gap-[10px] top-[40px]">
                 <span className="border relative flex items-center justify-center border-[#333] size-[60px]  rounded-full">
                   <img
-                    src={`${
-                      showShare
-                        ? "/src/assets/icons/send-2-fill.svg"
-                        : "/src/assets/icons/send-2.svg"
-                    }`}
+                    src={`${showShare ? ShowShare : ClosedShare}`}
                     color="red"
                     className="size-8 cursor-pointer"
                     onClick={() => setShowShare(!showShare)}

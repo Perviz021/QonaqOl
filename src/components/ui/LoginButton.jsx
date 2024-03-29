@@ -118,7 +118,7 @@ const LoginButton = () => {
                     <span>Profilim</span>
                   </NavLink>
                   <NavLink
-                    to={"/events/reservation"}
+                    to={"/account"}
                     className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
                   >
                     <span>

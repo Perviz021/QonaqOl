@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import UploadImg from "../../assets/icons/cloud-upload.svg";
 import { toast } from "react-toastify";
+import Delete from "../../assets/icons/Delete.svg";
 const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
   const [images, setImages] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
@@ -107,9 +108,8 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
     }
   };
   const handleImgDeleteFromArr = (image) => {
-    console.log(image);
-    // const filteredImg = images.filter((el) => el.name !== image.name);
-    // setImages([...filteredImg]);
+    const filteredImg = images.filter((el) => el.name !== image.name);
+    setImages([...filteredImg]);
   };
 
   return (
@@ -178,7 +178,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
                     <span>{coverImage.name}</span>
                     <img
                       onClick={() => setCoverImage(null)}
-                      src="/src/assets/icons/Delete.svg"
+                      src={Delete}
                       alt=""
                       className="size-4 cursor-pointer"
                     />
@@ -229,9 +229,9 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
                   <span>{image.name}</span>
                   <img
                     onClick={() => handleImgDeleteFromArr(image)}
-                    src="/src/assets/icons/Delete.svg"
+                    src={Delete}
                     alt=""
-                    className="size-4 cursor-pointer"
+                    className="size-4 cursor-pointer  "
                   />
                 </div>
               ))}
