@@ -127,7 +127,7 @@ function SignUpPage() {
                         // handleInputChange(e, formState, setFormState, "signup")
                         handleFullName(e)
                       }
-                      placeholder="Ad Soyad"
+                      placeholder="Ad və soyad"
                       maxLength={40}
                     />
 
