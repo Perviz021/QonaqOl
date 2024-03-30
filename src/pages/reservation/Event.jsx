@@ -4,7 +4,12 @@ import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import { useParams } from "react-router-dom";
 import { month } from "../../mock/static";
-import { eventById, getEvents } from "../../utils/apiUtils";
+import {
+  createLikeEventById,
+  eventById,
+  getEvents,
+  getWishlist,
+} from "../../utils/apiUtils";
 import loader from "../../assets/img/loader.gif";
 import heart from "../../assets/icons/heart.svg";
 import heartFill from "../../assets/icons/heart-fill.svg";
@@ -28,6 +33,7 @@ const Event = () => {
 
   const [shareUrl, setShareUrl] = useState(window.location.href);
   // const event_name = name && name.replace(/-/g, " ");
+  const user = localStorage.getItem("userId");
 
   useEffect(() => {
     eventById(id).then((res) => setData(res.data));
@@ -191,33 +197,15 @@ const Event = () => {
   const handleContinueButtonClick = () => {
     setShowSuccessPopup(false); // Close the pop-up
   };
+
+  //wishlist
+
   const handleWishlist = (ids) => {
-    const arr =
-      JSON.parse(localStorage.getItem("wishlist")) ||
-      JSON.parse(localStorage.getItem("wishlist")).length !== 0
-        ? JSON.parse(localStorage.getItem("wishlist"))
-        : [];
-    // JSON.parse(localStorage.getItem("wishlist")).length !== 0
-    //   ? []
-    //   : JSON.parse(localStorage.getItem("wishlist"));
-    setwishListArr(arr);
-    if (wishListArr && wishListArr.length == 0) {
-      setwishListArr([ids]);
-    } else {
-      wishListArr &&
-        wishListArr.forEach((el) => {
-          if (el != ids) {
-            setwishListArr((currentVal) => [...currentVal, ids]);
-          } else {
-            const leftItems = wishListArr.filter((item) => item !== ids);
-            setwishListArr(leftItems);
-          }
-        });
-    }
-    localStorage.setItem("wishlist", JSON.stringify(wishListArr));
-    setToggle(!toggle);
-    console.log(wishListArr);
+    createLikeEventById(ids, user).then((res) => setToggle(!toggle));
   };
+  useEffect(() => {
+    getWishlist(user).then((res) => setwishListArr(res.data));
+  }, [user, id]);
 
   return (
     <>

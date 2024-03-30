@@ -35,3 +35,11 @@ export const deleteEventById = (eventId) => {
     })
   );
 };
+
+export const createLikeEventById = (userId, eventId) => {
+  return api.post(endPoints.like_controller.create(eventId, userId));
+};
+
+export const getWishlist = (id) => {
+  return api.get(endPoints.event_controller.wishlist(id));
+};
