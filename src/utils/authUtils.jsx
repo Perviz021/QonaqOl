@@ -9,7 +9,8 @@ export const isEmailValid = (email) => {
 };
 
 export const isPasswordValid = (value) => {
-  return value.length >= 8 && value.length < 20;
+  const newValue = value.trim();
+  return newValue.length >= 8 && newValue.length < 20;
 };
 
 export const handleImageLoad = (setFormState) => {
@@ -21,6 +22,47 @@ export const togglePasswordVisibility = (field, setFormState) => {
     ...prevData,
     [field]: !prevData[field],
   }));
+};
+
+export const handleInputChange = (e, formState, setFormState, type) => {
+  // Login
+  if (type === "login") {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setFormState((prevData) => ({
+        ...prevData,
+        [name]: value,
+        touchedEmail: false,
+        fieldsFilled: !!value && !!prevData.password,
+      }));
+    } else {
+      setFormState((prevData) => ({
+        ...prevData,
+        [name]: value,
+        touchedPassword: false,
+        fieldsFilled: !!prevData.email && !!value,
+      }));
+    }
+  } //Sign Up
+  else if (type === "signup") {
+    const { id, value } = e.target;
+    const trimmedValue = value.trim();
+
+    setFormState((prevState) => ({
+      ...prevState,
+      [id]: value,
+      fieldsFilled:
+        !!prevState.fullName &&
+        !!prevState.email &&
+        !!prevState.password &&
+        !!prevState.confirmPassword &&
+        trimmedValue !== "",
+      touchedEmail: id === "email" ? false : prevState.touchedEmail,
+      touchedPassword: id === "password" ? false : prevState.touchedPassword,
+      touchedConfirmPassword:
+        id === "confirmPassword" ? false : prevState.touchedConfirmPassword,
+    }));
+  }
 };
 
 export const useRefreshToken = async (navigate) => {
@@ -293,58 +335,6 @@ export const handleSignIn = async (
     setFormState((prevData) => ({
       ...prevData,
       loading: false,
-    }));
-  }
-};
-
-export const handleInputChange = (e, formState, setFormState, type) => {
-  // Login
-  if (type === "login") {
-    const { name, value } = e.target;
-    if (name === "email") {
-      const isValid = value.trim() === "" || isEmailValid(value);
-      setFormState((prevData) => ({
-        ...prevData,
-        [name]: value,
-        fieldsFilled: !!value && !!prevData.password,
-        emailValid: isValid,
-      }));
-    } else {
-      setFormState((prevData) => ({
-        ...prevData,
-        [name]: value,
-        fieldsFilled: !!prevData.email && !!value,
-        passwordValid: isPasswordValid(value),
-      }));
-    }
-  } //Sign Up
-  else if (type === "signup") {
-    const { id, value } = e.target;
-    const trimmedValue = value.trim();
-
-    setFormState((prevState) => ({
-      ...prevState,
-      [id]: value,
-      fieldsFilled:
-        !!prevState.fullName &&
-        !!prevState.email &&
-        !!prevState.password &&
-        !!prevState.confirmPassword &&
-        trimmedValue !== "",
-      emailValid:
-        id === "email"
-          ? trimmedValue === "" || isEmailValid(trimmedValue)
-          : prevState.emailValid,
-      passwordValid:
-        id === "password"
-          ? trimmedValue === "" || isPasswordValid(trimmedValue)
-          : prevState.passwordValid,
-      passwordMatch:
-        id === "confirmPassword"
-          ? trimmedValue === prevState.password || trimmedValue === ""
-          : id === "password"
-          ? trimmedValue === prevState.confirmPassword
-          : prevState.passwordMatch,
     }));
   }
 };
