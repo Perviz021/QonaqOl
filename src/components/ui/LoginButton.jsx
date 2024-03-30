@@ -11,10 +11,15 @@ import {
 
 const LoginButton = () => {
   const [token, setToken] = useState(null);
+  const [active, setActive] = useState("");
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-
+  useEffect(() => {
+    localStorage.setItem("activePage", active);
+    setActive(localStorage.getItem("activePage"));
+  }, [active]);
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
@@ -114,34 +119,43 @@ const LoginButton = () => {
                 </>
               ) : (
                 <>
-                  <NavLink
-                    to="/account"
-                    className="flex justify-start items-center w-full space-x-[12px] pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] "
+                  <div
+                    onClick={() => {
+                      setActive("1");
+                      navigate("/account");
+                    }}
+                    className="flex justify-start cursor-pointer items-center w-full space-x-[12px] pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] "
                   >
                     <span>
                       <img src={profile} alt="" />
                     </span>
                     <span>Profilim</span>
-                  </NavLink>
-                  <NavLink
-                    to={"/account"}
-                    className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                  </div>
+                  <div
+                    onClick={() => {
+                      setActive("3");
+                      navigate("/account");
+                    }}
+                    className="flex items-center cursor-pointer justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
                   >
                     <span>
                       <img src={receipt} alt="" />
                     </span>
                     <span>Rezervlərim</span>
-                  </NavLink>
-                  <NavLink
-                    to="/"
+                  </div>
+                  <div
+                    onClick={() => {
+                      setActive("4");
+                      navigate("/account");
+                    }}
                     // onClick={handleLogout}
-                    className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
+                    className="flex items-center cursor-pointer justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"
                   >
                     <span>
                       <img src={favourites} alt="" />
                     </span>
                     <span>Bəyəndiklərim</span>
-                  </NavLink>
+                  </div>
                   <button
                     onClick={handleLogout}
                     className="flex items-center justify-start space-x-[12px] w-full pl-[30px] py-2 text-[#2B2C34] text-center hover:bg-gray-200 text-[14px] font-normal"

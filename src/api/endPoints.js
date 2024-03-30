@@ -4,6 +4,9 @@ export const endPoints = {
     byId: (id) => `/v1/users/${id}`,
     delete: (id) => `/v1/users/${id}`,
   },
+  like_controller: {
+    create: (userId, eventId) => `/api/like-event/${eventId}/${userId}`,
+  },
   gift_card_controller: {
     getbyId: (id) => `/api/gift-card/${id}`,
     editbyId: (id) => `/api/gift-card/${id}`,
@@ -25,10 +28,11 @@ export const endPoints = {
 
   event_controller: {
     getbyId: (id) => `/api/event/${id}`,
-    editbyId: (id) => `/api/event/${id}`,
+    editbyId: (id, params) => `/api/event/${id}?${params}`,
     deletebyId: (id) => `/api/event/${id}`,
     create: (params) => `/api/event/create-event?${params}`,
     search: "/api/event/search",
+    wishlist: (id) => `/api/event/liked-events/${id}`,
     date_between: "/api/event/date-between",
     date_between_category: "/api/event/date-between",
     date_between_bycategory: (category) =>

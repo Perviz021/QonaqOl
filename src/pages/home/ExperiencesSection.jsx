@@ -1,6 +1,6 @@
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 
-import { arrowRight } from "../../assets";
+import { arrowRight, loader } from "../../assets";
 import { useEffect, useState } from "react";
 import { getEvents } from "../../utils/apiUtils";
 import { Link } from "react-router-dom";
@@ -30,27 +30,35 @@ function ExperiencesSection() {
       </h1>
 
       {/* Experiences Cards */}
-      <div className="container mx-auto">
-        {/* First Row */}
-        <div className="grid grid-cols-4 gap-x-[20px] gap-y-44">
-          {data &&
-            data
-              .slice(0, 8)
-              .map((el, i) => (
-                <ExperienceCard
-                  id={el.id}
-                  name={el?.eventName}
-                  key={i}
-                  imgSrc={el?.mainPhotoUrl}
-                  content={el?.description}
-                  time={el?.eventDate}
-                  place={el?.eventLocation}
-                  price={`${el?.eventPrice} AZN`}
-                  imgHeight="200px"
-                />
-              ))}
+      {data == null ? (
+        <div className="w-full  flex items-center justify-center">
+          <img src={loader} alt="" className="size-[50px]" />
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="container mx-auto">
+            {/* First Row */}
+            <div className="grid grid-cols-4 gap-x-[20px] gap-y-44">
+              {data &&
+                data
+                  .slice(0, 8)
+                  .map((el, i) => (
+                    <ExperienceCard
+                      id={el.id}
+                      name={el?.eventName}
+                      key={i}
+                      imgSrc={el?.mainPhotoUrl}
+                      content={el?.description}
+                      time={el?.eventDate}
+                      place={el?.eventLocation}
+                      price={`${el?.eventPrice} AZN`}
+                      imgHeight="200px"
+                    />
+                  ))}
+            </div>
+          </div>
+        </>
+      )}
     </section>
   );
 }
