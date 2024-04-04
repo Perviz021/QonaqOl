@@ -112,7 +112,8 @@ export const googleSignup = async (
   type,
   formState,
   setFormState,
-  navigate
+  navigate,
+  navigateToCreateEvent = null
 ) => {
   try {
     const data = await signInWithPopup(auth, provider);
@@ -121,7 +122,14 @@ export const googleSignup = async (
     const user = data.user;
 
     if (type === "signup")
-      handleSignup(e, user, formState, setFormState, navigate);
+      handleSignup(
+        e,
+        user,
+        formState,
+        setFormState,
+        navigate,
+        navigateToCreateEvent
+      );
     else if (type === "login")
       handleSignIn(e, user, formState, setFormState, navigate);
   } catch (error) {
@@ -136,7 +144,8 @@ export const handleSignup = async (
   user = null,
   formState,
   setFormState,
-  navigate
+  navigate,
+  navigateToCreateEvent = null
 ) => {
   e.preventDefault();
 
@@ -187,7 +196,9 @@ export const handleSignup = async (
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
 
-      navigate("/"); // Navigate to login page using useNavigate
+      if (!navigateToCreateEvent)
+        navigate("/"); // Navigate to login page using useNavigate
+      else navigate("/create-event");
     } else {
       if (response.status === 401) {
         // If token is expired or invalid, try refreshing the token
@@ -200,7 +211,14 @@ export const handleSignup = async (
           console.error("Unable to refresh token. Please try again later.");
         }
       } else if (response.status === 405) {
-        handleSignIn(e, user, formState, setFormState, navigate);
+        handleSignIn(
+          e,
+          user,
+          formState,
+          setFormState,
+          navigate,
+          navigateToCreateEvent
+        );
       } else {
         // console.error("Error signing up:", response.statusText);
         toast.error(`Qeydiyyatdan keçmək mümkün olmadı. Yenidən cəhd edin.`, {
@@ -241,7 +259,8 @@ export const handleSignIn = async (
   user = null,
   formState,
   setFormState,
-  navigate
+  navigate,
+  navigateToCreateEvent = null
 ) => {
   e.preventDefault();
 
@@ -287,7 +306,8 @@ export const handleSignIn = async (
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
 
-      navigate("/"); // Navigate to home page
+      if (!navigateToCreateEvent) navigate("/"); // Navigate to home page
+      else navigate("/create-event");
     } else if (response.status === 403) {
       const newAccessToken = await useRefreshToken(navigate);
       if (newAccessToken) {

@@ -16,10 +16,10 @@ function SignUpPage() {
   const navigate = useNavigate();
   const { search } = useLocation();
   let params;
-  let data;
+  let navigateToCreateEvent;
   if (search) {
     params = new URLSearchParams(search);
-    data = params.get("data");
+    navigateToCreateEvent = params.get("data");
   }
 
   const [formState, setFormState] = useState({
@@ -164,12 +164,12 @@ function SignUpPage() {
 
                 <h2
                   className={`${
-                    !data
+                    !navigateToCreateEvent
                       ? "text-[40px] mb-[18px] w-[480px]"
                       : "text-[30px] mb-[18px] text-center w-[410px]"
                   } unbounded unbounded-600`}
                 >
-                  {!data
+                  {!navigateToCreateEvent
                     ? "Qeydiyyatdan keç"
                     : "Tədbir yaratmaq üçün qeydiyyatdan keçin"}
                 </h2>
@@ -181,7 +181,8 @@ function SignUpPage() {
                       undefined,
                       formState,
                       setFormState,
-                      navigate
+                      navigate,
+                      navigateToCreateEvent
                     )
                   }
                 >
@@ -406,7 +407,14 @@ function SignUpPage() {
                   className={`bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]`}
                   type="button"
                   onClick={(e) =>
-                    googleSignup(e, "signup", formState, setFormState, navigate)
+                    googleSignup(
+                      e,
+                      "signup",
+                      formState,
+                      setFormState,
+                      navigate,
+                      navigateToCreateEvent
+                    )
                   }
                 >
                   <span className="size-[20px]">
