@@ -492,3 +492,44 @@ export const month = [
   "Noyabr",
   "Dekabr",
 ];
+
+export const category = [
+  {
+    categoryName: "Kənd həyatı",
+    imageUrl: "/src/assets/icons/tree.svg",
+    id: "COUNTRY_LIFE",
+  },
+  {
+    categoryName: "Kamplar  ",
+    imageUrl: "/src/assets/icons/home-2.svg",
+    id: "CAMPING",
+  },
+  {
+    categoryName: " Rəssamlıq  ",
+    imageUrl: "/src/assets/icons/brush.svg",
+    id: "PAINTING",
+  },
+  {
+    categoryName: "Yemək hazırlama",
+    imageUrl: "/src/assets/icons/cake.svg",
+    id: "COOKING",
+  },
+  {
+    categoryName: " Dulusçuluq  ",
+    imageUrl: "/src/assets/icons/swatch.svg",
+    id: "POTTERY",
+  },
+  {
+    categoryName: "Musiqi",
+    imageUrl: "/src/assets/icons/music.svg",
+    id: "MUSIC",
+  },
+];
+
+const options = [
+  "Kamplar",
+  "Rəssamlıq",
+  "Yemək hazırlama",
+  "Dulusçuluq",
+  "Musiqi",
+];

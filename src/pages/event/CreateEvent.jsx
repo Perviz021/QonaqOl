@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EventDescription from "./EventDescription";
 import EventCategory from "./EventCategory";
 import EventDate from "./EventDate";
@@ -14,6 +14,7 @@ import axios from "axios";
 import { getEvents } from "../../utils/apiUtils";
 
 const CreateEvent = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [eventName, setEventName] = useState("");
@@ -167,29 +168,57 @@ const CreateEvent = () => {
       });
     }
 
-    try {
-      // Send the form data to the backend API
-      const response = await axios.post(
-        `https://qonaqol.onrender.com/qonaqol/api/event/create-event?${queryParamsString}`,
+    if (id) {
+      try {
+        // Send the form data to the backend API
+        const response = await axios.put(
+          `https://qonaqol.onrender.com/qonaqol/api/event/${id}?${queryParamsString}`,
 
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          formData,
+
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        if (response.status === 200) {
+          setShowSuccessPopup(true);
+          // Handle success, e.g., show a success message
+          console.log("Event created successfully!");
+        } else {
+          // Handle error response from the server
+          console.error("Failed to create event:", response.statusText);
         }
-      );
-      if (response.status === 201) {
-        setShowSuccessPopup(true);
-        // Handle success, e.g., show a success message
-        console.log("Event created successfully!");
-      } else {
-        // Handle error response from the server
-        console.error("Failed to create event:", response.statusText);
+      } catch (error) {
+        // Handle network errors or other exceptions
+        console.error("An error occurred:", error);
       }
-    } catch (error) {
-      // Handle network errors or other exceptions
-      console.error("An error occurred:", error);
+    } else {
+      try {
+        // Send the form data to the backend API
+        const response = await axios.post(
+          `https://qonaqol.onrender.com/qonaqol/api/event/create-event?${queryParamsString}`,
+
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        if (response.status === 201) {
+          setShowSuccessPopup(true);
+          // Handle success, e.g., show a success message
+          console.log("Event created successfully!");
+        } else {
+          // Handle error response from the server
+          console.error("Failed to create event:", response.statusText);
+        }
+      } catch (error) {
+        // Handle network errors or other exceptions
+        console.error("An error occurred:", error);
+      }
     }
   };
 
@@ -238,7 +267,7 @@ const CreateEvent = () => {
           options={options}
           onCategoryChange={handleCategoryChange}
         />
-        <div className="flex items-start justify-normal space-x-[40px]">
+        <div className="flex items-start justify-between space-x-[40px]">
           <EventDate onDateChange={handleDateChange} />
           <EventTime
             onStartTimeChange={handleStartTimeChange}
@@ -273,7 +302,11 @@ const CreateEvent = () => {
       {showSuccessPopup && (
         <PopupMessage
           handleContinueButtonClick={handleContinueButtonClick}
-          textMessage="Tədbiriniz qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq. Təşəkkürlər!"
+          textMessage={
+            id
+              ? "Tədbiriniz uğurla yeniləndi. Təşəkkürlər!"
+              : "Tədbiriniz qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq. Təşəkkürlər!"
+          }
         />
       )}
     </div>

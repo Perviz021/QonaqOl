@@ -43,3 +43,7 @@ export const createLikeEventById = (userId, eventId) => {
 export const getWishlist = (id) => {
   return api.get(endPoints.event_controller.wishlist(id));
 };
+
+export const getEventsByCategory = (category) => {
+  return api.get(endPoints.event_controller.searchWithCategory(category));
+};

@@ -1,9 +1,14 @@
 import React from "react";
 
 import { tree, cake, brush, home2, music, swatch } from "../../assets";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { category } from "../../mock/static";
+import { getEventsByCategory } from "../../utils/apiUtils";
 
 const ActivityAreas = () => {
+  const filteredcategoryFn = (category) => {
+    getEventsByCategory(category).then((res) => console.log(res.data));
+  };
   return (
     <section className="w-full bg-[#F2F2F2] py-[50px] mt-[80px]">
       <div className="text-center">
@@ -13,30 +18,17 @@ const ActivityAreas = () => {
         </p>
       </div>
       <div className="w-[1194px] mx-auto flex justify-between mt-[40px]">
-        <span className="inline-flex flex-col items-center space-y-[12px]">
-          <img src={tree} alt="" />
-          <p>Kənd həyatı</p>
-        </span>
-        <span className="inline-flex flex-col items-center space-y-[12px]">
-          <img src={cake} alt="" />
-          <p>Yemək hazırlama</p>
-        </span>
-        <span className="inline-flex flex-col items-center space-y-[12px]">
-          <img src={brush} alt="" />
-          <p>Rəssamlıq</p>
-        </span>
-        <span className="inline-flex flex-col items-center space-y-[12px]">
-          <img src={swatch} alt="" />
-          <p>Dulusculuq</p>
-        </span>
-        <span className="inline-flex flex-col items-center space-y-[12px]">
-          <img src={home2} alt="" />
-          <p>Kamplar</p>
-        </span>
-        <span className="inline-flex flex-col items-center space-y-[12px]">
-          <img src={music} alt="" />
-          <p>Musiqi</p>
-        </span>
+        {category.map((el, i) => (
+          <Link
+            to={`/events/${el.id}`}
+            onClick={() => filteredcategoryFn(el.id)}
+            key={i}
+            className="inline-flex cursor-pointer flex-col items-center space-y-[12px]"
+          >
+            <img src={el.imageUrl} alt="" />
+            <p>{el.categoryName}</p>
+          </Link>
+        ))}
       </div>
     </section>
   );

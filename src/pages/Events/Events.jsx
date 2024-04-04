@@ -4,22 +4,30 @@ import ExperienceCard from "../../components/widgets/ExperienceCard";
 import Subscribe from "../home/Subscribe";
 import { MdFirstPage } from "react-icons/md";
 import { MdLastPage } from "react-icons/md";
-import { getEvents } from "../../utils/apiUtils";
-import { v4 as uuidv4 } from "uuid";
+import { getEvents, getEventsByCategory } from "../../utils/apiUtils";
+import { useParams } from "react-router-dom";
 import { loader } from "../../assets";
 const Events = () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState(0);
   const [count, setCount] = useState(1);
+  const { category } = useParams();
+
   useEffect(() => {
-    getEvents().then((res) => setData(res.data));
-    window.scrollTo(0, 0);
-  }, []);
+    if (category) {
+      getEventsByCategory(category).then((res) => setData(res.data));
+    } else {
+      getEvents().then((res) => setData(res.data));
+      window.scrollTo(0, 0);
+    }
+  }, [category]);
 
   return (
     <>
-      {data === false ? (
-        <img src={loader} alt="" />
+      {data.length === 0 ? (
+        <div className="w-full h-screen flex items-center justify-center">
+          <img src={loader} alt="" />
+        </div>
       ) : (
         <>
           <div className="w-[1240px] mx-auto min-h-screen">

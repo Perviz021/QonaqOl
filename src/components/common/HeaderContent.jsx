@@ -7,8 +7,32 @@ import {
   headerImg3,
   headerImg4,
 } from "../../assets";
+import { useState } from "react";
+import EventDate from "../../pages/event/EventDate";
+import EventCategory from "../../pages/event/EventCategory";
 
 function HeaderContent() {
+  const options = [
+    "Kənd həyatı",
+    "Kamplar",
+    "Rəssamlıq",
+    "Yemək hazırlama",
+    "Dulusçuluq",
+    "Musiqi",
+  ];
+  const [dateToggle, setDateToggle] = useState(false);
+  const [categoryToggle, setCategoryToggle] = useState(false);
+  const [category, setCategory] = useState(null);
+  const [eventDate, setEventDate] = useState("");
+
+  const handleCategoryChange = (category) => {
+    setCategory(category);
+    console.log(category);
+  };
+  const handleDateChange = (date) => {
+    setEventDate(date);
+  };
+
   return (
     <div className="w-[1240px] mx-auto mt-[60px] flex items-center h-full space-x-[50px]">
       <div className="flex flex-col w-[50%] h-full relative top-[20px]">
@@ -21,11 +45,17 @@ function HeaderContent() {
           hazırlanmış mükəmməl tədbirləri təcrübə edin.
         </p>
         <button className="inline-flex items-center w-[95%] rounded-[8px] overflow-hidden border border-[#CCCCCC]">
-          <span className="inline-flex items-center justify-start w-[240px] p-[12px] space-x-[10px]">
+          <span
+            className="inline-flex hover:bg-black/10 transition-colors active:bg-black/20 items-center justify-start w-[240px] p-[12px] space-x-[10px]"
+            onClick={() => setCategoryToggle(!categoryToggle)}
+          >
             <img src={headerContentBtn1} alt="" className="size-[20px]" />
             <span className="text-[16px] font-[400]">Maraqlandığınız sahə</span>
           </span>
-          <span className="inline-flex items-center justify-start w-[240px] p-[12px] border-l space-x-[10px]">
+          <span
+            onClick={() => setDateToggle(!dateToggle)}
+            className="inline-flex items-center  hover:bg-black/10 active:bg-black/20 transition-colors justify-start w-[240px] p-[12px] border-l space-x-[10px]"
+          >
             <img src={calendar} alt="" className="size-[20px]" />
             <span className="text-[16px] font-[400]">Nə vaxt?</span>
           </span>
@@ -34,6 +64,22 @@ function HeaderContent() {
             <span className="text-[16px] font-[400]">Kəşf et</span>
           </span>
         </button>
+
+        <div className="grid grid-cols-2 gap-3 mt-5  items-center">
+          {categoryToggle ? (
+            <div className="">
+              <EventCategory
+                options={options}
+                onCategoryChange={handleCategoryChange}
+              />
+            </div>
+          ) : null}
+          {dateToggle ? (
+            <div className="">
+              <EventDate onDateChange={handleDateChange} />
+            </div>
+          ) : null}
+        </div>
       </div>
       <div className="w-[551px] shrink-0 relative bottom-[20px]">
         <div className="grid grid-cols-2">
