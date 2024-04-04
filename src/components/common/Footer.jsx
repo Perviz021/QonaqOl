@@ -9,8 +9,19 @@ import { IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 import Logo from "./Logo";
+import { useEffect, useState } from "react";
 
 function Footer() {
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (accessToken) {
+      setToken(accessToken);
+    }
+  }, []);
+
   return (
     <footer className="bg-[#000] px-[100px] pt-[109px] pb-[60px] flex flex-col text-[#F1F1F1] divide-y divide-[#404040]">
       <div className="flex justify-between mb-[200px]">
@@ -53,7 +64,7 @@ function Footer() {
           </h3>
           <ul className="space-y-[17px] text-[16px] font-[400]">
             <li>
-              <Link to="#">Haqqımızda</Link>
+              <Link to="/about">Haqqımızda</Link>
             </li>
             <li>
               <Link to="#">Karyera</Link>
@@ -73,7 +84,9 @@ function Footer() {
           </Link>
           <ul className="space-y-[17px] text-[16px] font-[400] mt-[24px]">
             <li>
-              <Link to="#">Tədbir yarat</Link>
+              <Link to={token ? "/create-event" : "/signup?data=event"}>
+                Tədbir yarat
+              </Link>
             </li>
             <li>
               <Link to="#">Kateqoriyalar</Link>
