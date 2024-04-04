@@ -17,6 +17,7 @@ import axios from "axios";
 import Share from "../../components/ui/react-share/Share";
 import ShowShare from "../../assets/icons/send-2-fill.svg";
 import ClosedShare from "../../assets/icons/send-2.svg";
+
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -44,6 +45,11 @@ const Event = () => {
       setOtherEvents(res.data.filter((i) => i.category === data?.category))
     );
   }, [otherEvents, data?.category]);
+
+  useEffect(() => {
+    // Scroll to the top of the page when component mounts
+    window.scrollTo(0, 0);
+  }, []);
 
   const accessToken = localStorage.getItem("accessToken");
   const popupRef = useRef();

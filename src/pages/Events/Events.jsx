@@ -13,6 +13,7 @@ const Events = () => {
   const [count, setCount] = useState(1);
   useEffect(() => {
     getEvents().then((res) => setData(res.data));
+    window.scrollTo(0, 0);
   }, []);
 
   return (
