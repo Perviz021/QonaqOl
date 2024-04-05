@@ -18,7 +18,6 @@ import Account from "./pages/account/Account.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Reservation from "./pages/reservation/Reservations.jsx";
-import UpdateEvent from "./pages/event/UpdateEvent.jsx";
 
 const router = createBrowserRouter([
   {
