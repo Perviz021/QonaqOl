@@ -47,3 +47,17 @@ export const getWishlist = (id) => {
 export const getEventsByCategory = (category) => {
   return api.get(endPoints.event_controller.searchWithCategory(category));
 };
+
+export const getEventsBetweenCategoryAndDate = (
+  startTime,
+  EndTime,
+  category
+) => {
+  return api.get(
+    endPoints.event_controller.date_between_category(
+      startTime,
+      EndTime,
+      category
+    )
+  );
+};

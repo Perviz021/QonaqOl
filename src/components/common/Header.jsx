@@ -2,7 +2,7 @@ import HeaderContent from "./HeaderContent";
 
 function Header() {
   return (
-    <div className="h-screen w-full bg-[#fff] overflow-hidden relative bottom-[10px]">
+    <div className="  w-full bg-[#fff]     z-50 bottom-[10px]">
       <HeaderContent />
     </div>
   );

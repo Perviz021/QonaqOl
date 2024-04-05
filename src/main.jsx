@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./assets/css/index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom"; // Import useNavigate hook
@@ -18,7 +17,6 @@ import Account from "./pages/account/Account.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Reservation from "./pages/reservation/Reservations.jsx";
-import UpdateEvent from "./pages/event/UpdateEvent.jsx";
 
 const router = createBrowserRouter([
   {
@@ -108,7 +106,6 @@ const router = createBrowserRouter([
     path: "/events/update/:id",
     element: (
       <AppLayout>
-        {/* <UpdateEvent /> */}
         <CreateEvent />
       </AppLayout>
     ),

@@ -35,7 +35,8 @@ export const endPoints = {
     wishlist: (id) => `/api/event/liked-events/${id}`,
     searchWithCategory: (category) => `/api/event/category/${category}`,
     date_between: "/api/event/date-between",
-    date_between_category: "/api/event/date-between",
+    date_between_category: (startTime, endTime, category) =>
+      `/api/event/date-between-category?startDate=${startTime}&endDate=${endTime}&category=${category}`,
     date_between_bycategory: (category) =>
       `/api/event/date-between/${category}`,
     all: "/api/event/all-events",

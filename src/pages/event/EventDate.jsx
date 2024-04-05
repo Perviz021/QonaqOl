@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { calendar } from "../../assets";
 import az from "date-fns/locale/az"; // Import Azerbaijani locale
 
-const CustomDatePicker = ({ selectedDate, onChange }) => {
+const CustomDatePicker = ({ selectedDate, onChange, past }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleCalendar = () => {
     // e.preventDefault();
     setIsOpen(!isOpen);
@@ -30,7 +29,7 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
           onClickOutside={() => setIsOpen(false)}
           dateFormat="dd-MM-yyyy" // Specify the date format here
           locale={az} // Set Azerbaijani locale
-          minDate={new Date()}
+          minDate={past ? null : new Date()}
           calendarClassName={customCalendarClassName} // Apply custom Tailwind CSS classes to calendar
         />
         <button
@@ -45,8 +44,12 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
   );
 };
 
-const EventDate = ({ onDateChange }) => {
+const EventDate = ({ onDateChange, pastTime = false }) => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [past, setPast] = useState(false);
+  useEffect(() => {
+    setPast(pastTime);
+  }, [pastTime]);
 
   const handleDateChange = (date) => {
     if (date) {
@@ -66,7 +69,11 @@ const EventDate = ({ onDateChange }) => {
   };
 
   return (
-    <CustomDatePicker selectedDate={selectedDate} onChange={handleDateChange} />
+    <CustomDatePicker
+      selectedDate={selectedDate}
+      onChange={handleDateChange}
+      past={past}
+    />
   );
 };
 
