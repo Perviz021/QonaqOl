@@ -18,8 +18,8 @@ const Events = () => {
       getEventsByCategory(category).then((res) => setData(res.data));
     } else {
       getEvents().then((res) => setData(res.data));
-      window.scrollTo(0, 0);
     }
+    window.scrollTo(0, 0);
   }, [category]);
 
   return (
