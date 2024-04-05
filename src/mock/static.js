@@ -1,3 +1,5 @@
+import { tree, cake, brush, home2, music, swatch } from "../assets";
+
 export const staticData = [
   {
     _id: 1,
@@ -496,32 +498,32 @@ export const month = [
 export const category = [
   {
     categoryName: "Kənd həyatı",
-    imageUrl: "/src/assets/icons/tree.svg",
+    imageUrl: tree,
     id: "COUNTRY_LIFE",
   },
   {
-    categoryName: "Kamplar  ",
-    imageUrl: "/src/assets/icons/home-2.svg",
+    categoryName: "Kamplar",
+    imageUrl: home2,
     id: "CAMPING",
   },
   {
-    categoryName: " Rəssamlıq  ",
-    imageUrl: "/src/assets/icons/brush.svg",
+    categoryName: "Rəssamlıq",
+    imageUrl: brush,
     id: "PAINTING",
   },
   {
     categoryName: "Yemək hazırlama",
-    imageUrl: "/src/assets/icons/cake.svg",
+    imageUrl: cake,
     id: "COOKING",
   },
   {
-    categoryName: " Dulusçuluq  ",
-    imageUrl: "/src/assets/icons/swatch.svg",
+    categoryName: "Dulusçuluq",
+    imageUrl: swatch,
     id: "POTTERY",
   },
   {
     categoryName: "Musiqi",
-    imageUrl: "/src/assets/icons/music.svg",
+    imageUrl: music,
     id: "MUSIC",
   },
 ];

@@ -1,6 +1,5 @@
 import React from "react";
 
-import { tree, cake, brush, home2, music, swatch } from "../../assets";
 import { Link, NavLink } from "react-router-dom";
 import { category } from "../../mock/static";
 import { getEventsByCategory } from "../../utils/apiUtils";
