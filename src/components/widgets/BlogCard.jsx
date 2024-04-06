@@ -28,14 +28,14 @@ const BlogCard = ({ videoId, thumbnailImg, title, description }) => {
           alt=""
         />
       </div>
-      <div className="space-y-[20px] mt-[20px]">
-        <h3 className="text-[20px] font-bold font-inter text-[#101010]">
+      <div className="lg:space-y-[20px] mt-[20px]">
+        <h3 className="text-[20px] font-[600] leading-[28px] lg:font-bold font-inter text-[#101010]">
           {title}
         </h3>
-        <p className="font-[400] text-[16px] font-inter text-black leading-[24px]">
+        <p className="font-[400] text-[16px] font-inter text-black leading-[24px] mt-[16px]">
           {description}
         </p>
-        <p className="text-[#A5A5A5] text-[14px] font-inter font-[400]">
+        <p className="text-[#A5A5A5] text-[14px] font-[400] my-[32px]">
           14 Feb - John Doe
         </p>
       </div>

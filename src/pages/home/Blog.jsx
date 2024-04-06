@@ -3,15 +3,17 @@ import { thumbnail1, thumbnail2, thumbnail3 } from "../../assets";
 
 const Blog = () => {
   return (
-    <section className="w-[1086px] mx-auto mt-[80px]">
-      <h5 className="unbounded unbounded-600 text-[24px] text-center">
-        Bloqlar
-      </h5>
-      <p className="font-[400] text-[20px] text-[#6A6A6A] text-center mt-[20px] mb-[40px]">
-        Tədbirlərimiz haqqında ətraflı məlumatları bloq yazılarımızdan əldə edə
-        bilərsiniz
-      </p>
-      <div className="w-full grid grid-cols-3 gap-[28px]">
+    <section className="w-full lg:w-[1086px] mx-auto mt-[80px]">
+      <div className="px-[20px]">
+        <h5 className="unbounded unbounded-600 text-[32px] lg:text-[24px] text-center">
+          Bloqlar
+        </h5>
+        <p className="font-[400] text-[14px] lg:text-[20px] leading-[24px] text-[#6A6A6A] text-center mt-[20px] mb-[60px] lg:mb-[40px]">
+          Tədbirlərimiz haqqında ətraflı məlumatları bloq yazılarımızdan əldə
+          edə bilərsiniz
+        </p>
+      </div>
+      <div className="w-full grid px-[20px] grid-cols-1 lg:grid-cols-3 gap-[28px]">
         <BlogCard
           videoId="S8-z26rBPLw?si=R6oRiCNX3Wik6dLj"
           thumbnailImg={thumbnail1}
