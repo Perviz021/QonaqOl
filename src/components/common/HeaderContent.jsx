@@ -67,8 +67,8 @@ function HeaderContent() {
 
   return (
     <>
-      <div className="w-[1240px] mx-auto mt-[120px] mb-[120px] flex items-center  space-x-[50px]">
-        <div className="flex flex-col w-[50%] h-full relative z-30 top-[20px]">
+      <div className="w-[1240px] mx-auto mt-[70px] lg:mb-[120px] flex items-start justify-between space-x-[50px]">
+        <div className="flex flex-col w-[50%] h-full relative z-30">
           <h1 className="text-[50px] unbounded unbounded-700 text-[#333333]">
             Növbəti <br /> macəranızı <br /> bizimlə kəşf edin
           </h1>
@@ -103,7 +103,7 @@ function HeaderContent() {
             </span>
           </button>
 
-          <div className="grid grid-cols-1 gap-3 mt-5  items-center">
+          <div className="grid grid-cols-1 gap-3 mt-5 w-[95%] items-center">
             {categoryToggle ? (
               <div className="">
                 <EventCategory
@@ -142,12 +142,8 @@ function HeaderContent() {
                 className="w-[280px] h-[180px] rounded-[90px] object-cover shrink-0"
               />
             </span>
-            <span className="relative top-[20px] left-[20px]">
-              <img
-                src={headerImg3}
-                alt=""
-                className="w-[280px] h-[180px] rounded-[90px] object-cover shrink-0"
-              />
+            <span className="relative top-[20px] left-[20px] w-[280px] h-[180px] rounded-[90px] overflow-hidden">
+              <img src={headerImg3} alt="" className="img-cover shrink-0" />
             </span>
             <span className="relative bottom-[80px] left-[50px] bg-img bg-img2">
               <img
