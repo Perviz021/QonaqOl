@@ -21,6 +21,7 @@ import shapes from "./icons/shapes.svg";
 import bookmark from "./icons/bookmark.svg";
 import gift from "./icons/gift.svg";
 import arrowRightMenu from "./icons/arrowRightMenu.svg";
+import search from "./icons/search.svg";
 
 // Login button
 import profile from "./icons/profile.svg";
@@ -205,4 +206,5 @@ export {
   gift,
   bookmark,
   arrowRightMenu,
+  search,
 };

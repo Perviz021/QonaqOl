@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 
 import Logo from "./Logo";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 function Footer() {
   const [token, setToken] = useState("");
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -100,9 +102,9 @@ function Footer() {
               <span className="p-2 text-[16px] lg:size-[28px] bg-[#121214] rounded-full inline-flex items-center justify-center">
                 <FaWhatsapp />
               </span>
-              <span className="text-[10px] lg:text-[16px]">
-                +994 12 444 00 00
-              </span>
+              {!isMobile && (
+                <span className="text-[16px]">+994 12 444 00 00</span>
+              )}
             </p>
           </div>
         </div>
