@@ -15,6 +15,12 @@ import headerImg3 from "./img/header-img3.jpeg";
 import headerImg4 from "./img/header-img4.jpeg";
 import heart from "./img/heart.png";
 import great from "./img/great.png";
+import profileCircle from "./icons/profile-circle.svg";
+import menu from "./icons/menu.svg";
+import shapes from "./icons/shapes.svg";
+import bookmark from "./icons/bookmark.svg";
+import gift from "./icons/gift.svg";
+import arrowRightMenu from "./icons/arrowRightMenu.svg";
 
 // Login button
 import profile from "./icons/profile.svg";
@@ -193,4 +199,10 @@ export {
   whatsapp,
   copy,
   copySuccess,
+  menu,
+  profileCircle,
+  shapes,
+  gift,
+  bookmark,
+  arrowRightMenu,
 };
