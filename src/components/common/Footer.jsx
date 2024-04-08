@@ -109,7 +109,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="pt-[28px]">
+      <div className={`${isMobile && "text-[14px]"} pt-[28px]`}>
         <p>© Qonaqol.az 2024. Bütün hüquqlar qorunur</p>
       </div>
     </footer>
