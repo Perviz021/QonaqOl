@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { chevronDown, chevronUp } from "../../assets";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const optionsMap = {
   "Kənd həyatı": "COUNTRY_LIFE",
@@ -14,6 +15,7 @@ const EventCategory = ({ options, onCategoryChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const dropdownRef = useRef(null);
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -41,7 +43,7 @@ const EventCategory = ({ options, onCategoryChange }) => {
 
   return (
     <div>
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
+      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px] text-white lg:text-black">
         Kateqoriya
       </h4>
       <div className="text-left relative" ref={dropdownRef}>
@@ -63,7 +65,7 @@ const EventCategory = ({ options, onCategoryChange }) => {
         </div>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 w-full rounded-b-[8px] border-transparent focus:border-transparent focus:ring-0 bg-[#f2f2f2]  focus:outline-none z-20 py-[20px] space-y-[16px]">
+          <div className="origin-top-right absolute right-0 w-full rounded-b-[8px] border-b border-r border-l border-[#A1A1A199] lg:border-transparent lg:focus:border-transparent lg:focus:ring-0 bg-[#f2f2f2]  focus:outline-none z-20 py-[20px] space-y-[16px]">
             {options.map((option, index) => (
               <button
                 key={index}

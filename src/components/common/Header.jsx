@@ -7,8 +7,8 @@ function Header() {
   return (
     <div
       className={`${
-        isMobile ? "pt-[80px] pb-[218px]" : "bottom-[10px]"
-      } w-full bg-[#fff] z-50`}
+        isMobile ? "pt-[80px] pb-[218px] headerBgMobile" : "bottom-[10px] z-50"
+      } w-full bg-[#fff]`}
     >
       <HeaderContent />
     </div>

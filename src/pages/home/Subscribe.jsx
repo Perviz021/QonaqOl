@@ -1,25 +1,9 @@
 import { useEffect, useState } from "react";
 import SubscriptionButton from "../../components/ui/SubscriptionButton";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const Subscribe = () => {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 640); // Adjust the threshold as needed
-    };
-
-    // Set initial screen size
-    handleResize();
-
-    // Listen for window resize events
-    window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
   return (
     <section className="w-full bg-[#F2F2F2] mt-[20px] lg:mt-[150px] px-[20px] py-[175px] lg:py-[200px]">
@@ -28,7 +12,7 @@ const Subscribe = () => {
           Yeni tədbirlərdən ilk{" "}
           <span
             className={`${
-              isSmallScreen ? "bg-border-yellow" : "bg-border-yellow-lg"
+              isMobile ? "bg-border-yellow" : "bg-border-yellow-lg"
             } relative z-10`}
           >
             sən xəbərdar ol

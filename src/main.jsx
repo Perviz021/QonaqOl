@@ -17,14 +17,15 @@ import Account from "./pages/account/Account.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Reservation from "./pages/reservation/Reservations.jsx";
+import HomePageLayout from "./layouts/HomePageLayout.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <AppLayout>
+      <HomePageLayout>
         <HomePage />
-      </AppLayout>
+      </HomePageLayout>
     ),
     errorElement: <ErrorPage />,
   },

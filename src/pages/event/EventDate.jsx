@@ -15,8 +15,8 @@ const CustomDatePicker = ({ selectedDate, onChange, past }) => {
     "!bg-[#f2f2f2] p-[20px] rounded-[8px] shadow-md left-[50px] text-[12px]";
 
   return (
-    <div className="relative  w-[50%]">
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
+    <div className="relative w-[45%] lg:w-[50%]">
+      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px] text-white lg:text-black">
         Tədbirin tarixi
       </h4>
       <div className="inline-flex justify-between items-center rounded-[8px] bg-[#f2f2f2] w-full h-[44px] pr-[20px] pl-[10px] font-[16px] text-[#919191]">

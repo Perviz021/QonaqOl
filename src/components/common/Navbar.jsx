@@ -15,7 +15,13 @@ function Navbar() {
   };
 
   return (
-    <div className="px-[20px] lg:mx-auto w-full lg:w-[1240px] flex items-center justify-between mt-[10px] lg:mt-[20px]">
+    <div
+      className={`${
+        isMobile
+          ? "w-full relative z-30 px-[20px]"
+          : "w-[1240px] mx-auto mt-[20px]"
+      } flex items-center justify-between`}
+    >
       <Logo clearActiveLink={clearActiveLink} />
       {!isMobile ? (
         <>

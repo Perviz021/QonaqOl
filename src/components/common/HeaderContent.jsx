@@ -171,9 +171,13 @@ function HeaderContent() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 mt-5 w-[95%] items-center">
+          <div
+            className={`${
+              isMobile ? "w-full relative" : "w-[95%]"
+            } grid grid-cols-1 gap-3 mt-5`}
+          >
             {categoryToggle ? (
-              <div className="">
+              <div className={`${isMobile && "relative w-full"}`}>
                 <EventCategory
                   options={options}
                   onCategoryChange={handleCategoryChange}
@@ -181,7 +185,11 @@ function HeaderContent() {
               </div>
             ) : null}
             {dateToggle ? (
-              <div className="flex items-center gap-4">
+              <div
+                className={`${
+                  isMobile ? "justify-between relative" : "gap-4"
+                } flex items-center`}
+              >
                 <EventDate
                   onDateChange={handleStartedDateChange}
                   pastTime={true}
@@ -239,7 +247,7 @@ function HeaderContent() {
               <h5 className="unbounded text-[#333333] unbounded-600 text-[24px]  ">
                 {category}
               </h5>
-              <div className="grid grid-cols-3  gap-5 gap-y-32 mt-20 pb-20 cursor-pointer">
+              <div className="grid grid-cols-3 gap-5 gap-y-32 mt-20 pb-20 cursor-pointer">
                 {data.map((el, i) => (
                   <ExperienceCard
                     name={el?.eventName}
