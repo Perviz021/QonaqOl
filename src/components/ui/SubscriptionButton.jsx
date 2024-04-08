@@ -23,7 +23,7 @@ const SubscriptionButton = () => {
         <span
           className={`${
             isMobile
-              ? "text-[14px] px-[10px] h-[40px] flex-1"
+              ? "text-[14px] px-[10px] h-[40px] flex-1 justify-center"
               : "text-[16px] px-[54px] h-[48px]"
           } flex items-center space-x-[8px] cursor-pointer bg-[#FFCE00] rounded-r-[8px]`}
         >

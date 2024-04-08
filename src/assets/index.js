@@ -16,6 +16,7 @@ import headerImg4 from "./img/header-img4.jpeg";
 import heart from "./img/heart.png";
 import great from "./img/great.png";
 import profileCircle from "./icons/profile-circle.svg";
+import profileCircleFilled from "./icons/profileCircleFilled.svg";
 import menu from "./icons/menu.svg";
 import shapes from "./icons/shapes.svg";
 import bookmark from "./icons/bookmark.svg";
@@ -202,6 +203,7 @@ export {
   copySuccess,
   menu,
   profileCircle,
+  profileCircleFilled,
   shapes,
   gift,
   bookmark,

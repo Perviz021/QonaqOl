@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import {
   add,
   favourites,
@@ -7,6 +7,7 @@ import {
   profile,
   profile2,
   profileCircle,
+  profileCircleFilled,
   receipt,
 } from "../../assets";
 import { useMediaQuery } from "@uidotdev/usehooks";
@@ -17,13 +18,18 @@ const LoginButton = () => {
   const [token, setToken] = useState(null);
   const [active, setActive] = useState("");
 
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     localStorage.setItem("activePage", active);
     setActive(localStorage.getItem("activePage"));
   }, [active]);
+
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
@@ -69,7 +75,10 @@ const LoginButton = () => {
       {isMobile && (
         <div>
           <NavLink to="/login">
-            <img src={profileCircle} alt="" />
+            <img
+              src={currentPath === "/" ? profileCircle : profileCircleFilled}
+              alt=""
+            />
           </NavLink>
         </div>
       )}
