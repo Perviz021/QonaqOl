@@ -18,7 +18,7 @@ function Navbar() {
     <div
       className={`${
         isMobile
-          ? "w-full relative z-30 px-[20px]"
+          ? "w-full relative z-30 px-[20px] pt-[10px]"
           : "w-[1240px] mx-auto mt-[20px]"
       } flex items-center justify-between`}
     >

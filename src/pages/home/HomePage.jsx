@@ -12,7 +12,7 @@ function HomePage() {
 
   return (
     <div className={`${isMobile && "overflow-x-hidden"}`}>
-      <div className={`${isMobile && "relative pt-[10px]"}`}>
+      <div className={`${isMobile && "relative]"}`}>
         <Navbar />
         <Header />
         {isMobile && (
