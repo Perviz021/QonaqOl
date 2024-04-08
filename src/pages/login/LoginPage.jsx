@@ -84,7 +84,9 @@ function LoginPage() {
   };
 
   return (
-    <div className={`${!isMobile ? (imageLoaded ? "" : "hidden") : ""}`}>
+    <div
+      className={`${!isMobile ? (imageLoaded ? "" : "hidden") : "pt-[10px]"}`}
+    >
       <div
         className={`${
           isMobile ? "pt-[80px] px-[20px] pb-[108px]" : "flex h-screen"
