@@ -16,7 +16,7 @@ const SubscriptionButton = () => {
           placeholder="Email ünvanı"
           className={`${
             isMobile
-              ? "py-[9px] text-[14px]"
+              ? "py-[9px] text-[14px] w-[218px]"
               : "py-[12px] lg:placeholder:text-[16px] placeholder:font-[400] placeholder:text-[#474744]"
           } px-[20px] bg-white text-[#000] border-none border-transparent focus:border-transparent focus:ring-0 rounded-l-[8px]`}
         />
