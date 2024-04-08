@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthLayout from "../layouts/AuthLayout";
 
 const PrivateRouteAuth = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,6 +16,6 @@ const PrivateRouteAuth = ({ children }) => {
     }
   }, [navigate]);
 
-  return isAuthenticated ? null : children;
+  return isAuthenticated ? null : <AuthLayout>{children}</AuthLayout>;
 };
 export default PrivateRouteAuth;

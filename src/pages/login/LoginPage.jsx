@@ -11,9 +11,11 @@ import {
   isPasswordValid,
   togglePasswordVisibility,
 } from "../../utils/authUtils";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery("only screen and (max-width: 480px)");
 
   const [formState, setFormState] = useState({
     imageLoaded: false,
@@ -82,24 +84,38 @@ function LoginPage() {
   };
 
   return (
-    <div style={{ visibility: imageLoaded ? "visible" : "hidden" }}>
-      <div className="flex h-screen">
-        <div className="w-1/2">
-          <img
-            src={loginBg1}
-            alt=""
-            className={`w-full h-full object-cover ${
-              imageLoaded ? "" : "hidden"
-            }`}
-            onLoad={() => handleImageLoad(setFormState)}
-          />
-        </div>
+    <div className={`${!isMobile ? (imageLoaded ? "" : "hidden") : ""}`}>
+      <div
+        className={`${
+          isMobile ? "pt-[80px] px-[20px] pb-[108px]" : "flex h-screen"
+        }`}
+      >
+        {!isMobile && (
+          <div className="w-1/2">
+            <img
+              src={loginBg1}
+              alt=""
+              className={`w-full h-full object-cover ${
+                imageLoaded ? "" : "hidden"
+              }`}
+              onLoad={() => handleImageLoad(setFormState)}
+            />
+          </div>
+        )}
 
-        <div className="w-1/2 flex items-center relative">
+        <div
+          className={`${
+            isMobile ? "w-full" : "w-1/2"
+          } flex items-center relative`}
+        >
           {!loading && (
-            <div className="w-[60%] mx-auto">
+            <div className={`${isMobile ? "w-full" : "w-[60%] mx-auto"}`}>
               <div className="bg-white rounded mb-[16px]">
-                <h2 className="text-[40px] font-[600] mb-[36px] unbounded unbounded-600">
+                <h2
+                  className={`${
+                    isMobile ? "text-[28px] mb-[40px]" : "text-[40px] mb-[36px]"
+                  } unbounded unbounded-600`}
+                >
                   Daxil ol
                 </h2>
 
@@ -198,7 +214,7 @@ function LoginPage() {
                   )}
                 </div>
 
-                <p className="text-end text-[#0078CC] text-[10px] font-normal mb-[24px]">
+                <p className="text-end text-[#0078CC] text-[8px] lg:text-[10px] font-normal mb-[24px]">
                   <span className="cursor-pointer">Şifrəni unutmusunuz?</span>
                 </p>
 
@@ -234,25 +250,29 @@ function LoginPage() {
               </div>
 
               <div className="mb-[16px] w-full flex items-center justify-center">
-                <hr className="border-t border-[#c6c6c6] inline-block w-[45%] mr-1" />
+                <hr className="border-t border-[#c6c6c6] inline-block w-[43%] lg:w-[45%] mr-1" />
                 <span className="text-gray-500 text-[12px]">və ya</span>
-                <hr className="border-t border-[#c6c6c6] inline-block w-[45%] ml-1" />
+                <hr className="border-t border-[#c6c6c6] inline-block w-[43%] lg:w-[45%] ml-1" />
               </div>
 
               <div className="flex flex-col items-center justify-center">
                 <button
-                  className="bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]"
+                  className="bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[24px] lg:space-x-[10px] py-[10px]"
                   type="button"
                   onClick={(e) =>
                     googleSignup(e, "login", formState, setFormState, navigate)
                   }
                 >
-                  <span className="size-[20px]">
-                    <FaGoogle />
+                  <span>
+                    <FaGoogle className="size-[24px]" />
                   </span>
                   <span>Google ilə davam et</span>
                 </button>
-                <p className="text-[12px] py-3 text-[#2B2B2B] text-center font-normal">
+                <p
+                  className={`${
+                    isMobile ? "text-black" : "text-[#2B2B2B]"
+                  } text-[12px] py-3 text-center font-normal`}
+                >
                   Hesabınıza giriş edərək və ya yeni hesab yaradaraq{" "}
                   <span className="text-[#0074C6]">Xidmət Şərtləri</span> və{" "}
                   <span className="text-[#0074C6]">Məxfilik Siyasətini</span>{" "}
