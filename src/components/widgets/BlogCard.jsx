@@ -50,8 +50,8 @@ const BlogCard = ({ videoId, thumbnailImg, title, description }) => {
             className={`${
               isMobile
                 ? "w-[320px] h-[210px] overflow-hidden"
-                : "absolute top-1/2 left-1/2 -translate-x-1/2  w-1/2 h-[380px]"
-            }  transform -translate-y-1/2 z-20 rounded-[8px]`}
+                : "absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-1/2 h-[380px]"
+            }   z-20 rounded-[8px]`}
             src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
             title={title}
             frameborder="0"

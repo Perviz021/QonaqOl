@@ -6,7 +6,11 @@ const Subscribe = () => {
   const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
   return (
-    <section className="w-full bg-[#F2F2F2] mt-[20px] lg:mt-[150px] px-[20px] py-[175px] lg:py-[200px]">
+    <section
+      className={`${
+        isMobile ? "mt-[20px] px-[20px] py-[175px]" : "mt-[150px] py-[200px]"
+      } w-full bg-[#F2F2F2]`}
+    >
       <div className="w-full lg:w-[720px] mx-auto text-center">
         <h1 className="unbounded unbounded-700 text-[28px] lg:text-[60px] relative w-full">
           Yeni tədbirlərdən ilk{" "}
