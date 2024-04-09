@@ -55,13 +55,12 @@ const DrawerMobile = () => {
   }, []);
 
   const handleLogout = () => {
+    setOpen(false);
     // Remove token, userId from local storage
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userId");
     // Clear token state
     setToken(null);
-    // Close dropdown
-    setDropdownOpen(false);
     // Reload the page
     window.location.reload();
   };
@@ -142,15 +141,22 @@ const DrawerMobile = () => {
             />
           </li>
           {token && (
-            <li>
-              <DrawerLink
-                path="gift-cards"
-                img={logout}
-                name="Çıxış"
-                onClose={onClose}
-                onClick={handleLogout}
-              />
-            </li>
+            <button
+              onClick={handleLogout}
+              className="flex items-center justify-between border-b pb-[4px] w-full"
+            >
+              <span className="flex items-center space-x-[16px]">
+                <span>
+                  <img src={logout} alt="" />
+                </span>
+                <span className="font-[500] text-[16px] text-[#000000B2]">
+                  Çıxış
+                </span>
+              </span>
+              <span>
+                <img src={arrowRightMenu} alt="" />
+              </span>
+            </button>
           )}
         </ul>
       </Drawer>
