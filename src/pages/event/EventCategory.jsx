@@ -11,7 +11,11 @@ const optionsMap = {
   Musiqi: "MUSIC",
 };
 
-const EventCategory = ({ options, onCategoryChange }) => {
+const EventCategory = ({
+  options,
+  onCategoryChange,
+  headerTextColor = null,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const dropdownRef = useRef(null);
@@ -43,7 +47,11 @@ const EventCategory = ({ options, onCategoryChange }) => {
 
   return (
     <div>
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px] text-white lg:text-black">
+      <h4
+        className={`font-[500] text-[20px] leading-[28px] mb-[12px] text-${
+          headerTextColor ? headerTextColor : "black"
+        }`}
+      >
         Kateqoriya
       </h4>
       <div className="text-left relative" ref={dropdownRef}>

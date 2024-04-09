@@ -11,11 +11,13 @@ import EventContact from "./EventContact";
 import EventImageUpload from "./EventImageUpload";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import axios from "axios";
-import { getEvents } from "../../utils/apiUtils";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const CreateEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
+  const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
 
   const [eventName, setEventName] = useState("");
   const [description, setDescription] = useState("");
@@ -238,16 +240,28 @@ const CreateEvent = () => {
   ];
 
   return (
-    <div className="mb-[250px]">
-      <h1 className="my-[90px] mx-[100px] text-[48px] unbounded unbounded-700">
+    <div className={`${isMobile ? "mb-[272px] mx-[20px]" : "mb-[250px]"}`}>
+      <h1
+        className={`${
+          isMobile
+            ? "mt-[63px] mb-[52px] text-[28px] unbounded-600"
+            : "my-[90px] mx-[100px] text-[48px] unbounded-700"
+        } unbounded `}
+      >
         Tədbir yarat
       </h1>
-      <form className="w-[820px] mx-auto space-y-[40px]">
+      <form
+        className={`${
+          isMobile
+            ? "w-full space-y-[20px]"
+            : "w-[820px] mx-auto space-y-[40px]"
+        }`}
+      >
         {/* Tedbirin adi */}
         <div className="flex flex-col gap-[12px]">
           <label
             htmlFor="name"
-            className="font-[500] text-[20px] leading-[28px]"
+            className="text-[#000000CC] font-[500] text-[20px] leading-[28px]"
           >
             Tədbirin adı
           </label>

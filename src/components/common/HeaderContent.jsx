@@ -181,6 +181,7 @@ function HeaderContent() {
                 <EventCategory
                   options={options}
                   onCategoryChange={handleCategoryChange}
+                  headerTextColor="white"
                 />
               </div>
             ) : null}
@@ -193,10 +194,12 @@ function HeaderContent() {
                 <EventDate
                   onDateChange={handleStartedDateChange}
                   pastTime={true}
+                  headerTextColor="white"
                 />
                 <EventDate
                   onDateChange={handleEndedDateChange}
                   pastTime={true}
+                  headerTextColor="white"
                 />
               </div>
             ) : null}

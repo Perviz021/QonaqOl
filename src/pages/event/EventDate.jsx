@@ -4,7 +4,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { calendar } from "../../assets";
 import az from "date-fns/locale/az"; // Import Azerbaijani locale
 
-const CustomDatePicker = ({ selectedDate, onChange, past }) => {
+const CustomDatePicker = ({
+  selectedDate,
+  onChange,
+  past,
+  headerTextColor,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleCalendar = () => {
     // e.preventDefault();
@@ -16,7 +21,11 @@ const CustomDatePicker = ({ selectedDate, onChange, past }) => {
 
   return (
     <div className="relative w-[45%] lg:w-[50%]">
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px] text-white lg:text-black">
+      <h4
+        className={`font-[500] text-[20px] leading-[28px] mb-[12px] text-${
+          headerTextColor ? headerTextColor : "black"
+        }`}
+      >
         Tədbirin tarixi
       </h4>
       <div className="inline-flex justify-between items-center rounded-[8px] bg-[#f2f2f2] w-full h-[44px] pr-[20px] pl-[10px] font-[16px] text-[#919191]">
@@ -44,7 +53,11 @@ const CustomDatePicker = ({ selectedDate, onChange, past }) => {
   );
 };
 
-const EventDate = ({ onDateChange, pastTime = false }) => {
+const EventDate = ({
+  onDateChange,
+  pastTime = false,
+  headerTextColor = null,
+}) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [past, setPast] = useState(false);
   useEffect(() => {
@@ -73,6 +86,7 @@ const EventDate = ({ onDateChange, pastTime = false }) => {
       selectedDate={selectedDate}
       onChange={handleDateChange}
       past={past}
+      headerTextColor={headerTextColor}
     />
   );
 };
