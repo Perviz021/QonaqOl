@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GiftCard from "../../components/widgets/GiftCard";
 import { giftcard1, giftcard2, giftcard3 } from "../../assets";
 import { useForm } from "react-hook-form";
@@ -25,6 +25,10 @@ const GiftCardsPage = () => {
   const handleInputChange = () => {
     setIsFormValid(errors.length === 0);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>

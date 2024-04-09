@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { loginBg1, loader, success, error } from "../../assets";
@@ -16,6 +16,10 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 function LoginPage() {
   const navigate = useNavigate();
   const isMobile = useMediaQuery("only screen and (max-width: 480px)");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [formState, setFormState] = useState({
     imageLoaded: false,

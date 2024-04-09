@@ -24,6 +24,10 @@ function SignUpPage() {
   }
   const isMobile = useMediaQuery("only screen and (max-width: 480px)");
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [formState, setFormState] = useState({
     imageLoaded: false,
     fullName: "",
@@ -179,6 +183,8 @@ function SignUpPage() {
                       ? isMobile
                         ? "text-[28px] mb-[60px] w-full"
                         : "text-[40px] mb-[18px] w-[480px]"
+                      : isMobile
+                      ? "text-[20px] mb-[32px] text-center w-full"
                       : "text-[30px] mb-[18px] text-center w-[410px]"
                   } unbounded unbounded-600`}
                 >
