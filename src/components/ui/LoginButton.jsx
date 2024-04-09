@@ -74,12 +74,23 @@ const LoginButton = () => {
     <>
       {isMobile && (
         <div>
-          <NavLink to="/login">
-            <img
-              src={currentPath === "/" ? profileCircle : profileCircleFilled}
-              alt=""
-            />
-          </NavLink>
+          {token && (
+            <Link
+              to={"/create-event"}
+              className="flex items-center justify-center  size-[32px] p-[6px] bg-[#FFCE00] border-transparent relative z-10 rounded-[8px]"
+              onClick={handleClick}
+            >
+              <img src={add} className="size-[20px]" alt="" />
+            </Link>
+          )}
+          {!token && (
+            <NavLink to="/login">
+              <img
+                src={currentPath === "/" ? profileCircle : profileCircleFilled}
+                alt=""
+              />
+            </NavLink>
+          )}
         </div>
       )}
       {isDesktop && (

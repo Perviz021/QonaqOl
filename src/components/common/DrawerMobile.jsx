@@ -1,6 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Drawer, Space } from "antd";
-import { arrowRightMenu, bookmark, gift, menu, shapes } from "../../assets";
+import {
+  arrowRightMenu,
+  bookmark,
+  gift,
+  heart2,
+  logout,
+  menu,
+  profile,
+  receipt,
+  shapes,
+} from "../../assets";
 import { NavLink } from "react-router-dom";
 
 export const DrawerLink = ({ path, img, name, onClose }) => {
@@ -28,13 +38,34 @@ export const DrawerLink = ({ path, img, name, onClose }) => {
 };
 
 const DrawerMobile = () => {
+  const [token, setToken] = useState(null);
   const [open, setOpen] = useState(false);
+
   const showDrawer = () => {
     setOpen(true);
   };
   const onClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("accessToken");
+
+    if (storedToken) setToken(storedToken);
+  }, []);
+
+  const handleLogout = () => {
+    // Remove token, userId from local storage
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userId");
+    // Clear token state
+    setToken(null);
+    // Close dropdown
+    setDropdownOpen(false);
+    // Reload the page
+    window.location.reload();
+  };
+
   return (
     <>
       <Space>
@@ -58,6 +89,34 @@ const DrawerMobile = () => {
         </h1>
 
         <ul className="space-y-[32px]">
+          {token && (
+            <>
+              <li>
+                <DrawerLink
+                  path="account"
+                  img={profile}
+                  name="Profilim"
+                  onClose={onClose}
+                />
+              </li>
+              <li>
+                <DrawerLink
+                  path="account"
+                  img={receipt}
+                  name="Rezervlərim"
+                  onClose={onClose}
+                />
+              </li>
+              <li>
+                <DrawerLink
+                  path="account"
+                  img={heart2}
+                  name="Bəyəndiklərim"
+                  onClose={onClose}
+                />
+              </li>
+            </>
+          )}
           <li>
             <DrawerLink
               path="events"
@@ -82,6 +141,17 @@ const DrawerMobile = () => {
               onClose={onClose}
             />
           </li>
+          {token && (
+            <li>
+              <DrawerLink
+                path="gift-cards"
+                img={logout}
+                name="Çıxış"
+                onClose={onClose}
+                onClick={handleLogout}
+              />
+            </li>
+          )}
         </ul>
       </Drawer>
     </>
