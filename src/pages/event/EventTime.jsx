@@ -52,8 +52,8 @@ const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
         onClick={() => setShowTimeInputs(!showTimeInputs)}
       >
         <span
-          className={`text-[#000] ${
-            startTime && endTime ? "" : "text-[#00000066]"
+          className={`${
+            startTime && endTime ? "text-[#000]" : "text-[#00000066]"
           } leading-[24px]`}
         >
           {startTime && endTime
