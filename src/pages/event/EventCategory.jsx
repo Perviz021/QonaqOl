@@ -15,6 +15,7 @@ const EventCategory = ({
   options,
   onCategoryChange,
   headerTextColor = null,
+  borderAllowed = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -49,7 +50,7 @@ const EventCategory = ({
     <div>
       <h4
         className={`font-[500] text-[20px] leading-[28px] mb-[12px] text-${
-          headerTextColor ? headerTextColor : "black"
+          headerTextColor ? headerTextColor : "[#000000CC]"
         }`}
       >
         Kateqoriya
@@ -64,7 +65,9 @@ const EventCategory = ({
             onClick={toggleMenu}
           >
             <span
-              className={`${selectedOption ? "text-black" : "text-[#919191]"}`}
+              className={`${
+                selectedOption ? "text-black" : "text-[#00000066]"
+              }`}
             >
               {selectedOption ? selectedOption : "Kateqroyanı seçin"}
             </span>
@@ -73,7 +76,15 @@ const EventCategory = ({
         </div>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 w-full rounded-b-[8px] border-b border-r border-l border-[#A1A1A199] lg:border-transparent lg:focus:border-transparent lg:focus:ring-0 bg-[#f2f2f2]  focus:outline-none z-20 py-[20px] space-y-[16px]">
+          <div
+            className={`${
+              isMobile
+                ? borderAllowed
+                  ? "border-b border-r border-l border-[#A1A1A199]"
+                  : ""
+                : "border-transparent focus:border-transparent focus:ring-0"
+            } absolute right-0 w-full rounded-b-[8px] bg-[#f2f2f2] focus:outline-none z-20 py-[20px] space-y-[16px]`}
+          >
             {options.map((option, index) => (
               <button
                 key={index}

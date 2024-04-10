@@ -246,7 +246,7 @@ const CreateEvent = () => {
           isMobile
             ? "mt-[63px] mb-[52px] text-[28px] unbounded-600"
             : "my-[90px] mx-[100px] text-[48px] unbounded-700"
-        } unbounded `}
+        } unbounded`}
       >
         Tədbir yarat
       </h1>
@@ -267,7 +267,7 @@ const CreateEvent = () => {
           </label>
           <input
             type="text"
-            className="h-[44px] rounded-[8px] px-[20px] bg-[#f2f2f2] placeholder:text-[#9d9d9d] border-transparent focus:border-transparent focus:ring-0"
+            className="h-[44px] rounded-[8px] px-[20px] bg-[#f2f2f2] placeholder:text-[#00000066] border-transparent focus:border-transparent focus:ring-0"
             name="name"
             id="name"
             placeholder="Tədbirin adı"
@@ -281,14 +281,26 @@ const CreateEvent = () => {
           options={options}
           onCategoryChange={handleCategoryChange}
         />
-        <div className="flex items-start justify-between space-x-[40px]">
-          <EventDate onDateChange={handleDateChange} />
+        <div
+          className={`${
+            isDesktop
+              ? "flex items-start justify-between space-x-[40px]"
+              : "space-y-[20px]"
+          }`}
+        >
+          <EventDate onDateChange={handleDateChange} widthFull={true} />
           <EventTime
             onStartTimeChange={handleStartTimeChange}
             onEndTimeChange={handleEndTimeChange}
           />
         </div>
-        <div className="flex items-start justify-normal space-x-[40px]">
+        <div
+          className={`${
+            isMobile
+              ? "space-y-[20px]"
+              : " flex items-start justify-normal space-x-[40px]"
+          }`}
+        >
           <EventLang onLangChange={handleLangChange} />
           <EventPrice onEventPriceChange={handleEventPriceChange} />
         </div>
@@ -303,7 +315,9 @@ const CreateEvent = () => {
           <button
             type="button"
             onClick={handleSubmit}
-            className={`h-[48px] px-[57px] min-w-[400px] rounded-[8px] text-[16px] ${
+            className={`${
+              isMobile ? "w-full" : "min-w-[400px] "
+            } h-[48px] px-[57px] rounded-[8px] text-[16px] ${
               isFormFilled ? "bg-[#FFCE00]" : "bg-black opacity-20 text-white"
             }`}
             disabled={!isFormFilled}

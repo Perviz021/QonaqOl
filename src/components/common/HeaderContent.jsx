@@ -182,6 +182,7 @@ function HeaderContent() {
                   options={options}
                   onCategoryChange={handleCategoryChange}
                   headerTextColor="white"
+                  borderAllowed={true}
                 />
               </div>
             ) : null}

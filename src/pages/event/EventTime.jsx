@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { chevronDown, clock } from "../../assets";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
   const [showTimeInputs, setShowTimeInputs] = useState(false);
@@ -7,6 +8,7 @@ const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
   const [showEndTimeInputs, setShowEndTimeInputs] = useState(false);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
   const startTimeOptions = [];
   const endTimeOptions = [];
@@ -40,8 +42,8 @@ const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
   };
 
   return (
-    <div className="w-[50%]">
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
+    <div className={`${isMobile ? "w-full" : "w-[50%]"}`}>
+      <h4 className="text-[#000000CC] font-[500] text-[20px] leading-[28px] mb-[12px]">
         Tədbirin saatı
       </h4>
 
@@ -51,7 +53,7 @@ const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
       >
         <span
           className={`text-[#000] ${
-            startTime && endTime ? "" : "text-opacity-40"
+            startTime && endTime ? "" : "text-[#00000066]"
           } leading-[24px]`}
         >
           {startTime && endTime
@@ -64,7 +66,7 @@ const EventTime = ({ onStartTimeChange, onEndTimeChange }) => {
       </div>
 
       {showTimeInputs && (
-        <div className="flex items-start space-x-[40px] mt-[14px] mr-[78px]">
+        <div className="flex items-start mt-[14px] mr-[78px] space-x-[40px]">
           {/* Start Time Inputs */}
           <div className="w-[136px]">
             <div

@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { money } from "../../assets";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const EventPrice = ({ onEventPriceChange }) => {
   const [price, setPrice] = useState("");
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
   const handleChange = (event) => {
     // Ensure only numbers are entered
@@ -23,15 +25,19 @@ const EventPrice = ({ onEventPriceChange }) => {
   };
 
   return (
-    <div className="w-[50%]">
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
+    <div className={`${isMobile ? "w-full" : "w-[50%]"}`}>
+      <h4 className="text-[#000000CC] font-[500] text-[20px] leading-[28px] mb-[12px]">
         Qiymət
       </h4>
       <div className="relative">
         <input
           type="text"
-          placeholder="1 nəfər üçün nəzərdə tutulan (AZN)"
-          className="text-[16px] bg-[#f2f2f2] w-full border-transparent focus:border-transparent focus:ring-0 rounded-[8px] px-[20px]"
+          placeholder={
+            isMobile
+              ? "1 nəfər üçün (AZN)"
+              : "1 nəfər üçün nəzərdə tutulan (AZN)"
+          }
+          className="text-[16px] bg-[#f2f2f2] w-full border-transparent focus:border-transparent focus:ring-0 rounded-[8px] px-[20px] placeholder:text-[#00000066]"
           value={price ? price + " AZN" : ""}
           onChange={handleChange}
           onKeyDown={handleKeyDown}

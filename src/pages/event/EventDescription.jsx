@@ -23,7 +23,7 @@ const EventDescription = ({ onDescriptionChange }) => {
       <textarea
         rows={isMobile ? 3 : 6}
         id="description"
-        className="bg-[#f2f2f2] border-transparent p-[20px] focus:border-transparent focus:ring-0 rounded-[8px] resize-none placeholder:text-[#9D9D9D]"
+        className="bg-[#f2f2f2] border-transparent p-[20px] focus:border-transparent focus:ring-0 rounded-[8px] resize-none placeholder:text-[#00000066]"
         placeholder="Tədbirin təsviri"
         value={textDescription}
         onChange={handleTextChange}
