@@ -330,10 +330,16 @@ const CreateEvent = () => {
       {showSuccessPopup && (
         <PopupMessage
           handleContinueButtonClick={handleContinueButtonClick}
+          setShowSuccessPopup={setShowSuccessPopup}
           textMessage={
-            id
-              ? "Tədbiriniz uğurla yeniləndi. Təşəkkürlər!"
-              : "Tədbiriniz qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq. Təşəkkürlər!"
+            id ? (
+              "Tədbiriniz uğurla yeniləndi. Təşəkkürlər!"
+            ) : (
+              <>
+                Bizi seçdiyiniz üçün təşəkkürlər 😊 <br /> Tədbiriniz qeydə
+                alındı.
+              </>
+            )
           }
         />
       )}

@@ -83,6 +83,7 @@ import textLeft from "./icons/textalign-left.svg";
 import textRight from "./icons/textalign-right.svg";
 import textCenter from "./icons/textalign-center.svg";
 import textJustify from "./icons/textalign-justifycenter.svg";
+import close from "./icons/close.svg";
 
 // Event Category
 import chevronDown from "./icons/chevron-down.svg";
@@ -209,4 +210,5 @@ export {
   bookmark,
   arrowRightMenu,
   search,
+  close,
 };
