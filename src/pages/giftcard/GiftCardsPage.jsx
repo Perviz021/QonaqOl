@@ -69,69 +69,71 @@ const GiftCardsPage = () => {
         <GiftCard imgSrc={giftcard3} showPopup={showPopup} /> {/* AZN_200*/}
       </div>
 
-      <div className="fixed top-0 left-0 size-full flex flex-col justify-center items-center bg-black bg-opacity-50 px-[20px] lg:px-0">
-        <div
-          className={`${
-            isMobile ? "w-full" : ""
-          } p-[40px] relative bg-white rounded-[8px]`}
-        >
-          <span
-            className="absolute top-6 cursor-pointer right-4 size-6 "
-            onClick={() => setOpenPopup(false)}
-          >
-            <FaXmark />
-          </span>
-          <h2 className="font-[600] text-[16px] lg:text-[24px] text-center mb-[30px]">
-            Sevdiklərinizi sevindirin
-          </h2>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
+      {openPopup && (
+        <div className="fixed top-0 left-0 size-full flex flex-col justify-center items-center bg-black bg-opacity-50 px-[20px] lg:px-0">
+          <div
             className={`${
-              isMobile ? "w-full" : "w-[400px]"
-            }  space-y-[20px] flex flex-col`}
+              isMobile ? "w-full" : ""
+            } p-[40px] relative bg-white rounded-[8px]`}
           >
-            <input
-              {...register("to", { required: true })}
-              placeholder="Kimə"
-              className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
-              onChange={handleInputChange}
-            />
-            <input
-              {...register("from", { required: true })}
-              placeholder="Kimdən"
-              className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
-              onChange={handleInputChange}
-            />
-            <input
-              {...register("message")}
-              placeholder="Şəxsi mesaj"
-              className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
-            />
-            <input
-              {...register("contact", {
-                pattern: /^[0-9]*$/,
-                required: true,
-              })}
-              type="tel"
-              placeholder="Əlaqə nömrəsi"
-              className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
-              onChange={handleInputChange}
-              onPaste={(e) => e.preventDefault()} // Prevent pasting non-numeric values
-            />
-            <button
-              type="submit"
-              className={`mt-[24px] rounded-[8px] h-[48px] ${
-                isFormValid
-                  ? "bg-[#FFCE00] cursor-pointer"
-                  : "bg-[#F1DD8B] cursor-not-allowed"
-              }`}
-              disabled={!isFormValid}
+            <span
+              className="absolute top-6 cursor-pointer right-4 size-6 "
+              onClick={() => setOpenPopup(false)}
             >
-              Kartı al
-            </button>
-          </form>
+              <FaXmark />
+            </span>
+            <h2 className="font-[600] text-[16px] lg:text-[24px] text-center mb-[30px]">
+              Sevdiklərinizi sevindirin
+            </h2>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className={`${
+                isMobile ? "w-full" : "w-[400px]"
+              }  space-y-[20px] flex flex-col`}
+            >
+              <input
+                {...register("to", { required: true })}
+                placeholder="Kimə"
+                className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
+                onChange={handleInputChange}
+              />
+              <input
+                {...register("from", { required: true })}
+                placeholder="Kimdən"
+                className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
+                onChange={handleInputChange}
+              />
+              <input
+                {...register("message")}
+                placeholder="Şəxsi mesaj"
+                className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
+              />
+              <input
+                {...register("contact", {
+                  pattern: /^[0-9]*$/,
+                  required: true,
+                })}
+                type="tel"
+                placeholder="Əlaqə nömrəsi"
+                className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
+                onChange={handleInputChange}
+                onPaste={(e) => e.preventDefault()} // Prevent pasting non-numeric values
+              />
+              <button
+                type="submit"
+                className={`mt-[24px] rounded-[8px] h-[48px] ${
+                  isFormValid
+                    ? "bg-[#FFCE00] cursor-pointer"
+                    : "bg-[#F1DD8B] cursor-not-allowed"
+                }`}
+                disabled={!isFormValid}
+              >
+                Kartı al
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
