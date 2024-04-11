@@ -12,7 +12,7 @@ const Events = () => {
   const [pagination, setPagination] = useState(0);
   const [count, setCount] = useState(1);
   const { category } = useParams();
-
+  console.log(category);
   useEffect(() => {
     if (category) {
       getEventsByCategory(category).then((res) => setData(res.data));
@@ -21,7 +21,7 @@ const Events = () => {
     }
     window.scrollTo(0, 0);
   }, [category]);
-
+  console.log(data);
   return (
     <>
       {data.length === 0 ? (

@@ -19,7 +19,7 @@ const ActivityAreas = () => {
       <div className="w-[1194px] mx-auto flex justify-between mt-[40px]">
         {category.map((el, i) => (
           <Link
-            to={`/events/${el.id}`}
+            to={`/events/category/${el.id}`}
             onClick={() => filteredcategoryFn(el.id)}
             key={i}
             className="inline-flex cursor-pointer flex-col items-center space-y-[12px]"

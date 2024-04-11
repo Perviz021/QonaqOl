@@ -75,15 +75,7 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
   },
-  {
-    path: "/events/:category",
-    element: (
-      <AppLayout>
-        <Events />
-      </AppLayout>
-    ),
-    errorElement: <ErrorPage />,
-  },
+
   {
     path: "/events/reservation",
     element: (
@@ -98,6 +90,15 @@ const router = createBrowserRouter([
     element: (
       <AppLayout>
         <Event />
+      </AppLayout>
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/events/category/:category",
+    element: (
+      <AppLayout>
+        <Events />
       </AppLayout>
     ),
     errorElement: <ErrorPage />,

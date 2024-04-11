@@ -50,7 +50,10 @@ function HeaderContent() {
     } else {
       getEventsBetweenCategoryAndDate(startEventDate, endEventDate, category)
         .then((res) => setData(res.data))
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          setData([]);
+          setCategory("");
+        })
         .finally(() => {
           setExpSection(true);
           setCategoryToggle(false);
@@ -58,12 +61,6 @@ function HeaderContent() {
         });
     }
   };
-
-  // useEffect(() => {
-  //   getEventsBetweenCategoryAndDate(startEventDate, endEventDate, category)
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.log(err));
-  // }, [startEventDate, endEventDate, category]);
 
   return (
     <>
