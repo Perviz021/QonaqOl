@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { chevronDown, chevronUp } from "../../assets";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const optionsMap = {
   "Kənd həyatı": "COUNTRY_LIFE",
@@ -10,10 +11,16 @@ const optionsMap = {
   Musiqi: "MUSIC",
 };
 
-const EventCategory = ({ options, onCategoryChange }) => {
+const EventCategory = ({
+  options,
+  onCategoryChange,
+  headerTextColor = null,
+  borderAllowed = false,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const dropdownRef = useRef(null);
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -41,7 +48,11 @@ const EventCategory = ({ options, onCategoryChange }) => {
 
   return (
     <div>
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
+      <h4
+        className={`font-[500] text-[20px] leading-[28px] mb-[12px] text-${
+          headerTextColor ? headerTextColor : "[#000000CC]"
+        }`}
+      >
         Kateqoriya
       </h4>
       <div className="text-left relative" ref={dropdownRef}>
@@ -54,7 +65,9 @@ const EventCategory = ({ options, onCategoryChange }) => {
             onClick={toggleMenu}
           >
             <span
-              className={`${selectedOption ? "text-black" : "text-[#919191]"}`}
+              className={`${
+                selectedOption ? "text-black" : "text-[#00000066]"
+              }`}
             >
               {selectedOption ? selectedOption : "Kateqroyanı seçin"}
             </span>
@@ -63,7 +76,15 @@ const EventCategory = ({ options, onCategoryChange }) => {
         </div>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 w-full rounded-b-[8px] border-transparent focus:border-transparent focus:ring-0 bg-[#f2f2f2]  focus:outline-none z-20 py-[20px] space-y-[16px]">
+          <div
+            className={`${
+              isMobile
+                ? borderAllowed
+                  ? "border-b border-r border-l border-[#A1A1A199]"
+                  : ""
+                : "border-transparent focus:border-transparent focus:ring-0"
+            } absolute right-0 w-full rounded-b-[8px] bg-[#f2f2f2] focus:outline-none z-20 py-[20px] space-y-[16px]`}
+          >
             {options.map((option, index) => (
               <button
                 key={index}

@@ -11,6 +11,7 @@ import {
   isPasswordValid,
   togglePasswordVisibility,
 } from "../../utils/authUtils";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -21,6 +22,11 @@ function SignUpPage() {
     params = new URLSearchParams(search);
     navigateToCreateEvent = params.get("data");
   }
+  const isMobile = useMediaQuery("only screen and (max-width: 480px)");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [formState, setFormState] = useState({
     imageLoaded: false,
@@ -140,32 +146,45 @@ function SignUpPage() {
   };
 
   return (
-    <div style={{ visibility: imageLoaded ? "visible" : "hidden" }}>
-      <div className="flex h-screen">
+    <div className={`${!isMobile ? (imageLoaded ? "" : "hidden") : ""}`}>
+      <div
+        className={`${
+          isMobile ? "pt-[80px] px-[20px] pb-[195px]" : "flex h-screen"
+        }`}
+      >
         {/* Left Side (Image) */}
-        <div className="w-1/2">
-          <img
-            src={signupBg}
-            alt=""
-            className={`w-full h-full object-cover ${
-              formState.imageLoaded ? "" : "hidden"
-            }`}
-            onLoad={() => handleImageLoad(setFormState)}
-          />
-        </div>
+        {!isMobile && (
+          <div className="w-1/2">
+            <img
+              src={signupBg}
+              alt=""
+              className={`w-full h-full object-cover ${
+                formState.imageLoaded ? "" : "hidden"
+              }`}
+              onLoad={() => handleImageLoad(setFormState)}
+            />
+          </div>
+        )}
 
         {/* Right Side (Login Form) */}
-        <div className="w-1/2 flex items-center relative">
+        <div
+          className={`${
+            isMobile ? "w-full" : "w-1/2"
+          } flex items-center relative`}
+        >
           {!loading && (
-            <div className="w-[60%] mx-auto">
+            <div className={`${isMobile ? "w-full" : "w-[60%] mx-auto"}`}>
               {/* Login Form */}
               <div className="bg-white rounded mb-[16px]">
                 {/* Title */}
-
                 <h2
                   className={`${
                     !navigateToCreateEvent
-                      ? "text-[40px] mb-[18px] w-[480px]"
+                      ? isMobile
+                        ? "text-[28px] mb-[60px] w-full"
+                        : "text-[40px] mb-[18px] w-[480px]"
+                      : isMobile
+                      ? "text-[20px] mb-[32px] text-center w-full"
                       : "text-[30px] mb-[18px] text-center w-[410px]"
                   } unbounded unbounded-600`}
                 >
@@ -309,7 +328,11 @@ function SignUpPage() {
                   </div>
 
                   {/* Confirm Password */}
-                  <div className="mb-[24px] relative">
+                  <div
+                    className={`${
+                      isMobile ? "mb-[32px]" : "mb-[24px]"
+                    } relative`}
+                  >
                     <input
                       className={`input-default ${
                         touchedConfirmPassword && !passwordMatch
@@ -366,6 +389,7 @@ function SignUpPage() {
                       </p>
                     )}
                   </div>
+
                   {/* Sign Up Button */}
                   <div className="flex flex-col items-center justify-center space-y-[12px]">
                     <button
@@ -395,16 +419,16 @@ function SignUpPage() {
               </div>
 
               {/* Or Separator */}
-              <div className="mb-[14px] w-full flex items-center justify-center">
-                <hr className="border-t border-[#c6c6c6] inline-block w-[45%] mr-1" />
+              <div className="mb-[16px] lg:mb-[14px] w-full flex items-center justify-center">
+                <hr className="border-t border-[#c6c6c6] inline-block w-[43%] lg:w-[45%] mr-1" />
                 <span className="text-gray-500 text-[12px]">və ya</span>
-                <hr className="border-t border-[#c6c6c6] inline-block w-[45%] ml-1" />
+                <hr className="border-t border-[#c6c6c6] inline-block w-[43%] lg:w-[45%] ml-1" />
               </div>
 
               {/* Google Signin Button */}
               <div className="flex flex-col items-center justify-center">
                 <button
-                  className={`bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[10px]`}
+                  className={`bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[24px] lg:space-x-[10px]`}
                   type="button"
                   onClick={(e) =>
                     googleSignup(
@@ -417,8 +441,8 @@ function SignUpPage() {
                     )
                   }
                 >
-                  <span className="size-[20px]">
-                    <FaGoogle />
+                  <span>
+                    <FaGoogle className="size-[24px]" />
                   </span>
                   <span>Google ilə davam et</span>
                 </button>

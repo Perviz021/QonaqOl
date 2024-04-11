@@ -28,11 +28,13 @@ const EventContact = ({ onPhoneNumberChange }) => {
 
   return (
     <div>
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">Əlaqə</h4>
+      <h4 className="text-[#000000CC] font-[500] text-[20px] leading-[28px] mb-[12px]">
+        Əlaqə
+      </h4>
       <input
         type="text"
         placeholder={phoneNumber ? phoneNumber : placeholder}
-        className="text-[16px] bg-[#f2f2f2] w-full border-transparent focus:border-transparent focus:ring-0 rounded-[8px] px-[20px]"
+        className="text-[16px] bg-[#f2f2f2] w-full border-transparent focus:border-transparent focus:ring-0 rounded-[8px] px-[20px] placeholder:text-[#00000066]"
         value={phoneNumber}
         onChange={handleInputChange}
       />

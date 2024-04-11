@@ -6,7 +6,6 @@ import { getEvents } from "../../utils/apiUtils";
 import { Link } from "react-router-dom";
 function ExperiencesSection() {
   const [data, setData] = useState(null);
-  const [click, setClick] = useState(null);
 
   useEffect(() => {
     getEvents().then((res) => setData(res.data));
@@ -20,9 +19,9 @@ function ExperiencesSection() {
   return (
     <section
       id="experiences"
-      className="w-[1240px] mx-auto mt-[80px] mb-[150px]"
+      className="w-full lg:w-[1240px] lg:mx-auto px-[20px] mt-[40px] lg:mt-[80px] mb-[62px] lg:mb-[150px]"
     >
-      <h1 className="unbounded unbounded-600 text-[24px] mb-[60px] flex justify-between items-center">
+      <h1 className="w-full unbounded unbounded-600 text-[24px] mb-[40px] lg:mb-[60px] flex text-center justify-between items-center">
         Populyar tədbirlər
         <Link to={"/events"}>
           <img src={arrowRight} alt="" />
@@ -36,9 +35,9 @@ function ExperiencesSection() {
         </div>
       ) : (
         <>
-          <div className="container mx-auto">
+          <div className="lg:mx-auto">
             {/* First Row */}
-            <div className="grid grid-cols-4 gap-x-[20px] gap-y-44">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-[20px] gap-y-[20px] lg:gap-y-44">
               {data &&
                 data
                   .slice(0, 8)

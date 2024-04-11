@@ -15,6 +15,14 @@ import headerImg3 from "./img/header-img3.jpeg";
 import headerImg4 from "./img/header-img4.jpeg";
 import heart from "./img/heart.png";
 import great from "./img/great.png";
+import profileCircle from "./icons/profile-circle.svg";
+import profileCircleFilled from "./icons/profileCircleFilled.svg";
+import menu from "./icons/menu.svg";
+import shapes from "./icons/shapes.svg";
+import bookmark from "./icons/bookmark.svg";
+import gift from "./icons/gift.svg";
+import arrowRightMenu from "./icons/arrowRightMenu.svg";
+import search from "./icons/search.svg";
 
 // Login button
 import profile from "./icons/profile.svg";
@@ -75,6 +83,7 @@ import textLeft from "./icons/textalign-left.svg";
 import textRight from "./icons/textalign-right.svg";
 import textCenter from "./icons/textalign-center.svg";
 import textJustify from "./icons/textalign-justifycenter.svg";
+import close from "./icons/close.svg";
 
 // Event Category
 import chevronDown from "./icons/chevron-down.svg";
@@ -193,4 +202,13 @@ export {
   whatsapp,
   copy,
   copySuccess,
+  menu,
+  profileCircle,
+  profileCircleFilled,
+  shapes,
+  gift,
+  bookmark,
+  arrowRightMenu,
+  search,
+  close,
 };

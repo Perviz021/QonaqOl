@@ -4,40 +4,41 @@
 
 .bg-img::after {
   content: "";
-  position: absolute;
-  background-size: cover;
-  background-position: center;
+  @apply absolute bg-cover bg-center;
 }
 
 .bg-img1::after {
   background-image: url("../img/heart.png");
-  top: -30px;
-  left: -50px;
-  width: 57px;
-  height: 57px;
+  @apply -top-[30px] -left-[50px] w-[57px] h-[57px];
 }
 
 .bg-img2::after {
   background-image: url("../img/great.png");
-  top: -30px;
-  left: -70px;
-  width: 62px;
-  height: 99px;
+  @apply -top-[30px] -left-[70px] w-[62px] h-[99px];
+}
+
+.bg-border-yellow-lg::after {
+  content: "";
+  background-image: url("../img/bg-border-yellow.png");
+  @apply absolute top-0 -left-[22px] w-[650px] h-[80px] -z-10 bg-center bg-cover;
 }
 
 .bg-border-yellow::after {
   content: "";
-  position: absolute;
   background-image: url("../img/bg-border-yellow.png");
-  top: 0px;
-  left: -22px;
-  width: 650px;
-  height: 80px;
-  z-index: -1;
-  background-size: cover;
-  background-position: center;
+  @apply absolute top-[1px] -left-[11px] w-[111%] h-full -z-10 bg-center bg-cover;
 }
 
 .input-default {
   @apply rounded-[8px] text-[16px] font-[400] w-full h-[44px] py-[10px] px-[20px] text-gray-700 focus:outline-none bg-[#f2f2f2] focus:border-transparent focus:ring-0;
+}
+
+.ant-drawer-content-wrapper {
+  @apply !w-[300px];
+}
+
+.headerBgMobile {
+  background-image: url("../img/header-img1.jpeg");
+  background-position: bottom center;
+  @apply bg-cover;
 }

@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import UploadImg from "../../assets/icons/cloud-upload.svg";
 import { toast } from "react-toastify";
 import Delete from "../../assets/icons/Delete.svg";
+import { useMediaQuery } from "@uidotdev/usehooks";
+
 const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
   const [images, setImages] = useState([]);
   const [coverImage, setCoverImage] = useState(null);
@@ -11,6 +13,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
     useState(true);
   const fileInputRef = useRef(null);
   const coverImageInputRef = useRef(null);
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
   // Function to handle file upload when the button is clicked
   const handleButtonClick = (e, ref) => {
@@ -113,8 +116,10 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      <h3 className="font-medium text-xl">Tədbirin şəkilləri</h3>
+    <div className={`${isMobile ? "!mt-[52px]" : "mt-0"} flex flex-col gap-6 `}>
+      <h4 className="text-[#000000CC] font-medium text-xl">
+        Tədbirin şəkilləri
+      </h4>
       <div className="flex gap-3">
         <span
           onClick={() => setActive(1)}
@@ -133,31 +138,47 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
           Digər şəkillər
         </span>
       </div>
-      <p>
+      <p className={`text-base font-medium text-[#000000CC]`}>
         {active === 1
           ? "Tədbirin saytda əks olunacaq örtük şəklini əlavə edin"
           : "Tədbirin keçirilmə məkanı, onun mövzusunu əks etdirəcək 5 şəkil əlavə edin"}
       </p>
-      <div className="py-[47px]   bg-[#f2f2f2] flex items-start justify-evenly rounded-[8px]">
+      <div
+        className={`${
+          isMobile ? "px-[10px] py-[32px]" : "py-[47px]"
+        }  bg-[#f7f7f7] flex items-start justify-evenly rounded-[8px]`}
+      >
         {active === 1 && (
-          <div className="flex flex-col w-full items-center gap-6 ">
+          <div className="flex flex-col w-full items-center space-y-[32px] ">
             {initialCoverImageContentVisible && (
-              <div className="flex mb-3 gap-9  ">
-                <img src={UploadImg} className="w-[68px]" alt="" />
-                <div className="flex flex-col gap-4 ">
-                  <h4 className="font-[500] text-[20px] leading-[28px] ">
+              <div
+                className={`${
+                  isMobile ? "flex-col items-center gap-[24px]" : "gap-9"
+                } flex`}
+              >
+                <img
+                  src={UploadImg}
+                  className={`${isMobile ? "w-[68px] h-[60px] " : "w-[68px]"} `}
+                  alt=""
+                />
+                <div className={`flex flex-col gap-[12px] text-center`}>
+                  <h4 className="font-[700] text-[16px] leading-[24px] ">
                     Faylı seçin və ya bura sürükləyin
                   </h4>
 
-                  <p className="text-[14px] text-[#919191] ">
-                    Zəhmət olmasa, yüklədiyinz şəkillər 3 mb-dan çox olmasın.
+                  <p
+                    className={`${
+                      isMobile ? "px-[30px]" : ""
+                    } text-[14px] text-[#00000066]`}
+                  >
+                    Zəhmət olmasa, yüklədiyiniz şəkillər 3 mb-dan çox olmasın.
                   </p>
                 </div>
               </div>
             )}
             <button
               onClick={(e) => handleButtonClick(e, coverImageInputRef)}
-              className="bg-[#2B2C34] text-white rounded-[8px] h-[44px] w-[150px] mb-[16px]"
+              className="bg-[#2B2C34] text-white rounded-[8px] h-[44px] w-[150px]"
             >
               Yüklə
             </button>
@@ -173,7 +194,7 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
               <div className="bg-[#f2f2f2] flex flex-col gap-4 max-w-[600px] w-full justify-center">
                 {coverImage && (
                   <div
-                    className={`flex items-center justify-between bg-white    p-4   `}
+                    className={`flex items-center justify-between bg-white p-4`}
                   >
                     <span>{coverImage.name}</span>
                     <img
@@ -189,17 +210,29 @@ const EventImageUpload = ({ onImagesChange, onCoverImageChange }) => {
           </div>
         )}
         {active === 2 && (
-          <div className="flex flex-col w-full items-center gap-6 ">
+          <div className="flex flex-col w-full items-center space-y-[32px] ">
             {initialContentVisible && (
-              <div className="flex mb-3 gap-9  ">
-                <img src={UploadImg} className="w-[68px]" alt="" />
-                <div className="flex flex-col gap-4 ">
-                  <h4 className="font-[500] text-[20px] leading-[28px] ">
+              <div
+                className={`${
+                  isMobile ? "flex-col items-center gap-[24px]" : "gap-9"
+                } flex`}
+              >
+                <img
+                  src={UploadImg}
+                  className={`${isMobile ? "w-[68px] h-[60px] " : "w-[68px]"} `}
+                  alt=""
+                />
+                <div className="flex flex-col gap-[12px] text-center">
+                  <h4 className="font-[700] text-[16px] leading-[24px] ">
                     Faylı seçin və ya bura sürükləyin
                   </h4>
 
-                  <p className="text-[14px] text-[#919191] ">
-                    Zəhmət olmasa, yüklədiyinz şəkillər 3 mb-dan çox olmasın.
+                  <p
+                    className={`${
+                      isMobile ? "px-[30px]" : ""
+                    } text-[14px] text-[#00000066]`}
+                  >
+                    Zəhmət olmasa, yüklədiyiniz şəkillər 3 mb-dan çox olmasın.
                   </p>
                 </div>
               </div>

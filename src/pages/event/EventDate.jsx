@@ -3,9 +3,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { calendar } from "../../assets";
 import az from "date-fns/locale/az"; // Import Azerbaijani locale
+import { useMediaQuery } from "@uidotdev/usehooks";
 
-const CustomDatePicker = ({ selectedDate, onChange, past }) => {
+const CustomDatePicker = ({
+  selectedDate,
+  onChange,
+  past,
+  headerTextColor,
+  widthFull,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
+
   const toggleCalendar = () => {
     // e.preventDefault();
     setIsOpen(!isOpen);
@@ -15,15 +24,23 @@ const CustomDatePicker = ({ selectedDate, onChange, past }) => {
     "!bg-[#f2f2f2] p-[20px] rounded-[8px] shadow-md left-[50px] text-[12px]";
 
   return (
-    <div className="relative  ">
-      <h4 className="font-[500] text-[20px] leading-[28px] mb-[12px]">
+    <div
+      className={`${
+        isMobile ? (widthFull ? "w-full" : "w-[45%]") : "w-[50%]"
+      } relative`}
+    >
+      <h4
+        className={`font-[500] text-[20px] leading-[28px] mb-[12px] text-${
+          headerTextColor ? headerTextColor : "[#000000CC]"
+        }`}
+      >
         Tədbirin tarixi
       </h4>
-      <div className="inline-flex justify-between items-center rounded-[8px] bg-[#f2f2f2] w-full h-[44px] pr-[20px] pl-[10px] font-[16px] text-[#919191]">
+      <div className="inline-flex justify-between items-center rounded-[8px] bg-[#f2f2f2] w-full h-[44px] pr-[20px] pl-[10px] font-[16px]">
         <DatePicker
           selected={selectedDate}
           onChange={onChange}
-          className="bg-transparent border-transparent focus:border-transparent focus:ring-0 text-black"
+          className="bg-transparent border-transparent focus:border-transparent focus:ring-0 text-black placeholder:text-[#00000066]"
           placeholderText="Tarixi seçin"
           open={isOpen}
           onClickOutside={() => setIsOpen(false)}
@@ -44,7 +61,12 @@ const CustomDatePicker = ({ selectedDate, onChange, past }) => {
   );
 };
 
-const EventDate = ({ onDateChange, pastTime = false }) => {
+const EventDate = ({
+  onDateChange,
+  pastTime = false,
+  headerTextColor = null,
+  widthFull = false,
+}) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [past, setPast] = useState(false);
   useEffect(() => {
@@ -73,6 +95,8 @@ const EventDate = ({ onDateChange, pastTime = false }) => {
       selectedDate={selectedDate}
       onChange={handleDateChange}
       past={past}
+      headerTextColor={headerTextColor}
+      widthFull={widthFull}
     />
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 const AboutCard = ({ headerText }) => {
   return (
     <div>
-      <h3 className="unbounded unbounded-600 text-[24px] mb-[24px]">
+      <h3 className="unbounded unbounded-600 text-2xl mb-[24px]">
         {headerText}
       </h3>
       <p className="leading-[24px]">

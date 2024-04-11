@@ -11,11 +11,13 @@ import EventContact from "./EventContact";
 import EventImageUpload from "./EventImageUpload";
 import PopupMessage from "../../components/widgets/PopupMessage";
 import axios from "axios";
-import { getEvents } from "../../utils/apiUtils";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const CreateEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
+  const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
 
   const [eventName, setEventName] = useState("");
   const [description, setDescription] = useState("");
@@ -238,22 +240,34 @@ const CreateEvent = () => {
   ];
 
   return (
-    <div className="mb-[250px]">
-      <h1 className="my-[90px] mx-[100px] text-[48px] unbounded unbounded-700">
+    <div className={`${isMobile ? "mb-[272px] mx-[20px]" : "mb-[250px]"}`}>
+      <h1
+        className={`${
+          isMobile
+            ? "mt-[63px] mb-[52px] text-[28px] unbounded-600"
+            : "my-[90px] mx-[100px] text-[48px] unbounded-700"
+        } unbounded`}
+      >
         Tədbir yarat
       </h1>
-      <form className="w-[820px] mx-auto space-y-[40px]">
+      <form
+        className={`${
+          isMobile
+            ? "w-full space-y-[20px]"
+            : "w-[820px] mx-auto space-y-[40px]"
+        }`}
+      >
         {/* Tedbirin adi */}
         <div className="flex flex-col gap-[12px]">
           <label
             htmlFor="name"
-            className="font-[500] text-[20px] leading-[28px]"
+            className="text-[#000000CC] font-[500] text-[20px] leading-[28px]"
           >
             Tədbirin adı
           </label>
           <input
             type="text"
-            className="h-[44px] rounded-[8px] px-[20px] bg-[#f2f2f2] placeholder:text-[#9d9d9d] border-transparent focus:border-transparent focus:ring-0"
+            className="h-[44px] rounded-[8px] px-[20px] bg-[#f2f2f2] placeholder:text-[#00000066] border-transparent focus:border-transparent focus:ring-0"
             name="name"
             id="name"
             placeholder="Tədbirin adı"
@@ -267,14 +281,26 @@ const CreateEvent = () => {
           options={options}
           onCategoryChange={handleCategoryChange}
         />
-        <div className="flex items-start justify-between space-x-[40px]">
-          <EventDate onDateChange={handleDateChange} />
+        <div
+          className={`${
+            isDesktop
+              ? "flex items-start justify-between space-x-[40px]"
+              : "space-y-[20px]"
+          }`}
+        >
+          <EventDate onDateChange={handleDateChange} widthFull={true} />
           <EventTime
             onStartTimeChange={handleStartTimeChange}
             onEndTimeChange={handleEndTimeChange}
           />
         </div>
-        <div className="flex items-start justify-normal space-x-[40px]">
+        <div
+          className={`${
+            isMobile
+              ? "space-y-[20px]"
+              : " flex items-start justify-normal space-x-[40px]"
+          }`}
+        >
           <EventLang onLangChange={handleLangChange} />
           <EventPrice onEventPriceChange={handleEventPriceChange} />
         </div>
@@ -289,7 +315,9 @@ const CreateEvent = () => {
           <button
             type="button"
             onClick={handleSubmit}
-            className={`h-[48px] px-[57px] min-w-[400px] rounded-[8px] text-[16px] ${
+            className={`${
+              isMobile ? "w-full" : "min-w-[400px] "
+            } h-[48px] px-[57px] rounded-[8px] text-[16px] ${
               isFormFilled ? "bg-[#FFCE00]" : "bg-black opacity-20 text-white"
             }`}
             disabled={!isFormFilled}
@@ -302,10 +330,16 @@ const CreateEvent = () => {
       {showSuccessPopup && (
         <PopupMessage
           handleContinueButtonClick={handleContinueButtonClick}
+          setShowSuccessPopup={setShowSuccessPopup}
           textMessage={
-            id
-              ? "Tədbiriniz uğurla yeniləndi. Təşəkkürlər!"
-              : "Tədbiriniz qeydə alındı. Ən qısa zamanda sizinlə əlaqə saxlanılacaq. Təşəkkürlər!"
+            id ? (
+              "Tədbiriniz uğurla yeniləndi. Təşəkkürlər!"
+            ) : (
+              <>
+                Bizi seçdiyiniz üçün təşəkkürlər 😊 <br /> Tədbiriniz qeydə
+                alındı.
+              </>
+            )
           }
         />
       )}
