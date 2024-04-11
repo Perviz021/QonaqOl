@@ -7,11 +7,16 @@ import { MdLastPage } from "react-icons/md";
 import { getEvents, getEventsByCategory } from "../../utils/apiUtils";
 import { useParams } from "react-router-dom";
 import { loader } from "../../assets";
+import { useMediaQuery } from "@uidotdev/usehooks";
+import SearchEvent from "../../components/common/SearchEvent";
+
 const Events = () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState(0);
+  const [expSection, setExpSection] = useState(false);
   const [count, setCount] = useState(1);
   const { category } = useParams();
+  const isMobile = useMediaQuery("only screen and (max-width: 480px)");
 
   useEffect(() => {
     if (category) {
@@ -30,15 +35,56 @@ const Events = () => {
         </div>
       ) : (
         <>
-          <div className="w-[1240px] mx-auto min-h-screen">
-            <h1 className="text-[50px] text-center unbounded unbounded-700 text-[#333333] p-20">
-              Asudə <br />
-              vaxtını səmərəli keçir
+          <div
+            className={`${
+              isMobile
+                ? "w-full px-[20px] mt-[96px]"
+                : "w-[1240px] mx-auto min-h-screen"
+            } `}
+          >
+            <h1
+              className={`${
+                isMobile ? "text-[28px] mb-[40px]" : "text-[50px]  p-20"
+              } text-center unbounded unbounded-700`}
+            >
+              {!isMobile ? (
+                <>
+                  Asudə <br />
+                  vaxtını səmərəli keçir
+                </>
+              ) : (
+                <>
+                  Asudə vaxtını <br /> səmərəli keçir
+                </>
+              )}
             </h1>
-            <h5 className="unbounded text-[#333333] unbounded-600 text-[24px]  ">
+            {/* Search part */}
+            <div
+              className={`${
+                isMobile ? "w-full mb-[96px]" : "w-[642px] mx-auto mb-[120px]"
+              }`}
+            >
+              <SearchEvent
+                data={data}
+                setData={setData}
+                setExpSection={setExpSection}
+              />
+            </div>
+
+            <h5
+              className={`${
+                isMobile ? "text-center" : ""
+              } unbounded unbounded-600 text-2xl`}
+            >
               Bütün tədbirlər
             </h5>
-            <div className="grid grid-cols-3  gap-5 gap-y-32 mt-20 pb-20 cursor-pointer">
+            <div
+              className={`${
+                isMobile
+                  ? "mt-[40px] grid-cols-2"
+                  : "mt-20 grid-cols-3 gap-y-32"
+              } grid gap-5 cursor-pointer`}
+            >
               {data.slice(pagination, pagination + 12).map((el, i) => (
                 <ExperienceCard
                   name={el?.eventName}
@@ -53,7 +99,11 @@ const Events = () => {
                 />
               ))}
             </div>
-            <div className="flex items-center mt-20 justify-center gap-16 text-3xl">
+            <div
+              className={`${
+                isMobile ? "mt-16 mb-20" : " mt-20"
+              } flex items-center justify-center gap-16 text-3xl`}
+            >
               <div
                 className="size-12 hover:bg-[#ffce0067] transition-colors cursor-pointer flex items-center justify-center rounded-full  "
                 onClick={() => {
