@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
-import { logoBlack, logoBlackBgRemoved } from "../../assets";
+import { logoBlackBgRemoved } from "../../assets";
 
 function Footer() {
   const [token, setToken] = useState("");
