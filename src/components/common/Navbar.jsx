@@ -7,7 +7,6 @@ import { logo } from "../../assets";
 
 function Navbar() {
   const isMobile = useMediaQuery("only screen and (max-width : 480px)");
-  const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
 
   const [activeNavLink, setActiveNavLink] = useState("");
 

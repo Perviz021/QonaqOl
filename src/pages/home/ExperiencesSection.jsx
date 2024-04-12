@@ -17,10 +17,7 @@ function ExperiencesSection() {
   }, [data]);
 
   return (
-    <section
-      id="experiences"
-      className="w-full lg:w-[1240px] lg:mx-auto px-[20px] mt-[40px] lg:mt-[80px] mb-[62px] lg:mb-[150px]"
-    >
+    <section className="w-full lg:w-[1240px] lg:mx-auto px-[20px] mt-[40px] lg:mt-[80px] mb-[62px] lg:mb-[150px]">
       <h1 className="w-full unbounded unbounded-600 text-[24px] mb-[40px] lg:mb-[60px] flex text-center justify-between items-center">
         Populyar tədbirlər
         <Link to={"/events"}>
