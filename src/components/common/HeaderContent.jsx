@@ -14,7 +14,6 @@ function HeaderContent() {
   const [category, setCategory] = useState(null);
   const [data, setData] = useState(null);
   const [expSection, setExpSection] = useState(false);
-<<<<<<< HEAD
   const handleCategoryChange = (category) => {
     setCategory(category);
   };
@@ -46,10 +45,8 @@ function HeaderContent() {
         });
     }
   };
-=======
-  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
-  const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
->>>>>>> c44ce6e7b045b43557761b8456906b53233c1b95
+  const isMobile = useMediaQuery("only screen and (max-width: 480px)");
+  const isDesktop = useMediaQuery("only screen and (min-width: 1024px)");
 
   return (
     <>
