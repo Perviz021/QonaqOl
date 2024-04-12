@@ -1,4 +1,3 @@
-import { useState } from "react";
 import LoginButton from "../ui/LoginButton";
 import Logo from "./Logo";
 import Menus from "./Menus";
@@ -8,12 +7,6 @@ import { logo } from "../../assets";
 function Navbar() {
   const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
-  const [activeNavLink, setActiveNavLink] = useState("");
-
-  const clearActiveLink = () => {
-    setActiveNavLink("");
-  };
-
   return (
     <div
       className={`${
@@ -22,22 +15,16 @@ function Navbar() {
           : "w-[1240px] mx-auto  mt-[10px]"
       } flex items-center justify-between`}
     >
-      <Logo clearActiveLink={clearActiveLink} img={logo} />
+      <Logo img={logo} />
       {!isMobile ? (
         <>
-          <Menus
-            activeNavLink={activeNavLink}
-            setActiveNavLink={setActiveNavLink}
-          />
+          <Menus />
           <LoginButton />
         </>
       ) : (
         <div className="flex items-center space-x-[8px]">
           <LoginButton />
-          <Menus
-            activeNavLink={activeNavLink}
-            setActiveNavLink={setActiveNavLink}
-          />
+          <Menus />
         </div>
       )}
     </div>
