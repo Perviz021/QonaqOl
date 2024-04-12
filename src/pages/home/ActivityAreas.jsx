@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Link } from "react-router-dom";
 import { category } from "../../mock/static";
 import { getEventsByCategory } from "../../utils/apiUtils";
@@ -19,7 +17,7 @@ const ActivityAreas = () => {
       <div className="w-full lg:w-[1194px] lg:mx-auto lg:flex lg:justify-between mt-[40px] space-y-[32px]">
         {category.map((el, i) => (
           <Link
-            to={`/events/${el.id}`}
+            to={`/events/category/${el.id}`}
             onClick={() => filteredcategoryFn(el.id)}
             key={i}
             className="w-[96px] mx-auto xl:inline-flex cursor-pointer flex flex-col items-center space-y-[16px] lg:space-y-[12px]"

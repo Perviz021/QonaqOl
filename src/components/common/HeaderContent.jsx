@@ -14,14 +14,42 @@ function HeaderContent() {
   const [category, setCategory] = useState(null);
   const [data, setData] = useState(null);
   const [expSection, setExpSection] = useState(false);
+<<<<<<< HEAD
+  const handleCategoryChange = (category) => {
+    setCategory(category);
+  };
+  const handleStartedDateChange = (date) => {
+    setStartEventDate(date);
+  };
+
+  const handleEndedDateChange = (date) => {
+    setEndEventDate(date);
+  };
+  const fetchData = () => {
+    if (
+      category === null &&
+      startEventDate.length == 0 &&
+      endEventDate.length == 0
+    ) {
+      alert("fieldleri doldur");
+    } else {
+      getEventsBetweenCategoryAndDate(startEventDate, endEventDate, category)
+        .then((res) => setData(res.data))
+        .catch((err) => {
+          setData([]);
+          setCategory("");
+        })
+        .finally(() => {
+          setExpSection(true);
+          setCategoryToggle(false);
+          setDateToggle(false);
+        });
+    }
+  };
+=======
   const isMobile = useMediaQuery("only screen and (max-width : 480px)");
   const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
-
-  // useEffect(() => {
-  //   getEventsBetweenCategoryAndDate(startEventDate, endEventDate, category)
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.log(err));
-  // }, [startEventDate, endEventDate, category]);
+>>>>>>> c44ce6e7b045b43557761b8456906b53233c1b95
 
   return (
     <>
