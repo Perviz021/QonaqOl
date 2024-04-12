@@ -1,21 +1,14 @@
 import { Link } from "react-router-dom";
 
-function Logo({ color, clearActiveLink }) {
-  const textColor = color ? color : "#313131";
-
+function Logo({ clearActiveLink, img }) {
   const handleLogoClick = () => {
     // Call the function to clear active link state in the parent component
     clearActiveLink();
   };
   return (
-    <div className="px-[12px] py-[8px]">
-      <Link
-        to="/"
-        className={`text-[18px] leading-[28px] 
-          text-${[textColor]} unbounded unbounded-700`}
-        onClick={handleLogoClick}
-      >
-        Qonaqol.az
+    <div>
+      <Link to="/" onClick={handleLogoClick}>
+        <img src={img} alt="" className="w-[150px] lg:w-[200px] object-cover" />
       </Link>
     </div>
   );

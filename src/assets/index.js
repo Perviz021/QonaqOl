@@ -23,6 +23,9 @@ import bookmark from "./icons/bookmark.svg";
 import gift from "./icons/gift.svg";
 import arrowRightMenu from "./icons/arrowRightMenu.svg";
 import search from "./icons/search.svg";
+import logo from "./img/logo2.png";
+import logoBlack from "./img/logoBlack.png";
+import logoBlackBgRemoved from "./img/logoBlackBgRemoved.png";
 
 // Login button
 import profile from "./icons/profile.svg";
@@ -211,4 +214,7 @@ export {
   arrowRightMenu,
   search,
   close,
+  logo,
+  logoBlack,
+  logoBlackBgRemoved,
 };
