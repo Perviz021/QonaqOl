@@ -13,7 +13,7 @@ const ProfileEdit = () => {
           className="outline-none appearance-none leading-tight focus:outline-none  focus:shadow-outline bg-white focus:border-transparent focus:ring-0   rounded-[8px] p-3 border-transparent w-full"
         />
         <label htmlFor="" className="flex flex-col gap-[7px]  ">
-          Ad Soyad
+          Ad və soyad
         </label>
         <input
           type="text"

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import { logoBlackBgRemoved } from "../../assets";
 
 function Footer() {
   const [token, setToken] = useState("");
@@ -20,11 +21,21 @@ function Footer() {
 
   return (
     <footer className="w-full bg-[#000] px-[20px] lg:px-[100px] pt-[59px] lg:pt-[109px] pb-[30px] lg:pb-[60px] flex flex-col text-[#f1f1f1] divide-y divide-[#404040]">
-      <div className="flex flex-col lg:flex-row lg:justify-between mb-[170px] lg:mb-[200px]">
-        <div className="relative lg:bottom-[15px] mb-[68px]">
+      <div
+        className={`${
+          isMobile
+            ? "flex-col mb-[170px]"
+            : "flex-row mb-[200px] space-x-[270px]"
+        } flex`}
+      >
+        <div
+          className={`${
+            isMobile ? "" : "w-[200px] bottom-[15px]"
+          } relative mb-[68px]`}
+        >
           {/* Logo part */}
-          <div className="mt-[8px] mb-[28px] lg:mb-0">
-            <Logo color="#F1F1F1" />
+          <div className="relative right-[20px] mb-[20px] lg:mb-[16px]">
+            <Logo img={logoBlackBgRemoved} />
           </div>
           <div className="flex items-center w-[163px] text-white justify-between">
             <Link
@@ -53,7 +64,11 @@ function Footer() {
             </Link>
           </div>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-[35px]">
+        <div
+          className={`${
+            isMobile ? "grid-cols-2" : "grid-cols-3 flex-1"
+          } grid gap-[35px]`}
+        >
           {/* Company */}
           <div>
             <h3 className="text-[20px] font-[600] leading-[28px] mb-[24px]">
@@ -102,9 +117,6 @@ function Footer() {
               <span className="p-2 text-[16px] lg:size-[28px] bg-[#121214] rounded-full inline-flex items-center justify-center">
                 <FaWhatsapp />
               </span>
-              {!isMobile && (
-                <span className="text-[16px]">+994 12 444 00 00</span>
-              )}
             </p>
           </div>
         </div>

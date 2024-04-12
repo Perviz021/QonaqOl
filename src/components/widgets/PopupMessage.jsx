@@ -7,6 +7,9 @@ const PopupMessage = ({
   setShowSuccessPopup,
 }) => {
   const isMobile = useMediaQuery("only screen and (max-width : 480px)");
+  const closePopup = () => {
+    setShowSuccessPopup(false);
+  };
 
   return (
     <div className="fixed top-0 left-0 z-50 w-full h-full px-[20px] flex justify-center items-center bg-black bg-opacity-50">
@@ -19,7 +22,7 @@ const PopupMessage = ({
       >
         <button
           className="absolute top-[28px] right-[28px]"
-          onClick={setShowSuccessPopup(false)}
+          onClick={closePopup}
         >
           <img src={close} alt="" />
         </button>

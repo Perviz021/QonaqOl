@@ -131,7 +131,14 @@ export const googleSignup = async (
         navigateToCreateEvent
       );
     else if (type === "login")
-      handleSignIn(e, user, formState, setFormState, navigate);
+      handleSignIn(
+        e,
+        user,
+        formState,
+        setFormState,
+        navigate,
+        navigateToCreateEvent
+      );
   } catch (error) {
     const credential = GoogleAuthProvider.credentialFromError(error);
     console.error(credential);
@@ -326,7 +333,14 @@ export const handleSignIn = async (
         });
       }
     } else if (response.status === 404) {
-      handleSignup(e, user, formState, setFormState, navigate);
+      handleSignup(
+        e,
+        user,
+        formState,
+        setFormState,
+        navigate,
+        navigateToCreateEvent
+      );
     } else {
       toast.error(`Qeydiyyat mümkün olmadı. Yenidən cəhd edin.`, {
         position: "top-right",

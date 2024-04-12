@@ -42,3 +42,30 @@
   background-position: bottom center;
   @apply bg-cover;
 }
+
+/* SubscriptionButton.css */
+.message {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+}
+
+.message.success {
+  background-color: #00c408;
+  color: #fff;
+}
+
+.message.error {
+  background-color: #ff4e4e;
+  color: #fff;
+}
+
+.message.show {
+  opacity: 1;
+}

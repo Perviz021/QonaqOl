@@ -126,7 +126,9 @@ const router = createBrowserRouter([
     path: "/account",
     element: (
       <AppLayout>
-        <Account />
+        <PrivateRouteCreateEvent>
+          <Account />
+        </PrivateRouteCreateEvent>
       </AppLayout>
     ),
     errorElement: <ErrorPage />,

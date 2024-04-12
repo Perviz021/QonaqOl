@@ -18,7 +18,7 @@ const Account = () => {
         {active === "4" && "Bəyəndiklərim"}
         {active === "5" && "Şifrəni yenilə"}
       </h1>
-      <div className="    flex mb-[80px] gap-4  py-5 rounded-[16px]">
+      <div className="flex mb-[80px] gap-4  py-5 rounded-[16px]">
         <div className="max-w-[400px] w-full bg-[#F3F4F6] rounded-[8px] ">
           <ProfileSidebar active={active} setActive={setActive} />
         </div>

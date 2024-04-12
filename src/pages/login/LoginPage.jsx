@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { loginBg1, loader, success, error } from "../../assets";
 import {
@@ -15,6 +15,13 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const { search } = useLocation();
+  let params;
+  let navigateToCreateEvent;
+  if (search) {
+    params = new URLSearchParams(search);
+    navigateToCreateEvent = params.get("data");
+  }
   const isMobile = useMediaQuery("only screen and (max-width: 480px)");
 
   useEffect(() => {
@@ -238,7 +245,8 @@ function LoginPage() {
                         undefined,
                         formState,
                         setFormState,
-                        navigate
+                        navigate,
+                        navigateToCreateEvent
                       )
                     }
                   >
@@ -264,7 +272,14 @@ function LoginPage() {
                   className="bg-[#2B2C34] text-white text-[16px] h-[44px] rounded-[8px] focus:outline-none focus:shadow-outline inline-flex items-center w-full justify-center space-x-[24px] lg:space-x-[10px] py-[10px]"
                   type="button"
                   onClick={(e) =>
-                    googleSignup(e, "login", formState, setFormState, navigate)
+                    googleSignup(
+                      e,
+                      "login",
+                      formState,
+                      setFormState,
+                      navigate,
+                      navigateToCreateEvent
+                    )
                   }
                 >
                   <span>

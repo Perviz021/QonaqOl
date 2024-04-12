@@ -502,9 +502,9 @@ export const category = [
     id: "COUNTRY_LIFE",
   },
   {
-    categoryName: "Kamplar",
-    imageUrl: home2,
-    id: "CAMPING",
+    categoryName: "Yemək hazırlama",
+    imageUrl: cake,
+    id: "COOKING",
   },
   {
     categoryName: "Rəssamlıq",
@@ -512,14 +512,14 @@ export const category = [
     id: "PAINTING",
   },
   {
-    categoryName: "Yemək hazırlama",
-    imageUrl: cake,
-    id: "COOKING",
-  },
-  {
     categoryName: "Dulusçuluq",
     imageUrl: swatch,
     id: "POTTERY",
+  },
+  {
+    categoryName: "Kamplar",
+    imageUrl: home2,
+    id: "CAMPING",
   },
   {
     categoryName: "Musiqi",
