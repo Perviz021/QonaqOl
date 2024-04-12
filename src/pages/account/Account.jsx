@@ -12,13 +12,13 @@ const Account = () => {
   return (
     <div className="mt-[120px] w-[1200px] mx-auto">
       <h1 className="unbounded unbounded-600 text-[24px] font-bold mb-[60px] flex justify-between items-center">
-        {active === "1" && "Profil"}
+        {active === "1" && "Məlumatlarım"}
         {active === "2" && "Tədbirlərim"}
         {active === "3" && "Rezervlərim"}
         {active === "4" && "Bəyəndiklərim"}
         {active === "5" && "Şifrəni yenilə"}
       </h1>
-      <div className="    flex mb-[80px] gap-4  py-5 rounded-[16px]">
+      <div className="flex mb-[80px] gap-4  py-5 rounded-[16px]">
         <div className="max-w-[400px] w-full bg-[#F3F4F6] rounded-[8px] ">
           <ProfileSidebar active={active} setActive={setActive} />
         </div>
