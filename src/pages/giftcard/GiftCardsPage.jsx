@@ -4,10 +4,12 @@ import { giftcard1, giftcard2, giftcard3 } from "../../assets";
 import { useForm } from "react-hook-form";
 import { FaXmark } from "react-icons/fa6";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import PopupMessage from "../../components/widgets/PopupMessage";
 
 const GiftCardsPage = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const isMobile = useMediaQuery("only screen and (max-width: 480px)");
 
   const {
@@ -20,12 +22,17 @@ const GiftCardsPage = () => {
     setOpenPopup(true);
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = () => {
+    setOpenPopup(false);
+    setShowSuccessPopup(true);
   };
 
   const handleInputChange = () => {
-    setIsFormValid(errors.length === 0);
+    setIsFormValid(Object.keys(errors).length === 0);
+  };
+
+  const handleContinueButtonClick = () => {
+    setShowSuccessPopup(false); // Close the pop-up
   };
 
   useEffect(() => {
@@ -133,6 +140,15 @@ const GiftCardsPage = () => {
             </form>
           </div>
         </div>
+      )}
+
+      {showSuccessPopup && (
+        <PopupMessage
+          handleContinueButtonClick={handleContinueButtonClick}
+          setShowSuccessPopup={setShowSuccessPopup}
+          textMessage="Hədiyyə kartı müraciətiniz qeydə alındı. Ən qısa zamanda sizinlə
+                əlaqə saxlanılacaq.Təşəkkür edirik 😊"
+        />
       )}
     </div>
   );
