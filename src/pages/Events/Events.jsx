@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { staticData } from "../../mock/static";
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 import Subscribe from "../home/Subscribe";
 import { MdFirstPage } from "react-icons/md";
@@ -16,12 +15,8 @@ const Events = () => {
   const [expSection, setExpSection] = useState(false);
   const [count, setCount] = useState(1);
   const { category } = useParams();
-<<<<<<< HEAD
-  console.log(category);
-=======
   const isMobile = useMediaQuery("only screen and (max-width: 480px)");
 
->>>>>>> c44ce6e7b045b43557761b8456906b53233c1b95
   useEffect(() => {
     if (category) {
       getEventsByCategory(category).then((res) => setData(res.data));
@@ -30,7 +25,7 @@ const Events = () => {
     }
     window.scrollTo(0, 0);
   }, [category]);
-  console.log(data);
+
   return (
     <>
       {data.length === 0 ? (

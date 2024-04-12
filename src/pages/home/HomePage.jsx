@@ -6,7 +6,6 @@ import Blog from "./Blog";
 import EventCreate from "./EventCreate";
 import ExperiencesSection from "./ExperiencesSection";
 import Subscribe from "./Subscribe";
-
 function HomePage() {
   const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 

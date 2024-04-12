@@ -13,6 +13,7 @@ const ExperienceCard = ({
   imgHeight,
 }) => {
   // const event_name = name && name.replace(/\s+/g, "-");
+  const productName = name.replace(/\s+/g, "-");
 
   const imageClass =
     imgWidth && imgHeight
@@ -21,7 +22,7 @@ const ExperienceCard = ({
 
   return (
     <Link
-      to={`/events/${id}`}
+      to={`/events/${productName}?id=${id}`}
       className={`mx-auto bg-white rounded-t-[8px] ${imageClass}`}
     >
       <div className="relative lg:w-full lg:h-full overflow-hidden w-[150px] h-[120px]">
