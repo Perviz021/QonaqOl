@@ -322,7 +322,7 @@ const CreateEvent = () => {
             }`}
             disabled={!isFormFilled}
           >
-            Tədbir yarat
+            {id ? "Tədbiri yenilə" : "Tədbir yarat"}
           </button>
         </div>
       </form>

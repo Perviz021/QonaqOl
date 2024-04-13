@@ -14,6 +14,10 @@ function HeaderContent() {
   const [category, setCategory] = useState(null);
   const [data, setData] = useState(null);
   const [expSection, setExpSection] = useState(false);
+<<<<<<< HEAD
+  const isMobile = useMediaQuery("only screen and (max-width : 480px)");
+  const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
+=======
   const handleCategoryChange = (category) => {
     setCategory(category);
   };
@@ -47,6 +51,7 @@ function HeaderContent() {
   };
   const isMobile = useMediaQuery("only screen and (max-width: 480px)");
   const isDesktop = useMediaQuery("only screen and (min-width: 1024px)");
+>>>>>>> a3d3902b7155fe38f32098ba82b8f80f7667bc4c
 
   return (
     <>

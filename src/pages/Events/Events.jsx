@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { staticData } from "../../mock/static";
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 import Subscribe from "../home/Subscribe";
 import { MdFirstPage } from "react-icons/md";
@@ -26,7 +25,7 @@ const Events = () => {
     }
     window.scrollTo(0, 0);
   }, [category]);
-  console.log(data);
+
   return (
     <>
       {data.length === 0 ? (

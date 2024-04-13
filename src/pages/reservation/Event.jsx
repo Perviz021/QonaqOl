@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { month } from "../../mock/static";
 import {
   createLikeEventById,
@@ -31,14 +31,15 @@ const Event = () => {
   const [showShare, setShowShare] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [wishListArr, setwishListArr] = useState([]);
+  const eventId = new URLSearchParams(location.search).get("id");
 
   const [shareUrl, setShareUrl] = useState(window.location.href);
   // const event_name = name && name.replace(/-/g, " ");
   const user = localStorage.getItem("userId");
 
   useEffect(() => {
-    eventById(id).then((res) => setData(res.data));
-  }, [id]);
+    eventById(eventId).then((res) => setData(res.data));
+  }, [eventId]);
   useEffect(() => {
     // eventById(id).then((res) => console.log(res.data));
     getEvents().then((res) =>
@@ -311,10 +312,34 @@ const Event = () => {
                       Qiymət: <span>{data?.eventPrice}</span> AZN
                     </p>
                     <p className="text-[16px]">
-                      Dil: <span>{data?.language}</span>
+                      Dil:{" "}
+                      <span>
+                        {data?.language == "RUSSIAN"
+                          ? "Rus dili"
+                          : data?.language == "AZERBAIJANI"
+                          ? "Azərbaycan dili"
+                          : data?.language == "ENGLISH"
+                          ? "İngilis dili"
+                          : " "}
+                      </span>
                     </p>
                     <p className="text-[16px]">
-                      Kateqoriya: <span>{data?.category}</span>
+                      Kateqoriya:{" "}
+                      <span>
+                        {data?.category == "COUNTRY_LIFE"
+                          ? "Kənd Həyatı"
+                          : data?.category == "COOKING"
+                          ? "Yemək hazırlama"
+                          : data?.category == "PAINTING"
+                          ? "Rəssamlıq"
+                          : data?.category == "POTTERY"
+                          ? "Dulusçuluq"
+                          : data?.category == "CAMPING"
+                          ? "Kamplar"
+                          : data?.category == "MUSIC"
+                          ? "Musiqi"
+                          : ""}
+                      </span>
                     </p>
                   </div>
                 </div>
