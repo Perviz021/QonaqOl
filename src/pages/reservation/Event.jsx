@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { month } from "../../mock/static";
 import {
   createLikeEventById,
@@ -17,6 +17,7 @@ import axios from "axios";
 import Share from "../../components/ui/react-share/Share";
 import ShowShare from "../../assets/icons/send-2-fill.svg";
 import ClosedShare from "../../assets/icons/send-2.svg";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const Event = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -25,13 +26,13 @@ const Event = () => {
   const [emailError, setEmailError] = useState(false); // State for email format error
   const [fullName, setFullName] = useState("");
   const [participants, setParticipants] = useState("");
-  const { id } = useParams();
   const [data, setData] = useState(null);
   const [otherEvents, setOtherEvents] = useState(null);
   const [showShare, setShowShare] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [wishListArr, setwishListArr] = useState([]);
   const eventId = new URLSearchParams(location.search).get("id");
+  const isMobile = useMediaQuery("only screen and (max-width:480px)");
 
   const [shareUrl, setShareUrl] = useState(window.location.href);
   // const event_name = name && name.replace(/-/g, " ");
@@ -69,7 +70,7 @@ const Event = () => {
       const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
       const reservationData = {
         userId: parseInt(userId), // Convert userId to integer if necessary
-        eventId: parseInt(id), // Replace 0 with the actual event ID
+        eventId: parseInt(eventId), // Replace 0 with the actual event ID
         phoneNumber,
         participantsCount: parseInt(participants), // Convert participants to integer if necessary
       };
@@ -101,7 +102,7 @@ const Event = () => {
         });
     } else {
       const reservationData = {
-        eventId: parseInt(id), // Replace 0 with the actual event ID
+        eventId: parseInt(eventId), // Replace 0 with the actual event ID
         fullName,
         email,
         phoneNumber,
@@ -212,7 +213,7 @@ const Event = () => {
   };
   useEffect(() => {
     getWishlist(user).then((res) => setwishListArr(res.data));
-  }, [user, id]);
+  }, [user, eventId]);
 
   return (
     <>
@@ -222,96 +223,94 @@ const Event = () => {
         </div>
       ) : (
         <>
-          <div className="w-[1240px] mx-auto">
-            <div className="flex justify-between items-center pb-10">
-              <h3 className="text-[28px] mb-[40px] mt-[90px] font-[600]">
+          <div className="w-full lg:w-[1240px] lg:mx-auto lg:px-0 mt-[60px] lg:mt-[90px]">
+            <div className="flex justify-between items-center px-[20px] mb-[24px] lg:mb-10">
+              <h3 className="lg:text-[28px] font-[500] lg:font-[600]">
                 {data?.eventName}
               </h3>
-              <span className="relative flex items-center justify-center  gap-[10px] top-[40px]">
-                <span className="border relative flex items-center justify-center border-[#333] size-[60px]  rounded-full">
+              <span className="flex items-center justify-center gap-[10px]">
+                <span className="border relative flex items-center justify-center border-[#333] size-[38px] lg:size-[60px] rounded-full">
                   <img
                     src={`${showShare ? ShowShare : ClosedShare}`}
                     color="red"
-                    className="size-8 cursor-pointer"
+                    className="size-[26px] lg:size-[28px] cursor-pointer"
                     onClick={() => setShowShare(!showShare)}
                   />
 
                   {showShare ? (
-                    <div className="absolute top-[90px] z-30 right-0">
+                    <div className="absolute top-[60px] lg:top-[90px] z-30 right-0">
                       <Share shareUrl={shareUrl} setShowShare={setShowShare} />
                     </div>
                   ) : null}
                 </span>
                 <span
-                  className="border flex items-center justify-center border-[#333] size-[60px]  rounded-full"
+                  className="border flex items-center justify-center border-[#333] size-[38px] lg:size-[60px]  rounded-full"
                   onClick={() => handleWishlist(data?.id)}
                 >
                   <img
                     src={toggle ? heartFill : heart}
                     alt=""
-                    className="cursor-pointer"
+                    className="size-[26px] lg:size-[28px] cursor-pointer"
                   />
                 </span>
               </span>
             </div>
-            <div className="flex gap-[20px] mb-[40px]">
+            <div className="flex gap-[5px] lg:gap-[20px] px-[20px] mb-[60px] lg:mb-[40px]">
               <div>
                 <img
                   src={data?.photoUrls[0]}
                   alt=""
-                  className="w-[400px] h-[500px] object-cover rounded-[8px]"
+                  className="w-[113px] lg:w-[400px] h-[218px] lg:h-[500px] object-cover rounded-[8px]"
                 />
               </div>
-              <div className="flex flex-col gap-[20px]">
+              <div className="flex flex-col gap-[8px] lg:gap-[20px]">
                 <img
                   src={data?.photoUrls[1]}
                   alt=""
-                  className="w-[400px] h-[272px] object-cover rounded-[8px]"
+                  className="w-[114px] lg:w-[400px] h-[119px] lg:h-[272px] object-cover rounded-[8px]"
                 />
                 <img
                   src={data?.photoUrls[2]}
                   alt=""
-                  className="w-[400px] h-[208px] object-cover rounded-[8px]"
+                  className="w-[113px] lg:w-[400px] h-[90px] lg:h-[208px] object-cover rounded-[8px]"
                 />
               </div>
-              <div className="flex flex-col gap-[20px]">
+              <div className="flex flex-col gap-[8px] lg:gap-[20px]">
                 <img
                   src={data?.photoUrls[3]}
                   alt=""
-                  className="w-[400px] h-[202px] object-cover rounded-[8px]"
+                  className="w-[113px] lg:w-[400px] h-[89px] lg:h-[202px] object-cover rounded-[8px]"
                 />
                 <img
                   src={data?.photoUrls[4]}
                   alt=""
-                  className="w-[400px] h-[278px] object-cover rounded-[8px]"
+                  className="w-[113px] lg:w-[400px] h-[121px] lg:h-[278px] object-cover rounded-[8px]"
                 />
               </div>
             </div>
-            <div className="flex justify-between items-start space-x-[123px]">
-              <div className="w-[715px]">
-                <h3 className="text-[28px] font-[600] mb-[32px]">
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start space-y-[63px] lg:space-x-[123px]">
+              <div className="w-full lg:w-[715px] px-[20px] lg:px-0">
+                <h3 className="text-[18px] lg:text-[28px] font-[600] mb-[32px]">
                   Tədbir haqqında
                 </h3>
-                <p className="font-normal text-[16px] leading-[24px]">
-                  {data?.description}
-                </p>
+                <p className="text-base">{data?.description}</p>
                 <p className="mt-[48px]">
-                  <span className="text-[20px] font-[600] mr-[8px]">
+                  <span className="text-[18px] lg:text-[20px] font-[600] mr-[8px]">
                     Ünvan:
                   </span>
-                  <span className="text-[16px]">{data?.eventLocation}</span>
+                  <span className="text-base">{data?.eventLocation}</span>
                 </p>
               </div>
-              <div className="p-[40px] bg-[#fafafa] w-[400px] rounded-[8px]">
+              <div className="px-[20px] py-[40px] lg:p-[40px] bg-[#fafafa] w-full lg:w-[400px] rounded-[8px]">
                 <div className="border-b border-[#e1e1e1]">
-                  <h2 className="font-[600] text-[28px] mb-[12px]">
+                  <h2 className="font-[600] text-base lg:text-[28px] mb-[20px] lg:mb-[12px]">
                     {data?.eventName}
                   </h2>
-                  <div className="space-y-[8px] py-[12px]">
-                    <p className="text-[16px]">
+                  <div className="space-y-[8px] pb-[12px]">
+                    <p className="text-base">
                       Qiymət: <span>{data?.eventPrice}</span> AZN
                     </p>
-                    <p className="text-[16px]">
+                    <p className="text-base">
                       Dil:{" "}
                       <span>
                         {data?.language == "RUSSIAN"
@@ -323,7 +322,7 @@ const Event = () => {
                           : " "}
                       </span>
                     </p>
-                    <p className="text-[16px]">
+                    <p className="text-base">
                       Kateqoriya:{" "}
                       <span>
                         {data?.category == "COUNTRY_LIFE"
@@ -344,7 +343,9 @@ const Event = () => {
                   </div>
                 </div>
                 <div className="border-b border-[#e1e1e1] py-[12px]">
-                  <h5 className="font-[600] text-[18px]">Mövcud tarixlər</h5>
+                  <h5 className="font-[600] text-[18px] mb-[12px]">
+                    Mövcud tarixlər
+                  </h5>
                   <p className="text-[16px]">
                     {createDate}, {data?.eventStartTime} - {data?.eventEndTime}{" "}
                   </p>
@@ -357,12 +358,12 @@ const Event = () => {
                 </button>
               </div>
             </div>
-            <div className="mb-[120px]">
-              <h4 className="unbounded unbounded-600 text-[24px] my-[40px]">
+            <div className="w-full mb-[170px] lg:mb-[120px] px-[20px] lg:px-0">
+              <h4 className="unbounded unbounded-600 text-base lg:text-[24px] mt-[60px] mb-[40px] lg:my-[40px]">
                 Oxşar tədbirlər
               </h4>
 
-              <div className="gap-[20px] flex pb-24 justify-between">
+              <div className="w-full gap-[20px] grid grid-cols-2 lg:grid-cols-3">
                 {otherEvents &&
                   otherEvents
                     .slice(0, 3)
@@ -383,17 +384,19 @@ const Event = () => {
             </div>
 
             {showPopup && (
-              <div className="fixed top-0 left-0 z-50 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50">
+              <div className="fixed top-0 left-0 z-50 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50 px-[20px]">
                 <div
                   ref={popupRef}
-                  className="bg-white py-[98px] px-[80px] rounded-[8px]"
+                  className={`${
+                    isMobile ? "w-full" : ""
+                  } bg-white p-[40px] lg:py-[98px] lg:px-[80px] rounded-[8px]`}
                 >
-                  <h2 className="text-[24px] font-[600] mb-[20px] text-center">
+                  <h2 className="text-base lg:text-[24px] font-[600] mb-[20px] text-center">
                     Yerlər dolmadan, öz yerini tut
                   </h2>
                   <form
                     onSubmit={handleSubmit}
-                    className="space-y-[20px] w-[400px]"
+                    className="space-y-[20px] w-full lg:w-[400px]"
                   >
                     {!accessToken && (
                       <>
@@ -403,7 +406,9 @@ const Event = () => {
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           maxLength={40}
-                          className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
+                          className={`input-default ${
+                            isMobile ? "w-full" : ""
+                          }`}
                         />
                         <input
                           type="email"
@@ -423,18 +428,18 @@ const Event = () => {
                       placeholder={phoneNumber ? phoneNumber : placeholder}
                       value={phoneNumber}
                       onChange={handlePhoneNumberChange}
-                      className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
+                      className="input-default border-none"
                     />
                     <input
                       type="number"
                       value={participants}
                       onChange={(e) => setParticipants(e.target.value)}
                       placeholder="İştirakçı sayı"
-                      className="h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border-transparent focus:border-transparent focus:ring-0"
+                      className="input-default border-none"
                     />
                     <button
                       type="submit"
-                      className={`mt-[28px] w-[400px] rounded-[8px] py-[12px] ${
+                      className={`mt-[28px] w-full lg:w-[400px] rounded-[8px] py-[12px] ${
                         (accessToken && phoneNumber && participants) ||
                         (!accessToken &&
                           phoneNumber &&
