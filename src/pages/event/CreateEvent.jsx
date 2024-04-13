@@ -184,7 +184,7 @@ const CreateEvent = () => {
             },
           }
         );
-        if (response.status === 200) {
+        if (response.status == 200) {
           setShowSuccessPopup(true);
           // Handle success, e.g., show a success message
           console.log("Event created successfully!");
