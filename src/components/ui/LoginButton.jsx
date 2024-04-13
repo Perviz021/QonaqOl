@@ -37,10 +37,6 @@ const LoginButton = () => {
     }
   }, []);
 
-  const handleClick = () => {
-    navigate("/create-event");
-  };
-
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -75,13 +71,12 @@ const LoginButton = () => {
       {isMobile && (
         <div>
           {token && (
-            <Link
+            <NavLink
               to={"/create-event"}
               className="flex items-center justify-center  size-[32px] p-[6px] bg-[#FFCE00] border-transparent relative z-10 rounded-[8px]"
-              onClick={handleClick}
             >
               <img src={add} className="size-[20px]" alt="" />
-            </Link>
+            </NavLink>
           )}
           {!token && (
             <NavLink to="/login">
@@ -97,15 +92,14 @@ const LoginButton = () => {
         <>
           <div className="flex gap-[24px]">
             {token && (
-              <button className="bg-[#FFCE00] border-transparent w-[190px] py-[8px] h-[43px] relative z-10  flex  justify-center items-center rounded-[8px] text-black font-[400] text-[16px]">
-                <Link
-                  to={"/create-event"}
-                  className="flex items-center gap-1"
-                  onClick={handleClick}
-                >
+              <NavLink
+                to="/create-event"
+                className="bg-[#FFCE00] border-transparent w-[190px] py-[8px] h-[43px] relative z-10  flex justify-center items-center rounded-[8px]"
+              >
+                <span className="flex items-center gap-1">
                   <img src={add} className="size-6" alt="" /> Tədbir yarat
-                </Link>
-              </button>
+                </span>
+              </NavLink>
             )}
             <div className="relative" ref={dropdownRef}>
               <button
