@@ -27,13 +27,7 @@ export const reservationById = async (userId) => {
 };
 
 export const deleteEventById = (eventId) => {
-  return api.delete(
-    endPoints.event_controller.deletebyId(eventId, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-  );
+  return api.delete(endPoints.event_controller.deletebyId(eventId));
 };
 
 export const createLikeEventById = (userId, eventId) => {
