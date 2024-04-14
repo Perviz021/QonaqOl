@@ -69,3 +69,11 @@
 .message.show {
   opacity: 1;
 }
+
+.react-multi-carousel-item {
+  width: 150px;
+}
+
+.react-multi-carousel-track {
+  @apply space-x-[4px];
+}
