@@ -219,7 +219,7 @@ const Event = () => {
     <>
       {data == null ? (
         <div className="w-full h-screen flex items-center justify-center">
-          <img src={loader} alt="" />
+          <img src={loader} alt="" className="size-[100px] lg:size-[200px]" />
         </div>
       ) : (
         <>
@@ -406,7 +406,7 @@ const Event = () => {
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           maxLength={40}
-                          className={`input-default ${
+                          className={`input-default border-none ${
                             isMobile ? "w-full" : ""
                           }`}
                         />
@@ -415,7 +415,7 @@ const Event = () => {
                           placeholder="E-poçt"
                           value={email}
                           onChange={handleEmailChange}
-                          className={`h-[44px] w-full px-[20px] py-[10px] rounded-[8px] bg-[#f2f2f2] text-[16px] border ${
+                          className={`input-default border-none ${
                             emailError
                               ? "border-red-500"
                               : "border-transparent focus:border-transparent focus:ring-0"

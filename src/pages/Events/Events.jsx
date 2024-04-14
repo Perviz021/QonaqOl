@@ -23,14 +23,17 @@ const Events = () => {
     } else {
       getEvents().then((res) => setData(res.data));
     }
-    window.scrollTo(0, 0);
   }, [category]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
       {data.length === 0 ? (
         <div className="w-full h-screen flex items-center justify-center">
-          <img src={loader} alt="" />
+          <img src={loader} alt="" className="size-[100px] lg:size-[200px]" />
         </div>
       ) : (
         <>
