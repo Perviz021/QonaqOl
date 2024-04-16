@@ -77,7 +77,7 @@ const GiftCardsPage = () => {
       </div>
 
       {openPopup && (
-        <div className="fixed top-0 left-0 size-full flex flex-col justify-center items-center bg-black bg-opacity-50 px-[20px] lg:px-0">
+        <div className="fixed top-0 left-0 z-50 size-full flex flex-col justify-center items-center bg-black bg-opacity-50 px-[20px] lg:px-0">
           <div
             className={`${
               isMobile ? "w-full" : ""
@@ -101,30 +101,28 @@ const GiftCardsPage = () => {
               <input
                 {...register("to", { required: true })}
                 placeholder="Kimə"
-                className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
+                className="input-default placeholder:text-[#00000080]"
                 onChange={handleInputChange}
               />
               <input
                 {...register("from", { required: true })}
                 placeholder="Kimdən"
-                className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
+                className="input-default placeholder:text-[#00000080]"
                 onChange={handleInputChange}
               />
               <input
                 {...register("message")}
                 placeholder="Şəxsi mesaj"
-                className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
+                className="input-default placeholder:text-[#00000080]"
               />
               <input
                 {...register("contact", {
-                  pattern: /^[0-9]*$/,
                   required: true,
                 })}
-                type="tel"
+                type="number"
                 placeholder="Əlaqə nömrəsi"
-                className="rounded-[8px] bg-[#f2f2f2] placeholder:opacity-50 py-[10px] px-[20px] border-none outline-none"
+                className="input-default placeholder:text-[#00000080] border-none "
                 onChange={handleInputChange}
-                onPaste={(e) => e.preventDefault()} // Prevent pasting non-numeric values
               />
               <button
                 type="submit"
