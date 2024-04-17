@@ -17,26 +17,22 @@ const PopupMessage = ({
         className={`${
           isMobile
             ? "size-[353px] pt-[76px] pb-[43px] px-[26px]"
-            : "w-[480px] pt-[104px] pb-[75px] px-[101px]"
+            : "w-[480px] pt-[104px] pb-[67px] px-[53px]"
         } bg-white rounded-[8px] flex flex-col items-center justify-center relative`}
       >
         <button
-          className="absolute top-[28px] right-[28px]"
+          className="absolute top-[28px] right-[28px] lg:top-[12px] lg:right-[12px]"
           onClick={closePopup}
         >
           <img src={close} alt="" />
         </button>
-        <span
-          className={`${
-            isMobile ? "size-[80px]" : "size-[100px]"
-          } p-[25px] inline-flex justify-center items-center mb-[33px] bg-[#44AA55] rounded-full`}
-        >
+        <span className="size-[80px] lg:size-[100px] p-[25px] inline-flex justify-center items-center bg-[#44AA55] rounded-full">
           <img src={done} alt="" />
         </span>
-        <p className="text-base mb-[47px] text-center">{textMessage}</p>
+        <p className="text-base text-center my-[26px]">{textMessage}</p>
         <button
           onClick={handleContinueButtonClick}
-          className="bg-[#FFCE00] text-black h-[40px] w-[278px] text-[12px] rounded-[8px] focus:outline-none"
+          className="bg-[#FFCE00] text-black h-[48px] w-[278px] text-base rounded-[8px] focus:outline-none"
         >
           Davam et
         </button>

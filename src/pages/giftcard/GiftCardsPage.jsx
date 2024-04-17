@@ -11,6 +11,7 @@ const GiftCardsPage = () => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const isMobile = useMediaQuery("only screen and (max-width: 480px)");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const {
     register,
@@ -33,6 +34,29 @@ const GiftCardsPage = () => {
 
   const handleContinueButtonClick = () => {
     setShowSuccessPopup(false); // Close the pop-up
+  };
+
+  const handleChangePhoneNumber = (e) => {
+    let inputValue = e.target.value;
+    // Allow only digits and limit input to 12 characters
+    inputValue = inputValue.replace(/\D/g, "").slice(0, 12);
+
+    if (inputValue.length > 0) {
+      // Remove "+994" if the input only contains it
+      if (inputValue === "+994" || inputValue === "994") {
+        setPhoneNumber("");
+      } else {
+        // Ensure the input starts with +994 only if it doesn't already start with it
+        if (!inputValue.startsWith("+994")) {
+          if (inputValue.startsWith("994")) {
+            inputValue = "+" + inputValue;
+          } else {
+            inputValue = "+994" + inputValue;
+          }
+        }
+        setPhoneNumber(inputValue);
+      }
+    }
   };
 
   useEffect(() => {
@@ -116,13 +140,11 @@ const GiftCardsPage = () => {
                 className="input-default placeholder:text-[#00000080]"
               />
               <input
-                {...register("contact", {
-                  required: true,
-                })}
-                type="number"
+                type="text"
+                className="input-default border-none placeholder:text-[#00000080]"
+                value={phoneNumber}
+                onChange={handleChangePhoneNumber}
                 placeholder="Əlaqə nömrəsi"
-                className="input-default placeholder:text-[#00000080] border-none "
-                onChange={handleInputChange}
               />
               <button
                 type="submit"
