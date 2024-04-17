@@ -9,20 +9,22 @@ const EventContact = ({ onPhoneNumberChange }) => {
     // Allow only digits and limit input to 12 characters
     inputValue = inputValue.replace(/\D/g, "").slice(0, 12);
 
-    // Remove "+994" if the input only contains it
-    if (inputValue === "+994" || inputValue === "994") {
-      setPhoneNumber("");
-    } else {
-      // Ensure the input starts with +994 only if it doesn't already start with it
-      if (!inputValue.startsWith("+994")) {
-        if (inputValue.startsWith("994")) {
-          inputValue = "+" + inputValue;
-        } else {
-          inputValue = "+994" + inputValue;
+    if (inputValue.length > 0) {
+      // Remove "+994" if the input only contains it
+      if (inputValue === "+994" || inputValue === "994") {
+        setPhoneNumber("");
+      } else {
+        // Ensure the input starts with +994 only if it doesn't already start with it
+        if (!inputValue.startsWith("+994")) {
+          if (inputValue.startsWith("994")) {
+            inputValue = "+" + inputValue;
+          } else {
+            inputValue = "+994" + inputValue;
+          }
         }
+        setPhoneNumber(inputValue);
+        onPhoneNumberChange(inputValue);
       }
-      setPhoneNumber(inputValue);
-      onPhoneNumberChange(inputValue);
     }
   };
 
