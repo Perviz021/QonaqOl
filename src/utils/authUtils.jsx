@@ -65,7 +65,10 @@ export const handleInputChange = (e, formState, setFormState, type) => {
   }
 };
 
-export const useRefreshToken = async (navigate) => {
+export const useRefreshToken = async (
+  navigate,
+  navigateToCreateEvent = false
+) => {
   try {
     const refreshToken = localStorage.getItem("refreshToken");
     const response = await fetch(
@@ -95,7 +98,8 @@ export const useRefreshToken = async (navigate) => {
       // For example, clear tokens from local storage and redirect to login page
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      navigate("/login");
+      if (!navigateToCreateEvent) navigate("/login");
+      else navigate("/login?data=event");
     }
   } catch (error) {
     console.error("Error refreshing token:", error.message);
@@ -209,7 +213,10 @@ export const handleSignup = async (
     } else {
       if (response.status === 401) {
         // If token is expired or invalid, try refreshing the token
-        const newAccessToken = await useRefreshToken(navigate);
+        const newAccessToken = await useRefreshToken(
+          navigate,
+          navigateToCreateEvent
+        );
         if (newAccessToken) {
           // If a new access token is obtained, retry the signup
           return handleSignup(e);
@@ -316,7 +323,10 @@ export const handleSignIn = async (
       if (!navigateToCreateEvent) navigate("/"); // Navigate to home page
       else navigate("/create-event");
     } else if (response.status === 403) {
-      const newAccessToken = await useRefreshToken(navigate);
+      const newAccessToken = await useRefreshToken(
+        navigate,
+        navigateToCreateEvent
+      );
       if (newAccessToken) {
         return handleSignIn(); // Retry sign-in with new access token
       } else {
