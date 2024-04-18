@@ -16,6 +16,7 @@ const GiftCardsPage = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -34,6 +35,8 @@ const GiftCardsPage = () => {
 
   const handleContinueButtonClick = () => {
     setShowSuccessPopup(false); // Close the pop-up
+    reset();
+    setPhoneNumber("");
   };
 
   const handleChangePhoneNumber = (e) => {
