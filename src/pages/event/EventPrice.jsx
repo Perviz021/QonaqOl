@@ -1,17 +1,38 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { money } from "../../assets";
 import { useMediaQuery } from "@uidotdev/usehooks";
 
 const EventPrice = ({ onEventPriceChange }) => {
   const [price, setPrice] = useState("");
+
   const isMobile = useMediaQuery("only screen and (max-width : 480px)");
 
-  const handleChange = (e) => {
-    // Ensure only numbers are entered
-    const inputPrice = e.target.value.replace(/[^0-9]/g, "");
+  const handleChange = (event) => {
+    // Extract numeric characters only from input value
+    const inputPrice = event.target.value.replace(/\D/g, "");
 
+    // Update price state with the numeric value
     setPrice(inputPrice);
+
+    // Pass the price as a number to the parent component
     onEventPriceChange(Number(inputPrice));
+  };
+
+  const handleKeyDown = (event) => {
+    // Handle Backspace key
+    if (event.key === "Backspace") {
+      // Prevent default behavior to avoid unwanted side effects
+      event.preventDefault();
+
+      // Remove the last character from price state
+      const updatedPrice = price.slice(0, -1);
+
+      // Update price state with the updated value
+      setPrice(updatedPrice);
+
+      // Pass the updated price as a number to the parent component
+      onEventPriceChange(Number(updatedPrice));
+    }
   };
 
   return (
@@ -20,15 +41,15 @@ const EventPrice = ({ onEventPriceChange }) => {
         Qiymət
       </h4>
       <div className="relative">
-        <span className="absolute top-[11px] left-[20px]">AZN</span>
         <input
           type="text"
-          className="input-default border-none placeholder:text-[#00000066] !pl-[60px]"
-          placeholder="1 nəfər üçün"
-          value={price}
+          placeholder="AZN 1 nəfər üçün"
+          className="text-[16px] bg-[#f2f2f2] w-full border-transparent focus:border-transparent focus:ring-0 rounded-[8px] px-[20px] placeholder:text-[#00000066]"
+          value={price !== "" ? `${price} AZN` : ""}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
-        <span className="absolute right-[20px] top-[10px]">
+        <span className="absolute right-[20px] top-[10px] cursor-pointer">
           <img src={money} alt="" />
         </span>
       </div>
