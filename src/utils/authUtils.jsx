@@ -72,7 +72,7 @@ export const useRefreshToken = async (
   try {
     const refreshToken = localStorage.getItem("refreshToken");
     const response = await fetch(
-      "https://qonaqol.onrender.com/qonaqol/api/v1/auth/refresh",
+      "http://89.116.25.33:8081/qonaqol/api/v1/auth/refresh",
       {
         method: "POST",
         headers: {
@@ -185,7 +185,7 @@ export const handleSignup = async (
     }
 
     const response = await fetch(
-      "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signup",
+      "http://89.116.25.33:8081/qonaqol/api/v1/auth/signup",
       {
         method: "POST",
         headers: {
@@ -300,7 +300,7 @@ export const handleSignIn = async (
     }
 
     const response = await fetch(
-      "https://qonaqol.onrender.com/qonaqol/api/v1/auth/signin",
+      "http://89.116.25.33:8081/qonaqol/api/v1/auth/signin",
       {
         method: "POST",
         headers: {

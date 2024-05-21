@@ -77,7 +77,7 @@ const Event = () => {
       // Make POST request to backend with reservationData
       axios
         .post(
-          "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-registered",
+          "http://89.116.25.33:8081/qonaqol/api/reservation/create-reservation-registered",
 
           reservationData,
           {
@@ -111,7 +111,7 @@ const Event = () => {
       // Make POST request to backend with reservationData
       axios
         .post(
-          "https://qonaqol.onrender.com/qonaqol/api/reservation/create-reservation-unregistered",
+          "http://89.116.25.33:8081/qonaqol/api/reservation/create-reservation-unregistered",
           reservationData,
           {
             headers: {
