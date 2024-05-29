@@ -174,7 +174,7 @@ const CreateEvent = () => {
       try {
         // Send the form data to the backend API
         const response = await axios.put(
-          `http://89.116.25.33:8081/qonaqol/api/event/${id}?${queryParamsString}`,
+          `https://qonaq.shamilabilov.live/qonaqol/api/event/${id}?${queryParamsString}`,
 
           formData,
 
@@ -200,8 +200,7 @@ const CreateEvent = () => {
       try {
         // Send the form data to the backend API
         const response = await axios.post(
-          `http://89.116.25.33:8081/qonaqol/api/event/create-event?${queryParamsString}`,
-
+          `https://qonaq.shamilabilov.live/qonaqol/api/event/create-event?${queryParamsString}`,
           formData,
           {
             headers: {

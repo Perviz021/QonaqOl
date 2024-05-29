@@ -1,7 +1,7 @@
 import axios from "axios";
 import { endPoints } from "../api/endPoints";
 
-const BASE_URL = "http://89.116.25.33:8081/qonaqol/";
+const BASE_URL = "https://qonaq.shamilabilov.live/qonaqol/";
 const api = axios.create({
   baseURL: BASE_URL,
 });
