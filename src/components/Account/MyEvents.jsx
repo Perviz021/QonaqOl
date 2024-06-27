@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteEventById, getEvents } from "../../utils/apiUtils";
+import { deleteEventById, getEvents, userById } from "../../utils/apiUtils";
 import { loader } from "../../assets";
 import { Link, useNavigate } from "react-router-dom";
 import Edit from "../../assets/icons/edit-2.svg";
@@ -22,13 +22,19 @@ const MyEvents = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getEvents().then((res) => {
-      setData(res.data);
+    // getEvents().then((res) => {
+    //   setData(res.data);
+    //   setIsLoading(false);
+    // });
+
+    // const filteredEvents = data && data.filter((el) => el.userId == id);
+    // setFilteredData(filteredEvents);
+    userById(id).then((res) => {
+      setFilteredData(res.data);
       setIsLoading(false);
     });
-    const filteredEvents = data && data.filter((el) => el.userId == id);
-    setFilteredData(filteredEvents);
-  }, [id, data]);
+  }, [id]);
+
   const handleDelete = (e, id) => {
     e.stopPropagation();
     deleteEventById(id)

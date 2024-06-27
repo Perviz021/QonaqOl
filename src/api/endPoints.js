@@ -1,5 +1,7 @@
 export const endPoints = {
   user_controller: {
+    getbyId: (id) => `/api/event/user/${id}`,
+
     add: "/v1/users",
     byId: (id) => `/v1/users/${id}`,
     delete: (id) => `/v1/users/${id}`,

@@ -25,7 +25,9 @@ export const reservationById = async (userId) => {
     endPoints.reservation_controller.get_reservation(userId)
   );
 };
-
+export const userById = async (userId) => {
+  return await api.get(endPoints.user_controller.getbyId(userId));
+};
 export const deleteEventById = (eventId) => {
   return api.delete(endPoints.event_controller.deletebyId(eventId));
 };
