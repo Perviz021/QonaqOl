@@ -23,7 +23,7 @@ import bookmark from "./icons/bookmark.svg";
 import gift from "./icons/gift.svg";
 import arrowRightMenu from "./icons/arrowRightMenu.svg";
 import search from "./icons/search.svg";
-import logo from "./img/logo2.png";
+import logo from "./img/logo3.png";
 import logoBlackBgRemoved from "./img/logoBlackBgRemoved.png";
 
 // Login button
