@@ -25,7 +25,7 @@ function Footer() {
         className={`${
           isMobile
             ? "flex-col mb-[170px]"
-            : "flex-row mb-[200px] space-x-[270px]"
+            : "flex-row mb-[200px] space-x-[250px]"
         } flex`}
       >
         <div
@@ -40,27 +40,27 @@ function Footer() {
           <div className="flex items-center w-[163px] text-white justify-between">
             <Link
               to="#"
-              className="p-2 size-[28px] bg-[#121214] rounded-full inline-flex items-center justify-center"
+              className="p-2 size-[32px] bg-[#121214] rounded-full inline-flex items-center justify-center"
             >
-              <FaFacebookF />
+              <FaFacebookF className="text-[24px]" />
             </Link>
             <Link
               to="#"
-              className="p-2 size-[28px] bg-[#121214] rounded-full inline-flex items-center justify-center"
+              className="p-2 size-[32px] bg-[#121214] rounded-full inline-flex items-center justify-center"
             >
-              <FaXTwitter />
+              <FaXTwitter className="text-[28px]" />
             </Link>
             <Link
               to="#"
-              className="p-2 size-[28px] bg-[#121214] rounded-full inline-flex items-center justify-center"
+              className="p-2 size-[32px] bg-[#121214] rounded-full inline-flex items-center justify-center"
             >
-              <FaLinkedinIn />
+              <FaLinkedinIn className="text-[28px]" />
             </Link>
             <Link
               to="#"
-              className="p-2 size-[28px] bg-[#121214] rounded-full inline-flex items-center justify-center"
+              className="p-2 size-[32px] bg-[#121214] rounded-full inline-flex items-center justify-center"
             >
-              <FaInstagram />
+              <FaInstagram className="text-[28px]" />
             </Link>
           </div>
         </div>
@@ -113,10 +113,21 @@ function Footer() {
             <h3 className="text-[20px] font-[600] leading-[28px] mb-[24px]">
               Əlaqə
             </h3>
-            <p className="flex items-center space-x-[10px]">
-              <span className="p-2 text-[16px] lg:size-[28px] bg-[#121214] rounded-full inline-flex items-center justify-center">
-                <FaWhatsapp />
+            <p
+              className={`flex items-center space-x-[10px] ${
+                isMobile && "w-[170px]"
+              }`}
+            >
+              <span className="p-2 size-[34px] bg-[#121214] rounded-full inline-flex items-center justify-center">
+                <FaWhatsapp className="text-[30px]" />
               </span>
+              <p
+                className={`text-[#F1F1F199] lg:text-white ${
+                  isMobile && "text-[13px]"
+                }`}
+              >
+                +994 10 323 32 44
+              </p>
             </p>
           </div>
         </div>
