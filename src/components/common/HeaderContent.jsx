@@ -48,11 +48,7 @@ function HeaderContent() {
               </>
             )}
           </h1>
-          <p
-            className={`${
-              isMobile && "text-center"
-            } text-[16px] lg:text-[20px] leading-[24px] lg:leading-[28px] mt-[20px] lg:my-[35px] mb-[40px]`}
-          >
+          <p className="text-center lg:text-left text-[16px] lg:text-[20px] leading-[24px] lg:leading-[28px] mt-[20px] lg:my-[35px] mb-[40px] text-[#000000CC] font-[400]">
             Qonaqol.az ilə əyləncə dünyasını kəşf edin. Ölkəmizdə olan
             masterklasslardan seminarlara qədər sizin üçün xüsusi olaraq
             hazırlanmış mükəmməl tədbirləri təcrübə edin.
