@@ -1,8 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-
 import ExperienceCard from "../../components/widgets/ExperienceCard";
 import PopupMessage from "../../components/widgets/PopupMessage";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { month } from "../../mock/static";
 import {
   createLikeEventById,
@@ -31,22 +30,28 @@ const Event = () => {
   const [showShare, setShowShare] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [wishListArr, setwishListArr] = useState([]);
-  const eventId = new URLSearchParams(location.search).get("id");
+  const location = useLocation();
+  const [eventId, setEventId] = useState(
+    new URLSearchParams(location.search).get("id")
+  );
   const isMobile = useMediaQuery("only screen and (max-width:480px)");
-
   const [shareUrl, setShareUrl] = useState(window.location.href);
-  // const event_name = name && name.replace(/-/g, " ");
   const user = localStorage.getItem("userId");
+
+  useEffect(() => {
+    console.log("eventId", eventId);
+  }, [eventId]);
 
   useEffect(() => {
     eventById(eventId).then((res) => setData(res.data));
   }, [eventId]);
+
   useEffect(() => {
     // eventById(id).then((res) => console.log(res.data));
     getEvents().then((res) =>
       setOtherEvents(res.data.filter((i) => i.category === data?.category))
     );
-  }, [otherEvents, data?.category]);
+  }, [data?.category]);
 
   useEffect(() => {
     // Scroll to the top of the page when component mounts
@@ -59,9 +64,6 @@ const Event = () => {
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-  // document.querySelector("body").addEventListener("focus", () => {
-  //   setShowShare(false);
-  // });
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowPopup(false);
@@ -172,6 +174,8 @@ const Event = () => {
   const createDate = `${data?.eventDate[2]} ${month[data?.eventDate[1] - 1]} ${
     data?.eventDate[0]
   }`;
+
+  // Close popup when click is outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -190,6 +194,7 @@ const Event = () => {
     };
   }, [showPopup]);
 
+  // Close popup when Esc key is pressed
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.keyCode === 27) {
